@@ -3,8 +3,8 @@
 This document describes one real installation of the wavves system, used
 while building **friend**, a city-scale evidence model of Manhattan served
 at friend.aimez.ai. It is a WORKED EXAMPLE, not a default. Nothing in the
-packaged skills points at these paths; you will create your own home,
-registry, and lane names. Numbers below are quoted from lane findings files
+packaged skills points at these paths. You will create your own home,
+registry and lane names. Numbers below are quoted from lane findings files
 as of 2026-07-06.
 
 ## The home
@@ -17,7 +17,7 @@ The standing home lives at `<repo>/.cca/catalogue/O0/`:
   STEP_LOG.md                    # synthesis trace, append-only
   rotations/
     ROTATION_R01_20260705_2340.md  # first rotation handoff (R1 outgoing, R2 assigned)
-  20260705_friend-perf-reliability/   # one lane home per chartered lane
+  20260705_friend-perf-reliability/   # one lane home per bounded workstream
   20260705_thermal-bake-refresh/
   20260704_camera-observability-ext/
 .cca/waves.registry.yml          # every lane, status, one-paragraph note
@@ -35,7 +35,7 @@ was terminated while its simulation was still running.
 The friend web viewer had an unbounded crash-to-fallback path and an
 unsplit caching policy. The lane ran waves W1 through W8 (findings files
 `FPR-W1-*.md` ... `FPR-W8-ADV.md`, 48 files) on a shared scaffold branch,
-with two adversarial waves (W6 and W8); the W8 findings record their
+with two adversarial waves (W6 and W8). The W8 findings record their
 evaluator as fresh, with no authorship of the waves it judged.
 
 Measured outcomes quoted from `FPR-W8-EVIDENCE.md` and `FPR-W8-ADV.md`:
@@ -69,16 +69,16 @@ manifest hash, and passed the gate on loop 1 of the 2-loop cap (`TBR-ADV.md`).
 One lane built a 356-camera annotation deck and ran a cloud detection pass.
 Quoted from `OBS-F1-P1.md`:
 
-- 45 on-demand instances processed 341 cameras, 127,404 frames; per-shard
-  runtime 249-319 s (mean 286 s); wall clock about 32 minutes including
-  remediations; rough cost about $4.
+- 45 on-demand instances processed 341 cameras, 127,404 frames. Per-shard
+  runtime 249-319 s (mean 286 s). Wall clock about 32 minutes including
+  remediations. Rough cost about $4.
 - Two worker defects were caught mid-run and recorded honestly. A missing
   system library killed the first worker start, and a too-narrow frame-name
-  regex "silently dropping the campaign's burst frames" made the first pass
-  complete "absurdly fast (224 frames/shard)". The runner refused to trust
-  the fast completion, fixed the regex, and re-ran end to end. The findings
-  note the first completion signal "was false and would have shipped a ~0.2%
-  detection pass if it had been trusted".
+  regex "silently dropping the burst frames" made the first pass end
+  "absurdly fast (224 frames/shard)". The runner refused to accept the fast
+  signal, fixed the regex and re-ran end to end. The findings note the first
+  signal "was false and would have shipped a ~0.2% detection pass if it had
+  been trusted".
 
 A sibling wave (`OBS-F2-P1.md`) trained a segmentation model on 43
 operator-labeled cameras. All six (period, class) cells passed the 0.5
@@ -94,15 +94,15 @@ After these lanes, the thread rotated. The outgoing instance wrote
 successor identity ("You are **O0.R2**. Ack with that identity and this
 file's name before acting."), lists landed positions with commit hashes,
 records the background dispatch still running at handoff with pickup
-instructions (plus one completed and reconciled before the rotation), and
+instructions (plus one finished and reconciled before the rotation) and
 lists blocked items with what unblocks them. The rotation contract requires
 the successor to ack its assigned identity and the rotation file it
 hydrated from before acting.
 
 ## What to copy
 
-Copy the shapes, not the paths. One standing home, one registry, one lane
-home per campaign, findings written incrementally, adversarial gates run by
+Copy the shapes, not the paths. One standing home, one registry and one lane
+home per bounded workstream, findings written incrementally, adversarial gates run by
 fresh evaluators with capped loops, rotation files that assign successor
-identity. The lane names, cloud vendors, and gate metrics above are specific
+identity. The lane names, cloud vendors and gate metrics above are specific
 to this installation and are not defaults of the plugin.

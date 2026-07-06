@@ -1,28 +1,27 @@
 # wavves
 
-Run agent campaigns overnight and trust the morning report, because
-acceptance is a measured check with its evidence saved to disk.
+Route durable multi-agent work through a moderator layer, with alignment
+packets, check records and handoff files saved beside the work.
 
-wavves is charter-driven orchestration for long-running, multi-agent work. It
-is a set of three skills that let a single operator run parallel campaigns of
-AI agents while state survives context limits, chat threads stay out of the
-critical path, and claims arrive with evidence on disk.
+wavves is a free Cursor plugin for managed distributed sessions. Its three
+skills help a single operator prepare bounded work, dispatch parallel runners
+and rotate overloaded threads while the shared record lives in files instead
+of chat history.
 
 The core ideas:
 
-- **Charters, not chat.** Every campaign (a "lane") gets a home directory
-  with a charter that carries the operator's intent, the grounded facts, and
-  the locked decisions an unprimed agent would get wrong.
-- **Waves of parallel subagents.** A dispatched sub-orchestrator runs bounded
-  waves (discovery, build, integrate, accept) with strict file-ownership
-  discipline, while the operator-facing thread stays unblocked.
-- **Runnable adversarial gates.** Acceptance is a measured number captured to
-  disk by an independent evaluator, never an assertion. Failed gates are
-  reported as failed, with capped remediation loops.
+- **Alignment packets.** Each lane gets a home directory with scope, grounded
+  facts, locked decisions, file boundaries and acceptance checks.
+- **Bounded waves.** A dispatched sub-orchestrator runs focused waves of
+  parallel subagents with strict file ownership while the operator-facing
+  thread stays small.
+- **Check records.** Acceptance comes from a measured check captured to disk
+  by an independent evaluator. Failed gates are reported as failed, with
+  capped remediation loops.
 - **Rotation with term identity.** When a thread gets heavy, the orchestrator
   hands off to a fresh one via a rotation file that assigns the successor a
   monotonic term identity (a design borrowed from Raft terms, Kubernetes
-  StatefulSet ordinals, and Erlang incarnation numbers), so stale instructions
+  StatefulSet ordinals and Erlang incarnation numbers), so stale instructions
   are recognizable and provenance survives.
 - **A standing home.** Any fresh instance hydrates from files (a home
   contract, a rotations directory, a waves registry, a step log), never from
@@ -33,7 +32,7 @@ by Cursor.
 
 ## Installation
 
-From the Cursor plugin marketplace (once listed):
+From the Cursor plugin marketplace after listing:
 
 ```
 /add-plugin wavves
@@ -50,12 +49,11 @@ Or install locally by copying this directory to:
 1. **Set up the home** (once per repo). Ask your agent to follow the
    `orchestrator-home` skill. It creates `<repo>/.cca/catalogue/O0/` with a
    standing `AGENTS.md` hydration contract, a `rotations/` directory, a waves
-   registry, and a step log.
-2. **Charter your first lane.** Ask for a waveset (for example "charter a
-   waveset to fix the checkout flow's reliability"). The
-   `waveset-orchestration` skill writes the lane home (charter, dispatch
-   prompt, README), registers the lane, and dispatches a background
-   sub-orchestrator that runs the waves and reports back.
+   registry and a step log.
+2. **Prepare your first lane.** Ask for a waveset, such as "set up a waveset
+   to fix the checkout flow's reliability". The `waveset-orchestration` skill
+   writes the lane home, alignment packet, dispatch prompt and README. It also
+   registers the lane and dispatches a background sub-orchestrator.
 3. **Let gates gate.** Adversarial and acceptance waves run as executable
    checks with evidence captured to the lane home `gate_captures/`. Approve
    gated waves (integration, deployment) explicitly when the orchestrator
@@ -71,25 +69,21 @@ Or install locally by copying this directory to:
 
 | Skill | Description |
 |:------|:------------|
-| `waveset-orchestration` | Charter a lane and dispatch a sub-orchestrator that runs waves of parallel subagents behind runnable gates. Includes EXECUTION_WIRING.md (how gates are run at execution time) and a generic transition-gap probe script. |
-| `orchestrator-rotation` | Hand the orchestrator (or one lane) to a fresh thread with full hydration, assigned term identity, and a one-line paste. |
-| `orchestrator-home` | Establish the standing home file, registry, and rotation contract a fresh instance hydrates from. |
+| `waveset-orchestration` | Build a lane alignment packet and dispatch a sub-orchestrator that runs waves of parallel subagents behind runnable gates. Includes EXECUTION_WIRING.md and a generic transition-gap probe script. |
+| `orchestrator-rotation` | Hand the orchestrator or one lane to a fresh thread with full hydration, assigned term identity and a one-line paste. |
+| `orchestrator-home` | Establish the standing home file, registry and rotation contract a fresh instance hydrates from. |
 
 ## Worked example
 
 [examples/friend-worked-example.md](examples/friend-worked-example.md) walks
 through one real installation (building friend, a city-scale evidence model)
-with three campaigns and the first rotation, quoting the real findings files.
-It is an example, not a default; the skills contain no paths from it.
+with three lanes and the first rotation, quoting the real findings files.
+It is an example, not a default. The skills contain no paths from it.
 
 ## Read more
 
-- Launch article on aimez, the story of one night's campaigns under these
-  contracts, including a caught false completion.
-  [ARTICLE LINK PLACEHOLDER, added at publish time]
-- Whitepaper, the method written up with its distributed-systems grounding,
-  full evidence tables, and stated limits.
-  [WHITEPAPER LINK PLACEHOLDER, added at publish time]
+The launch article and companion whitepaper are omitted here until public URLs
+exist.
 
 ## License
 

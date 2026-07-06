@@ -2,7 +2,7 @@
   "name": "wavves",
   "displayName": "wavves",
   "version": "0.1.0",
-  "description": "Charter-driven multi-agent orchestration for long-running work. Charter a lane, dispatch a sub-orchestrator that runs waves of parallel subagents behind runnable adversarial gates, rotate the orchestrator to a fresh thread with an assigned term identity when context runs long, and keep a standing home file so any fresh instance hydrates from files instead of transcripts.",
+  "description": "Durable multi-agent routing for managed distributed sessions. Prepare alignment packets, dispatch bounded waves through a moderator layer, capture check records and rotate overloaded threads with explicit handoff files.",
   "author": {
     "name": "aimez"
   },
@@ -13,7 +13,7 @@
     "waveset",
     "rotation",
     "handoff",
-    "adversarial-gates",
+    "check-records",
     "context-management"
   ],
   "category": "developer-tools",

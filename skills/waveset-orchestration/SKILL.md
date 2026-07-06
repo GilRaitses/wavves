@@ -1,15 +1,16 @@
 ---
 name: waveset-orchestration
 description: >-
-  Charter a waveset and dispatch it to a background or fresh orchestrator that
-  runs waves of parallel subagents and reports back to the central orchestrator
-  (O0) without blocking it. Use when the operator asks to charter a waveset,
-  dispatch or launch a background orchestrator, run waves of parallel
-  subagents, spin up parallel lanes, or delegate a multi-wave campaign while
-  the main thread stays available. Produces a lane home (WAVESET_CHARTER,
-  ORCHESTRATOR_DISPATCH_PROMPT, README), a waves-registry entry, and a
-  background-orchestrator dispatch. Also covers the execution wiring every
-  runner needs at run time, described in EXECUTION_WIRING.md.
+  Prepare a waveset alignment packet and dispatch it to a background or fresh
+  orchestrator that runs bounded waves of parallel subagents and reports back
+  to the central orchestrator (O0) without blocking it. Use when the operator
+  asks to set up a waveset, launch a background orchestrator, run waves of
+  parallel subagents, spin up parallel lanes, or delegate multi-wave work while
+  the main thread stays available. Produces a lane home
+  (WAVESET_CHARTER, ORCHESTRATOR_DISPATCH_PROMPT, README), a waves-registry
+  entry, check-record guidance and a background-orchestrator dispatch. Also
+  covers the execution wiring every runner needs at run time, described in
+  EXECUTION_WIRING.md.
 ---
 
 # Waveset Orchestration

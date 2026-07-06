@@ -1,13 +1,13 @@
 ---
 name: orchestrator-rotation
 description: >-
-  Charter a self-replacement handoff so a fresh thread of an orchestrator can
-  take over with full hydration and provenance. Use when the operator asks to
-  rotate the agent, hand off to a new orchestrator, replay or self-fork into a
-  fresh thread, or says token velocity or context usage is too high and the
-  thread must be rotated. Produces either a rotation file under the standing
-  orchestrator home (whole-orchestrator handoff) or a five-file handoff packet
-  (single-lane handoff), and emits a one-line paste for the new thread.
+  Create an explicit handoff file so a fresh orchestrator thread can take over
+  with full hydration and provenance. Use when the operator asks to rotate the
+  agent, hand off to a new orchestrator, replay or self-fork into a fresh
+  thread, or says token velocity or context usage is too high and the thread
+  must be rotated. Produces either a rotation file under the standing
+  orchestrator home or a five-file handoff packet and emits a one-line paste
+  for the new thread.
 ---
 
 # Orchestrator Rotation

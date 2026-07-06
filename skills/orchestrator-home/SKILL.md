@@ -3,12 +3,11 @@ name: orchestrator-home
 description: >-
   Establish and maintain a standing home file for a central orchestrator so
   ANY fresh instance (rotation, replay, or recovery) hydrates from files
-  instead of chat transcripts. Use when setting up charter-driven multi-agent
-  work in a repo for the first time, when an orchestrator needs a durable
-  hydration entry point, or when defining term identity and rotation rules for
-  successive orchestrator instances. Produces <repo>/.cca/catalogue/O0/AGENTS.md
-  (the standing contract), a rotations/ directory, a waves registry, and a
-  step log.
+  instead of chat transcripts. Use when setting up the moderator layer for
+  managed distributed sessions, when an orchestrator needs a durable hydration
+  entry point, or when defining term identity and rotation rules for successive
+  orchestrator instances. Produces <repo>/.cca/catalogue/O0/AGENTS.md (the
+  standing contract), a rotations/ directory, a waves registry and a step log.
 ---
 
 # Orchestrator Home
