@@ -71,7 +71,7 @@ Or install locally by copying this directory to:
 
 | Skill | Description |
 |:------|:------------|
-| `waveset-orchestration` | Charter a lane and dispatch a sub-orchestrator that runs waves of parallel subagents behind runnable gates. Includes EXECUTION_WIRING.md (how gates are actually run) and a generic transition-gap probe script. |
+| `waveset-orchestration` | Charter a lane and dispatch a sub-orchestrator that runs waves of parallel subagents behind runnable gates. Includes EXECUTION_WIRING.md (how gates are run at execution time) and a generic transition-gap probe script. |
 | `orchestrator-rotation` | Hand the orchestrator (or one lane) to a fresh thread with full hydration, assigned term identity, and a one-line paste. |
 | `orchestrator-home` | Establish the standing home file, registry, and rotation contract a fresh instance hydrates from. |
 

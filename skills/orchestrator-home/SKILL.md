@@ -60,7 +60,7 @@ rotation file cites one.
 ### 3. Etiquette locks (carried into every charter and dispatch)
 
 Adapt this list to the repo; the pattern is that each lock encodes a failure
-someone actually hit.
+someone hit in real work.
 
 - Honesty. Modeled-not-measured labeling, no reassurance bias, failed gates
   reported as failed, evidence transcribed not asserted. Visual claims
