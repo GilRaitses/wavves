@@ -27,7 +27,7 @@ The core ideas:
   contract, a rotations directory, a waves registry, a step log), never from
   transcripts.
 
-wavves is a community plugin by aimez. It is not affiliated with or endorsed
+wavves is a community plugin by aimez and is not affiliated with or endorsed
 by Cursor.
 
 ## Installation
@@ -47,12 +47,12 @@ Or install locally by copying this directory to:
 ## Quickstart
 
 1. **Set up the home** (once per repo). Ask your agent to follow the
-   `orchestrator-home` skill. It creates `<repo>/.cca/catalogue/O0/` with a
-   standing `AGENTS.md` hydration contract, a `rotations/` directory, a waves
-   registry and a step log.
+   `orchestrator-home` skill. The skill creates `<repo>/.cca/catalogue/O0/`
+   with a standing `AGENTS.md` hydration contract, a `rotations/` directory,
+   a waves registry and a step log.
 2. **Prepare your first lane.** Ask for a waveset, such as "set up a waveset
    to fix the checkout flow's reliability". The `waveset-orchestration` skill
-   writes the lane home, alignment packet, dispatch prompt and README. It also
+   writes the lane home, alignment packet, dispatch prompt and README, then
    registers the lane and dispatches a background sub-orchestrator.
 3. **Let gates gate.** Adversarial and acceptance waves run as executable
    checks with evidence captured to the lane home `gate_captures/`. Approve
@@ -78,7 +78,7 @@ Or install locally by copying this directory to:
 [examples/friend-worked-example.md](examples/friend-worked-example.md) walks
 through one real installation (building friend, a city-scale evidence model)
 with three lanes and the first rotation, quoting the real findings files.
-It is an example, not a default. The skills contain no paths from it.
+The example is not a default. The skills contain no paths from it.
 
 ## Read more
 

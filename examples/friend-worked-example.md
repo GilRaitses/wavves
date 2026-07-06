@@ -1,9 +1,9 @@
 # Worked example: building friend with wavves
 
-This document describes one real installation of the wavves system, used
+The document describes one real installation of the wavves system, used
 while building **friend**, a city-scale evidence model of Manhattan served
-at friend.aimez.ai. It is a WORKED EXAMPLE, not a default. Nothing in the
-packaged skills points at these paths. You will create your own home,
+at friend.aimez.ai. The installation is a WORKED EXAMPLE, not a default.
+Nothing in the packaged skills points at these paths. You will create your own home,
 registry and lane names. Numbers below are quoted from lane findings files
 as of 2026-07-06.
 
@@ -47,7 +47,7 @@ Measured outcomes quoted from `FPR-W8-EVIDENCE.md` and `FPR-W8-ADV.md`:
 - Warm reload served "152/152 asset+thermal requests ... from cache, 0.00 MB
   transfer", with "console errors/rejections: 0".
 - The second adversarial review advanced all seven surfaces with
-  "Remediation loops consumed: 0 of 2 per lane", and the final diff was 10
+  "Remediation loops consumed: 0 of 2 per lane". The final diff was 10
   files, +637/-50.
 
 The one coverage gap (an auth-provisioned preview environment) was reported
@@ -56,13 +56,13 @@ as a gap and escalated to the operator rather than papered over.
 ## Lane 2: a data-freshness audit that found nothing to refresh (TBR)
 
 A thermal 3D artifact was suspected stale. The runner's freshness scan found
-no upstream input newer than the existing bake, and said so plainly in
+no upstream input newer than the existing bake and said so plainly in
 `TBR-P1.md` ("FINDING (honest): no upstream input changed since the Jun 24
 bake. There is nothing to re-bake at the raster level."). The lane pivoted to
 embedding provenance (a `generated_at` timestamp plus sha256 hashes of all 65
 inputs) into the artifact instead, an additive change of +6,072 bytes. The
-adversarial evaluator independently re-hashed four inputs, reproduced the
-manifest hash, and passed the gate on loop 1 of the 2-loop cap (`TBR-ADV.md`).
+adversarial evaluator independently re-hashed four inputs and reproduced the
+manifest hash. The gate passed on loop 1 of the 2-loop cap (`TBR-ADV.md`).
 
 ## Lane 3: camera observability for friend (OBS)
 
@@ -73,7 +73,7 @@ Quoted from `OBS-F1-P1.md`:
   runtime 249-319 s (mean 286 s). Wall clock about 32 minutes including
   remediations. Rough cost about $4.
 - Two worker defects were caught mid-run and recorded honestly. A missing
-  system library killed the first worker start, and a too-narrow frame-name
+  system library killed the first worker start. A too-narrow frame-name
   regex "silently dropping the burst frames" made the first pass end
   "absurdly fast (224 frames/shard)". The runner refused to accept the fast
   signal, fixed the regex and re-ran end to end. The findings note the first
@@ -82,7 +82,7 @@ Quoted from `OBS-F1-P1.md`:
 
 A sibling wave (`OBS-F2-P1.md`) trained a segmentation model on 43
 operator-labeled cameras. All six (period, class) cells passed the 0.5
-median-IoU ship gate (macro median 0.660), and the findings state the
+median-IoU ship gate (macro median 0.660). The findings state the
 distribution caveat plainly, "crosswalk is bimodal in both periods. 4 of 10
 held-out cameras land under 0.35 day and 4 under 0.35 night (including one
 0.00 ...)".
