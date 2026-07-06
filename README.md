@@ -77,10 +77,10 @@ Or install locally by copying this directory to:
 
 ## Worked example
 
-[examples/pax-worked-example.md](examples/pax-worked-example.md) walks
-through one real installation (a personal research monorepo) with three
-campaigns and the first rotation, quoting the real findings files. It is an
-example, not a default; the skills contain no paths from it.
+[examples/friend-worked-example.md](examples/friend-worked-example.md) walks
+through one real installation (building friend, a city-scale evidence model)
+with three campaigns and the first rotation, quoting the real findings files.
+It is an example, not a default; the skills contain no paths from it.
 
 ## Read more
 

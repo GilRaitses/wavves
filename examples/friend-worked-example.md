@@ -1,14 +1,15 @@
-# Worked example: the pax instance
+# Worked example: building friend with wavves
 
-This document describes one real installation of the wavves system, in a
-personal research monorepo called pax (an urban evidence-model project). It
-is a WORKED EXAMPLE, not a default. Nothing in the packaged skills points at
-these paths; you will create your own home, registry, and lane names. Numbers
-below are quoted from that repo's lane findings files as of 2026-07-06.
+This document describes one real installation of the wavves system, used
+while building **friend**, a city-scale evidence model of Manhattan served
+at friend.aimez.ai. It is a WORKED EXAMPLE, not a default. Nothing in the
+packaged skills points at these paths; you will create your own home,
+registry, and lane names. Numbers below are quoted from lane findings files
+as of 2026-07-06.
 
 ## The home
 
-The standing home lives at `pax/.cca/catalogue/O0/`:
+The standing home lives at `<repo>/.cca/catalogue/O0/`:
 
 ```
 .cca/catalogue/O0/
@@ -29,10 +30,10 @@ untouchable-hosts list and a verify-results-before-terminate rule for cloud
 instances, written after a real incident in which a batch-compute instance
 was terminated while its simulation was still running.
 
-## Lane 1: a performance and reliability campaign (FPR)
+## Lane 1: friend performance and reliability (FPR)
 
-A web viewer had an unbounded crash-to-fallback path and an unsplit caching
-policy. The lane ran waves W1 through W8 (findings files
+The friend web viewer had an unbounded crash-to-fallback path and an
+unsplit caching policy. The lane ran waves W1 through W8 (findings files
 `FPR-W1-*.md` ... `FPR-W8-ADV.md`, 48 files) on a shared scaffold branch,
 with two adversarial waves (W6 and W8); the W8 findings record their
 evaluator as fresh, with no authorship of the waves it judged.
@@ -63,10 +64,10 @@ inputs) into the artifact instead, an additive change of +6,072 bytes. The
 adversarial evaluator independently re-hashed four inputs, reproduced the
 manifest hash, and passed the gate on loop 1 of the 2-loop cap (`TBR-ADV.md`).
 
-## Lane 3: a fleet-scale computer-vision night (OBS)
+## Lane 3: camera observability for friend (OBS)
 
-One overnight lane built a 356-camera annotation deck and ran a cloud
-detection pass. Quoted from `OBS-F1-P1.md`:
+One lane built a 356-camera annotation deck and ran a cloud detection pass.
+Quoted from `OBS-F1-P1.md`:
 
 - 45 on-demand instances processed 341 cameras, 127,404 frames; per-shard
   runtime 249-319 s (mean 286 s); wall clock about 32 minutes including
@@ -104,4 +105,4 @@ Copy the shapes, not the paths. One standing home, one registry, one lane
 home per campaign, findings written incrementally, adversarial gates run by
 fresh evaluators with capped loops, rotation files that assign successor
 identity. The lane names, cloud vendors, and gate metrics above are specific
-to this repo and are not defaults of the plugin.
+to this installation and are not defaults of the plugin.
