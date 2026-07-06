@@ -22,5 +22,6 @@
     "workflow",
     "long-running-work"
   ],
-  "skills": "./skills/"
+  "skills": "./skills/",
+  "logo": "assets/wavves-logo.svg"
 }
