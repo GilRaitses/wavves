@@ -20,6 +20,11 @@ state lives in `rotations/`; the standing file only points.
 Write the home ONCE per repo, then let rotations reuse it. Do not restate its
 contents in every rotation file.
 
+If the home already exists, adopt it. Read the existing `AGENTS.md`,
+`STEP_LOG.md`, registry and rotations directory before writing. Do not
+overwrite those files. Add only missing owned files, and report any conflict
+as a setup gap for the operator.
+
 ## What the standing AGENTS.md contains
 
 Use this template, adapted to the repo. Every section below earns its place
@@ -28,10 +33,9 @@ by preventing a specific fresh-instance failure.
 ### 1. Hydration stack (read in this order)
 
 1. The repo's own governance doc (surfaces, write policy, commit protocol,
-   naming rules) if one exists. When none exists, the default policy applies
-   until the operator supplies one. Writes stay confined to the home
-   directory, lane homes, and the registry; commits land on the default
-   branch with descriptive messages; everything else is read-only.
+   naming rules) if one exists. When none exists, setup writes stay confined
+   to the home directory, lane homes, and the registry. No commit or push
+   happens unless the operator explicitly requests it.
 2. `rotations/` in the home directory. Rotation handoffs, one file per
    rotation, datestamped. THE NEWEST FILE IS THE CURRENT POSITION, naming
    active dispatches, pending pickups, blocked items, and uncommitted state.
@@ -165,8 +169,9 @@ Portable locks.
   predictable with timeouts, verify reachability with a quick test before
   real work, and after a remote timeout never retry the same approach.
 - New non-central orchestrators make their first write a hydration
-  checkpoint in their actor-main step log, then sync and push, before any
-  substantive write.
+  checkpoint in their actor-main step log before any substantive write. They
+  return a commit plan unless repo governance grants write authority or the
+  operator explicitly asks for git actions.
 
 House bindings (fill in per repo).
 
@@ -220,10 +225,11 @@ covering successor identity (term N+1), positions (what landed, with commit
 hashes), active background dispatches (agent purpose, lane home, findings
 file, expected deliverables, pickup actions on completion), blocked items
 with what unblocks them, uncommitted local state per repo, and
-operator-pending decisions. Then it commits and pushes this home before the
-term ends, following the repo protocol where one exists and the default
-policy where none does; a successor in a separate sandbox can hydrate only
-from what was pushed. The successor acks by stating its assigned identity,
+operator-pending decisions. Then it writes this home and returns a commit
+plan. It commits and pushes only when repo governance grants that authority
+or the operator explicitly asks. A successor in a separate sandbox can
+hydrate only from what was pushed, so a local-only handoff must say that
+scope plainly. The successor acks by stating its assigned identity,
 naming the rotation file it hydrated from, and the pickups it now owns,
 verifies that the rotation file's claimed positions and commit hashes are
 reachable from HEAD (discrepancies become recorded gaps, never silently
@@ -246,8 +252,8 @@ Point to the sibling skills so a fresh instance knows the machinery:
 - [ ] 3. Create <repo>/.cca/waves.registry.yml with an empty active map
 - [ ] 4. Create STEP_LOG.md with a first entry recording the setup and the
         bootstrap identity assignment (O0.R1)
-- [ ] 5. Commit per the repo protocol, or per the default policy in section 1
-        when the repo has none
+- [ ] 5. Return a file list and commit plan. Commit or push only when the repo
+        protocol already grants that authority or the operator explicitly asks.
 ```
 
 ## Quality bar

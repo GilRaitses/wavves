@@ -51,12 +51,12 @@ covers exactly, in order:
 - Operator-pending decisions.
 - Provenance pointer (transcript path, keyword search only).
 
-Follow the section shape of the newest existing file in `rotations/`. Commit
-and push the orchestrator home (AGENTS.md plus the rotation file) before the
-term ends, following the repo protocol where one exists; where none exists,
-push to the default branch anyway, because a separate-sandbox successor can
-hydrate only from what was pushed. The term ends only after the push is
-verified. One-line paste form:
+Follow the section shape of the newest existing file in `rotations/`. Write
+the rotation file and return a commit plan. Commit and push the orchestrator
+home only when the repo protocol already grants that authority or the
+operator explicitly asks. A separate-sandbox successor can hydrate only from
+published state; if the handoff stays local, say so plainly in the paste and
+scope it to the same machine. One-line paste form:
 
 ```
 Hydrate as O0.R<N+1> from <repo>/.cca/catalogue/O0/AGENTS.md (current rotation: rotations/ROTATION_R<NN>_<...>.md) and ack per the rotation contract, stating your assigned identity, before acting.
@@ -75,10 +75,12 @@ orchestrator continues).** Use the five-file handoff home below.
 
 Variant B does NOT commit or push unless the operator explicitly asks (note
 any uncommitted local state in the charter section G instead). Variant A
-always commits and pushes before the term ends; the completion report carries
-the branch verified, the final commit hash, push confirmation, the synced
-state, and the changed-file list. All rotation git actions are performed by
-the orchestrator itself; dispatched runners never run git.
+also defaults to a commit plan unless repo governance grants the write or the
+operator explicitly asks for publication. When a rotation commit is made, the
+completion report carries the branch verified, the final commit hash, push
+confirmation, the synced state, and the changed-file list. All rotation git
+actions are performed by the orchestrator itself; dispatched runners never
+run git.
 
 ## Concurrent terms and git safety
 

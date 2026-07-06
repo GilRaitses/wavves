@@ -67,7 +67,7 @@ stay available to me".
 - [ ] 3. Ground the charter: read the real seams/data the lane touches; cite real paths (verify with file search)
 - [ ] 4. Write the lane home: WAVESET_CHARTER.md + ORCHESTRATOR_DISPATCH_PROMPT.md + README.md
 - [ ] 5. Register the lane in the waves registry (lane code, waves, status, one-paragraph note)
-- [ ] 6. Commit + push the charter (the chartering orchestrator is the sole git actor; see "Git ownership and dispatch concurrency" for the no-protocol default)
+- [ ] 6. Return a commit plan for the charter. Commit and push only when the repo governance or operator explicitly authorizes it.
 - [ ] 7. Dispatch: background subagent (run_in_background) OR emit the fresh-thread one-liner. First verify no other active term owns the lane (see "Git ownership and dispatch concurrency")
 - [ ] 8. Continue other work / end the turn. Do NOT poll. Reconcile on the completion notification per "Reconciliation duties".
 - [ ] 9. At execution time, run adversarial/acceptance gates as RUNNABLE harnesses; capture evidence to gate_captures/. See EXECUTION_WIRING.md.
@@ -226,10 +226,9 @@ lane home as work proceeds, never holding results to the end.
   commit. Before rebasing, confirm no other active agent owns unstaged files
   in the working tree; if one does, coordinate before any git action.
 - **No-protocol default.** In a repo with no stated commit protocol, the
-  orchestrator commits lane-home artifacts on the default branch with a
-  descriptive message and treats local-only or staged-only state as
-  incomplete. It never invents a protocol silently; it records the default it
-  applied.
+  orchestrator writes lane-home artifacts and returns a commit plan. It does
+  not commit or push unless the operator explicitly asks. It never invents
+  git authority silently; it records the default it applied.
 - **Cross-actor artifacts.** An artifact meant for another actor is published
   to shared repo state before cross-actor use; an unpublished artifact is
   local-only and never crosses actors. An actor reading an artifact landed by

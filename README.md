@@ -44,6 +44,18 @@ Or install locally by copying this directory to:
 ~/.cursor/plugins/local/wavves/
 ```
 
+Copy the plugin contents, not the `.git` directory. A release directory or a
+plain copy of `.cursor-plugin/`, `skills/`, `examples/`, `README.md` and
+`LICENSE` is the safest local install path.
+
+## Safety defaults
+
+wavves writes its own working records under `.cca/` by default. An
+existing root `AGENTS.md` is treated as repo governance and is not overwritten.
+Setup and lane preparation do not commit, push, deploy or mutate external
+services unless the operator explicitly asks for that action or the repo
+governance says wavves owns those writes.
+
 ## Quickstart
 
 1. **Set up the home** (once per repo). Ask your agent to follow the
@@ -62,6 +74,12 @@ Or install locally by copying this directory to:
    ask to rotate. The `orchestrator-rotation` skill writes a rotation file
    that assigns the successor's term identity and emits a one-line paste to
    start the fresh thread.
+
+Safe first prompt:
+
+```
+Set up wavves in this repo, then prepare a read-only waveset to audit my README. Do not commit.
+```
 
 ## Components
 
