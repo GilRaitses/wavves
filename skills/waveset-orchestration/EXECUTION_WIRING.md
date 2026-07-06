@@ -62,10 +62,19 @@ fetch) with no concurrent probe to keep alive:
 - Define the pass metric BEFORE the run (for example "max gap while liveness
   up = 0", "p95 first-token < 1.5s", "zero 5xx during rollover"). No
   reassurance bias.
-- Write the JSON summary and log to the lane home `gate_captures/`.
+- The pass metric comes from the charter or from the orchestrator, never from
+  the agent whose work the gate judges, and the gate is graded by an evaluator
+  with no authorship of that work.
+- Write the JSON summary and log to the lane home `gate_captures/`. A capture
+  is the harness's own output; a hand-authored summary is fabrication, and the
+  verdict names the command that produced each capture so it can be
+  reproduced.
 - The verdict in the step log cites the measured numbers and the capture path,
-  never a claim. If the metric is not met, the gate FAILS and the wave
-  repeats.
+  never a claim, and reports the full result distribution alongside any gate
+  statistic; headline claims stay scoped to the measured sample size and
+  conditions. If the metric is not met, the gate FAILS with named failures and
+  the wave repeats, within the charter's remediation-loop cap; at the cap,
+  escalate to the orchestrator instead of looping.
 
 ## Rule 3, read-only grounding vs operator-gated mutation
 
@@ -75,8 +84,21 @@ fetch) with no concurrent probe to keep alive:
   and runs only in a later wave with explicit approval. State in the charter
   which CLI calls are read-only grounding and which one is the gated mutation,
   so an unprimed runner cannot accidentally mutate production during research.
+- OPERATOR-GATED means the human operator. The runner requests approval
+  through the dispatching orchestrator, and the orchestrator relays approval
+  it holds from the operator; the orchestrator's own judgment never
+  substitutes for the operator gate.
+- Never pass `--mutate-path` to the probe outside an approved mutation wave.
+  The flag fires real POST calls; in research and discovery waves the probe
+  runs read-only.
 
 ## Rule 4, record the decision durably
+
+Some repos treat their decision store, system state, or registry surfaces as
+separately gated. Writing a gated surface requires the charter or dispatch
+directive to authorize it explicitly; a runner whose directive is silent on
+those surfaces hands the record content back to the orchestrator in its
+findings instead of writing it.
 
 A completed waveset that made a real decision records it so it survives the
 chat thread. If the repo keeps structured decision records, write one that
@@ -108,7 +130,8 @@ python3 scripts/transition_gap_probe.py \
 
 Pass = `max_gap_while_live_up_ms == 0`. The script also logs each GAP
 open/close and a sparse mutating call (for example a create) when
-`--mutate-path` is given.
+`--mutate-path` is given. `--mutate-path` is itself a mutation under Rule 3
+and runs only in an approved mutation wave.
 
 ## Checklist for a gate-running wave
 
@@ -118,6 +141,7 @@ open/close and a sparse mutating call (for example a create) when
 - [ ] Measured transition runs as ONE long-blocking command (probe survives)
 - [ ] Mutation (if any) was operator-gated and approved; research stayed read-only
 - [ ] Verdict cites measured numbers + capture path (not a claim)
-- [ ] Decision recorded durably (Rule 4)
-- [ ] Step log + registry status updated; committed/pushed per the repo protocol
+- [ ] Decision recorded durably (Rule 4, gated surfaces only with explicit authorization)
+- [ ] Step log (append-only, never rewrite prior entries) + registry status updated
+- [ ] Findings end with the commit file list for the orchestrator (exclusions stated) and the no-git statement; the orchestrator commits/pushes per protocol
 ```

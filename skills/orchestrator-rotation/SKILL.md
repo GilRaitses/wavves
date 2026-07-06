@@ -20,7 +20,10 @@ hydrates from files, never from the transcript linearly.
 
 The operator says any of "rotate you", "charter a handoff / your replacement",
 "fresh thread / self-replay / self-fork", "token velocity is too high", or
-"hand this branch off to a new orchestrator".
+"hand this branch off to a new orchestrator". An overloaded orchestrator may
+also PROPOSE rotation itself; it surfaces the proposal to the operator and
+rotates only on operator confirmation, and the successor identity still comes
+from the handoff file, never self-chosen.
 
 ## Two variants, pick the right one
 
@@ -49,9 +52,11 @@ covers exactly, in order:
 - Provenance pointer (transcript path, keyword search only).
 
 Follow the section shape of the newest existing file in `rotations/`. Commit
-and push the orchestrator home (AGENTS.md plus the rotation file) if the repo
-protocol allows it, so the successor can hydrate from a clean checkout.
-One-line paste form:
+and push the orchestrator home (AGENTS.md plus the rotation file) before the
+term ends, following the repo protocol where one exists; where none exists,
+push to the default branch anyway, because a separate-sandbox successor can
+hydrate only from what was pushed. The term ends only after the push is
+verified. One-line paste form:
 
 ```
 Hydrate as O0.R<N+1> from <repo>/.cca/catalogue/O0/AGENTS.md (current rotation: rotations/ROTATION_R<NN>_<...>.md) and ack per the rotation contract, stating your assigned identity, before acting.
@@ -70,7 +75,43 @@ orchestrator continues).** Use the five-file handoff home below.
 
 Variant B does NOT commit or push unless the operator explicitly asks (note
 any uncommitted local state in the charter section G instead). Variant A
-commits and pushes when the repo's protocol mandates it.
+always commits and pushes before the term ends; the completion report carries
+the branch verified, the final commit hash, push confirmation, the synced
+state, and the changed-file list. All rotation git actions are performed by
+the orchestrator itself; dispatched runners never run git.
+
+## Concurrent terms and git safety
+
+Rotation is the mechanism that creates concurrent terms, so its git actions
+carry their own etiquette.
+
+- **The rotation commit touches only the home's continuity files** (AGENTS.md
+  and the rotation file). If a dispatched agent is actively editing the same
+  branch, coordinate the commit explicitly or note the conflict in the
+  rotation file; never land commits silently under an active editor.
+- **Remote-rejected push** (a concurrent term landed first). Fetch, then
+  rebase with autostash, then push. Never force-push over the concurrent
+  commit. Before rebasing, confirm no other active agent owns unstaged files
+  in the working tree; if one does, coordinate before any git action.
+- **The outgoing term fences itself.** After the rotation file is committed
+  and pushed, the outgoing thread makes no further commits and writes no
+  further rotation files. The one-line paste goes to exactly one successor
+  thread; if two threads ever claim the same term, the newest rotation file
+  governs and the conflict gets logged.
+- **A surviving predecessor thread conforms before landing.** An older thread
+  that stays active with uncommitted work conforms that work to any newer
+  term's rulings before landing it, per the stale-term rule.
+- **Unverified work never rides the handoff silently.** Before the term ends,
+  changes on shared branches that could not be verified or qualified are
+  reverted from the working tree, preserved at a stated location, and
+  recorded in the rotation file's uncommitted-state section with the
+  rationale.
+- **The successor verifies before proceeding.** The ack includes checking
+  that the rotation file's claimed positions and commit hashes are reachable
+  from HEAD; discrepancies become recorded gaps, never silently executed
+  pickups. If a divergent untracked local copy blocks the successor's pull,
+  resolve in favor of the tracked origin artifact, delete the local
+  divergence, and record the deletion in the step log.
 
 ## Workflow
 
@@ -114,8 +155,9 @@ assets, then a repo map and environments. Every entry is an absolute or
 repo-relative path.
 
 **STEP_LOG.md** is the synthesis trace, newest last (S01, S02, ...). Each
-step runs 2-4 lines, names the files touched and any commit hash. Point to
-the transcript for detail; do not transcribe it.
+step runs 2-4 lines, names the files touched and any commit hash. Append
+entries, never rewrite prior ones. Point to the transcript for detail; do
+not transcribe it.
 
 **ORCHESTRATOR_DISPATCH_PROMPT.md** is a fenced paste block that
 
@@ -148,3 +190,6 @@ Hydrate as O0 (<LANE> lane) from <repo>/.cca/catalogue/O0/<DATE>_<lane>-handoff/
 - No time-bombs ("before Monday do X"); state conditions, not deadlines,
   unless a real external deadline exists.
 - Paths must be real. Verify with a file search before citing.
+- An artifact the handoff cannot resolve gets an explicit gap entry with the
+  reason, never a silent omission, and the positions and numbers the handoff
+  carries trace to step-log entries or findings files.
