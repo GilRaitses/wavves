@@ -65,13 +65,14 @@ stay available to me".
 - [ ] 1. Name the lane: short code (2-4 caps) + kebab label + date (operator's timezone)
 - [ ] 2. Capture repo state: branch + origin/main hash (repo_state_verified_against)
 - [ ] 3. Ground the charter: read the real seams/data the lane touches; cite real paths (verify with file search)
-- [ ] 4. Write the lane home: waveset.md + dispatch.md + README.md
-- [ ] 5. Register the lane in the waves registry (lane code, waves, status, one-paragraph note)
-- [ ] 6. Add any project-skill needs as proposal targets, never installed skills
-- [ ] 7. Return a commit plan for the charter. Commit and push only when the repo governance or operator explicitly authorizes it.
-- [ ] 8. Dispatch: background subagent (run_in_background) OR emit the fresh-thread one-liner. First verify no other active term owns the lane (see "Git ownership and dispatch concurrency")
-- [ ] 9. Continue other work / end the turn. Do NOT poll. Reconcile on the return notice per "Reconciliation duties".
-- [ ] 10. At execution time, run adversarial/acceptance gates as RUNNABLE harnesses; capture evidence to gate-captures/. See EXECUTION_WIRING.md.
+- [ ] 4. Choose model tiers for the lane orchestrator and each wave; record reason and cost discipline
+- [ ] 5. Write the lane home: waveset.md + dispatch.md + README.md
+- [ ] 6. Register the lane in the waves registry (lane code, waves, status, one-paragraph note)
+- [ ] 7. Add any project-skill needs as proposal targets, never installed skills
+- [ ] 8. Return a commit plan for the charter. Commit and push only when the repo governance or operator explicitly authorizes it.
+- [ ] 9. Dispatch: background subagent (run_in_background) OR emit the fresh-thread one-liner. First verify no other active term owns the lane (see "Git ownership and dispatch concurrency")
+- [ ] 10. Continue other work / end the turn. Do NOT poll. Reconcile on the return notice per "Reconciliation duties".
+- [ ] 11. At execution time, run adversarial/acceptance gates as RUNNABLE harnesses; capture evidence to gate-captures/. See EXECUTION_WIRING.md.
 ```
 
 ### Step 1, lane naming
@@ -121,6 +122,13 @@ wavves/lanes/<YYYYMMDD>_<lane-label>/
 - **Gated waves and operator involvement.** Name at charter time which waves are
   GATED and which mutations are operator-gated, so a lane that touches
   production carries its gates from birth.
+- **Model routing and token discipline.** Include a table with `role`,
+  `recommended_model_tier`, `reason`, `expected_context`, `expected_file_reads`
+  and `cost_caveat`. Tier names are `fast`, `balanced` and `high-reasoning`
+  unless the repo defines concrete model slugs. Use `high-reasoning` for
+  architecture, integration, adversarial review and acceptance. Use `balanced`
+  for bounded implementation with local validation. Use `fast` for inventory,
+  search, formatting, link checks and mechanical scans.
 - **Escalation (operator-protection catch)**, described below.
 
 **dispatch.md** is a fenced paste block that declares the
@@ -139,7 +147,9 @@ keep working instead of blocking on it (EXECUTION_WIRING.md Rule 1b); forbids
 promising background monitoring the runner cannot perform; **mandates that
 adversarial/acceptance gates are RUN, not asserted, with captured evidence
 under `gate-captures/`, per EXECUTION_WIRING.md**; and demands the return
-contract below. Add a "more context" table mapping each likely need to a file.
+contract below. It also carries the recommended model tier, the reason for
+that tier and the expected context budget. Add a "more context" table mapping
+each likely need to a file.
 
 **Return contract (minimum fields).** Every dispatch return lists the waves run
 with gate verdicts and capture paths, the commit file list for the orchestrator
@@ -150,6 +160,30 @@ Omissions are findings, never silences.
 
 **README.md** is 8-15 lines. What the lane is, the file list, how to start it,
 current status.
+
+### Model routing table
+
+Every `waveset.md` carries a table like this:
+
+```text
+role                  model tier        reason                         cost caveat
+lane orchestrator     high-reasoning    cross-file plan and gates       highest-cost role, keep context bounded
+discovery runners     fast              search and inventory            limit file reads, summarize paths
+build runners         balanced          bounded edits plus checks       validate locally before return
+adversarial gate      high-reasoning    risk and defect judgment        run after build artifacts exist
+acceptance gate       high-reasoning    final verification              cite captures, do not re-read chat
+```
+
+When launching a subagent through an environment that exposes a `model`
+argument, set that argument to the recommended model or model slug. When the
+environment does not expose model selection, keep the recommendation in the
+dispatch prompt and require the runner to report `model_enforcement:
+not_available`.
+
+Do not claim savings from this table unless a later accounting pass compares
+planned tiers with actual token or billing records. The safe claim is that the
+charter makes model selection auditable before execution and reserves expensive
+models for judgment-heavy work.
 
 ### Project skill proposals
 

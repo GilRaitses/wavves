@@ -45,10 +45,13 @@ covers exactly, in order:
   wave ids with `.R<N+1>`.
 - Positions (landed work with commit hashes).
 - Active background dispatches (purpose, lane home, findings file, PICKUP
-  actions when it returns).
+  actions when it returns, recommended model tier, and whether the runtime
+  accepted an explicit model setting).
 - Blocked items plus what unblocks them.
 - Uncommitted local state per repo.
 - Operator-pending decisions.
+- Active model policy and any deviations from the charter's recommended model
+  tiers.
 - Provenance pointer (transcript path, keyword search only).
 
 Follow the section shape of the newest existing file in `rotations/`. Write
@@ -147,8 +150,10 @@ carry their own etiquette.
 - G. Pending uncommitted local state (flag files not yet committed; note
   whether the successor shares the same machine or must rehydrate from the
   remote)
-- H. Return contract (the exact ack the new thread must produce)
-- I. Transcript / provenance pointer (path plus "search by keyword, not
+- H. Model routing state (recommended tier, actual model if known, and any
+  enforcement gap)
+- I. Return contract (the exact ack the new thread must produce)
+- J. Transcript / provenance pointer (path plus "search by keyword, not
   linear")
 
 **hydration.md** is an ordered read list, grouped. Governance/canon
@@ -167,6 +172,7 @@ not transcribe it.
 - lists 3-4 hydration files in order
 - restates the locked decisions inline (1 sentence)
 - names active lanes and which need operator approval
+- names recommended model tiers for the lane and active waves
 - forbids commit/push without an operator ask
 - forbids linear transcript reads
 - demands the section H return contract

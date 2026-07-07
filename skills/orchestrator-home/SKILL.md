@@ -115,6 +115,12 @@ blocked_decisions:
 project_skills:
   proposed: skills/proposed/
   accepted: skills/accepted/
+
+model_policy:
+  default: record recommendation before dispatch
+  high_reasoning: integration, adversarial review, acceptance, architecture
+  balanced: bounded implementation with local validation
+  fast: inventory, search, formatting, link checks, mechanical scans
 ```
 
 Do not copy long findings, logs or transcripts into `INDEX.md`. Point to them.
@@ -246,6 +252,14 @@ Portable locks.
   proposal, records the decision and asks the operator before copying it to
   `wavves/skills/accepted/`, a repo rule, a Cursor IDE skill or a plugin
   update. Runners never install or enable skills directly.
+- Model routing. The moderator records recommended model tiers before
+  dispatch. Use high-reasoning models for architecture, integration,
+  adversarial review and acceptance. Use balanced models for bounded edits
+  with local validation. Use fast models for inventory, search, formatting,
+  link checks and mechanical scans. If the runtime exposes a model parameter,
+  set it during dispatch. If it does not, carry the recommendation in the
+  prompt and require the runner to report that the recommendation could not be
+  enforced.
 
 House bindings (fill in per repo).
 
@@ -330,7 +344,9 @@ Point to the sibling skills so a fresh instance knows the machinery:
         bootstrap identity assignment (O0.R1)
 - [ ] 6. Create skills/proposed/ and skills/accepted/ with README.md files that
         explain operator approval before any IDE or repo skill is saved
-- [ ] 7. Return a file list and commit plan. Commit or push only when the repo
+- [ ] 7. Add model_policy to INDEX.md and AGENTS.md with local tier names or
+        model slugs available in the operator's environment
+- [ ] 8. Return a file list and commit plan. Commit or push only when the repo
         protocol already grants that authority or the operator explicitly asks.
 ```
 

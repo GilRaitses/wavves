@@ -26,6 +26,9 @@ The core ideas:
 - **A standing home.** Any fresh instance hydrates from files (an index, a home
   contract, a rotations directory, a registry, a step log), never from
   transcripts.
+- **Model routing.** Charters record recommended model tiers for the
+  sub-orchestrator and each wave, so expensive reasoning is reserved for work
+  that needs it and scan-heavy or mechanical work can run on faster models.
 
 wavves is a community plugin by aimez and is not affiliated with or endorsed
 by Cursor.
@@ -123,6 +126,30 @@ Project skills are drafts first. A lane may write a proposal under
 moderator reviews the proposal and asks the operator before saving it as a
 repo skill, Cursor IDE skill or plugin update. Runners never install skills
 directly.
+
+## Model and Cost Discipline
+
+Each `waveset.md` includes a model routing table. The table records the
+moderator's recommended model tier for the lane orchestrator and for each wave:
+
+```text
+role                  model tier        reason
+lane orchestrator     high-reasoning    cross-file planning and gate design
+discovery runners     fast              broad search, summaries, inventory
+build runners         balanced          bounded edits with local validation
+adversarial gate      high-reasoning    defect finding and risk judgment
+acceptance gate       high-reasoning    final verification and caveat review
+```
+
+When the environment exposes a model parameter for subagents, the moderator
+sets that parameter at dispatch time. If the environment does not expose one,
+the dispatch prompt still carries the recommendation so the receiving agent can
+report the mismatch.
+
+This is a cost-control surface, not a measured savings claim. It makes cost
+auditable by recording runner count, expected file reads, expected gate cost
+and model tier before execution. A later accounting pass can compare planned
+tiers with actual token or billing records when the environment exposes them.
 
 ## Manual harness inspection
 

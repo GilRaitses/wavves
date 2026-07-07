@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>wavves | durable multi-agent routing</title>
+  <meta name="description" content="wavves is a Cursor plugin for durable multi-agent routing through alignment packets, model recommendations, check records and handoff files.">
+  <link rel="canonical" href="https://wavves.aimez.ai/">
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      color-scheme: light;
+      --ink: #151515;
+      --charcoal: #24313b;
+      --paper: #f8efe2;
+      --cream: #fbf5e7;
+      --copper: #bd6d36;
+      --olive: #8f9171;
+      --blue: #304f78;
+      --serif: "Cormorant Garamond", "Bodoni 72", Didot, Georgia, serif;
+      --sans: "IBM Plex Sans", system-ui, sans-serif;
+      --mono: "IBM Plex Mono", monospace;
+    }
+    body {
+      background:
+        repeating-radial-gradient(circle at 8% 18%, rgba(189, 109, 54, 0.18) 0 1px, transparent 1px 22px),
+        repeating-radial-gradient(circle at 92% 12%, rgba(143, 145, 113, 0.16) 0 1px, transparent 1px 24px),
+        radial-gradient(circle at 20% 12%, rgba(189, 109, 54, 0.16), transparent 24rem),
+        linear-gradient(135deg, #f8efe2 0%, #fbf5e7 55%, #e8efe8 100%);
+      color: var(--charcoal);
+      font-family: var(--sans);
+      line-height: 1.62;
+      min-height: 100vh;
+    }
+    main {
+      margin: 0 auto;
+      max-width: 1120px;
+      padding: clamp(2rem, 5vw, 4.5rem) clamp(1.1rem, 4vw, 2.6rem);
+    }
+    .hero {
+      background:
+        linear-gradient(90deg, rgba(251, 245, 231, 0.9), rgba(251, 245, 231, 0.54)),
+        radial-gradient(circle at 85% 45%, rgba(143, 145, 113, 0.28), transparent 16rem),
+        radial-gradient(circle at 20% 75%, rgba(189, 109, 54, 0.24), transparent 14rem);
+      border: 1px solid rgba(189, 109, 54, 0.22);
+      border-radius: 1.8rem;
+      box-shadow: 0 28px 90px rgba(36, 49, 59, 0.14);
+      margin-bottom: clamp(3rem, 6vw, 5rem);
+      min-height: clamp(24rem, 46vw, 34rem);
+      overflow: hidden;
+      padding: clamp(1.6rem, 4vw, 3.4rem);
+      position: relative;
+    }
+    .hero::after {
+      background:
+        conic-gradient(from 180deg at 82% 52%, transparent 0 16deg, rgba(143, 145, 113, 0.22) 16deg 23deg, transparent 23deg 34deg, rgba(189, 109, 54, 0.18) 34deg 41deg, transparent 41deg 58deg),
+        repeating-radial-gradient(circle at 82% 52%, rgba(36, 49, 59, 0.16) 0 1px, transparent 1px 28px);
+      content: "";
+      inset: 0;
+      opacity: 0.76;
+      pointer-events: none;
+      position: absolute;
+    }
+    .hero > * { position: relative; z-index: 1; }
+    h1 {
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: clamp(4.6rem, 15vw, 10.5rem);
+      font-weight: 600;
+      letter-spacing: -0.06em;
+      line-height: 0.82;
+      margin-bottom: clamp(4rem, 13vw, 8rem);
+    }
+    h2 {
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.9rem;
+    }
+    h3 { color: var(--ink); font-size: 1rem; margin-bottom: 0.4rem; }
+    .kicker {
+      color: var(--copper);
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      margin-bottom: 0.8rem;
+      text-transform: uppercase;
+    }
+    .hero-copy {
+      font-size: clamp(1.22rem, 2.3vw, 1.68rem);
+      max-width: 39rem;
+    }
+    section { margin-bottom: 3rem; }
+    .grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+    .card {
+      background: rgba(251, 245, 231, 0.78);
+      border: 1px solid rgba(189, 109, 54, 0.2);
+      border-radius: 1rem;
+      box-shadow: 0 14px 44px rgba(36, 49, 59, 0.1);
+      padding: 1rem;
+    }
+    pre {
+      background: rgba(21, 21, 21, 0.88);
+      border-radius: 1rem;
+      color: #f8efe2;
+      font-family: var(--mono);
+      font-size: 0.86rem;
+      overflow-x: auto;
+      padding: 1rem;
+      white-space: pre;
+    }
+    table { border-collapse: collapse; width: 100%; }
+    th, td {
+      border-bottom: 1px solid rgba(189, 109, 54, 0.22);
+      padding: 0.65rem 0.55rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { color: var(--ink); }
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1rem;
+    }
+    a {
+      color: var(--blue);
+      font-weight: 700;
+    }
+    .links a {
+      background: rgba(251, 245, 231, 0.78);
+      border: 1px solid rgba(189, 109, 54, 0.24);
+      border-radius: 999px;
+      padding: 0.55rem 0.85rem;
+      text-decoration: none;
+    }
+    svg { display: block; height: auto; width: 100%; }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <h1>wavves</h1>
+      <p class="kicker">durable multi-agent routing</p>
+      <p class="hero-copy">Moderator-led agent work needs durable state. wavves records alignment packets, model recommendations, check records and handoff files so long-running sessions can move through files instead of chat memory.</p>
+      <div class="links">
+        <a href="https://github.com/GilRaitses/wavves">GitHub repo</a>
+        <a href="https://github.com/GilRaitses/wavves#installation">Install notes</a>
+        <a href="https://aimez.ai/wavves/">aimez walkthrough</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Repository Shape</h2>
+      <pre>wavves/
+  INDEX.md
+  AGENTS.md
+  registry.yml
+  step-log.md
+  rotations/
+    rotation-r01-YYYYMMDD-HHMM.md
+  lanes/
+    YYYYMMDD_lane-label/
+      README.md
+      waveset.md
+      dispatch.md
+      findings/
+      gate-captures/
+      decisions/</pre>
+    </section>
+
+    <section>
+      <h2>How Work Moves</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Moderator</h3>
+          <p>Creates the lane, records model choices and keeps the operator-facing thread small.</p>
+        </article>
+        <article class="card">
+          <h3>Lane Orchestrator</h3>
+          <p>Runs bounded waves, writes findings and returns decisions to the moderator.</p>
+        </article>
+        <article class="card">
+          <h3>Gate</h3>
+          <p>Captures runnable evidence under `gate-captures/` before any result is accepted.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Model Routing</h2>
+      <table>
+        <thead><tr><th>Role</th><th>Recommended tier</th><th>Reason</th></tr></thead>
+        <tbody>
+          <tr><td>Lane orchestrator</td><td>high-reasoning</td><td>Cross-file plan and gate design.</td></tr>
+          <tr><td>Discovery runners</td><td>fast</td><td>Search, inventory and mechanical scans.</td></tr>
+          <tr><td>Build runners</td><td>balanced</td><td>Bounded edits with local validation.</td></tr>
+          <tr><td>Adversarial gate</td><td>high-reasoning</td><td>Risk and defect judgment.</td></tr>
+          <tr><td>Acceptance gate</td><td>high-reasoning</td><td>Final verification with captured evidence.</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>
