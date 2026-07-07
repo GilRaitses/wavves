@@ -1,5 +1,7 @@
 # wavves
 
+Version: `0.0.0`.
+
 Route durable multi-agent work through a moderator layer, with alignment
 packets, check records and handoff files saved beside the work.
 

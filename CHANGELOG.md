@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0 (2026-07-06)
+## 0.0.0 (2026-07-06)
 
 - Initial package. Three skills (`waveset-orchestration`,
   `orchestrator-rotation`, `orchestrator-home`), execution wiring doc,
