@@ -124,6 +124,68 @@
       vertical-align: top;
     }
     th { color: var(--ink); }
+    code {
+      background: rgba(189, 109, 54, 0.12);
+      border-radius: 0.35rem;
+      font-family: var(--mono);
+      font-size: 0.92em;
+      padding: 0.1rem 0.35rem;
+    }
+    .lead { font-size: 1.05rem; max-width: 44rem; }
+    .demo-grid {
+      display: grid;
+      gap: 0.85rem;
+      margin-top: 1rem;
+    }
+    .demo-row {
+      background: rgba(251, 245, 231, 0.78);
+      border: 1px solid rgba(189, 109, 54, 0.2);
+      border-radius: 1rem;
+      padding: 0.9rem 1rem;
+    }
+    .demo-label {
+      color: var(--copper);
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.45rem;
+      text-transform: uppercase;
+    }
+    .demo-row pre {
+      background: transparent;
+      border-radius: 0;
+      color: var(--charcoal);
+      font-size: 0.84rem;
+      margin: 0;
+      padding: 0;
+      white-space: pre-wrap;
+    }
+    .steps {
+      counter-reset: step;
+      display: grid;
+      gap: 0.75rem;
+      list-style: none;
+      margin-top: 1rem;
+      padding: 0;
+    }
+    .steps li {
+      background: rgba(251, 245, 231, 0.78);
+      border: 1px solid rgba(189, 109, 54, 0.2);
+      border-radius: 1rem;
+      counter-increment: step;
+      padding: 0.9rem 1rem 0.9rem 3rem;
+      position: relative;
+    }
+    .steps li::before {
+      color: var(--copper);
+      content: counter(step);
+      font-family: var(--mono);
+      font-weight: 700;
+      left: 1rem;
+      position: absolute;
+      top: 0.95rem;
+    }
     .links {
       display: flex;
       flex-wrap: wrap;
@@ -155,6 +217,99 @@
         <a href="https://github.com/GilRaitses/wavves#installation">Install notes</a>
         <a href="https://aimez.ai/wavves/">aimez walkthrough</a>
       </div>
+    </section>
+
+    <section>
+      <h2>Install</h2>
+      <p class="lead">After listing, install from the Cursor plugin marketplace:</p>
+      <pre>/add-plugin wavves</pre>
+      <p class="lead">Or copy this repo to <code>~/.cursor/plugins/local/wavves/</code>, then reload plugins.</p>
+    </section>
+
+    <section>
+      <h2>Invokable commands</h2>
+      <p class="lead">Type slash commands in Cursor chat. Start with <code>/wavves</code> for most work, like <code>/poteto-mode</code> in pstack.</p>
+
+      <table>
+        <thead><tr><th>Command</th><th>Use it when</th></tr></thead>
+        <tbody>
+          <tr><td><code>/wavves</code></td><td>Default entry. Reads your request, picks a playbook, runs the leaf skill.</td></tr>
+          <tr><td><code>/wavve</code></td><td>Home setup only. First time in a repo or repair the standing home.</td></tr>
+          <tr><td><code>/charter</code></td><td>Charter one bounded lane and dispatch background waves.</td></tr>
+          <tr><td><code>/mod-rotate</code></td><td>Rotate the moderator to a fresh thread with a handoff file.</td></tr>
+        </tbody>
+      </table>
+
+      <h3 style="margin-top: 1.4rem;">Playbooks <code>/wavves</code> routes to</h3>
+      <table>
+        <thead><tr><th>Playbook</th><th>Routes to</th><th>For</th></tr></thead>
+        <tbody>
+          <tr><td>bootstrap</td><td><code>/wavve</code></td><td>First time in repo, no <code>wavves/</code> home yet</td></tr>
+          <tr><td>charter-lane</td><td><code>/charter</code></td><td>Bug fix, audit, refactor, flaky CI, overnight lane</td></tr>
+          <tr><td>rotate</td><td><code>/mod-rotate</code></td><td>Hand off when context is heavy</td></tr>
+          <tr><td>pickup</td><td>hydrate</td><td>Resume from rotation paste, reconcile active lanes</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Demo prompts</h2>
+      <p class="lead">Copy any prompt into Cursor chat after installing the plugin.</p>
+
+      <div class="demo-grid">
+        <article class="demo-row">
+          <p class="demo-label">first session</p>
+          <pre>/wavves set up in this repo, then audit our README for drift.
+read-only, no commits.</pre>
+        </article>
+        <article class="demo-row">
+          <p class="demo-label">bug fix</p>
+          <pre>/wavves our checkout webhook sometimes creates duplicate
+invoices. reproduce, fix and verify with gate captures. do not deploy.</pre>
+        </article>
+        <article class="demo-row">
+          <p class="demo-label">flaky ci</p>
+          <pre>/wavves three integration tests flake on main. fix root
+causes and prove stability with a rerun gate.</pre>
+        </article>
+        <article class="demo-row">
+          <p class="demo-label">overnight lane</p>
+          <pre>/wavves i'm stepping away. land the auth hardening lane with
+captured gates. no deploy without my approval.</pre>
+        </article>
+        <article class="demo-row">
+          <p class="demo-label">rotate</p>
+          <pre>/wavves rotate this thread. write a handoff for active lanes.</pre>
+        </article>
+        <article class="demo-row">
+          <p class="demo-label">pickup</p>
+          <pre>/wavves hydrate from the rotation paste and tell me what's active.</pre>
+        </article>
+        <article class="demo-row">
+          <p class="demo-label">leaf: setup only</p>
+          <pre>/wavve set up wavves in this repo. do not commit.</pre>
+        </article>
+        <article class="demo-row">
+          <p class="demo-label">leaf: charter only</p>
+          <pre>/charter migrate every callsite to the async config store.
+behavior must stay identical.</pre>
+        </article>
+        <article class="demo-row">
+          <p class="demo-label">leaf: rotate only</p>
+          <pre>/mod-rotate token velocity is too high. give me the one-line paste.</pre>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>How to use it</h2>
+      <ol class="steps">
+        <li>Install the plugin with <code>/add-plugin wavves</code> or a local copy under <code>~/.cursor/plugins/local/wavves/</code>.</li>
+        <li>Type <code>/wavves</code> plus a plain description of the bounded work. If the home is missing, bootstrap runs first.</li>
+        <li>The moderator charters a lane, dispatches background waves and writes evidence under <code>wavves/lanes/.../gate-captures/</code>.</li>
+        <li>When the thread gets heavy, run <code>/wavves rotate</code> or <code>/mod-rotate</code> and paste the one-liner into a fresh chat.</li>
+        <li>Pair with Cursor <code>/loop</code> for long lanes that need runnable gates instead of chat memory.</li>
+      </ol>
     </section>
 
     <section>

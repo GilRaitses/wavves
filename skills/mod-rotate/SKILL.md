@@ -1,16 +1,15 @@
 ---
-name: orchestrator-rotation
+name: mod-rotate
 description: >-
-  Create an explicit handoff file so a fresh orchestrator thread can take over
-  with full hydration and provenance. Use when the operator asks to rotate the
-  agent, hand off to a new orchestrator, replay or self-fork into a fresh
-  thread or says token velocity or context usage is too high and the thread
-  must be rotated. Produces either a rotation file under the standing
-  orchestrator home or a five-file handoff packet and emits a one-line paste
-  for the new thread.
+  Rotate the moderator to a fresh thread with full hydration and provenance.
+  Use for /mod-rotate, handoff, self-fork, replay or when token velocity and
+  context usage are too high. Produces a rotation file under wavves/rotations/
+  or a five-file lane handoff packet and emits a one-line paste for the new
+  thread.
+disable-model-invocation: true
 ---
 
-# Orchestrator Rotation
+# mod-rotate
 
 Build a complete handoff so a NEW thread of this orchestrator resumes the
 current lane without replaying the overloaded chat. The receiving thread
@@ -28,7 +27,7 @@ from the handoff file, never self-chosen.
 ## Two variants, pick the right one
 
 **A. Whole-orchestrator rotation (the common case).** The orchestrator home
-(see the sibling skill `orchestrator-home`) holds a standing hydration
+(see the sibling skill `wavve`) holds a standing hydration
 contract at `<repo>/wavves/AGENTS.md` that is reused across rotations.
 per-rotation state goes in
 `<repo>/wavves/rotations/rotation-r<NN>-<YYYYMMDD>-<HHMM>.md`
@@ -39,8 +38,8 @@ per rotation, because the home AGENTS.md carries them. The rotation file
 covers exactly, in order:
 
 - **Successor identity first** (section 0). The incoming term `O0.R<N+1>`,
-  assigned by the handoff, never self-chosen (see `orchestrator-home`,
-  "Identity and rotation terms"). The successor stamps `O0.R<N+1>:` on
+  assigned by the handoff, never self-chosen (see `wavve`, "Identity and
+  rotation terms"). The successor stamps `O0.R<N+1>:` on
   commits, step-log entries and authored charters and suffixes dispatched
   wave ids with `.R<N+1>`.
 - Positions (landed work with commit hashes).

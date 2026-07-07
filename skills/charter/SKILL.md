@@ -1,19 +1,16 @@
 ---
-name: waveset-orchestration
+name: charter
 description: >-
-  Prepare a waveset alignment packet and dispatch it to a background or fresh
-  orchestrator that runs bounded waves of parallel subagents and reports back
-  to the central orchestrator (O0) without blocking it. Use when the operator
-  asks to set up a waveset, launch a background orchestrator, run waves of
-  parallel subagents, spin up parallel lanes or delegate multi-wave work while
-  the main thread stays available. Produces a lane home
-  (`waveset.md`, `dispatch.md`, `README.md`), a registry entry, check-record
-  guidance and a background-orchestrator dispatch. Also
-  covers the execution wiring every runner needs at run time, described in
-  EXECUTION_WIRING.md.
+  Charter a bounded lane and dispatch waves of parallel subagents to a
+  background orchestrator that reports back to the moderator (O0). Use for
+  /charter, wavesets, parallel lanes, background orchestrators and multi-wave
+  work while the operator thread stays available. Produces a lane home
+  (waveset.md, dispatch.md, README.md), a registry entry and runnable gate
+  guidance in EXECUTION_WIRING.md.
+disable-model-invocation: true
 ---
 
-# Waveset Orchestration
+# Charter
 
 Delegated, multi-wave parallel execution under a central orchestrator. The
 central orchestrator (**O0**, the operator-facing thread) does NOT execute
@@ -22,11 +19,12 @@ sub-orchestrator (a background subagent or a fresh thread) and that
 sub-orchestrator runs **waves of parallel subagents** and **reports back to
 O0**.
 
-The skill complements two sibling skills in this plugin:
+The skill complements sibling skills in this plugin:
 
-- `orchestrator-rotation` hands the whole orchestrator (or one lane) to a
+- `wavves` (`/wavves`) is the default entry and routes to the playbooks below.
+- `mod-rotate` (`/mod-rotate`) hands the whole moderator (or one lane) to a
   fresh thread when the current one is overloaded.
-- `orchestrator-home` establishes the standing home file a fresh orchestrator
+- `wavve` (`/wavve`) establishes the standing home a fresh moderator
   instance hydrates from.
 
 **Execution layer inside runners.** If an execution-discipline plugin (for
@@ -384,8 +382,8 @@ while work runs in the background.
 - **A dispatch that never returns is a blocked item.** Record it in the
   registry and step log with a stated pickup action (how to check whether it
   crashed and what to re-dispatch). a lane is never left open silently.
-- **Fresh thread.** Use `orchestrator-rotation` to emit the one-line paste the
-  operator drops into a new thread.
+- **Fresh thread.** Use `mod-rotate` (`/mod-rotate`) to emit the one-line
+  paste the operator drops into a new thread.
 - **Term stamping.** When the house runs term identities, a dispatched
   runner's id carries the dispatching term as suffix (`PERF-INT.R2`), so the
   chartering term is preserved even when the return reconciles under a later

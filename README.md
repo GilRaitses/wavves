@@ -5,10 +5,10 @@ Version: `0.0.0`.
 Route durable multi-agent work through a moderator layer, with alignment
 packets, check records and handoff files saved beside the work.
 
-wavves is a free Cursor plugin for managed distributed sessions. Its three
-skills help a single operator prepare bounded work, dispatch parallel runners
-and rotate overloaded threads while the shared record lives in files instead
-of chat history.
+wavves is a free Cursor plugin for managed distributed sessions. Four skills
+help a single operator prepare bounded work, dispatch parallel runners and
+rotate overloaded threads while the shared record lives in files instead of
+chat history.
 
 The core ideas:
 
@@ -61,30 +61,80 @@ Setup and lane preparation do not commit, push, deploy or mutate external
 services unless the operator explicitly asks for that action or the repo
 governance says wavves owns those writes.
 
-## Quickstart
+## Usage
 
-1. **Set up the home** (once per repo). Ask your agent to follow the
-   `orchestrator-home` skill. The skill creates `<repo>/wavves/` with
-   `INDEX.md`, a standing `AGENTS.md` hydration contract, `rotations/`,
-   `registry.yml` and `step-log.md`.
-2. **Prepare your first lane.** Ask for a waveset, such as "set up a waveset
-   to fix the checkout flow's reliability". The `waveset-orchestration` skill
-   writes the lane home, alignment packet, dispatch prompt and README, then
-   registers the lane and dispatches a background sub-orchestrator.
-3. **Let gates gate.** Adversarial and acceptance waves run as executable
-   checks with evidence captured to the lane home `gate-captures/`. Approve
-   gated waves (integration, deployment) explicitly when the orchestrator
-   asks.
-4. **Rotate when heavy.** When the thread slows down or context runs long,
-   ask to rotate. The `orchestrator-rotation` skill writes a rotation file
-   that assigns the successor's term identity and emits a one-line paste to
-   start the fresh thread.
+Type `/wavves` at the start of a task. It reads your request, checks the home,
+picks a playbook and runs the leaf skill. Like `/poteto-mode` in pstack.
 
-Safe first prompt:
+### just use `/wavves`
 
+| playbook | for |
+|:---------|:----|
+| bootstrap | first time in repo, repair home, no `wavves/` yet |
+| charter-lane | bounded work: bug fix, audit, refactor, flaky CI, overnight lane |
+| rotate | hand off to a fresh moderator thread |
+| pickup | resume from rotation paste, "where are we", reconcile active lanes |
+
+### What wavves tracks
+
+| Piece | Where it lives | What it is |
+|:------|:---------------|:-----------|
+| **Moderator (O0)** | the operator-facing thread | charters lanes, dispatches background work, reconciles returns |
+| **Home** | `<repo>/wavves/` | standing hydration contract that outlives any one chat |
+| **Lane** | `wavves/lanes/<date>_<label>/` | one bounded workstream with its own charter and findings |
+| **Charter** | `lanes/.../waveset.md` | alignment packet: scope, locked decisions, waves, gates |
+| **Registry** | `wavves/registry.yml` | map of every chartered lane and its status |
+| **Rotation** | `wavves/rotations/` | handoff files with term identity (`O0.R1`, `O0.R2`, ...) |
+| **Gates** | `lanes/.../gate-captures/` | runnable checks with JSON + log evidence on disk |
+
+Fresh instances hydrate from the home files, never from chat transcripts.
+
+### Skills
+
+| skill | use it when |
+|:------|:------------|
+| `/wavves` | default entry. routes to bootstrap, charter, rotate or pickup |
+| `/wavve` | you only need home setup |
+| `/charter` | you only need a new lane chartered |
+| `/mod-rotate` | you only need rotation |
+
+Most operators type `/wavves` plus the task. Reach for the leaf skills when you
+know exactly which step you need.
+
+### examples
+
+```text
+default:           /wavves set up in this repo, then audit our README for drift.
+                   read-only, no commits.
+bug fix:           /wavves our checkout webhook sometimes creates duplicate
+                   invoices. reproduce, fix and verify with gate captures.
+flaky ci:          /wavves three integration tests flake on main. fix root causes
+                   and prove stability.
+overnight:         /wavves i'm stepping away. land the auth hardening lane with
+                   captured gates. no deploy without my approval.
+rotate:            /wavves rotate this thread. write a handoff for active lanes.
+pickup:            /wavves hydrate from the rotation paste and tell me what's active.
+setup only:        /wavve set up wavves in this repo. do not commit.
+charter only:      /charter migrate every callsite to the async config store.
+rotate only:       /mod-rotate token velocity is too high. give me the one-line paste.
 ```
-Set up wavves in this repo, then prepare a read-only waveset to audit my README. Do not commit.
-```
+
+More prompts and a minimal end-to-end session:
+[examples/usage.md](examples/usage.md).
+
+### What each skill does
+
+1. **`/wavves`** matches a playbook, reads the leaf skill and executes. If the
+   home is missing, bootstrap runs first.
+2. **`/wavve`** creates `<repo>/wavves/` with `INDEX.md`, `AGENTS.md`,
+   `registry.yml`, `step-log.md` and `rotations/`.
+3. **`/charter`** writes the lane home, registers the lane and dispatches a
+   background sub-orchestrator with runnable gates in `gate-captures/`.
+4. **`/mod-rotate`** writes a rotation file with term identity and emits a
+   one-line paste for a fresh thread.
+
+`/wavves` pairs well with Cursor's `/loop` for long lanes with captured gates
+instead of chat memory.
 
 ## Project layout
 
@@ -175,16 +225,17 @@ finding so another operator can rerun it.
 
 | Skill | Description |
 |:------|:------------|
-| `waveset-orchestration` | Build a lane alignment packet and dispatch a sub-orchestrator that runs waves of parallel subagents behind runnable gates. Includes EXECUTION_WIRING.md and a generic transition-gap probe script. |
-| `orchestrator-rotation` | Hand the orchestrator or one lane to a fresh thread with full hydration, assigned term identity and a one-line paste. |
-| `orchestrator-home` | Establish the standing home file, registry and rotation contract a fresh instance hydrates from. |
+| `wavves` (`/wavves`) | Main entry. Routes to bootstrap, charter, rotate or pickup playbooks. |
+| `wavve` (`/wavve`) | Bootstrap the standing home a fresh moderator hydrates from. |
+| `charter` (`/charter`) | Charter a lane and dispatch waves behind runnable gates. |
+| `mod-rotate` (`/mod-rotate`) | Hand the moderator or one lane to a fresh thread. |
 
-## Worked example
+## Examples on disk
 
-[examples/friend-worked-example.md](examples/friend-worked-example.md) walks
-through one real installation (building friend, a city-scale evidence model)
-with three lanes and the first rotation, quoting the real findings files.
-The example is not a default. The skills contain no paths from it.
+[examples/usage.md](examples/usage.md) lists slash-command prompts for common
+lanes (read-only audits, bug fixes, flaky CI, refactors, rotation). The paths
+and metrics in those examples are fictional. The skills ship no hard-coded
+paths from any particular project.
 
 ## Read more
 

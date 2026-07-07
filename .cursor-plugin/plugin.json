@@ -13,10 +13,13 @@
     "orchestration",
     "subagents",
     "waveset",
+    "charter",
     "rotation",
     "handoff",
     "check-records",
-    "context-management"
+    "context-management",
+    "wavve",
+    "mod-rotate"
   ],
   "category": "developer-tools",
   "tags": [

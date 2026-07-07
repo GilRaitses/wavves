@@ -1,16 +1,14 @@
 ---
-name: orchestrator-home
+name: wavve
 description: >-
-  Establish and maintain a standing home file for a central orchestrator so
-  ANY fresh instance (rotation, replay or recovery) hydrates from files
-  instead of chat transcripts. Use when setting up the moderator layer for
-  managed distributed sessions, when an orchestrator needs a durable hydration
-  entry point or when defining term identity and rotation rules for successive
-  orchestrator instances. Produces <repo>/wavves/INDEX.md, a standing
-  AGENTS.md contract, a rotations/ directory, registry.yml and step-log.md.
+  Bootstrap and maintain the wavves home so any fresh moderator (O0) hydrates
+  from files instead of chat. Use for /wavve, first-time repo setup, repairing
+  the standing home, or defining term identity and rotation rules. Produces
+  <repo>/wavves/INDEX.md, AGENTS.md, registry.yml, step-log.md and rotations/.
+disable-model-invocation: true
 ---
 
-# Orchestrator Home
+# Wavve
 
 A standing hydration contract that outlives any single chat thread. The home
 is a directory (convention `<repo>/wavves/`) whose `INDEX.md` is the fast
@@ -327,9 +325,10 @@ executed pickups), then proceeds without re-deriving settled decisions.
 
 Point to the sibling skills so a fresh instance knows the machinery:
 
-- `waveset-orchestration` for chartering and dispatching lanes.
-- `orchestrator-rotation` for producing the next rotation handoff and the
-  one-line paste that starts the successor thread from this file.
+- `wavves` (`/wavves`) for the default entry and playbook routing.
+- `charter` (`/charter`) for chartering and dispatching lanes.
+- `mod-rotate` (`/mod-rotate`) for producing the next rotation handoff and
+  the one-line paste that starts the successor thread from this file.
 
 ## Setup workflow (first time in a repo)
 
