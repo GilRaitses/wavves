@@ -5,7 +5,7 @@ description: >-
   orchestrator that runs bounded waves of parallel subagents and reports back
   to the central orchestrator (O0) without blocking it. Use when the operator
   asks to set up a waveset, launch a background orchestrator, run waves of
-  parallel subagents, spin up parallel lanes, or delegate multi-wave work while
+  parallel subagents, spin up parallel lanes or delegate multi-wave work while
   the main thread stays available. Produces a lane home
   (`waveset.md`, `dispatch.md`, `README.md`), a registry entry, check-record
   guidance and a background-orchestrator dispatch. Also
@@ -17,12 +17,12 @@ description: >-
 
 Delegated, multi-wave parallel execution under a central orchestrator. The
 central orchestrator (**O0**, the operator-facing thread) does NOT execute
-lane work itself. It **charters** a waveset, **dispatches** it to a
-sub-orchestrator (a background subagent or a fresh thread), and that
+lane work itself. O0 **charters** a waveset, **dispatches** it to a
+sub-orchestrator (a background subagent or a fresh thread) and that
 sub-orchestrator runs **waves of parallel subagents** and **reports back to
 O0**.
 
-This complements two sibling skills in this plugin:
+The skill complements two sibling skills in this plugin:
 
 - `orchestrator-rotation` hands the whole orchestrator (or one lane) to a
   fresh thread when the current one is overloaded.
@@ -31,12 +31,12 @@ This complements two sibling skills in this plugin:
 
 **Execution layer inside runners.** If an execution-discipline plugin (for
 example pstack) is installed, code-heavy waves may be dispatched to its agents
-or told to follow one of its named playbooks, and code-diff adversarial gates
-may use its review commands as the evaluator panel. That layering has one
-rule. Execution discipline governs HOW a runner writes code; the charter and
+or told to follow one of its named playbooks and code-diff adversarial gates
+may use its review commands as the evaluator panel. The layering has one
+rule. Execution discipline governs HOW a runner writes code. The charter and
 lane system stay the program authority (operator gates, honesty locks,
 findings contract, commit protocol) and win on any conflict. In particular, a
-plugin's never-block-on-the-human stance yields to operator-gated steps, and
+plugin's never-block-on-the-human stance yields to operator-gated steps and
 its session-pickup or pause playbooks are superseded at orchestrator level by
 the rotation contract.
 
@@ -44,19 +44,19 @@ the rotation contract.
 
 | Role | Who | Does | Does NOT |
 |---|---|---|---|
-| **O0 / central orchestrator** | the operator-facing thread | charters, dispatches, reconciles returns, holds the map | execute lane work; mutate code directly; block waiting on a dispatch |
+| **O0 / central orchestrator** | the operator-facing thread | charters, dispatches, reconciles returns, holds the map | execute lane work. mutate code directly. block waiting on a dispatch |
 | **Dispatched orchestrator** | a background subagent OR a fresh thread | runs the waves, gates, reports to O0 | solicit the human operator directly (see escalation catch) |
-| **Parallel subagents** | the wave members | one bounded, disjoint task each | touch another agent's files; cross wave boundaries |
+| **Parallel subagents** | the wave members | one bounded, disjoint task each | touch another agent's files. cross wave boundaries |
 
 The point is that **O0 stays unblocked**. Dispatch to the background, keep
-working or end the turn, and receive the return notice. Never sit and poll a
+working or end the turn and receive the return notice. Never sit and poll a
 dispatch.
 
 ## When to use
 
 The operator says any of "charter a waveset", "dispatch / launch a
 (background) orchestrator", "run waves of parallel subagents", "spin up N
-parallel lanes", "deep waves of 5+ subagents", or "have a subagent do X and
+parallel lanes", "deep waves of 5+ subagents" or "have a subagent do X and
 stay available to me".
 
 ## Workflow
@@ -78,14 +78,14 @@ stay available to me".
 ### Step 1, lane naming
 
 - Home directory convention `<repo>/wavves/lanes/<YYYYMMDD>_<lane-label>/`
-  (any stable per-lane directory works; keep one convention per repo).
+  (any stable per-lane directory works. keep one convention per repo).
 - A short uppercase lane code (for example `API`, `PERF`) used in the registry
   and in every wave id (`PERF-W1`, `PERF-INT`, `PERF-ACCEPT`).
 
 ### Step 3, grounding (non-negotiable)
 
 A charter that is not grounded in the real files wastes a whole dispatch. Read
-the actual convergence file, data sources, and prior-lane artifacts. State the
+the actual convergence file, data sources and prior-lane artifacts. State the
 **root cause / real constraint** in the charter, not a guess. Verify every
 cited path exists before citing it.
 
@@ -106,18 +106,18 @@ wavves/lanes/<YYYYMMDD>_<lane-label>/
 **waveset.md** is the authority doc. Sections, in order.
 
 - Lane code, owner, type (execution vs research/read-only),
-  `repo_state_verified_against` (the main-branch hash BEFORE this pass; never
+  `repo_state_verified_against` (the main-branch hash BEFORE this pass. never
   embed this file's own landing commit, which would create a self-referential
   hash loop).
-- **Intent** (the operator's framing; use verbatim wording when given).
-- **Grounding** (the real seams/data with exact paths, and the verified root
+- **Intent** (the operator's framing. use verbatim wording when given).
+- **Grounding** (the real seams/data with exact paths and the verified root
   cause).
-- **Locked decisions (do NOT reopen)**. The highest-value section; every fact
+- **Locked decisions (do NOT reopen)**. The highest-value section. every fact
   an unprimed agent would get wrong. A lock protects settled decisions from
-  churn, never from evidence; a locked decision contradicted by verified
+  churn, never from evidence. a locked decision contradicted by verified
   evidence is escalated to the orchestrator with the evidence, never silently
   defended or silently reopened.
-- **Wave structure** (discovery, build, integrate, accept; see below).
+- **Wave structure** (discovery, build, integrate, accept. see below).
 - **Acceptance criteria** (hard, checkable, no reassurance bias).
 - **Gated waves and operator involvement.** Name at charter time which waves are
   GATED and which mutations are operator-gated, so a lane that touches
@@ -132,22 +132,22 @@ wavves/lanes/<YYYYMMDD>_<lane-label>/
 - **Escalation (operator-protection catch)**, described below.
 
 **dispatch.md** is a fenced paste block that declares the
-role (this lane's orchestrator); lists hydration files in order (files, never
-the transcript linearly); restates locked decisions inline; carries the
+role (this lane's orchestrator). lists hydration files in order (files, never
+the transcript linearly). restates locked decisions inline. carries the
 orchestrator home's etiquette locks (honesty, gates, git, prose) into the
-dispatch; names active waves and which are GATED; states the execution order
-for this dispatch (which waves run now vs pause for O0 approval); carries the
-escalation catch; declares whether outputs are local-only or shared review
-artifacts; mandates validation (typecheck/lint, no conflicting dev servers);
+dispatch. names active waves and which are GATED. states the execution order
+for this dispatch (which waves run now vs pause for O0 approval). carries the
+escalation catch. declares whether outputs are local-only or shared review
+artifacts. mandates validation (typecheck/lint, no conflicting dev servers).
 states the runner git ban (runners and wave subagents never run git write
-operations; findings end with an explicit commit file list for the
+operations. findings end with an explicit commit file list for the
 orchestrator, exclusions stated, plus a plain statement that no git actions
-were performed); instructs runners to BACKGROUND any long computation and
-keep working instead of blocking on it (EXECUTION_WIRING.md Rule 1b); forbids
-promising background monitoring the runner cannot perform; **mandates that
+were performed). instructs runners to BACKGROUND any long computation and
+keep working instead of blocking on it (EXECUTION_WIRING.md Rule 1b). forbids
+promising background monitoring the runner cannot perform. **mandates that
 adversarial/acceptance gates are RUN, not asserted, with captured evidence
-under `gate-captures/`, per EXECUTION_WIRING.md**; and demands the return
-contract below. It also carries the recommended model tier, the reason for
+under `gate-captures/`, per EXECUTION_WIRING.md** and demands the return
+contract below. The dispatch also carries the recommended model tier, the reason for
 that tier and the expected context budget. Add a "more context" table mapping
 each likely need to a file.
 
@@ -155,7 +155,7 @@ each likely need to a file.
 with gate verdicts and capture paths, the commit file list for the orchestrator
 (or an explicit statement that nothing needs committing), escalations and
 operator-pending decisions, gap entries with reasons for anything promised but
-not delivered, and any mid-run defects found and fixed, with their cost.
+not delivered and any mid-run defects found and fixed, with their cost.
 Omissions are findings, never silences.
 
 **README.md** is 8-15 lines. What the lane is, the file list, how to start it,
@@ -188,7 +188,7 @@ models for judgment-heavy work.
 ### Project skill proposals
 
 A lane may discover a repeated instruction that belongs in a project skill.
-The lane does not install it. It drafts a proposal for the moderator:
+The lane does not install it. The lane drafts a proposal for the moderator:
 
 ```text
 wavves/skills/proposed/<YYYYMMDD>_<skill-slug>.md
@@ -224,17 +224,17 @@ the active map:
 ```
 
 The registry is a convergence file. The chartering orchestrator is its single
-editor; it syncs before appending, and later status transitions are made only
+editor. it syncs before appending and later status transitions are made only
 by the orchestrator when it reconciles, never by dispatched runners.
 
-## Wave structure (default shape; a lane may refine)
+## Wave structure (default shape. a lane may refine)
 
 1. **Wave 1, discovery** (parallel, read-only findings). N subagents, each
    owning ONE `findings/<CODE>-<TOPIC>.md`. Include an **adversarial** member
    that hunts regressions and bad assumptions. Findings cite evidence, meaning
-   real paths and transcribed output; a conclusion without its evidence does
+   real paths and transcribed output. a conclusion without its evidence does
    not satisfy the wave. If a wave member dies mid-wave, its findings file
-   keeps its ownership; the orchestrator re-dispatches a replacement for that
+   keeps its ownership. the orchestrator re-dispatches a replacement for that
    file rather than reassigning it to a sibling mid-flight.
 2. **Wave 2, build** (parallel, NEW files preferred). Each agent owns disjoint
    new files plus a WIRING doc. Typecheck/lint clean. No conflicting build or
@@ -243,21 +243,21 @@ by the orchestrator when it reconciles, never by dispatched runners.
    stated location, with the revert and rationale recorded in the findings.
 3. **Wave 3, integration** (SINGLE serialized editor). Edits the shared
    convergence file in the working tree only. The integration editor runs NO
-   git commands; the orchestrator syncs the branch before dispatching this
-   wave, freezes it for the duration, and commits the handed-back tree
+   git commands. the orchestrator syncs the branch before dispatching this
+   wave, freezes it for the duration and commits the handed-back tree
    afterward. GATED on O0 approval.
 4. **Wave 4, acceptance** (verify on the real target, for example real
    hardware or the deployed platform, not a software fallback). Honest verdict
    plus evidence. GATED. The gate is graded by an evaluator with no authorship
-   of the wave under review, and the pass metric comes from the charter or
+   of the wave under review and the pass metric comes from the charter or
    from the orchestrator, never from the agent being judged.
 
-**Waves can repeat, with a cap.** Re-capture, re-run, or re-open a wave when
-acceptance fails; the charter and registry stay the authority across repeats.
+**Waves can repeat, with a cap.** Re-capture, re-run or re-open a wave when
+acceptance fails. the charter and registry stay the authority across repeats.
 The charter fixes a remediation-loop cap (default 2 repeats per gate). When the
 cap is reached, the runner stops looping and escalates to O0 with the named
-failures; O0 decides whether to re-charter, descope, or report the lane failed
-upward. Verdicts carry named failures, and a pass may still carry a named
+failures. O0 decides whether to re-charter, descope or report the lane failed
+upward. Verdicts carry named failures and a pass may still carry a named
 deployment-blocking condition that must be cleared before any deploy
 escalation.
 
@@ -266,18 +266,18 @@ test or capture run fired in a blocking call hangs the dispatched
 orchestrator's own session. When a wave does capture, shard by scenario to
 disjoint subagents or background processes (one scenario, one output directory
 each), size the blocking window above the slowest single unit rather than the
-serial sum, and keep timing-sensitive measurement serial on an isolated host,
+serial sum and keep timing-sensitive measurement serial on an isolated host,
 because concurrent contexts corrupt the numbers.
 
 **File-ownership discipline** is what makes parallelism safe. Disjoint scopes,
-a single editor on any convergence file, and serialized integration **across**
+a single editor on any convergence file and serialized integration **across**
 lanes that share that file. Wave members write findings incrementally into the
 lane home as work proceeds, never holding results to the end.
 
 ## Git ownership and dispatch concurrency
 
 - **The chartering orchestrator is the sole git actor for the lane.** Dispatched
-  orchestrators, runners, and wave subagents never run git state changes. Each
+  orchestrators, runners and wave subagents never run git state changes. Each
   runner ends its findings with an explicit commit file list for the
   orchestrator (including what to EXCLUDE, for example bulky derived artifacts
   whose canonical copy lives in durable storage) and states plainly that it
@@ -285,23 +285,24 @@ lane home as work proceeds, never holding results to the end.
 - **Record the dispatch base commit.** The charter's
   `repo_state_verified_against` is the base every dispatched agent works from.
   If HEAD moves mid-dispatch, report the move with both hashes, reconcile the
-  working edits onto the new HEAD, and point downstream evaluators at the new
+  working edits onto the new HEAD and point downstream evaluators at the new
   HEAD, never the stale one.
 - **Freeze a branch a dispatched agent is actively editing.** The orchestrator
-  lands no commits on it for the duration of the dispatch, or coordinates the
+  lands no commits on it for the duration of the dispatch or coordinates the
   commit explicitly.
-- **Before dispatching a lane, verify no other active term or thread owns it**,
+- **Before dispatching a lane, verify no other active term or thread owns it**
   and record the check in the step log. Never double-dispatch.
 - **Remote-rejected push** (a concurrent actor landed first). Fetch, then
   rebase with autostash, then push. Never force-push over the concurrent
   commit. Before rebasing, confirm no other active agent owns unstaged files
-  in the working tree; if one does, coordinate before any git action.
+  in the working tree. if one does, coordinate before any git action.
 - **No-protocol default.** In a repo with no stated commit protocol, the
-  orchestrator writes lane-home artifacts and returns a commit plan. It does
-  not commit or push unless the operator explicitly asks. It never invents
-  git authority silently; it records the default it applied.
+  orchestrator writes lane-home artifacts and returns a commit plan. The
+  orchestrator does not commit or push unless the operator explicitly asks.
+  The orchestrator never invents git authority silently. The orchestrator records the
+  default it applied.
 - **Cross-actor artifacts.** An artifact meant for another actor is published
-  to shared repo state before cross-actor use; an unpublished artifact is
+  to shared repo state before cross-actor use. an unpublished artifact is
   local-only and never crosses actors. An actor reading an artifact landed by
   another actor first syncs to the commit that landed it.
 
@@ -310,19 +311,19 @@ lane home as work proceeds, never holding results to the end.
 Reconciling is verification, never transcription. Before reporting a lane
 complete, the orchestrator
 
-- opens the gate captures and spot-checks the returned summary against them;
+- opens the gate captures and spot-checks the returned summary against them.
 - verifies any claimed commits are reachable from HEAD before treating the
-  work as landed;
+  work as landed.
 - distrusts a return that arrived implausibly fast or with implausibly low
-  output volume, verifying throughput and output counts against expectations;
+  output volume, verifying throughput and output counts against expectations.
   when a defect invalidated earlier output, the pass re-runs in full and
-  overwrites the poisoned artifacts;
+  overwrites the poisoned artifacts.
 - refreshes derived outputs against canonical inputs that moved during the
-  dispatch, and records the refresh.
+  dispatch and records the refresh.
 
 ## Execution wiring (runnable gates + evidence), invoked at run time
 
-A charter is not done when files are written, and a wave with an adversarial
+A charter is not done when files are written and a wave with an adversarial
 gate is only credible when the gate is **run** and its evidence captured. Full
 detail and a copy-paste probe live in
 **[EXECUTION_WIRING.md](EXECUTION_WIRING.md)**. The five rules in brief.
@@ -330,14 +331,14 @@ detail and a copy-paste probe live in
 1. **One long-blocking command for any measured transition.** A probe started
    with `&`/`nohup` in one tool call is reaped when that call returns. Run
    probe-start, trigger, wait-for-finish, read-results inside ONE command.
-2. **Gates are runnable; evidence is captured.** Define the pass metric BEFORE
-   the run; write the JSON summary and log to the lane home `gate-captures/`;
+2. **Gates are runnable. evidence is captured.** Define the pass metric BEFORE
+   the run. write the JSON summary and log to the lane home `gate-captures/`.
    the verdict cites measured numbers, never a claim.
 3. **Read-only grounding vs operator-gated mutation.** Research touches
    infrastructure read-only. Any mutation is operator-gated and only runs in a
    later wave with approval.
 4. **Record the decision durably.** If the repo keeps decision records, write
-   one naming the decision, the measured evidence, and what it supersedes.
+   one naming the decision, the measured evidence and what it supersedes.
 5. **Harness shape.** Dependency-free, polls a liveness endpoint and a real
    user endpoint at a fixed cadence, records the max contiguous window where
    the real call fails while liveness is up. Generic probe included at
@@ -347,27 +348,27 @@ detail and a copy-paste probe live in
 
 Every dispatch must instruct the dispatched orchestrator that **it answers to
 the dispatching O0, not the human operator**. When a decision, trade-off,
-locked-decision conflict, regression, or sign-off on a gated, destructive, or
+locked-decision conflict, regression or sign-off on a gated, destructive or
 scope-expanding step is needed, the runner pauses and returns the question to
-the dispatching O0 in its summary. It does NOT solicit the human operator
-directly. Gated waves require O0 approval, and O0 approval for a mutation is
-valid only when O0 holds operator approval for it; operator-gated means the
-human operator, and O0 relays that gate rather than substituting for it. At an
-access, credential, or permission boundary, the runner transcribes the
+the dispatching O0 in its summary. The runner does NOT solicit the human operator
+directly. Gated waves require O0 approval and O0 approval for a mutation is
+valid only when O0 holds operator approval for it. operator-gated means the
+human operator and O0 relays that gate rather than substituting for it. At an
+access, credential or permission boundary, the runner transcribes the
 evidence of the block, records it as an escalation with concrete resolution
-options, and stops rather than improvising workarounds. A deploy or merge
-escalation includes an explicit rollback procedure, a live monitoring plan,
-and an honest caveat list naming every check that could not be run, with
+options and stops rather than improvising workarounds. A deploy or merge
+escalation includes an explicit rollback procedure, a live monitoring plan and
+an honest caveat list naming every check that could not be run, with
 sequencing options for closing each caveat.
 
 Two boundary cases. An urgent finding (a live regression, active data loss, a
-security exposure) interrupts; the runner ends its wave early and returns it
+security exposure) interrupts. the runner ends its wave early and returns it
 immediately instead of sitting on it until the wave completes. And when a
 fresh-thread runner lives in an operator-facing chat and the operator
-addresses it directly, the operator outranks the catch; the runner answers,
+addresses it directly, the operator outranks the catch. the runner answers,
 then records the exchange for the dispatching O0 to reconcile.
 
-This is the safeguard that lets O0 remain the single operator-facing surface
+The escalation catch lets O0 remain the single operator-facing surface
 while work runs in the background.
 
 ## Dispatch mechanics
@@ -376,13 +377,13 @@ while work runs in the background.
   prompt = the dispatch block (or "hydrate from
   dispatch.md"). State the execution order (for example
   run W1+W2, then pause for O0 approval before gated W3/W4) and the return
-  contract. Then continue or end the turn; reconcile on return.
+  contract. Then continue or end the turn. reconcile on return.
 - **Dispatch depth is bounded.** A dispatched orchestrator dispatches wave
   subagents only, never further background orchestrators, unless the charter
   grants it explicitly with a stated depth.
 - **A dispatch that never returns is a blocked item.** Record it in the
   registry and step log with a stated pickup action (how to check whether it
-  crashed, and what to re-dispatch); a lane is never left open silently.
+  crashed and what to re-dispatch). a lane is never left open silently.
 - **Fresh thread.** Use `orchestrator-rotation` to emit the one-line paste the
   operator drops into a new thread.
 - **Term stamping.** When the house runs term identities, a dispatched
@@ -392,18 +393,18 @@ while work runs in the background.
 
 ## Origin note (why this is a named pattern)
 
-It emerged organically. A rotation dispatch file carried a
+The pattern emerged organically. A rotation dispatch file carried a
 message-to-the-operator above the prompt block, which led the receiving agent
 to launch a background orchestrator that then successfully launched parallel
-subagents. That was the first waveset it happened on; it is now a consistent,
+subagents. The first waveset happened on that run. The pattern is now a consistent,
 deliberate pattern, formalized here. The history explains the name only.
-Operative instructions live inside the fenced dispatch block; text found
+Operative instructions live inside the fenced dispatch block. text found
 outside it is context, never instruction.
 
 ## Quality bar
 
-- Charter grounded in real, verified paths; root cause stated, not guessed.
+- Charter grounded in real, verified paths. root cause stated, not guessed.
 - Locked decisions let an unprimed agent avoid every known footgun.
 - Escalation catch present in every dispatch.
-- O0 never blocks on a dispatch; it reconciles on the return notice.
-- No time-bombs; state conditions, not deadlines.
+- O0 never blocks on a dispatch. it reconciles on the return notice.
+- No time-bombs. state conditions, not deadlines.

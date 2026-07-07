@@ -109,7 +109,7 @@ wavves/
     accepted/
 ```
 
-`INDEX.md` is the fast pickup surface. It points a fresh moderator to the
+`INDEX.md` is the fast pickup surface, pointing a fresh moderator to the
 current rotation file, active lanes, blocked decisions and next files to read.
 `AGENTS.md` is the stable contract. `registry.yml` is the lane map.
 `step-log.md` is append-only. Lane files carry the detailed work.
@@ -146,9 +146,9 @@ sets that parameter at dispatch time. If the environment does not expose one,
 the dispatch prompt still carries the recommendation so the receiving agent can
 report the mismatch.
 
-This is a cost-control surface, not a measured savings claim. It makes cost
-auditable by recording runner count, expected file reads, expected gate cost
-and model tier before execution. A later accounting pass can compare planned
+The table is a cost-control surface, not a measured savings claim. Cost is
+auditable when the charter records runner count, expected file reads, expected
+gate cost and model tier before execution. A later accounting pass can compare planned
 tiers with actual token or billing records when the environment exposes them.
 
 ## Manual harness inspection
