@@ -7,8 +7,8 @@ description: >-
   asks to set up a waveset, launch a background orchestrator, run waves of
   parallel subagents, spin up parallel lanes, or delegate multi-wave work while
   the main thread stays available. Produces a lane home
-  (WAVESET_CHARTER, ORCHESTRATOR_DISPATCH_PROMPT, README), a waves-registry
-  entry, check-record guidance and a background-orchestrator dispatch. Also
+  (`waveset.md`, `dispatch.md`, `README.md`), a registry entry, check-record
+  guidance and a background-orchestrator dispatch. Also
   covers the execution wiring every runner needs at run time, described in
   EXECUTION_WIRING.md.
 ---
@@ -49,8 +49,8 @@ the rotation contract.
 | **Parallel subagents** | the wave members | one bounded, disjoint task each | touch another agent's files; cross wave boundaries |
 
 The point is that **O0 stays unblocked**. Dispatch to the background, keep
-working or end the turn, and receive the completion notification. Never sit
-and poll a dispatch.
+working or end the turn, and receive the return notice. Never sit and poll a
+dispatch.
 
 ## When to use
 
@@ -65,17 +65,18 @@ stay available to me".
 - [ ] 1. Name the lane: short code (2-4 caps) + kebab label + date (operator's timezone)
 - [ ] 2. Capture repo state: branch + origin/main hash (repo_state_verified_against)
 - [ ] 3. Ground the charter: read the real seams/data the lane touches; cite real paths (verify with file search)
-- [ ] 4. Write the lane home: WAVESET_CHARTER.md + ORCHESTRATOR_DISPATCH_PROMPT.md + README.md
+- [ ] 4. Write the lane home: waveset.md + dispatch.md + README.md
 - [ ] 5. Register the lane in the waves registry (lane code, waves, status, one-paragraph note)
-- [ ] 6. Return a commit plan for the charter. Commit and push only when the repo governance or operator explicitly authorizes it.
-- [ ] 7. Dispatch: background subagent (run_in_background) OR emit the fresh-thread one-liner. First verify no other active term owns the lane (see "Git ownership and dispatch concurrency")
-- [ ] 8. Continue other work / end the turn. Do NOT poll. Reconcile on the completion notification per "Reconciliation duties".
-- [ ] 9. At execution time, run adversarial/acceptance gates as RUNNABLE harnesses; capture evidence to gate_captures/. See EXECUTION_WIRING.md.
+- [ ] 6. Add any project-skill needs as proposal targets, never installed skills
+- [ ] 7. Return a commit plan for the charter. Commit and push only when the repo governance or operator explicitly authorizes it.
+- [ ] 8. Dispatch: background subagent (run_in_background) OR emit the fresh-thread one-liner. First verify no other active term owns the lane (see "Git ownership and dispatch concurrency")
+- [ ] 9. Continue other work / end the turn. Do NOT poll. Reconcile on the return notice per "Reconciliation duties".
+- [ ] 10. At execution time, run adversarial/acceptance gates as RUNNABLE harnesses; capture evidence to gate-captures/. See EXECUTION_WIRING.md.
 ```
 
 ### Step 1, lane naming
 
-- Home directory convention `<repo>/.cca/catalogue/O0/<YYYYMMDD>_<lane-label>/`
+- Home directory convention `<repo>/wavves/lanes/<YYYYMMDD>_<lane-label>/`
   (any stable per-lane directory works; keep one convention per repo).
 - A short uppercase lane code (for example `API`, `PERF`) used in the registry
   and in every wave id (`PERF-W1`, `PERF-INT`, `PERF-ACCEPT`).
@@ -89,7 +90,19 @@ cited path exists before citing it.
 
 ### Step 4, the lane home files
 
-**WAVESET_CHARTER.md** is the authority doc. Sections, in order.
+Default lane layout:
+
+```text
+wavves/lanes/<YYYYMMDD>_<lane-label>/
+  README.md
+  waveset.md
+  dispatch.md
+  findings/
+  gate-captures/
+  decisions/
+```
+
+**waveset.md** is the authority doc. Sections, in order.
 
 - Lane code, owner, type (execution vs research/read-only),
   `repo_state_verified_against` (the main-branch hash BEFORE this pass; never
@@ -110,7 +123,7 @@ cited path exists before citing it.
   production carries its gates from birth.
 - **Escalation (operator-protection catch)**, described below.
 
-**ORCHESTRATOR_DISPATCH_PROMPT.md** is a fenced paste block that declares the
+**dispatch.md** is a fenced paste block that declares the
 role (this lane's orchestrator); lists hydration files in order (files, never
 the transcript linearly); restates locked decisions inline; carries the
 orchestrator home's etiquette locks (honesty, gates, git, prose) into the
@@ -125,7 +138,7 @@ were performed); instructs runners to BACKGROUND any long computation and
 keep working instead of blocking on it (EXECUTION_WIRING.md Rule 1b); forbids
 promising background monitoring the runner cannot perform; **mandates that
 adversarial/acceptance gates are RUN, not asserted, with captured evidence
-under `gate_captures/`, per EXECUTION_WIRING.md**; and demands the return
+under `gate-captures/`, per EXECUTION_WIRING.md**; and demands the return
 contract below. Add a "more context" table mapping each likely need to a file.
 
 **Return contract (minimum fields).** Every dispatch return lists the waves run
@@ -138,9 +151,33 @@ Omissions are findings, never silences.
 **README.md** is 8-15 lines. What the lane is, the file list, how to start it,
 current status.
 
+### Project skill proposals
+
+A lane may discover a repeated instruction that belongs in a project skill.
+The lane does not install it. It drafts a proposal for the moderator:
+
+```text
+wavves/skills/proposed/<YYYYMMDD>_<skill-slug>.md
+```
+
+Minimum proposal fields:
+
+- owning lane and findings file
+- failure mode or repeated practice the skill addresses
+- proposed trigger language
+- proposed instructions
+- destination requested: project file, repo rule, Cursor IDE skill or plugin
+  update
+- risks, review notes and operator decision needed
+
+The moderator reviews the proposal, checks evidence and asks the operator
+before saving it anywhere active. Accepted project-local skills may be copied
+to `wavves/skills/accepted/`. Cursor IDE or plugin-level skills require a
+separate operator-approved pass.
+
 ### Step 5, registry entry
 
-Append to `<repo>/.cca/waves.registry.yml` (or your repo's equivalent) under
+Append to `<repo>/wavves/registry.yml` (or your repo's equivalent) under
 the active map:
 
 ```yaml
@@ -234,7 +271,7 @@ lane home as work proceeds, never holding results to the end.
   local-only and never crosses actors. An actor reading an artifact landed by
   another actor first syncs to the commit that landed it.
 
-## Reconciliation duties (on the completion notification)
+## Reconciliation duties (on the return notice)
 
 Reconciling is verification, never transcription. Before reporting a lane
 complete, the orchestrator
@@ -242,7 +279,7 @@ complete, the orchestrator
 - opens the gate captures and spot-checks the returned summary against them;
 - verifies any claimed commits are reachable from HEAD before treating the
   work as landed;
-- distrusts a completion that arrived implausibly fast or with implausibly low
+- distrusts a return that arrived implausibly fast or with implausibly low
   output volume, verifying throughput and output counts against expectations;
   when a defect invalidated earlier output, the pass re-runs in full and
   overwrites the poisoned artifacts;
@@ -258,9 +295,9 @@ detail and a copy-paste probe live in
 
 1. **One long-blocking command for any measured transition.** A probe started
    with `&`/`nohup` in one tool call is reaped when that call returns. Run
-   probe-start, trigger, wait-for-completion, read-results inside ONE command.
+   probe-start, trigger, wait-for-finish, read-results inside ONE command.
 2. **Gates are runnable; evidence is captured.** Define the pass metric BEFORE
-   the run; write the JSON summary and log to the lane home `gate_captures/`;
+   the run; write the JSON summary and log to the lane home `gate-captures/`;
    the verdict cites measured numbers, never a claim.
 3. **Read-only grounding vs operator-gated mutation.** Research touches
    infrastructure read-only. Any mutation is operator-gated and only runs in a
@@ -303,9 +340,9 @@ while work runs in the background.
 
 - **Background orchestrator.** Launch a subagent with run-in-background,
   prompt = the dispatch block (or "hydrate from
-  ORCHESTRATOR_DISPATCH_PROMPT.md"). State the execution order (for example
+  dispatch.md"). State the execution order (for example
   run W1+W2, then pause for O0 approval before gated W3/W4) and the return
-  contract. Then continue or end the turn; reconcile on completion.
+  contract. Then continue or end the turn; reconcile on return.
 - **Dispatch depth is bounded.** A dispatched orchestrator dispatches wave
   subagents only, never further background orchestrators, unless the charter
   grants it explicitly with a stated depth.
@@ -316,7 +353,7 @@ while work runs in the background.
   operator drops into a new thread.
 - **Term stamping.** When the house runs term identities, a dispatched
   runner's id carries the dispatching term as suffix (`PERF-INT.R2`), so the
-  chartering term is preserved even when completion reconciles under a later
+  chartering term is preserved even when the return reconciles under a later
   term.
 
 ## Origin note (why this is a named pattern)
@@ -334,5 +371,5 @@ outside it is context, never instruction.
 - Charter grounded in real, verified paths; root cause stated, not guessed.
 - Locked decisions let an unprimed agent avoid every known footgun.
 - Escalation catch present in every dispatch.
-- O0 never blocks on a dispatch; it reconciles on the completion notification.
+- O0 never blocks on a dispatch; it reconciles on the return notice.
 - No time-bombs; state conditions, not deadlines.

@@ -25,7 +25,7 @@ python3 probe.py --base "$URL" --seconds 360 --out cap.json > cap.log 2>&1 &
 PROBE=$!
 sleep 6                                   # let the baseline settle
 <trigger the event>                       # e.g. start the deployment
-for i in $(seq 1 24); do                  # poll the event to completion
+for i in $(seq 1 24); do                  # poll the event until finished
   sleep 15
   ST=$(<query deploy status>)
   echo "[$(date -u +%H:%M:%S)] $ST"
@@ -47,7 +47,7 @@ fetch) with no concurrent probe to keep alive:
 
 - Launch it as a BACKGROUND shell, do a one-shot smoke check that it started,
   then move on to any other work in your scope while it runs. Reconcile when
-  the completion notification arrives.
+  the return notice arrives.
 - Never announce "this benchmarks at ~3 minutes, so I'll run it now" and then
   hold the session blocked for 10. Benchmarks underestimate; a blocked runner
   starves the whole wave.
@@ -65,7 +65,7 @@ fetch) with no concurrent probe to keep alive:
 - The pass metric comes from the charter or from the orchestrator, never from
   the agent whose work the gate judges, and the gate is graded by an evaluator
   with no authorship of that work.
-- Write the JSON summary and log to the lane home `gate_captures/`. A capture
+- Write the JSON summary and log to the lane home `gate-captures/`. A capture
   is the harness's own output; a hand-authored summary is fabrication, and the
   verdict names the command that produced each capture so it can be
   reproduced.
@@ -75,6 +75,21 @@ fetch) with no concurrent probe to keep alive:
   conditions. If the metric is not met, the gate FAILS with named failures and
   the wave repeats, within the charter's remediation-loop cap; at the cap,
   escalate to the orchestrator instead of looping.
+
+Manual inspection path:
+
+```text
+wavves/lanes/<YYYYMMDD>_<lane-label>/
+  gate-captures/
+    <gate>.json
+    <gate>.log
+  findings/
+    <gate-verdict>.md
+```
+
+Inspect the JSON first, then the log, then the verdict. The numbers in the
+verdict must match the capture. If a capture is missing, hand-authored or
+cannot be rerun from the named command, the gate is not accepted.
 
 ## Rule 3, read-only grounding vs operator-gated mutation
 
@@ -100,12 +115,12 @@ directive to authorize it explicitly; a runner whose directive is silent on
 those surfaces hands the record content back to the orchestrator in its
 findings instead of writing it.
 
-A completed waveset that made a real decision records it so it survives the
-chat thread. If the repo keeps structured decision records, write one that
-names the decision, the measured evidence (gate numbers plus the capture
-path), the adversarial verdict, cost deltas, deferred items, and what it
-supersedes. If the repo has no decision store, a dated decision file in the
-lane home is the minimum.
+A waveset that made a real decision records it so it survives the chat thread.
+If the repo keeps structured decision records, write one that names the
+decision, the measured evidence (gate numbers plus the capture path), the
+adversarial verdict, cost deltas, deferred items, and what it supersedes. If
+the repo has no decision store, a dated decision file in the lane home is the
+minimum.
 
 ## Rule 5, measurement harness shape
 
@@ -125,7 +140,7 @@ python3 scripts/transition_gap_probe.py \
   --live-path /health \
   --real-path /api/status \
   --seconds 360 --cadence-ms 500 \
-  --out gate_captures/gap.json
+  --out gate-captures/gap.json
 ```
 
 Pass = `max_gap_while_live_up_ms == 0`. The script also logs each GAP
@@ -137,7 +152,7 @@ and runs only in an approved mutation wave.
 
 ```
 - [ ] Pass metric defined before the run (hard, checkable)
-- [ ] Harness written/selected; dependency-free; emits JSON to gate_captures/
+- [ ] Harness written/selected; dependency-free; emits JSON to gate-captures/
 - [ ] Measured transition runs as ONE long-blocking command (probe survives)
 - [ ] Mutation (if any) was operator-gated and approved; research stayed read-only
 - [ ] Verdict cites measured numbers + capture path (not a claim)

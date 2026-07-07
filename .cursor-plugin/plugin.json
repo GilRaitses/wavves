@@ -6,6 +6,8 @@
   "author": {
     "name": "aimez"
   },
+  "homepage": "https://github.com/GilRaitses/wavves",
+  "repository": "https://github.com/GilRaitses/wavves",
   "license": "MIT",
   "keywords": [
     "orchestration",

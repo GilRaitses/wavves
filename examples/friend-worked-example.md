@@ -9,18 +9,20 @@ as of 2026-07-06.
 
 ## The home
 
-The standing home lives at `<repo>/.cca/catalogue/O0/`:
+The standing home lives at `<repo>/wavves/`:
 
 ```
-.cca/catalogue/O0/
+wavves/
+  INDEX.md                       # fast pickup map for fresh agents
   AGENTS.md                      # standing hydration contract (orchestrator-home)
-  STEP_LOG.md                    # synthesis trace, append-only
+  registry.yml                   # every lane, status, one-paragraph note
+  step-log.md                    # synthesis trace, append-only
   rotations/
-    ROTATION_R01_20260705_2340.md  # first rotation handoff (R1 outgoing, R2 assigned)
-  20260705_friend-perf-reliability/   # one lane home per bounded workstream
-  20260705_thermal-bake-refresh/
-  20260704_camera-observability-ext/
-.cca/waves.registry.yml          # every lane, status, one-paragraph note
+    rotation-r01-20260705-2340.md  # first rotation handoff (R1 outgoing, R2 assigned)
+  lanes/
+    20260705_friend-perf-reliability/   # one lane home per bounded workstream
+    20260705_thermal-bake-refresh/
+    20260704_camera-observability-ext/
 ```
 
 The repo's own root `AGENTS.md` carries the governance the home defers to
@@ -90,7 +92,7 @@ held-out cameras land under 0.35 day and 4 under 0.35 night (including one
 ## The rotation
 
 After these lanes, the thread rotated. The outgoing instance wrote
-`rotations/ROTATION_R01_20260705_2340.md`, whose section 0 assigns the
+`rotations/rotation-r01-20260705-2340.md`, whose section 0 assigns the
 successor identity ("You are **O0.R2**. Ack with that identity and this
 file's name before acting."), lists landed positions with commit hashes,
 records the background dispatch still running at handoff with pickup

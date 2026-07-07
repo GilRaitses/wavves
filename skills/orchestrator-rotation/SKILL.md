@@ -28,10 +28,10 @@ from the handoff file, never self-chosen.
 ## Two variants, pick the right one
 
 **A. Whole-orchestrator rotation (the common case).** The orchestrator home
-(see the sibling skill `orchestrator-home`) holds a STANDING hydration
-contract at `<repo>/.cca/catalogue/O0/AGENTS.md` that is REUSED across
-rotations; per-rotation state goes in
-`<repo>/.cca/catalogue/O0/rotations/ROTATION_R<NN>_<YYYYMMDD>_<HHMM>.md`
+(see the sibling skill `orchestrator-home`) holds a standing hydration
+contract at `<repo>/wavves/AGENTS.md` that is reused across rotations;
+per-rotation state goes in
+`<repo>/wavves/rotations/rotation-r<NN>-<YYYYMMDD>-<HHMM>.md`
 (operator's timezone; NN = the OUTGOING term, zero-padded so lexical sort
 equals term order). Do NOT create a new dated handoff home for a
 whole-orchestrator rotation and do NOT restate the standing etiquette locks
@@ -45,7 +45,7 @@ covers exactly, in order:
   wave ids with `.R<N+1>`.
 - Positions (landed work with commit hashes).
 - Active background dispatches (purpose, lane home, findings file, PICKUP
-  actions on completion).
+  actions when it returns).
 - Blocked items plus what unblocks them.
 - Uncommitted local state per repo.
 - Operator-pending decisions.
@@ -59,7 +59,7 @@ published state; if the handoff stays local, say so plainly in the paste and
 scope it to the same machine. One-line paste form:
 
 ```
-Hydrate as O0.R<N+1> from <repo>/.cca/catalogue/O0/AGENTS.md (current rotation: rotations/ROTATION_R<NN>_<...>.md) and ack per the rotation contract, stating your assigned identity, before acting.
+Hydrate as O0.R<N+1> from <repo>/wavves/INDEX.md (current rotation: rotations/rotation-r<NN>-<...>.md) and ack per the rotation contract, stating your assigned identity, before acting.
 ```
 
 **B. Single-lane handoff (a lane leaves an overloaded thread; the main
@@ -68,7 +68,7 @@ orchestrator continues).** Use the five-file handoff home below.
 ## Output (variant B)
 
 1. A handoff home, for example
-   `<repo>/.cca/catalogue/O0/<YYYYMMDD>_<lane>-handoff/`, containing five
+   `<repo>/wavves/handoffs/<YYYYMMDD>_<lane>/`, containing five
    files (templates below).
 2. A one-line paste emitted in chat for the operator to drop into the new
    thread.
@@ -77,7 +77,7 @@ Variant B does NOT commit or push unless the operator explicitly asks (note
 any uncommitted local state in the charter section G instead). Variant A
 also defaults to a commit plan unless repo governance grants the write or the
 operator explicitly asks for publication. When a rotation commit is made, the
-completion report carries the branch verified, the final commit hash, push
+final report carries the branch verified, the final commit hash, push
 confirmation, the synced state, and the changed-file list. All rotation git
 actions are performed by the orchestrator itself; dispatched runners never
 run git.
@@ -134,7 +134,7 @@ carry their own etiquette.
 
 ### Step 4, the five files (variant B)
 
-**HANDOFF_CHARTER.md** is the authority doc. Sections, in order:
+**handoff.md** is the authority doc. Sections, in order:
 
 - A. Purpose (one paragraph, what the new thread resumes)
 - B. Decisions that are LOCKED, do not reopen (numbered; the highest-value
@@ -151,17 +151,17 @@ carry their own etiquette.
 - I. Transcript / provenance pointer (path plus "search by keyword, not
   linear")
 
-**HYDRATION_PACKET.md** is an ordered read list, grouped. Governance/canon
+**hydration.md** is an ordered read list, grouped. Governance/canon
 first, then this lane's charter and trace, then evidence, then code, then
 assets, then a repo map and environments. Every entry is an absolute or
 repo-relative path.
 
-**STEP_LOG.md** is the synthesis trace, newest last (S01, S02, ...). Each
+**step-log.md** is the synthesis trace, newest last (S01, S02, ...). Each
 step runs 2-4 lines, names the files touched and any commit hash. Append
 entries, never rewrite prior ones. Point to the transcript for detail; do
 not transcribe it.
 
-**ORCHESTRATOR_DISPATCH_PROMPT.md** is a fenced paste block that
+**dispatch.md** is a fenced paste block that
 
 - declares the role and lane
 - lists 3-4 hydration files in order
@@ -181,7 +181,7 @@ the fresh thread, current lane status.
 Emit exactly one line in chat the operator can paste. Form:
 
 ```
-Hydrate as O0 (<LANE> lane) from <repo>/.cca/catalogue/O0/<DATE>_<lane>-handoff/ORCHESTRATOR_DISPATCH_PROMPT.md and ack per HANDOFF_CHARTER section H before acting.
+Hydrate as O0 (<LANE> lane) from <repo>/wavves/handoffs/<DATE>_<lane>/dispatch.md and ack per handoff charter section H before acting.
 ```
 
 ## Quality bar

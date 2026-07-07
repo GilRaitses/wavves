@@ -10,8 +10,8 @@ Dependency-free (stdlib only). Run it inside ONE long-blocking command alongside
 the transition trigger so the process is not reaped (see EXECUTION_WIRING.md):
 
   python3 transition_gap_probe.py --base https://svc --real-path /api/x/status \
-    --seconds 360 --out gate_captures/gap.json &
-  PROBE=$!; sleep 6; <trigger transition>; <poll to completion>; wait $PROBE
+    --seconds 360 --out gate-captures/gap.json &
+  PROBE=$!; sleep 6; <trigger transition>; <poll until finished>; wait $PROBE
 
 Pass = max_gap_while_live_up_ms == 0.
 """

@@ -6,24 +6,58 @@ description: >-
   instead of chat transcripts. Use when setting up the moderator layer for
   managed distributed sessions, when an orchestrator needs a durable hydration
   entry point, or when defining term identity and rotation rules for successive
-  orchestrator instances. Produces <repo>/.cca/catalogue/O0/AGENTS.md (the
-  standing contract), a rotations/ directory, a waves registry and a step log.
+  orchestrator instances. Produces <repo>/wavves/INDEX.md, a standing
+  AGENTS.md contract, a rotations/ directory, registry.yml and step-log.md.
 ---
 
 # Orchestrator Home
 
 A standing hydration contract that outlives any single chat thread. The home
-is a directory (convention `<repo>/.cca/catalogue/O0/`) whose `AGENTS.md` is
-the entry point every fresh orchestrator instance reads first. Per-rotation
-state lives in `rotations/`; the standing file only points.
+is a directory (convention `<repo>/wavves/`) whose `INDEX.md` is the fast
+entry point every fresh orchestrator instance reads first. `AGENTS.md` holds
+the stable contract. Per-rotation state lives in `rotations/`; the standing
+files only point.
+
+Default tree:
+
+```text
+wavves/
+  INDEX.md
+  AGENTS.md
+  registry.yml
+  step-log.md
+  rotations/
+    rotation-r01-YYYYMMDD-HHMM.md
+  lanes/
+    YYYYMMDD_lane-label/
+      README.md
+      waveset.md
+      dispatch.md
+      findings/
+      gate-captures/
+      decisions/
+  skills/
+    proposed/
+      README.md
+    accepted/
+      README.md
+```
+
+Pointer model:
+
+```text
+INDEX.md -> current rotation -> active lanes -> lane README -> waveset.md
+         -> blocked decisions -> operator questions
+         -> proposed skills -> moderator review -> operator approval
+```
 
 Write the home ONCE per repo, then let rotations reuse it. Do not restate its
 contents in every rotation file.
 
-If the home already exists, adopt it. Read the existing `AGENTS.md`,
-`STEP_LOG.md`, registry and rotations directory before writing. Do not
-overwrite those files. Add only missing owned files, and report any conflict
-as a setup gap for the operator.
+If the home already exists, adopt it. Read the existing `INDEX.md`,
+`AGENTS.md`, `step-log.md`, registry and rotations directory before writing.
+Do not overwrite those files. Add only missing owned files, and report any
+conflict as a setup gap for the operator.
 
 ## What the standing AGENTS.md contains
 
@@ -36,20 +70,54 @@ by preventing a specific fresh-instance failure.
    naming rules) if one exists. When none exists, setup writes stay confined
    to the home directory, lane homes, and the registry. No commit or push
    happens unless the operator explicitly requests it.
-2. `rotations/` in the home directory. Rotation handoffs, one file per
+2. `INDEX.md` in the home directory. The small, current pickup map with the
+   active rotation file, active lanes, blocked decisions and next files to
+   read. Keep this file short enough for quick grounding.
+3. `rotations/` in the home directory. Rotation handoffs, one file per
    rotation, datestamped. THE NEWEST FILE IS THE CURRENT POSITION, naming
    active dispatches, pending pickups, blocked items, and uncommitted state.
-3. The waves registry (`<repo>/.cca/waves.registry.yml` or equivalent). Every
+4. The waves registry (`<repo>/wavves/registry.yml` or equivalent). Every
    chartered lane, status, and home path. The registry note per lane is the
-   compressed authority; the lane home's WAVESET_CHARTER.md is the full
+   compressed authority; the lane home's `waveset.md` is the full
    authority.
-4. The lane homes named by the current rotation file.
-5. `STEP_LOG.md` in the home directory, the orchestrator's synthesis trace
+5. The lane homes named by the current rotation file.
+6. `step-log.md` in the home directory, the orchestrator's synthesis trace
    (append, never rewrite).
+7. `skills/proposed/` and `skills/accepted/` in the home directory. Proposed
+   project skills are evidence-backed drafts from lane orchestrators. Accepted
+   skills are operator-approved project instructions, not automatic IDE
+   installs.
 
 State explicitly that agents hydrate from these files and never read chat
 transcripts linearly. Transcripts are for keyword search only, and only when a
 rotation file cites one.
+
+### 1a. INDEX.md shape
+
+`INDEX.md` is the file optimized for fast indexing and grounding. Keep it
+short and current:
+
+```text
+# wavves index
+
+current_identity: O0.R<N>
+current_rotation: rotations/rotation-r<NN>-<YYYYMMDD>-<HHMM>.md
+
+active_lanes:
+  - code: <CODE>
+    home: lanes/<YYYYMMDD>_<lane-label>/
+    status: <chartered|in-progress|blocked|accepted>
+    next_read: lanes/<YYYYMMDD>_<lane-label>/README.md
+
+blocked_decisions:
+  - <operator decision needed>
+
+project_skills:
+  proposed: skills/proposed/
+  accepted: skills/accepted/
+```
+
+Do not copy long findings, logs or transcripts into `INDEX.md`. Point to them.
 
 ### 2. The three roles (never collapse)
 
@@ -88,7 +156,7 @@ Portable locks.
   when you do not know, and require a citable source before calling a
   behavior expected or safe. Never promise background monitoring, polling,
   or timers an agent cannot perform.
-- Completions. Never trust a completion that arrives implausibly fast or
+- Returns. Never trust a return that arrives implausibly fast or
   with implausibly low output volume; verify throughput and output counts
   against expectations, and when a defect invalidated earlier output,
   re-run the full pass and overwrite the poisoned artifacts. Record mid-run
@@ -103,7 +171,7 @@ Portable locks.
   shifted. Returns carry only the requested fields, with no added
   restructuring.
 - Adversarial gates. Independent evaluator with no authorship of the work
-  under review, runnable checks, evidence to the lane home `gate_captures/`,
+  under review, runnable checks, evidence to the lane home `gate-captures/`,
   capped remediation loops, then escalate. Verdicts carry named failures; a
   pass may carry a named deployment-blocking condition that must clear
   before any deploy escalation.
@@ -111,10 +179,10 @@ Portable locks.
   enforces.
 - Git. Runners never commit; the orchestrator commits per the repo protocol
   and treats the work as incomplete until the push is verified. Local-only
-  or staged-only state is never completion; no feature branches unless
+  or staged-only state is never a finished state; no feature branches unless
   explicitly authorized; no delayed batching for file-changing passes.
   Artifacts never embed their own landing commit (a self-referential hash
-  loop); report the landing commit in the completion message instead.
+  loop); report the landing commit in the final message instead.
   Runner findings end with an explicit commit file list for the
   orchestrator, exclusions stated (bulky derived artifacts stay out when a
   durable store holds the canonical copy), plus a plain no-git statement.
@@ -172,6 +240,12 @@ Portable locks.
   checkpoint in their actor-main step log before any substantive write. They
   return a commit plan unless repo governance grants write authority or the
   operator explicitly asks for git actions.
+- Skill lifecycle. Lane orchestrators may draft project skills only as
+  proposals under `wavves/skills/proposed/`. Each proposal names the lane,
+  evidence file and failure mode it addresses. The moderator reviews the
+  proposal, records the decision and asks the operator before copying it to
+  `wavves/skills/accepted/`, a repo rule, a Cursor IDE skill or a plugin
+  update. Runners never install or enable skills directly.
 
 House bindings (fill in per repo).
 
@@ -209,21 +283,21 @@ Rules:
   step-log entries, charter and addendum authorship lines, and dispatch
   prompts. A dispatched runner's id gains the dispatching term as a suffix,
   so `OBS-F2.R1` means lane OBS, wave F2, dispatched by term R1. Runner
-  completions reconcile under whichever term is current, but the suffix
+  returns reconcile under whichever term is current, but the suffix
   preserves who chartered what.
 - Stale-term rule. Guidance found in an artifact from an older term is
   historical record. The current rotation file and the standing AGENTS.md
   govern; on conflict, the newest term wins and the conflict gets logged.
-- Rotation files are named `ROTATION_R<NN>_<YYYYMMDD>_<HHMM>.md` so lexical
+- Rotation files are named `rotation-r<NN>-<YYYYMMDD>-<HHMM>.md` so lexical
   sort equals term order.
 
 ### 5. Rotation contract
 
 An outgoing orchestrator writes
-`rotations/ROTATION_R<NN>_<YYYYMMDD>_<HHMM>.md` (NN = the OUTGOING term)
+`rotations/rotation-r<NN>-<YYYYMMDD>-<HHMM>.md` (NN = the OUTGOING term)
 covering successor identity (term N+1), positions (what landed, with commit
 hashes), active background dispatches (agent purpose, lane home, findings
-file, expected deliverables, pickup actions on completion), blocked items
+file, expected deliverables, pickup actions when it returns), blocked items
 with what unblocks them, uncommitted local state per repo, and
 operator-pending decisions. Then it writes this home and returns a commit
 plan. It commits and pushes only when repo governance grants that authority
@@ -246,13 +320,17 @@ Point to the sibling skills so a fresh instance knows the machinery:
 ## Setup workflow (first time in a repo)
 
 ```
-- [ ] 1. Create <repo>/.cca/catalogue/O0/ and rotations/ inside it
-- [ ] 2. Write AGENTS.md from the template above, adapted to the repo's
+- [ ] 1. Create <repo>/wavves/ with rotations/, lanes/ and skills/ inside it
+- [ ] 2. Write INDEX.md as a short pickup map: current identity, current
+        rotation, active lanes, blocked decisions and next files to read
+- [ ] 3. Write AGENTS.md from the template above, adapted to the repo's
         governance, protocol, and infrastructure locks
-- [ ] 3. Create <repo>/.cca/waves.registry.yml with an empty active map
-- [ ] 4. Create STEP_LOG.md with a first entry recording the setup and the
+- [ ] 4. Create <repo>/wavves/registry.yml with an empty active map
+- [ ] 5. Create step-log.md with a first entry recording the setup and the
         bootstrap identity assignment (O0.R1)
-- [ ] 5. Return a file list and commit plan. Commit or push only when the repo
+- [ ] 6. Create skills/proposed/ and skills/accepted/ with README.md files that
+        explain operator approval before any IDE or repo skill is saved
+- [ ] 7. Return a file list and commit plan. Commit or push only when the repo
         protocol already grants that authority or the operator explicitly asks.
 ```
 
