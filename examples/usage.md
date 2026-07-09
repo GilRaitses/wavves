@@ -23,6 +23,7 @@ like `/poteto-mode` in pstack.
 | `/wavves` | default entry. routes by playbook |
 | `/wavve` | home setup only |
 | `/charter` | charter a lane only |
+| `/mod-check` | adversarial sanity-check of a landed spec or plan |
 | `/mod-rotate` | rotation only |
 
 ## Playbooks (`/wavves` routes here)
@@ -31,6 +32,7 @@ like `/poteto-mode` in pstack.
 |:---------|:-----------|:----|
 | bootstrap | `/wavve` | first time, repair home |
 | charter-lane | `/charter` | bug fix, audit, refactor, flaky CI, overnight lane |
+| check | `/mod-check` | adversarial review of a landed spec or plan before build |
 | rotate | `/mod-rotate` | hand off to fresh thread |
 | pickup | hydrate | resume, "where are we" |
 
@@ -39,10 +41,14 @@ like `/poteto-mode` in pstack.
 ```text
 default:           /wavves set up in this repo, then audit our README for drift.
                    read-only, no commits.
+spec check:        /mod-check review docs/superpowers/specs/2026-07-08-example.md
+                   before we write the implementation plan. adversarial parallel
+                   wave. read-only. landing_commit_hash <hash>.
 rotate:            /wavves rotate this thread. write a handoff for active lanes.
 pickup:            /wavves hydrate from the rotation paste and tell me what's active.
 setup only:        /wavve set up wavves in this repo. do not commit.
 charter only:      /charter migrate every callsite to the async config store.
+check only:        /mod-check the landed spec. GO / REVISE / BLOCK with named gaps.
 rotate only:       /mod-rotate token velocity is too high. give me the one-line paste.
 ```
 
@@ -285,7 +291,7 @@ records:
 - The one-line paste:
 
 ```text
-Hydrate as O0.R2 from <repo>/wavves/INDEX.md (current rotation:
+/wavves hydrate as O0.R2 from <repo>/wavves/INDEX.md (current rotation:
 rotations/rotation-r01-20260708-1940.md) and ack per the rotation contract,
 stating your assigned identity, before acting.
 ```

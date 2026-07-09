@@ -327,6 +327,8 @@ Point to the sibling skills so a fresh instance knows the machinery:
 
 - `wavves` (`/wavves`) for the default entry and playbook routing.
 - `charter` (`/charter`) for chartering and dispatching lanes.
+- `mod-check` (`/mod-check`) for adversarial sanity-check of a landed
+  spec or plan before implementation.
 - `mod-rotate` (`/mod-rotate`) for producing the next rotation handoff and
   the one-line paste that starts the successor thread from this file.
 

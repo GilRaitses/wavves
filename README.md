@@ -1,11 +1,11 @@
 # wavves
 
-Version: `0.0.0`.
+Version: `0.0.1`.
 
 Route durable multi-agent work through a moderator layer, with alignment
 packets, check records and handoff files saved beside the work.
 
-wavves is a free Cursor plugin for managed distributed sessions. Four skills
+wavves is a free Cursor plugin for managed distributed sessions. Five skills
 help a single operator prepare bounded work, dispatch parallel runners and
 rotate overloaded threads while the shared record lives in files instead of
 chat history.
@@ -72,6 +72,7 @@ picks a playbook and runs the leaf skill. Like `/poteto-mode` in pstack.
 |:---------|:----|
 | bootstrap | first time in repo, repair home, no `wavves/` yet |
 | charter-lane | bounded work: bug fix, audit, refactor, flaky CI, overnight lane |
+| check | adversarial sanity-check of a landed spec or plan before build |
 | rotate | hand off to a fresh moderator thread |
 | pickup | resume from rotation paste, "where are we", reconcile active lanes |
 
@@ -93,9 +94,10 @@ Fresh instances hydrate from the home files, never from chat transcripts.
 
 | skill | use it when |
 |:------|:------------|
-| `/wavves` | default entry. routes to bootstrap, charter, rotate or pickup |
+| `/wavves` | default entry. routes to bootstrap, charter, check, rotate or pickup |
 | `/wavve` | you only need home setup |
 | `/charter` | you only need a new lane chartered |
+| `/mod-check` | you only need an adversarial spec/plan sanity-check wave |
 | `/mod-rotate` | you only need rotation |
 
 Most operators type `/wavves` plus the task. Reach for the leaf skills when you
@@ -112,10 +114,14 @@ flaky ci:          /wavves three integration tests flake on main. fix root cause
                    and prove stability.
 overnight:         /wavves i'm stepping away. land the auth hardening lane with
                    captured gates. no deploy without my approval.
+spec check:        /mod-check review docs/superpowers/specs/2026-07-08-example.md
+                   before we write the implementation plan. adversarial parallel
+                   wave. read-only. landing_commit_hash <hash>.
 rotate:            /wavves rotate this thread. write a handoff for active lanes.
 pickup:            /wavves hydrate from the rotation paste and tell me what's active.
 setup only:        /wavve set up wavves in this repo. do not commit.
 charter only:      /charter migrate every callsite to the async config store.
+check only:        /mod-check the landed spec. GO / REVISE / BLOCK with named gaps.
 rotate only:       /mod-rotate token velocity is too high. give me the one-line paste.
 ```
 
@@ -131,7 +137,9 @@ a performance sprint and a migration that survives a mid-flight rotation):
    `registry.yml`, `step-log.md` and `rotations/`.
 3. **`/charter`** writes the lane home, registers the lane and dispatches a
    background sub-orchestrator with runnable gates in `gate-captures/`.
-4. **`/mod-rotate`** writes a rotation file with term identity and emits a
+4. **`/mod-check`** charters a read-only adversarial wave against a landed
+   spec or plan and returns `GO` / `REVISE` / `BLOCK` with named gaps.
+5. **`/mod-rotate`** writes a rotation file with term identity and emits a
    one-line paste for a fresh thread.
 
 `/wavves` pairs well with Cursor's `/loop` for long lanes with captured gates
@@ -226,9 +234,10 @@ finding so another operator can rerun it.
 
 | Skill | Description |
 |:------|:------------|
-| `wavves` (`/wavves`) | Main entry. Routes to bootstrap, charter, rotate or pickup playbooks. |
+| `wavves` (`/wavves`) | Main entry. Routes to bootstrap, charter, check, rotate or pickup playbooks. |
 | `wavve` (`/wavve`) | Bootstrap the standing home a fresh moderator hydrates from. |
 | `charter` (`/charter`) | Charter a lane and dispatch waves behind runnable gates. |
+| `mod-check` (`/mod-check`) | Adversarial parallel sanity-check of a landed spec or plan. |
 | `mod-rotate` (`/mod-rotate`) | Hand the moderator or one lane to a fresh thread. |
 
 ## Examples on disk

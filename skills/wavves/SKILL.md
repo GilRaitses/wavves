@@ -2,9 +2,9 @@
 name: wavves
 description: >-
   Main entry for durable multi-agent routing. Reads your request, checks the
-  wavves home, picks a playbook and runs the leaf skill (/wavve, /charter or
-  /mod-rotate). Use for /wavves or any bounded lane work, setup, rotation or
-  pickup.
+  wavves home, picks a playbook and runs the leaf skill (/wavve, /charter,
+  /mod-check or /mod-rotate). Use for /wavves or any bounded lane work,
+  setup, spec check, rotation or pickup.
 disable-model-invocation: true
 ---
 
@@ -18,9 +18,9 @@ skill in full** before acting.
 
 1. **Start with a todo list.** First item: match a playbook and name the leaf
    skill you will read.
-2. **Read the leaf skill in full** (`wavve`, `charter` or `mod-rotate`) before
-   any substantive write. Do not improvise charter or rotation steps from
-   memory.
+2. **Read the leaf skill in full** (`wavve`, `charter`, `mod-check` or
+   `mod-rotate`) before any substantive write. Do not improvise charter,
+   check or rotation steps from memory.
 3. **The moderator (O0) stays operator-facing.** Dispatched runners answer to
    O0, not the operator directly. Gates are runnable with captured evidence.
 4. **No commit, push, deploy or external mutation** unless the operator
@@ -33,12 +33,14 @@ skill in full** before acting.
 |:---------|:-----------|:----|
 | bootstrap | `wavve` (`/wavve`) | first time in repo, repair home, "set up wavves" |
 | charter-lane | `charter` (`/charter`) | bounded multi-wave work: bug fix, audit, refactor, feature, flaky CI, security pass, overnight lane |
+| check | `mod-check` (`/mod-check`) | adversarial sanity-check of a written spec or plan before implementation |
 | rotate | `mod-rotate` (`/mod-rotate`) | rotate, handoff, fresh thread, self-fork, replay, token velocity too high |
 | pickup | hydrate + moderate | resume from rotation paste, "where are we", reconcile active lanes |
 
-When the request is ambiguous, default to **charter-lane** if `wavves/` exists
-and the operator describes work to do. Default to **bootstrap** if the home is
-missing.
+When the request is ambiguous, default to **check** if the operator points at
+a landed spec/plan and asks for review before the next writing step. Default
+to **charter-lane** if `wavves/` exists and the operator describes build work.
+Default to **bootstrap** if the home is missing.
 
 ## Playbook steps
 
@@ -47,6 +49,7 @@ before adding task-specific items.
 
 - **Bootstrap.** `playbooks/bootstrap.md`
 - **Charter lane.** `playbooks/charter-lane.md`
+- **Check.** `playbooks/check.md`
 - **Rotate.** `playbooks/rotate.md`
 - **Pickup.** `playbooks/pickup.md`
 
@@ -58,6 +61,7 @@ A step you skip stays in the list with `skip: <reason>`.
 |:------|:------|:---------------------------|
 | `wavve` | `/wavve` | you know you only need home setup |
 | `charter` | `/charter` | you know you only need a new lane |
+| `mod-check` | `/mod-check` | you know you only need an adversarial spec/plan check |
 | `mod-rotate` | `/mod-rotate` | you know you only need rotation |
 
 Most operators can type `/wavves` plus the task and let routing handle the rest.

@@ -270,6 +270,7 @@
           <tr><td><code>/wavves</code></td><td>Default entry. Reads your request, picks a playbook, runs the leaf skill.</td></tr>
           <tr><td><code>/wavve</code></td><td>Home setup only. First time in a repo or repair the standing home.</td></tr>
           <tr><td><code>/charter</code></td><td>Charter one bounded lane and dispatch background waves.</td></tr>
+          <tr><td><code>/mod-check</code></td><td>Adversarial parallel sanity-check of a landed spec or plan before build.</td></tr>
           <tr><td><code>/mod-rotate</code></td><td>Rotate the moderator to a fresh thread with a handoff file.</td></tr>
         </tbody>
       </table>
@@ -280,6 +281,7 @@
         <tbody>
           <tr><td>bootstrap</td><td><code>/wavve</code></td><td>First time in repo, no <code>wavves/</code> home yet</td></tr>
           <tr><td>charter-lane</td><td><code>/charter</code></td><td>Bug fix, audit, refactor, flaky CI, overnight lane</td></tr>
+          <tr><td>check</td><td><code>/mod-check</code></td><td>Adversarial review of a landed spec or plan before the implementation plan</td></tr>
           <tr><td>rotate</td><td><code>/mod-rotate</code></td><td>Hand off when context is heavy</td></tr>
           <tr><td>pickup</td><td>hydrate</td><td>Resume from rotation paste, reconcile active lanes</td></tr>
         </tbody>
@@ -288,7 +290,7 @@
 
     <section>
       <h2>The right way to invoke each command</h2>
-      <p class="lead">One rule governs all four: read the matched skill in full before acting, never improvise charter or rotation steps from memory, even inside a repeat session.</p>
+      <p class="lead">One rule governs all five: read the matched skill in full before acting, never improvise charter, check or rotation steps from memory, even inside a repeat session.</p>
 
       <div class="usage-grid">
         <article class="usage-card">
@@ -297,7 +299,7 @@
           <pre>/wavves the checkout webhook creates duplicate
 invoices under retries. reproduce, fix and verify
 with gate captures. do not deploy.</pre>
-          <p class="not-this"><strong>Not this:</strong> calling it with no task ("just set things up"). It needs either bounded work to charter or an explicit instruction like "set up" / "rotate" / "where are we" to match a playbook.</p>
+          <p class="not-this"><strong>Not this:</strong> calling it with no task ("just set things up"). It needs either bounded work to charter or an explicit instruction like "set up" / "check the spec" / "rotate" / "where are we" to match a playbook.</p>
         </article>
 
         <article class="usage-card">
@@ -314,6 +316,16 @@ with gate captures. do not deploy.</pre>
 config store to the async one. behavior must
 stay identical.</pre>
           <p class="not-this"><strong>Not this:</strong> chartering vague scope ("clean up the codebase"), or expecting it to ping you mid-dispatch for small calls. It grounds in real files first, dispatches to the background, and never commits or deploys without an explicit ask.</p>
+        </article>
+
+        <article class="usage-card">
+          <h3>/mod-check</h3>
+          <p class="when">When a spec or plan is already landed and you want an adversarial parallel wave before writing the implementation plan or starting build.</p>
+          <pre>/mod-check review docs/specs/2026-07-08-example.md
+before we write the implementation plan.
+adversarial parallel wave. read-only.
+landing_commit_hash &lt;hash&gt;</pre>
+          <p class="not-this"><strong>Not this:</strong> using it to write the plan or start the build, or treating a chat "looks good" as the gate. It returns <code>GO</code> / <code>REVISE</code> / <code>BLOCK</code> with named gaps under the lane findings.</p>
         </article>
 
         <article class="usage-card">
@@ -367,6 +379,12 @@ captured gates. no deploy without my approval.</pre>
           <p class="demo-label">leaf: charter only</p>
           <pre>/charter migrate every callsite to the async config store.
 behavior must stay identical.</pre>
+        </article>
+        <article class="demo-row">
+          <p class="demo-label">leaf: spec check</p>
+          <pre>/mod-check review docs/superpowers/specs/2026-07-08-example.md
+before we write the implementation plan. adversarial parallel
+wave. read-only. landing_commit_hash &lt;hash&gt;.</pre>
         </article>
         <article class="demo-row">
           <p class="demo-label">leaf: rotate only</p>

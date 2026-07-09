@@ -61,8 +61,13 @@ published state. if the handoff stays local, say so plainly in the paste and
 scope it to the same machine. One-line paste form:
 
 ```
-Hydrate as O0.R<N+1> from <repo>/wavves/INDEX.md (current rotation: rotations/rotation-r<NN>-<...>.md) and ack per the rotation contract, stating your assigned identity, before acting.
+/wavves hydrate as O0.R<N+1> from <repo>/wavves/INDEX.md (current rotation: rotations/rotation-r<NN>-<...>.md) and ack per the rotation contract, stating your assigned identity, before acting.
 ```
+
+The leading `/wavves` is required, not decorative. Every skill in this
+plugin sets `disable-model-invocation: true`, so nothing auto-fires from
+description matching, only from an explicit slash command. A paste without
+it risks landing in a fresh thread that never invokes the plugin at all.
 
 **B. Single-lane handoff (a lane leaves an overloaded thread. the main
 orchestrator continues).** Use the five-file handoff home below.
@@ -186,7 +191,7 @@ the fresh thread, current lane status.
 Emit exactly one line in chat the operator can paste. Form:
 
 ```
-Hydrate as O0 (<LANE> lane) from <repo>/wavves/handoffs/<DATE>_<lane>/dispatch.md and ack per handoff charter section H before acting.
+/wavves hydrate as O0 (<LANE> lane) from <repo>/wavves/handoffs/<DATE>_<lane>/dispatch.md and ack per handoff charter section H before acting.
 ```
 
 ## Quality bar

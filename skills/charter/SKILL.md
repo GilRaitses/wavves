@@ -22,6 +22,8 @@ O0**.
 The skill complements sibling skills in this plugin:
 
 - `wavves` (`/wavves`) is the default entry and routes to the playbooks below.
+- `mod-check` (`/mod-check`) is the read-only adversarial sanity-check
+  wave for a landed spec or plan before implementation.
 - `mod-rotate` (`/mod-rotate`) hands the whole moderator (or one lane) to a
   fresh thread when the current one is overloaded.
 - `wavve` (`/wavve`) establishes the standing home a fresh moderator
