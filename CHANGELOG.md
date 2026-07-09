@@ -9,6 +9,8 @@
   product/design calls after a check return, write `decisions/*.md`, emit a
   Locked decisions paste for BUILD. Document the
   `/mod-check` → `/mod-decide` → `/charter` lifecycle in `examples/usage.md`.
+- Document mid-queue decide picks: invoke `/mod-decide` once to start the
+  queue; answer `Pick: …` in the same thread without re-slashing.
 - Fix the `/mod-rotate` one-line paste to lead with an explicit `/wavves`
   invocation, since every skill disables description-based auto-invocation
   and the paste previously carried no literal slash command.

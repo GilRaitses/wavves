@@ -48,6 +48,7 @@ spec check:        /mod-check review docs/superpowers/specs/2026-07-08-example.m
                    wave. read-only. landing_commit_hash <hash>.
 decide:            /mod-decide navigate open calls from the check return.
                    one decision at a time. write decisions/*.md. no BUILD yet.
+                   Mid-queue: answer Pick: … only — do not re-slash each time.
 rotate:            /wavves rotate this thread. write a handoff for active lanes.
 pickup:            /wavves hydrate from the rotation paste and tell me what's active.
 setup only:        /wavves-init set up wavves in this repo. do not commit.
@@ -84,7 +85,7 @@ spec landed
   a naive server route). Confirm them into the Locked / Grounding paste; do
   not re-debate them unless new evidence appears.
 
-**Practical paste after a check return**
+**Practical paste after a check return (start the queue once)**
 
 ```text
 /mod-decide You are O0. Do not charter BUILD yet.
@@ -96,6 +97,16 @@ write decisions/<CODE>-<slug>.md, append to a Locked decisions draft.
 Do not reopen settled technical findings. When I say locks are complete,
 emit the Locked decisions paste and the /charter invocation(s). One feature
 per BUILD lane when scopes are disjoint.
+```
+
+**Mid-queue picks (same thread — no `/mod-decide` again)**
+
+Once Mod is already asking "Your pick?", answer the pick only. Re-slash only
+in a fresh chat or if the thread never ran decide.
+
+```text
+Pick: dedicated button.
+Record as DSO-01. Next decision when ready. No BUILD yet.
 ```
 
 **Practical paste once locks exist**
@@ -122,6 +133,7 @@ No commits/deploy without my ask. Escalate any lock conflict to O0.
 |:-----------|:--------|
 | `/charter` while forks are still open | build agents pick for you and fight the check |
 | `/mod-check` again to "make the decisions" | check reviews; decide locks |
+| `/mod-decide` again before every mid-queue pick | same thread already owns the queue; answer `Pick: …` only |
 | One mega-charter for two disjoint features | file ownership and risk diverge; split lanes |
 | Asking Mod to "just start building" mid-decide | O0's job is lock first, dispatch second |
 

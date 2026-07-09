@@ -34,18 +34,22 @@ the decisions", "lock before charter", "decision packet", `/mod-decide`.
 
 1. **One decision at a time.** Present options in one line each, optional
    recommendation, then wait for the operator pick before the next call.
-2. **No BUILD charter inside this skill.** Do not run `/charter` until the
+2. **Invoke once per queue.** `/mod-decide` starts the decision queue. While
+   Mod is already asking for the next pick in the same thread, the operator
+   answers with `Pick: …` only — they do not re-slash before every decision.
+   Re-invoke only in a fresh chat or if the thread never ran decide.
+3. **No BUILD charter inside this skill.** Do not run `/charter` until the
    operator says the locks are complete.
-3. **No re-litigation of settled technical findings.** If the check already
+4. **No re-litigation of settled technical findings.** If the check already
    verified a fact (e.g. point-in-polygon renders nothing), treat it as
    grounding to lock, not as an open debate, unless the operator reopens it.
-4. **Write durable records.** Each pick lands in
+5. **Write durable records.** Each pick lands in
    `wavves/lanes/<lane>/decisions/<CODE>-<slug>.md`. Maintain a running
    Locked decisions draft the operator can paste into BUILD.
-5. **Separate lanes stay separate.** If two features have independent open
+6. **Separate lanes stay separate.** If two features have independent open
    calls (e.g. DSO and GEX), finish or explicitly park one before mixing
    locks into a single BUILD charter. Prefer one BUILD charter per feature.
-6. **No commit / push / deploy** unless the operator explicitly asks.
+7. **No commit / push / deploy** unless the operator explicitly asks.
 
 ## Workflow
 

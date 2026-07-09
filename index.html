@@ -333,11 +333,14 @@ landing_commit_hash &lt;hash&gt;</pre>
 
         <article class="usage-card">
           <h3>/mod-decide</h3>
-          <p class="when">After a check return leaves open product or design calls. Mod walks them one at a time and writes <code>decisions/*.md</code>.</p>
+          <p class="when">After a check return leaves open product or design calls. Invoke once to start the queue. Mid-queue, just answer the pick — do not re-slash on every decision.</p>
           <pre>/mod-decide navigate open calls from the check
 return. one decision at a time. write
 decisions/*.md. no BUILD until locks are complete.</pre>
-          <p class="not-this"><strong>Not this:</strong> re-running <code>/mod-check</code> to "make the decisions," or asking Mod to start building mid-decide. Emit the Locked decisions paste, then <code>/charter</code>.</p>
+          <pre>Pick: dedicated button.
+Record as DSO-01. Next decision when ready.
+No BUILD yet.</pre>
+          <p class="not-this"><strong>Not this:</strong> pasting <code>/mod-decide</code> again before every pick in the same thread, re-running <code>/mod-check</code> to "make the decisions," or asking Mod to start building mid-decide. Re-invoke only in a fresh chat. When locks are complete, emit the Locked decisions paste, then <code>/charter</code>.</p>
         </article>
 
         <article class="usage-card">
@@ -399,9 +402,14 @@ before we write the implementation plan. adversarial parallel
 wave. read-only. landing_commit_hash &lt;hash&gt;.</pre>
         </article>
         <article class="demo-row">
-          <p class="demo-label">leaf: decide</p>
+          <p class="demo-label">leaf: decide (start once)</p>
           <pre>/mod-decide navigate open calls from the check return.
 one decision at a time. write decisions/*.md. no BUILD yet.</pre>
+        </article>
+        <article class="demo-row">
+          <p class="demo-label">leaf: decide (mid-queue pick)</p>
+          <pre>Pick: dedicated button.
+Record as DSO-01. Next decision when ready. No BUILD yet.</pre>
         </article>
         <article class="demo-row">
           <p class="demo-label">leaf: rotate only</p>

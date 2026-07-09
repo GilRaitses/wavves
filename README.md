@@ -121,6 +121,7 @@ spec check:        /mod-check review docs/superpowers/specs/2026-07-08-example.m
                    wave. read-only. landing_commit_hash <hash>.
 decide:            /mod-decide navigate open calls from the check return.
                    one decision at a time. write decisions/*.md. no BUILD yet.
+                   Mid-queue: answer Pick: … only — do not re-slash each time.
 rotate:            /wavves rotate this thread. write a handoff for active lanes.
 pickup:            /wavves hydrate from the rotation paste and tell me what's active.
 setup only:        /wavves-init set up wavves in this repo. do not commit.
