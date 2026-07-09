@@ -2,9 +2,9 @@
 name: wavves
 description: >-
   Main entry for durable multi-agent routing. Reads your request, checks the
-  wavves home, picks a playbook and runs the leaf skill (/wavve, /charter,
-  /mod-check or /mod-rotate). Use for /wavves or any bounded lane work,
-  setup, spec check, rotation or pickup.
+  wavves home, picks a playbook and runs the leaf skill (/wavves-init, /charter,
+  /mod-check, /mod-decide or /mod-rotate). Use for /wavves or any bounded
+  lane work, setup, spec check, decision lock, rotation or pickup.
 disable-model-invocation: true
 ---
 
@@ -18,9 +18,9 @@ skill in full** before acting.
 
 1. **Start with a todo list.** First item: match a playbook and name the leaf
    skill you will read.
-2. **Read the leaf skill in full** (`wavve`, `charter`, `mod-check` or
-   `mod-rotate`) before any substantive write. Do not improvise charter,
-   check or rotation steps from memory.
+2. **Read the leaf skill in full** (`wavves-init`, `charter`, `mod-check`,
+   `mod-decide` or `mod-rotate`) before any substantive write. Do not
+   improvise charter, check, decide or rotation steps from memory.
 3. **The moderator (O0) stays operator-facing.** Dispatched runners answer to
    O0, not the operator directly. Gates are runnable with captured evidence.
 4. **No commit, push, deploy or external mutation** unless the operator
@@ -31,15 +31,18 @@ skill in full** before acting.
 
 | Playbook | Leaf skill | For |
 |:---------|:-----------|:----|
-| bootstrap | `wavve` (`/wavve`) | first time in repo, repair home, "set up wavves" |
+| bootstrap | `wavves-init` (`/wavves-init`) | first time in repo, repair home, "set up wavves" |
 | charter-lane | `charter` (`/charter`) | bounded multi-wave work: bug fix, audit, refactor, feature, flaky CI, security pass, overnight lane |
 | check | `mod-check` (`/mod-check`) | adversarial sanity-check of a written spec or plan before implementation |
+| decide | `mod-decide` (`/mod-decide`) | lock open product/design calls after a check return, before BUILD charter |
 | rotate | `mod-rotate` (`/mod-rotate`) | rotate, handoff, fresh thread, self-fork, replay, token velocity too high |
 | pickup | hydrate + moderate | resume from rotation paste, "where are we", reconcile active lanes |
 
 When the request is ambiguous, default to **check** if the operator points at
 a landed spec/plan and asks for review before the next writing step. Default
-to **charter-lane** if `wavves/` exists and the operator describes build work.
+to **decide** if a check return left open calls and the operator wants locks
+before BUILD. Default to **charter-lane** if `wavves/` exists and the
+operator describes build work with locks already stated (or no open forks).
 Default to **bootstrap** if the home is missing.
 
 ## Playbook steps
@@ -50,6 +53,7 @@ before adding task-specific items.
 - **Bootstrap.** `playbooks/bootstrap.md`
 - **Charter lane.** `playbooks/charter-lane.md`
 - **Check.** `playbooks/check.md`
+- **Decide.** `playbooks/decide.md`
 - **Rotate.** `playbooks/rotate.md`
 - **Pickup.** `playbooks/pickup.md`
 
@@ -59,12 +63,27 @@ A step you skip stays in the list with `skip: <reason>`.
 
 | skill | slash | when to reach for directly |
 |:------|:------|:---------------------------|
-| `wavve` | `/wavve` | you know you only need home setup |
+| `wavves-init` | `/wavves-init` | you know you only need home setup |
 | `charter` | `/charter` | you know you only need a new lane |
 | `mod-check` | `/mod-check` | you know you only need an adversarial spec/plan check |
+| `mod-decide` | `/mod-decide` | you know you only need to lock open calls before BUILD |
 | `mod-rotate` | `/mod-rotate` | you know you only need rotation |
 
 Most operators can type `/wavves` plus the task and let routing handle the rest.
+
+## Lifecycle (spec → BUILD)
+
+For work that starts as a written spec, use the skills in order:
+
+1. **`/mod-check`** — adversarial parallel wave. Verdict `GO` / `REVISE` / `BLOCK`.
+2. **`/mod-decide`** — if open product/design calls remain, lock them one at a
+   time into `decisions/*.md`. Emit a Locked decisions paste.
+3. **`/charter`** — BUILD lane with those locks in `waveset.md`. One feature
+   per lane when scopes are disjoint.
+
+Do not skip decide when the check return still has forks a build agent would
+have to invent. Do not re-run check to "make decisions." See
+`examples/usage.md` → "From check to BUILD".
 
 ## Pairing with `/loop`
 

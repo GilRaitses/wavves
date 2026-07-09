@@ -27,7 +27,7 @@ from the handoff file, never self-chosen.
 ## Two variants, pick the right one
 
 **A. Whole-orchestrator rotation (the common case).** The orchestrator home
-(see the sibling skill `wavve`) holds a standing hydration
+(see the sibling skill `wavves-init`) holds a standing hydration
 contract at `<repo>/wavves/AGENTS.md` that is reused across rotations.
 per-rotation state goes in
 `<repo>/wavves/rotations/rotation-r<NN>-<YYYYMMDD>-<HHMM>.md`
@@ -38,7 +38,7 @@ per rotation, because the home AGENTS.md carries them. The rotation file
 covers exactly, in order:
 
 - **Successor identity first** (section 0). The incoming term `O0.R<N+1>`,
-  assigned by the handoff, never self-chosen (see `wavve`, "Identity and
+  assigned by the handoff, never self-chosen (see `wavves-init`, "Identity and
   rotation terms"). The successor stamps `O0.R<N+1>:` on
   commits, step-log entries and authored charters and suffixes dispatched
   wave ids with `.R<N+1>`.

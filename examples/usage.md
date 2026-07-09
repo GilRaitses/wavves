@@ -21,18 +21,20 @@ like `/poteto-mode` in pstack.
 | skill | use it when |
 |:------|:------------|
 | `/wavves` | default entry. routes by playbook |
-| `/wavve` | home setup only |
+| `/wavves-init` | home setup only |
 | `/charter` | charter a lane only |
 | `/mod-check` | adversarial sanity-check of a landed spec or plan |
+| `/mod-decide` | lock open product/design calls after a check return |
 | `/mod-rotate` | rotation only |
 
 ## Playbooks (`/wavves` routes here)
 
 | playbook | leaf skill | for |
 |:---------|:-----------|:----|
-| bootstrap | `/wavve` | first time, repair home |
+| bootstrap | `/wavves-init` | first time, repair home |
 | charter-lane | `/charter` | bug fix, audit, refactor, flaky CI, overnight lane |
 | check | `/mod-check` | adversarial review of a landed spec or plan before build |
+| decide | `/mod-decide` | lock open calls before BUILD charter |
 | rotate | `/mod-rotate` | hand off to fresh thread |
 | pickup | hydrate | resume, "where are we" |
 
@@ -44,17 +46,87 @@ default:           /wavves set up in this repo, then audit our README for drift.
 spec check:        /mod-check review docs/superpowers/specs/2026-07-08-example.md
                    before we write the implementation plan. adversarial parallel
                    wave. read-only. landing_commit_hash <hash>.
+decide:            /mod-decide navigate open calls from the check return.
+                   one decision at a time. write decisions/*.md. no BUILD yet.
 rotate:            /wavves rotate this thread. write a handoff for active lanes.
 pickup:            /wavves hydrate from the rotation paste and tell me what's active.
-setup only:        /wavve set up wavves in this repo. do not commit.
+setup only:        /wavves-init set up wavves in this repo. do not commit.
 charter only:      /charter migrate every callsite to the async config store.
 check only:        /mod-check the landed spec. GO / REVISE / BLOCK with named gaps.
+decide only:       /mod-decide lock the open calls. emit Locked decisions paste.
 rotate only:       /mod-rotate token velocity is too high. give me the one-line paste.
 ```
 
-The four walkthroughs below go deeper. Each one shows a different mechanic
-the plugin is actually built around, not just the charter-lane playbook
-repeated with a different sentence.
+## From check to BUILD
+
+When work starts as a written spec, do not jump straight to `/charter`. Use
+three skills in order. The moderator (O0) stays operator-facing the whole way.
+
+```text
+spec landed
+    → /mod-check     adversarial parallel wave → GO | REVISE | BLOCK
+    → /mod-decide    lock open product/design calls → decisions/*.md
+    → /charter       BUILD with Locked decisions pasted into waveset.md
+```
+
+| Step | Skill | You get | Stop if |
+|:-----|:------|:--------|:--------|
+| 1. Check | `/mod-check` | verdict + named gaps + settled technical findings | `BLOCK` or `REVISE` until the artifact is fixed |
+| 2. Decide | `/mod-decide` | one-at-a-time picks, `decisions/*.md`, Locked decisions paste | any fork a build agent would have to invent is still open |
+| 3. Charter | `/charter` | BUILD lane, waves, gated acceptance | locks missing, or two disjoint features stuffed into one lane |
+
+**What belongs in decide vs what is already locked grounding**
+
+- **Decide (product / design forks):** gesture choice, which data source is
+  authoritative, v1 share scope, whether to replace a shipped behavior.
+- **Grounding (already verified — do not rediscover):** measured facts from
+  the check (e.g. point-in-polygon renders nothing; Vercel body cap rules out
+  a naive server route). Confirm them into the Locked / Grounding paste; do
+  not re-debate them unless new evidence appears.
+
+**Practical paste after a check return**
+
+```text
+/mod-decide You are O0. Do not charter BUILD yet.
+
+Check landed at <hash>. Navigate the open product decisions listed in the
+return. One decision at a time: options in one line each, wait for my pick,
+write decisions/<CODE>-<slug>.md, append to a Locked decisions draft.
+
+Do not reopen settled technical findings. When I say locks are complete,
+emit the Locked decisions paste and the /charter invocation(s). One feature
+per BUILD lane when scopes are disjoint.
+```
+
+**Practical paste once locks exist**
+
+```text
+/charter BUILD lane for <feature>.
+
+repo_state_verified_against: <check landing hash>
+type: execution
+
+Locked decisions (do NOT reopen):
+<paste from /mod-decide>
+
+Grounding (already verified — do not rediscover):
+<paste from /mod-decide>
+
+Wave shape: discovery → build → gated integration → gated acceptance.
+No commits/deploy without my ask. Escalate any lock conflict to O0.
+```
+
+**Anti-patterns**
+
+| Temptation | Why not |
+|:-----------|:--------|
+| `/charter` while forks are still open | build agents pick for you and fight the check |
+| `/mod-check` again to "make the decisions" | check reviews; decide locks |
+| One mega-charter for two disjoint features | file ownership and risk diverge; split lanes |
+| Asking Mod to "just start building" mid-decide | O0's job is lock first, dispatch second |
+
+The walkthroughs below go deeper on other mechanics. For the check → decide →
+BUILD path, the section above is the guide.
 
 - [A. Feature build with real parallelism](#a-feature-build-with-real-parallelism)
 - [B. Flaky test stabilization with proof](#b-flaky-test-stabilization-with-proof)

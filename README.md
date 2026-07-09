@@ -1,11 +1,11 @@
 # wavves
 
-Version: `0.0.1`.
+Version: `0.1.0`.
 
 Route durable multi-agent work through a moderator layer, with alignment
 packets, check records and handoff files saved beside the work.
 
-wavves is a free Cursor plugin for managed distributed sessions. Five skills
+wavves is a free Cursor plugin for managed distributed sessions. Six skills
 help a single operator prepare bounded work, dispatch parallel runners and
 rotate overloaded threads while the shared record lives in files instead of
 chat history.
@@ -73,6 +73,7 @@ picks a playbook and runs the leaf skill. Like `/poteto-mode` in pstack.
 | bootstrap | first time in repo, repair home, no `wavves/` yet |
 | charter-lane | bounded work: bug fix, audit, refactor, flaky CI, overnight lane |
 | check | adversarial sanity-check of a landed spec or plan before build |
+| decide | lock open product/design calls after a check return, before BUILD |
 | rotate | hand off to a fresh moderator thread |
 | pickup | resume from rotation paste, "where are we", reconcile active lanes |
 
@@ -94,10 +95,11 @@ Fresh instances hydrate from the home files, never from chat transcripts.
 
 | skill | use it when |
 |:------|:------------|
-| `/wavves` | default entry. routes to bootstrap, charter, check, rotate or pickup |
-| `/wavve` | you only need home setup |
+| `/wavves` | default entry. routes to bootstrap, charter, check, decide, rotate or pickup |
+| `/wavves-init` | you only need home setup |
 | `/charter` | you only need a new lane chartered |
 | `/mod-check` | you only need an adversarial spec/plan sanity-check wave |
+| `/mod-decide` | you only need to lock open calls before a BUILD charter |
 | `/mod-rotate` | you only need rotation |
 
 Most operators type `/wavves` plus the task. Reach for the leaf skills when you
@@ -117,29 +119,33 @@ overnight:         /wavves i'm stepping away. land the auth hardening lane with
 spec check:        /mod-check review docs/superpowers/specs/2026-07-08-example.md
                    before we write the implementation plan. adversarial parallel
                    wave. read-only. landing_commit_hash <hash>.
+decide:            /mod-decide navigate open calls from the check return.
+                   one decision at a time. write decisions/*.md. no BUILD yet.
 rotate:            /wavves rotate this thread. write a handoff for active lanes.
 pickup:            /wavves hydrate from the rotation paste and tell me what's active.
-setup only:        /wavve set up wavves in this repo. do not commit.
+setup only:        /wavves-init set up wavves in this repo. do not commit.
 charter only:      /charter migrate every callsite to the async config store.
 check only:        /mod-check the landed spec. GO / REVISE / BLOCK with named gaps.
+decide only:       /mod-decide lock the open calls. emit Locked decisions paste.
 rotate only:       /mod-rotate token velocity is too high. give me the one-line paste.
 ```
 
-Four full worked examples (parallel feature build, flaky test stabilization,
-a performance sprint and a migration that survives a mid-flight rotation):
-[examples/usage.md](examples/usage.md).
+Spec → BUILD lifecycle (`/mod-check` → `/mod-decide` → `/charter`) plus four
+worked examples: [examples/usage.md](examples/usage.md).
 
 ### What each skill does
 
 1. **`/wavves`** matches a playbook, reads the leaf skill and executes. If the
    home is missing, bootstrap runs first.
-2. **`/wavve`** creates `<repo>/wavves/` with `INDEX.md`, `AGENTS.md`,
+2. **`/wavves-init`** creates `<repo>/wavves/` with `INDEX.md`, `AGENTS.md`,
    `registry.yml`, `step-log.md` and `rotations/`.
 3. **`/charter`** writes the lane home, registers the lane and dispatches a
    background sub-orchestrator with runnable gates in `gate-captures/`.
 4. **`/mod-check`** charters a read-only adversarial wave against a landed
    spec or plan and returns `GO` / `REVISE` / `BLOCK` with named gaps.
-5. **`/mod-rotate`** writes a rotation file with term identity and emits a
+5. **`/mod-decide`** walks open product/design calls one at a time, writes
+   `decisions/*.md`, and emits a Locked decisions paste for BUILD.
+6. **`/mod-rotate`** writes a rotation file with term identity and emits a
    one-line paste for a fresh thread.
 
 `/wavves` pairs well with Cursor's `/loop` for long lanes with captured gates
@@ -234,20 +240,22 @@ finding so another operator can rerun it.
 
 | Skill | Description |
 |:------|:------------|
-| `wavves` (`/wavves`) | Main entry. Routes to bootstrap, charter, check, rotate or pickup playbooks. |
-| `wavve` (`/wavve`) | Bootstrap the standing home a fresh moderator hydrates from. |
+| `wavves` (`/wavves`) | Main entry. Routes to bootstrap, charter, check, decide, rotate or pickup. |
+| `wavves-init` (`/wavves-init`) | Bootstrap the standing home a fresh moderator hydrates from. |
 | `charter` (`/charter`) | Charter a lane and dispatch waves behind runnable gates. |
 | `mod-check` (`/mod-check`) | Adversarial parallel sanity-check of a landed spec or plan. |
+| `mod-decide` (`/mod-decide`) | Lock open product/design calls; emit Locked decisions for BUILD. |
 | `mod-rotate` (`/mod-rotate`) | Hand the moderator or one lane to a fresh thread. |
 
 ## Examples on disk
 
-[examples/usage.md](examples/usage.md) has quick-reference prompts plus four
-full worked walkthroughs, each demonstrating a different mechanic: parallel
-file ownership on a feature build, measured before/after gates on a flaky
-test fix, model routing on a performance sprint, and a rotation mid-migration
-with a verified handoff. The paths and metrics in those examples are
-fictional. The skills ship no hard-coded paths from any particular project.
+[examples/usage.md](examples/usage.md) has the spec → BUILD lifecycle
+(`/mod-check` → `/mod-decide` → `/charter`), quick-reference prompts, and
+four worked walkthroughs: parallel file ownership on a feature build,
+measured before/after gates on a flaky test fix, model routing on a
+performance sprint, and a rotation mid-migration with a verified handoff.
+The paths and metrics in those examples are fictional. The skills ship no
+hard-coded paths from any particular project.
 
 ## Read more
 

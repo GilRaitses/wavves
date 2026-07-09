@@ -23,3 +23,7 @@ Lane types this playbook covers (same charter skill, different operator framing)
 | feature | new behavior, feature flag, acceptance gate |
 | security pass | audit auth, CSRF, session, read-only unless approved |
 | overnight lane | stepping away, land with gates, no deploy without approval |
+
+If the operator asks to BUILD while named product/design forks are still
+open, stop and route to the **decide** playbook (`/mod-decide`) before
+writing `waveset.md`.

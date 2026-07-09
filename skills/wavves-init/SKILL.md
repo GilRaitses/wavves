@@ -1,14 +1,15 @@
 ---
-name: wavve
+name: wavves-init
 description: >-
   Bootstrap and maintain the wavves home so any fresh moderator (O0) hydrates
-  from files instead of chat. Use for /wavve, first-time repo setup, repairing
-  the standing home, or defining term identity and rotation rules. Produces
-  <repo>/wavves/INDEX.md, AGENTS.md, registry.yml, step-log.md and rotations/.
+  from files instead of chat. Use for /wavves-init, first-time repo setup,
+  repairing the standing home, or defining term identity and rotation rules.
+  Produces <repo>/wavves/INDEX.md, AGENTS.md, registry.yml, step-log.md and
+  rotations/.
 disable-model-invocation: true
 ---
 
-# Wavve
+# wavves-init
 
 A standing hydration contract that outlives any single chat thread. The home
 is a directory (convention `<repo>/wavves/`) whose `INDEX.md` is the fast
@@ -329,6 +330,8 @@ Point to the sibling skills so a fresh instance knows the machinery:
 - `charter` (`/charter`) for chartering and dispatching lanes.
 - `mod-check` (`/mod-check`) for adversarial sanity-check of a landed
   spec or plan before implementation.
+- `mod-decide` (`/mod-decide`) for locking open calls after a check return
+  before a BUILD charter.
 - `mod-rotate` (`/mod-rotate`) for producing the next rotation handoff and
   the one-line paste that starts the successor thread from this file.
 

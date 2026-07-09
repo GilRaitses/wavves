@@ -24,10 +24,16 @@ The skill complements sibling skills in this plugin:
 - `wavves` (`/wavves`) is the default entry and routes to the playbooks below.
 - `mod-check` (`/mod-check`) is the read-only adversarial sanity-check
   wave for a landed spec or plan before implementation.
+- `mod-decide` (`/mod-decide`) locks open product/design calls after a check
+  return and produces the Locked decisions paste for this charter.
 - `mod-rotate` (`/mod-rotate`) hands the whole moderator (or one lane) to a
   fresh thread when the current one is overloaded.
-- `wavve` (`/wavve`) establishes the standing home a fresh moderator
+- `wavves-init` (`/wavves-init`) establishes the standing home a fresh moderator
   instance hydrates from.
+
+If the operator asks to BUILD while named forks are still open, stop and
+route to **`/mod-decide`** (or ask them to paste locks) before writing
+`waveset.md`.
 
 **Execution layer inside runners.** If an execution-discipline plugin (for
 example pstack) is installed, code-heavy waves may be dispatched to its agents

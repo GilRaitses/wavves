@@ -268,9 +268,10 @@
         <thead><tr><th>Command</th><th>Use it when</th></tr></thead>
         <tbody>
           <tr><td><code>/wavves</code></td><td>Default entry. Reads your request, picks a playbook, runs the leaf skill.</td></tr>
-          <tr><td><code>/wavve</code></td><td>Home setup only. First time in a repo or repair the standing home.</td></tr>
+          <tr><td><code>/wavves-init</code></td><td>Home setup only. First time in a repo or repair the standing home.</td></tr>
           <tr><td><code>/charter</code></td><td>Charter one bounded lane and dispatch background waves.</td></tr>
           <tr><td><code>/mod-check</code></td><td>Adversarial parallel sanity-check of a landed spec or plan before build.</td></tr>
+          <tr><td><code>/mod-decide</code></td><td>Lock open product/design calls after a check return; emit Locked decisions for BUILD.</td></tr>
           <tr><td><code>/mod-rotate</code></td><td>Rotate the moderator to a fresh thread with a handoff file.</td></tr>
         </tbody>
       </table>
@@ -279,9 +280,10 @@
       <table>
         <thead><tr><th>Playbook</th><th>Routes to</th><th>For</th></tr></thead>
         <tbody>
-          <tr><td>bootstrap</td><td><code>/wavve</code></td><td>First time in repo, no <code>wavves/</code> home yet</td></tr>
+          <tr><td>bootstrap</td><td><code>/wavves-init</code></td><td>First time in repo, no <code>wavves/</code> home yet</td></tr>
           <tr><td>charter-lane</td><td><code>/charter</code></td><td>Bug fix, audit, refactor, flaky CI, overnight lane</td></tr>
           <tr><td>check</td><td><code>/mod-check</code></td><td>Adversarial review of a landed spec or plan before the implementation plan</td></tr>
+          <tr><td>decide</td><td><code>/mod-decide</code></td><td>Lock open calls after a check return, before BUILD charter</td></tr>
           <tr><td>rotate</td><td><code>/mod-rotate</code></td><td>Hand off when context is heavy</td></tr>
           <tr><td>pickup</td><td>hydrate</td><td>Resume from rotation paste, reconcile active lanes</td></tr>
         </tbody>
@@ -290,7 +292,8 @@
 
     <section>
       <h2>The right way to invoke each command</h2>
-      <p class="lead">One rule governs all five: read the matched skill in full before acting, never improvise charter, check or rotation steps from memory, even inside a repeat session.</p>
+      <p class="lead">One rule governs all six: read the matched skill in full before acting, never improvise charter, check, decide or rotation steps from memory, even inside a repeat session.</p>
+      <p class="lead" style="margin-top: 0.6rem;">Spec → BUILD order: <code>/mod-check</code> → <code>/mod-decide</code> → <code>/charter</code>. Do not charter BUILD while product forks are still open.</p>
 
       <div class="usage-grid">
         <article class="usage-card">
@@ -299,23 +302,23 @@
           <pre>/wavves the checkout webhook creates duplicate
 invoices under retries. reproduce, fix and verify
 with gate captures. do not deploy.</pre>
-          <p class="not-this"><strong>Not this:</strong> calling it with no task ("just set things up"). It needs either bounded work to charter or an explicit instruction like "set up" / "check the spec" / "rotate" / "where are we" to match a playbook.</p>
+          <p class="not-this"><strong>Not this:</strong> calling it with no task ("just set things up"). It needs either bounded work to charter or an explicit instruction like "set up" / "check the spec" / "lock decisions" / "rotate" / "where are we" to match a playbook.</p>
         </article>
 
         <article class="usage-card">
-          <h3>/wavve</h3>
+          <h3>/wavves-init</h3>
           <p class="when">Only when you specifically want home setup or repair, first time in a repo or a broken standing home.</p>
-          <pre>/wavve set up wavves in this repo. do not commit.</pre>
+          <pre>/wavves-init set up wavves in this repo. do not commit.</pre>
           <p class="not-this"><strong>Not this:</strong> calling it repeatedly "just in case," or expecting it to charter work. If the home already exists, it adopts it, it never overwrites <code>INDEX.md</code> or <code>AGENTS.md</code> silently.</p>
         </article>
 
         <article class="usage-card">
           <h3>/charter</h3>
-          <p class="when">Only when you already know it's bounded, multi-wave work and want to skip the router.</p>
+          <p class="when">Only when you already know it's bounded, multi-wave work and want to skip the router. Paste Locked decisions when a check left open forks.</p>
           <pre>/charter migrate every callsite from the sync
 config store to the async one. behavior must
 stay identical.</pre>
-          <p class="not-this"><strong>Not this:</strong> chartering vague scope ("clean up the codebase"), or expecting it to ping you mid-dispatch for small calls. It grounds in real files first, dispatches to the background, and never commits or deploys without an explicit ask.</p>
+          <p class="not-this"><strong>Not this:</strong> chartering vague scope ("clean up the codebase"), or BUILD while named product forks are still open. Route those through <code>/mod-decide</code> first.</p>
         </article>
 
         <article class="usage-card">
@@ -325,7 +328,16 @@ stay identical.</pre>
 before we write the implementation plan.
 adversarial parallel wave. read-only.
 landing_commit_hash &lt;hash&gt;</pre>
-          <p class="not-this"><strong>Not this:</strong> using it to write the plan or start the build, or treating a chat "looks good" as the gate. It returns <code>GO</code> / <code>REVISE</code> / <code>BLOCK</code> with named gaps under the lane findings.</p>
+          <p class="not-this"><strong>Not this:</strong> using it to write the plan, lock product picks, or start the build. It returns <code>GO</code> / <code>REVISE</code> / <code>BLOCK</code> with named gaps under the lane findings.</p>
+        </article>
+
+        <article class="usage-card">
+          <h3>/mod-decide</h3>
+          <p class="when">After a check return leaves open product or design calls. Mod walks them one at a time and writes <code>decisions/*.md</code>.</p>
+          <pre>/mod-decide navigate open calls from the check
+return. one decision at a time. write
+decisions/*.md. no BUILD until locks are complete.</pre>
+          <p class="not-this"><strong>Not this:</strong> re-running <code>/mod-check</code> to "make the decisions," or asking Mod to start building mid-decide. Emit the Locked decisions paste, then <code>/charter</code>.</p>
         </article>
 
         <article class="usage-card">
@@ -373,7 +385,7 @@ captured gates. no deploy without my approval.</pre>
         </article>
         <article class="demo-row">
           <p class="demo-label">leaf: setup only</p>
-          <pre>/wavve set up wavves in this repo. do not commit.</pre>
+          <pre>/wavves-init set up wavves in this repo. do not commit.</pre>
         </article>
         <article class="demo-row">
           <p class="demo-label">leaf: charter only</p>
@@ -385,6 +397,11 @@ behavior must stay identical.</pre>
           <pre>/mod-check review docs/superpowers/specs/2026-07-08-example.md
 before we write the implementation plan. adversarial parallel
 wave. read-only. landing_commit_hash &lt;hash&gt;.</pre>
+        </article>
+        <article class="demo-row">
+          <p class="demo-label">leaf: decide</p>
+          <pre>/mod-decide navigate open calls from the check return.
+one decision at a time. write decisions/*.md. no BUILD yet.</pre>
         </article>
         <article class="demo-row">
           <p class="demo-label">leaf: rotate only</p>

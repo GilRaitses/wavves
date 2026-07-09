@@ -21,9 +21,11 @@ with named gaps, not a soft "looks fine."
 Sibling skills:
 
 - `wavves` (`/wavves`) routes here via the **check** playbook.
-- `charter` (`/charter`) is the full multi-wave lane. Use that when the next
-  step is build, not when you only need a pre-plan review.
-- `wavve` (`/wavve`) is home setup only.
+- `mod-decide` (`/mod-decide`) is the next step when the return leaves open
+  product or design calls to lock before BUILD.
+- `charter` (`/charter`) is the full multi-wave lane. Use that when locks are
+  done (or none were needed), not when forks are still open.
+- `wavves-init` (`/wavves-init`) is home setup only.
 
 ## When to use
 
@@ -49,7 +51,7 @@ we write the plan", `/mod-check`.
 ## Workflow
 
 ```
-- [ ] 1. Verify <repo>/wavves/ exists. If missing, run /wavve bootstrap first.
+- [ ] 1. Verify <repo>/wavves/ exists. If missing, run /wavves-init bootstrap first.
 - [ ] 2. Confirm the artifact path exists. Record branch +
         repo_state_verified_against (and landing_commit_hash if given).
 - [ ] 3. Name the lane: short code (e.g. CHK) + kebab label from the spec
@@ -133,9 +135,12 @@ Keep it short:
 1. Verdict (`GO` / `REVISE` / `BLOCK`)
 2. Top blockers (bullets with finding file refs)
 3. Lane home path
-4. Recommended next step (revise spec / write plan / re-check)
+4. Recommended next step (revise spec / `/mod-decide` if open calls remain /
+   `/charter` BUILD if locks are already complete or none were needed)
 
 ## Related
 
-- Full multi-wave build after a GO: `/charter` or `/wavves` with the build task.
-- Home missing: `/wavve` first.
+- Open product/design calls after a return: `/mod-decide`
+- Full multi-wave build after locks: `/charter` or `/wavves` with the build task
+- Home missing: `/wavves-init` first
+- Lifecycle: `examples/usage.md` → "From check to BUILD"
