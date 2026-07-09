@@ -186,6 +186,40 @@
       position: absolute;
       top: 0.95rem;
     }
+    .usage-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      margin-top: 1rem;
+    }
+    .usage-card {
+      background: rgba(251, 245, 231, 0.78);
+      border: 1px solid rgba(189, 109, 54, 0.2);
+      border-radius: 1rem;
+      box-shadow: 0 14px 44px rgba(36, 49, 59, 0.1);
+      padding: 1.1rem;
+    }
+    .usage-card h3 {
+      font-family: var(--mono);
+      font-size: 1.05rem;
+    }
+    .usage-card .when {
+      color: var(--charcoal);
+      font-size: 0.92rem;
+      margin-bottom: 0.7rem;
+    }
+    .usage-card pre {
+      font-size: 0.8rem;
+      margin-bottom: 0.7rem;
+      padding: 0.7rem 0.85rem;
+    }
+    .not-this {
+      border-left: 3px solid var(--copper);
+      font-size: 0.86rem;
+      opacity: 0.88;
+      padding-left: 0.7rem;
+    }
+    .not-this strong { color: var(--copper); }
     .links {
       display: flex;
       flex-wrap: wrap;
@@ -250,6 +284,46 @@
           <tr><td>pickup</td><td>hydrate</td><td>Resume from rotation paste, reconcile active lanes</td></tr>
         </tbody>
       </table>
+    </section>
+
+    <section>
+      <h2>The right way to invoke each command</h2>
+      <p class="lead">One rule governs all four: read the matched skill in full before acting, never improvise charter or rotation steps from memory, even inside a repeat session.</p>
+
+      <div class="usage-grid">
+        <article class="usage-card">
+          <h3>/wavves</h3>
+          <p class="when">Default entry. Type it plus a plain task description and let it route, don't pre-decide the leaf skill yourself.</p>
+          <pre>/wavves the checkout webhook creates duplicate
+invoices under retries. reproduce, fix and verify
+with gate captures. do not deploy.</pre>
+          <p class="not-this"><strong>Not this:</strong> calling it with no task ("just set things up"). It needs either bounded work to charter or an explicit instruction like "set up" / "rotate" / "where are we" to match a playbook.</p>
+        </article>
+
+        <article class="usage-card">
+          <h3>/wavve</h3>
+          <p class="when">Only when you specifically want home setup or repair, first time in a repo or a broken standing home.</p>
+          <pre>/wavve set up wavves in this repo. do not commit.</pre>
+          <p class="not-this"><strong>Not this:</strong> calling it repeatedly "just in case," or expecting it to charter work. If the home already exists, it adopts it, it never overwrites <code>INDEX.md</code> or <code>AGENTS.md</code> silently.</p>
+        </article>
+
+        <article class="usage-card">
+          <h3>/charter</h3>
+          <p class="when">Only when you already know it's bounded, multi-wave work and want to skip the router.</p>
+          <pre>/charter migrate every callsite from the sync
+config store to the async one. behavior must
+stay identical.</pre>
+          <p class="not-this"><strong>Not this:</strong> chartering vague scope ("clean up the codebase"), or expecting it to ping you mid-dispatch for small calls. It grounds in real files first, dispatches to the background, and never commits or deploys without an explicit ask.</p>
+        </article>
+
+        <article class="usage-card">
+          <h3>/mod-rotate</h3>
+          <p class="when">Only when the thread is genuinely heavy or you're stepping away, not preemptively.</p>
+          <pre>/mod-rotate token velocity is too high. give me
+the one-line paste for a fresh thread.</pre>
+          <p class="not-this"><strong>Not this:</strong> rotating on every small task, or assigning the successor identity yourself. The rotation file assigns <code>O0.R&lt;N+1&gt;</code>, and the new thread verifies claimed commits are reachable from HEAD before trusting them.</p>
+        </article>
+      </div>
     </section>
 
     <section>

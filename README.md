@@ -119,7 +119,8 @@ charter only:      /charter migrate every callsite to the async config store.
 rotate only:       /mod-rotate token velocity is too high. give me the one-line paste.
 ```
 
-More prompts and a minimal end-to-end session:
+Four full worked examples (parallel feature build, flaky test stabilization,
+a performance sprint and a migration that survives a mid-flight rotation):
 [examples/usage.md](examples/usage.md).
 
 ### What each skill does
@@ -232,10 +233,12 @@ finding so another operator can rerun it.
 
 ## Examples on disk
 
-[examples/usage.md](examples/usage.md) lists slash-command prompts for common
-lanes (read-only audits, bug fixes, flaky CI, refactors, rotation). The paths
-and metrics in those examples are fictional. The skills ship no hard-coded
-paths from any particular project.
+[examples/usage.md](examples/usage.md) has quick-reference prompts plus four
+full worked walkthroughs, each demonstrating a different mechanic: parallel
+file ownership on a feature build, measured before/after gates on a flaky
+test fix, model routing on a performance sprint, and a rotation mid-migration
+with a verified handoff. The paths and metrics in those examples are
+fictional. The skills ship no hard-coded paths from any particular project.
 
 ## Read more
 
