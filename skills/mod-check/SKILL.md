@@ -81,6 +81,20 @@ Dispatch these as disjoint subagents unless the operator narrows the set:
 Add a fifth lens only when the operator names a domain (security, perf,
 migration blast radius). Keep ownership disjoint.
 
+**Regression gate for edits to this lens table (added by lane SELF,
+wavves-self-improvement).** A proposed edit to any lens's `Hunts for`
+wording, or to the set of lenses itself, is a proposal per
+`charter/SKILL.md`'s "Project skill proposals" section, never a direct edit.
+It is not promoted to `wavves/skills/accepted/` and never applied to this
+installed file until `evals/run_fixtures.py` passes 3 consecutive times
+against the proposed wording, applied to a scratch copy of this file. Each
+fixture under `evals/fixtures/` names a `lens_that_should_catch`; the
+runner checks whether that lens's current `Hunts for` wording still
+contains at least one of the fixture's declared keywords. A proposed
+wording edit that drops every keyword for any fixture that currently names
+this lens fails the gate and is returned to the proposing lane with the
+specific fixture(s) it broke.
+
 ## waveset.md shape (check lane)
 
 ```markdown
@@ -127,6 +141,14 @@ Adversarial sanity-check of <artifact path>. No build. No implementation plan.
 | **BLOCK** | Phase boundary wrong, ungrounded critical claim, or contradiction that makes a plan unsafe. |
 
 O0 writes the verdict file. Wave members do not grade each other.
+
+**Verdict quality is checked against the fixture corpus, not asserted.**
+Before trusting a GO verdict on a check whose lens set was recently edited
+(within the same lane or the same operator session), re-run
+`evals/run_fixtures.py` against the current `mod-check/SKILL.md` and cite
+the result alongside the verdict. A verdict produced under a lens set that
+is failing the fixture corpus is not a trustworthy GO; O0 escalates rather
+than reconciling it as a clean pass.
 
 ## Operator return shape
 

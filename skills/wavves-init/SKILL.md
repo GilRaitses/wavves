@@ -25,6 +25,7 @@ wavves/
   AGENTS.md
   registry.yml
   step-log.md
+  failure_log.yml
   rotations/
     rotation-r01-YYYYMMDD-HHMM.md
   lanes/
@@ -40,7 +41,42 @@ wavves/
       README.md
     accepted/
       README.md
+evals/
+  README.md
+  run_fixtures.py
+  fixtures/
 ```
+
+### `failure_log.yml` shape
+
+A flat, append-only YAML list, one entry per confirmed regression or
+near-miss caught by the `evals/` fixture corpus or by a gate capture. Owner:
+O0, appended only at reconciliation (never by a dispatched runner or wave
+subagent, per the git-ownership and cross-actor-artifact locks in section
+3). Append trigger: any time `evals/run_fixtures.py` (or an equivalent
+repo-specific runner) reports a FAIL that traces to a real skill-file edit,
+or any time a gate capture under a lane's `gate-captures/` records a
+defect that a lens or gate should have caught and did not.
+
+```yaml
+- date: YYYY-MM-DD
+  lane: <CODE>
+  wave: <CODE-Wn or CODE-INT/CODE-ACCEPT>
+  skill_file: skills/<name>/SKILL.md
+  defect_category: <short slug, matches an evals/fixtures/<case> name when applicable>
+  fixture_or_gate: evals/fixtures/<case-name> | gate-captures/<gate>.json
+  what_regressed: <one sentence, the specific clause or wording that was
+    dropped or weakened>
+  caught_by: <fixture run | acceptance gate | operator review | not caught
+    until later (state where and when it surfaced)>
+  remediation: <what fixed it, or "escalated to O0, unresolved" with date>
+```
+
+This file is a durable record across rotations, per the standing contract's
+"never trust a return that arrived implausibly fast" and "evidence
+transcribed not asserted" locks. It is read, not narrated: a fresh
+orchestrator instance checks it during hydration (see hydration stack
+addition below) rather than trusting a rotation file's summary of it.
 
 Pointer model:
 
@@ -86,6 +122,11 @@ by preventing a specific fresh-instance failure.
    project skills are evidence-backed drafts from lane orchestrators. Accepted
    skills are operator-approved project instructions, not automatic IDE
    installs.
+8. `failure_log.yml` in the home directory, if present. The append-only
+   record of confirmed regressions the `evals/` corpus or a gate capture
+   caught. A fresh instance reviewing a proposal to edit an installed
+   skill file checks this log for prior entries naming that file before
+   trusting the proposal's own "risks, review notes" field.
 
 State explicitly that agents hydrate from these files and never read chat
 transcripts linearly. Transcripts are for keyword search only and only when a
@@ -251,6 +292,13 @@ Portable locks.
   proposal, records the decision and asks the operator before copying it to
   `wavves/skills/accepted/`, a repo rule, a Cursor IDE skill or a plugin
   update. Runners never install or enable skills directly.
+  A proposal that edits an already-installed `skills/*/SKILL.md` file
+  (as opposed to adding a wholly new skill) additionally requires 3
+  consecutive passing runs of the repo's `evals/run_fixtures.py` (or
+  equivalent fixture runner) against the proposed edit before the
+  moderator asks the operator. A FAIL, or fewer than 3 consecutive
+  passes, is appended to `failure_log.yml` by O0 at reconciliation,
+  whether or not the proposal is eventually revised and re-run.
 - Model routing. The moderator records recommended model tiers before
   dispatch. Use high-reasoning models for architecture, integration,
   adversarial review and acceptance. Use balanced models for bounded edits
@@ -350,7 +398,13 @@ Point to the sibling skills so a fresh instance knows the machinery:
         explain operator approval before any IDE or repo skill is saved
 - [ ] 7. Add model_policy to INDEX.md and AGENTS.md with local tier names or
         model slugs available in the operator's environment
-- [ ] 8. Return a file list and commit plan. Commit or push only when the repo
+- [ ] 8. Create <repo>/wavves/failure_log.yml as an empty YAML list with a
+        one-line header comment pointing at this file's "failure_log.yml
+        shape" subsection. Create <repo>/evals/ (README.md, fixtures/,
+        a runner script) if the repo does not already have one, seeded
+        with at least one fixture per already-installed skill file that
+        carries a review-lens or verdict-rule contract.
+- [ ] 9. Return a file list and commit plan. Commit or push only when the repo
         protocol already grants that authority or the operator explicitly asks.
 ```
 

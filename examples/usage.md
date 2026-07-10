@@ -1,7 +1,7 @@
 # Using wavves
 
-Type `/wavves` at the start of a task. It routes to the right leaf skill,
-like `/poteto-mode` in pstack.
+Type `/wavves` at the start of a task. It reads your request, checks the
+home, picks a playbook, and routes to the right leaf skill.
 
 ## System inventory
 
@@ -25,6 +25,7 @@ like `/poteto-mode` in pstack.
 | `/charter` | charter a lane only |
 | `/mod-check` | adversarial sanity-check of a landed spec or plan |
 | `/mod-decide` | lock open product/design calls after a check return |
+| `/layover` | read-only preflight audit of a bespoke multi-repo workspace before a cloud agent takes over |
 | `/mod-rotate` | rotation only |
 
 ## Playbooks (`/wavves` routes here)
@@ -35,6 +36,7 @@ like `/poteto-mode` in pstack.
 | charter-lane | `/charter` | bug fix, audit, refactor, flaky CI, overnight lane |
 | check | `/mod-check` | adversarial review of a landed spec or plan before build |
 | decide | `/mod-decide` | lock open calls before BUILD charter |
+| layover | `/layover` | preflight a bespoke multi-repo workspace before a cloud agent takes over |
 | rotate | `/mod-rotate` | hand off to fresh thread |
 | pickup | hydrate | resume, "where are we" |
 
@@ -49,12 +51,16 @@ spec check:        /mod-check review docs/superpowers/specs/2026-07-08-example.m
 decide:            /mod-decide navigate open calls from the check return.
                    one decision at a time. write decisions/*.md. no BUILD yet.
                    Mid-queue: answer Pick: … only — do not re-slash each time.
+layover:           /wavves preflight the curl.code-workspace before a cloud
+                   agent takes over the pax repo. read-only, audit-only.
 rotate:            /wavves rotate this thread. write a handoff for active lanes.
 pickup:            /wavves hydrate from the rotation paste and tell me what's active.
 setup only:        /wavves-init set up wavves in this repo. do not commit.
 charter only:      /charter migrate every callsite to the async config store.
 check only:        /mod-check the landed spec. GO / REVISE / BLOCK with named gaps.
 decide only:       /mod-decide lock the open calls. emit Locked decisions paste.
+layover only:      /layover audit ~/my.code-workspace. report untracked,
+                   unpushed and stashed state per sibling repo.
 rotate only:       /mod-rotate token velocity is too high. give me the one-line paste.
 ```
 
@@ -144,6 +150,7 @@ BUILD path, the section above is the guide.
 - [B. Flaky test stabilization with proof](#b-flaky-test-stabilization-with-proof)
 - [C. Performance sprint with before/after numbers](#c-performance-sprint-with-beforeafter-numbers)
 - [D. A migration that outlives one chat session](#d-a-migration-that-outlives-one-chat-session)
+- [E. Preflighting a bespoke workspace for a cloud agent](#e-preflighting-a-bespoke-workspace-for-a-cloud-agent)
 
 ## A. Feature build with real parallelism
 
@@ -397,6 +404,56 @@ The operator pastes that into a fresh chat. The new thread:
 
 Nothing about picking up this lane required re-reading the original chat.
 Every fact the successor needed to act correctly was already on disk.
+
+## E. Preflighting a bespoke workspace for a cloud agent
+
+Shows: `/layover` as a single-purpose leaf skill, not a lane, run before
+handing moderation of one repo in a bespoke multi-root workspace over to a
+Cursor cloud agent, which cannot open a local `.code-workspace` file itself.
+
+```text
+/layover preflight ~/dev/my-project.code-workspace before a cloud agent
+takes over moderation of the "core" repo. read-only, audit-only.
+```
+
+`/wavves` matches the layover playbook, reads `/layover` in full, resolves
+the workspace file's `folders` array relative to the workspace file's own
+directory, and validates every path before any git command runs. One entry,
+`legacy-tools`, exists on disk but has no `.git`, so it is flagged
+("exists but is not a git repository") with no git detail beneath it.
+
+For each of the three remaining repos, `/layover` runs only read-only git
+commands: remotes, branch, ahead/behind against upstream (or the literal
+"no upstream configured" when there is none), uncommitted tracked changes,
+untracked files, and stashes. Nothing is staged, discarded, committed or
+pushed.
+
+```markdown
+# layover — my-project — 20260710
+
+## Summary
+
+| repo | path | remotes | branch | vs upstream | uncommitted | untracked | stashes | flags |
+|---|---|---|---|---|---|---|---|---|
+| core | ~/dev/core | 1 | main | 0/2 | dirty | 14 | 1 | - |
+| shared-lib | ~/dev/shared-lib | 2 | feature/retry | no upstream | clean | 3 | 0 | detached-from-remote |
+| infra | ~/dev/infra | 1 | main | 0/0 | clean | 212 | 0 | - |
+| legacy-tools | ~/dev/legacy-tools | - | - | - | - | - | - | not a git repository |
+```
+
+`core`'s 14 untracked files are listed flat (under the 20-file grouping
+threshold). `infra`'s 212 untracked files are grouped by top-level directory
+with per-bucket counts instead of a flat dump, and one file in the `config/`
+bucket matches the `*.env` filename pattern, so it carries a soft
+"review this one first" note, never a safe/unsafe verdict. The full flat
+list for `infra` is stated as available on request rather than discarded.
+
+The report is written once, to `wavves/layovers/my-project-20260710.md`, in
+the invoking repo's own `wavves/` home. No file in any of the four audited
+repos is touched. The operator reviews the flagged `legacy-tools` path and
+the `*.env` hint before deciding what, if anything, gets staged and pushed
+ahead of the cloud-agent handoff — a decision `/layover` deliberately leaves
+to the human, per its own non-negotiables.
 
 ## What lands on disk
 

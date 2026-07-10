@@ -1,10 +1,11 @@
 ---
 name: wavves
 description: >-
-  Main entry for durable multi-agent routing. Reads your request, checks the
-  wavves home, picks a playbook and runs the leaf skill (/wavves-init, /charter,
-  /mod-check, /mod-decide or /mod-rotate). Use for /wavves or any bounded
-  lane work, setup, spec check, decision lock, rotation or pickup.
+  Main entry point for the distributed deep orchestration harness. Reads your
+  request, checks the wavves home, picks a playbook and runs the leaf skill
+  (/wavves-init, /charter, /mod-check, /mod-decide, /layover or /mod-rotate).
+  Use for /wavves or any bounded lane work, setup, spec check, decision lock,
+  workspace preflight, rotation or pickup.
 disable-model-invocation: true
 ---
 
@@ -19,8 +20,9 @@ skill in full** before acting.
 1. **Start with a todo list.** First item: match a playbook and name the leaf
    skill you will read.
 2. **Read the leaf skill in full** (`wavves-init`, `charter`, `mod-check`,
-   `mod-decide` or `mod-rotate`) before any substantive write. Do not
-   improvise charter, check, decide or rotation steps from memory.
+   `mod-decide`, `layover` or `mod-rotate`) before any substantive write. Do
+   not improvise charter, check, decide, layover or rotation steps from
+   memory.
 3. **The moderator (O0) stays operator-facing.** Dispatched runners answer to
    O0, not the operator directly. Gates are runnable with captured evidence.
 4. **No commit, push, deploy or external mutation** unless the operator
@@ -37,6 +39,7 @@ skill in full** before acting.
 | decide | `mod-decide` (`/mod-decide`) | lock open product/design calls after a check return, before BUILD charter |
 | rotate | `mod-rotate` (`/mod-rotate`) | rotate, handoff, fresh thread, self-fork, replay, token velocity too high |
 | pickup | hydrate + moderate | resume from rotation paste, "where are we", reconcile active lanes |
+| layover | `layover` (`/layover`) | preflight a bespoke multi-repo workspace before a cloud agent takes over, map sibling repos, audit untracked/unpushed state before handoff |
 
 When the request is ambiguous, default to **check** if the operator points at
 a landed spec/plan and asks for review before the next writing step. Default
@@ -54,6 +57,7 @@ before adding task-specific items.
 - **Charter lane.** `playbooks/charter-lane.md`
 - **Check.** `playbooks/check.md`
 - **Decide.** `playbooks/decide.md`
+- **Layover.** `playbooks/layover.md`
 - **Rotate.** `playbooks/rotate.md`
 - **Pickup.** `playbooks/pickup.md`
 
@@ -68,6 +72,7 @@ A step you skip stays in the list with `skip: <reason>`.
 | `mod-check` | `/mod-check` | you know you only need an adversarial spec/plan check |
 | `mod-decide` | `/mod-decide` | you know you only need to lock open calls before BUILD |
 | `mod-rotate` | `/mod-rotate` | you know you only need rotation |
+| `layover` | `/layover` | you know you only need the workspace preflight audit |
 
 Most operators can type `/wavves` plus the task and let routing handle the rest.
 

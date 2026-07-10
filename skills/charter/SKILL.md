@@ -209,11 +209,29 @@ Minimum proposal fields:
 - destination requested: project file, repo rule, Cursor IDE skill or plugin
   update
 - risks, review notes and operator decision needed
+- regression-check field: for a proposal that edits an existing,
+  already-installed skill file (as opposed to adding a wholly new one),
+  state which `evals/fixtures/` cases the edit could plausibly affect and
+  attach the output of `python3 evals/run_fixtures.py` run against the
+  proposal applied to a scratch copy of the target file.
 
 The moderator reviews the proposal, checks evidence and asks the operator
 before saving it anywhere active. Accepted project-local skills may be copied
 to `wavves/skills/accepted/`. Cursor IDE or plugin-level skills require a
 separate operator-approved pass.
+
+**Regression gate for edits to an installed skill file (added by lane
+SELF, wavves-self-improvement).** A proposal that edits an already-shipped
+`skills/*/SKILL.md` file is not promoted to `wavves/skills/accepted/`, and
+is never applied directly to the installed file, until `evals/run_fixtures.py`
+passes 3 consecutive times against the proposed edit. "Passes 3 consecutive
+times" means: apply the proposed diff to a scratch copy of the target file,
+point the runner at that scratch copy, run it 3 times in a row with no
+intervening edit, and confirm zero FAILs across all 3 runs. A proposal that
+adds a wholly new skill file, rather than editing an existing one, is
+exempt from this gate (there is no existing detection surface to regress),
+but is encouraged to add a fixture of its own to `evals/fixtures/` when it
+introduces a new review lens or verdict rule.
 
 ### Step 5, registry entry
 
