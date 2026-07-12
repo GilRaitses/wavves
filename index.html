@@ -244,10 +244,11 @@
   <main>
     <section class="hero">
       <h1>wavves</h1>
-      <p class="kicker">durable multi-agent routing</p>
-      <p class="hero-copy">Moderator-led agent work needs durable state. wavves records alignment packets, model recommendations, check records and handoff files so long-running sessions can move through files instead of chat memory.</p>
+      <p class="kicker">durable multi-agent routing · v0.2.0</p>
+      <p class="hero-copy">Moderator-led agent work needs durable state. wavves records alignment packets, check records and handoff files in a standing <code>wavves/</code> home so long-running sessions hydrate from files, not chat memory. After mod-decide, locks propagate to <code>waveset.md</code>, <code>dispatch-w{N}.md</code>, and the registry; verdicts carry scoped blockers and <code>/wavves proceed</code> runs the next steps.</p>
       <div class="links">
         <a href="https://github.com/GilRaitses/wavves">GitHub repo</a>
+        <a href="https://github.com/GilRaitses/wavves/blob/main/examples/usage.md">Usage guide</a>
         <a href="https://github.com/GilRaitses/wavves#installation">Install notes</a>
       </div>
     </section>
@@ -268,8 +269,8 @@
         <tbody>
           <tr><td><code>/wavves</code></td><td>Default entry. Reads your request, picks a playbook, runs the leaf skill.</td></tr>
           <tr><td><code>/wavves-init</code></td><td>Home setup only. First time in a repo or repair the standing home.</td></tr>
-          <tr><td><code>/charter</code></td><td>Charter one bounded lane and dispatch background waves.</td></tr>
-          <tr><td><code>/mod-check</code></td><td>Adversarial parallel sanity-check of a landed spec or plan before build.</td></tr>
+          <tr><td><code>/charter</code></td><td>Charter a bounded lane, dispatch background waves, multi-repo commit plans.</td></tr>
+          <tr><td><code>/mod-check</code></td><td>Adversarial parallel check; scoped verdict (<code>blocks_w2</code>…<code>blocks_w5</code>) plus <code>recommended_actions</code>.</td></tr>
           <tr><td><code>/mod-decide</code></td><td>Lock open product/design calls after a check return; sync authority surfaces on complete.</td></tr>
           <tr><td><code>/layover</code></td><td>Read-only preflight audit of a bespoke multi-repo workspace before a cloud agent takes over.</td></tr>
           <tr><td><code>/mod-rotate</code></td><td>Rotate the moderator to a fresh thread with a handoff file.</td></tr>
@@ -304,7 +305,7 @@
           <pre>/wavves the checkout webhook creates duplicate
 invoices under retries. reproduce, fix and verify
 with gate captures. do not deploy.</pre>
-          <p class="not-this"><strong>Not this:</strong> calling it with no task ("just set things up"). It needs either bounded work to charter or an explicit instruction like "set up" / "check the spec" / "lock decisions" / "rotate" / "where are we" to match a playbook.</p>
+          <p class="not-this"><strong>Not this:</strong> calling it with no task ("just set things up"). It needs either bounded work to charter or an explicit instruction like "set up" / "check the spec" / "lock decisions" / "proceed as recommended" / "rotate" / "where are we" to match a playbook.</p>
         </article>
 
         <article class="usage-card">
@@ -368,6 +369,13 @@ repo. read-only, audit-only.</pre>
 the one-line paste for a fresh thread.</pre>
           <p class="not-this"><strong>Not this:</strong> rotating on every small task, or assigning the successor identity yourself. The rotation file assigns <code>O0.R&lt;N+1&gt;</code>, and the new thread verifies claimed commits are reachable from HEAD before trusting them.</p>
         </article>
+
+        <article class="usage-card">
+          <h3>/wavves pickup</h3>
+          <p class="when">Resume from a rotation handoff or ask what lanes are active. Hydrates from <code>wavves/INDEX.md</code> and the newest rotation file, not chat history.</p>
+          <pre>/wavves hydrate from the rotation paste and tell me what's active.</pre>
+          <p class="not-this"><strong>Not this:</strong> re-deriving settled locks from transcript scrollback. Read the lane home and registry first.</p>
+        </article>
       </div>
     </section>
 
@@ -399,7 +407,7 @@ captured gates. no deploy without my approval.</pre>
         <article class="demo-row">
           <p class="demo-label">layover</p>
           <pre>/wavves preflight the curl.code-workspace before a cloud agent
-takes over moderation of the pax repo. read-only, audit-only.</pre>
+takes over moderation of the primary repo. read-only, audit-only.</pre>
         </article>
         <article class="demo-row">
           <p class="demo-label">proceed</p>
@@ -434,6 +442,10 @@ wave. read-only. landing_commit_hash &lt;hash&gt;.</pre>
 one decision at a time. write decisions/*.md. no BUILD yet.</pre>
         </article>
         <article class="demo-row">
+          <p class="demo-label">leaf: layover</p>
+          <pre>/layover audit ~/my.code-workspace. read-only.</pre>
+        </article>
+        <article class="demo-row">
           <p class="demo-label">leaf: rotate only</p>
           <pre>/mod-rotate token velocity is too high. give me the one-line paste.</pre>
         </article>
@@ -443,10 +455,11 @@ one decision at a time. write decisions/*.md. no BUILD yet.</pre>
     <section>
       <h2>How to use it</h2>
       <ol class="steps">
-        <li>Install the plugin with <code>/add-plugin wavves</code> or a local copy under <code>~/.cursor/plugins/local/wavves/</code>.</li>
-        <li>Type <code>/wavves</code> plus a plain description of the bounded work. If the home is missing, bootstrap runs first.</li>
-        <li>The moderator charters a lane, dispatches background waves and writes evidence under <code>wavves/lanes/.../gate-captures/</code>.</li>
-        <li>When the thread gets heavy, run <code>/wavves rotate</code> or <code>/mod-rotate</code> and paste the one-liner into a fresh chat.</li>
+        <li>Install with <code>/add-plugin wavves</code> or a local copy under <code>~/.cursor/plugins/local/wavves/</code>.</li>
+        <li>For spec work: <code>/mod-check</code> → <code>/mod-decide</code> → <code>/charter</code>. Do not BUILD while forks are open.</li>
+        <li>Type <code>/wavves</code> plus a plain task description. If the home is missing, bootstrap runs first.</li>
+        <li>After a verdict, <code>/wavves proceed as recommended</code> runs commit, dispatch, and operator gates in order.</li>
+        <li>When the thread gets heavy, <code>/wavves rotate</code> or <code>/mod-rotate</code> and paste the one-liner into a fresh chat.</li>
         <li>Pair with Cursor <code>/loop</code> for long lanes that need runnable gates instead of chat memory.</li>
       </ol>
     </section>
@@ -470,7 +483,10 @@ one decision at a time. write decisions/*.md. no BUILD yet.</pre>
       gate-captures/
       decisions/
   layovers/
-    &lt;workspace-name&gt;-YYYYMMDD.md</pre>
+    &lt;workspace-name&gt;-YYYYMMDD.md
+  skills/
+    proposed/
+    accepted/</pre>
     </section>
 
     <section>
@@ -504,6 +520,10 @@ one decision at a time. write decisions/*.md. no BUILD yet.</pre>
         </tbody>
       </table>
     </section>
+
+    <footer style="margin-top: 2rem; opacity: 0.75; font-size: 0.9rem;">
+      <p>wavves v0.2.0 · MIT · community plugin by <a href="https://aimez.ai/">aimez</a> · not affiliated with Cursor</p>
+    </footer>
   </main>
 </body>
 </html>
