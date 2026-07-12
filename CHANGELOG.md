@@ -16,6 +16,9 @@ Lane authority sync (AUTH-01–AUTH-10), from KLR mod-decide → mod-check run:
   `mod_decide_complete_at`, `waveset_synced_at`.
 - **Usage grid** (`index.html`), README, and `examples/usage.md` updated for
   proceed, authority sync, and existing `/layover` playbook.
+- **Public copy gates:** `evals/check_public_copy.py` and
+  `docs/public-copy-gates.md` (universal prose); `docs/purpose-gates.md`
+  (wavves story fidelity).
 
 Evidence: `lane-authority-sync-v1` (KLR thread 2026-07-11/12).
 

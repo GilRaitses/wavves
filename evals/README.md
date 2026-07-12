@@ -62,6 +62,20 @@ python3 evals/run_fixtures.py
 No dependencies beyond the Python 3 standard library. No network access, no
 LLM call, no other repo state mutated.
 
+## Public copy gates
+
+`evals/check_public_copy.py` checks universal outbound prose rules (AFFIRM,
+DASH, FILLER, OXFORD, NO_LONGER; LEAD length as review). It does not include
+project-specific rules from the separate `prose-gates` repo (pax naming,
+internal tokens, colon ban on full UI pages). See `docs/public-copy-gates.md`.
+
+```bash
+python3 evals/check_public_copy.py
+python3 evals/check_public_copy.py --fix index.html
+```
+
+wavves-specific purpose gates (`docs/purpose-gates.md`) stay manual review.
+
 ## Known limitation, stated plainly (do not overstate this script)
 
 `run_fixtures.py` is a **structured checklist verifier**, not a real

@@ -263,6 +263,18 @@ the verdict in `findings/` against both files. A hand-written summary is not a
 gate capture. The command that produced each capture should be named in the
 finding so another operator can rerun it.
 
+## Public copy gates
+
+Universal outbound prose rules ship with the plugin (AFFIRM, DASH, FILLER,
+OXFORD, NO_LONGER). wavves story rules are manual (`docs/purpose-gates.md`).
+
+```bash
+python3 evals/check_public_copy.py
+```
+
+See `docs/public-copy-gates.md`. Project-specific rules (pax naming, internal
+tokens, colon ban on full UI pages) stay in the separate `prose-gates` repo.
+
 ## Self-improvement loop
 
 Lane orchestrators can propose edits to installed skill files. Any such edit
@@ -298,6 +310,9 @@ The paths and metrics in those examples are fictional. The skills ship no
 hard-coded paths from any particular project.
 
 ## Read more
+
+- [docs/public-copy-gates.md](docs/public-copy-gates.md) — universal mechanical rules (`evals/check_public_copy.py`)
+- [docs/purpose-gates.md](docs/purpose-gates.md) — wavves story fidelity (manual)
 
 The launch article and companion whitepaper are omitted here until public URLs
 exist.
