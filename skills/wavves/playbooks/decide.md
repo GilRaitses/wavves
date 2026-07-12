@@ -10,9 +10,11 @@ Route: **mod-decide** (`/mod-decide`)
         from named open calls. Do not invent forks.
 - [ ] 5. Walk decisions one at a time. On each pick, write
         decisions/<CODE>-<slug>.md and append to the Locked decisions draft.
-- [ ] 6. When the operator says locks are complete, emit the Locked
-        decisions paste and the recommended /charter invocation(s).
-- [ ] 7. Do not dispatch BUILD unless the operator asks in the same turn.
+- [ ] 6. When the operator says locks are complete, run authority sync (step 5b
+        in mod-decide skill): patch waveset, active dispatch-w{N}.md, registry.
+- [ ] 7. Emit the Locked decisions paste, recommended /charter invocation(s),
+        and recommended_actions block.
+- [ ] 8. Do not dispatch BUILD unless the operator asks in the same turn.
 ```
 
 Lane types this playbook covers:

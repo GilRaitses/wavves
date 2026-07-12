@@ -103,11 +103,16 @@ Default lane layout:
 wavves/lanes/<YYYYMMDD>_<lane-label>/
   README.md
   waveset.md
-  dispatch.md
+  dispatch.md          # W1 or historical; superseded by dispatch-w{N}.md
+  dispatch-w{N}.md     # active wave dispatch (AUTH-02)
   findings/
   gate-captures/
   decisions/
 ```
+
+Registry optional fields (AUTH-02, AUTH-08): `active_dispatch`, `dispatch_files`,
+`depends_on`, `conflicts_with`, `repos`, `mod_decide_complete_at`,
+`waveset_synced_at`, `authority_precedence_ref`.
 
 **waveset.md** is the authority doc. Sections, in order.
 
@@ -137,9 +142,28 @@ wavves/lanes/<YYYYMMDD>_<lane-label>/
   search, formatting, link checks and mechanical scans.
 - **Escalation (operator-protection catch)**, described below.
 
-**dispatch.md** is a fenced paste block that declares the
-role (this lane's orchestrator). lists hydration files in order (files, never
-the transcript linearly). restates locked decisions inline. carries the
+**dispatch.md** / **dispatch-w{N}.md** (AUTH-02) is a fenced paste block that
+declares the role (this lane's orchestrator). Use `dispatch-w{N}.md` per wave;
+retire or mark historical prior dispatch files. Registry field `active_dispatch`
+names the current file. lists hydration files in order (files, never
+the transcript linearly). includes a machine-readable **authority precedence**
+block (AUTH-03):
+
+```yaml
+authority_precedence:
+  order:
+    - path: decisions/LOCKED-DECISIONS.md
+      role: primary_locks
+    - path: decisions/*-B-*.md
+      role: decision_records
+    - path: waveset.md
+      role: wave_plan
+    - path: findings/*
+      role: historical_inventory
+      stale_after: mod-decide-complete
+```
+
+restates locked decisions inline. carries the
 orchestrator home's etiquette locks (honesty, gates, git, prose) into the
 dispatch. names active waves and which are GATED. states the execution order
 for this dispatch (which waves run now vs pause for O0 approval). carries the
@@ -209,29 +233,11 @@ Minimum proposal fields:
 - destination requested: project file, repo rule, Cursor IDE skill or plugin
   update
 - risks, review notes and operator decision needed
-- regression-check field: for a proposal that edits an existing,
-  already-installed skill file (as opposed to adding a wholly new one),
-  state which `evals/fixtures/` cases the edit could plausibly affect and
-  attach the output of `python3 evals/run_fixtures.py` run against the
-  proposal applied to a scratch copy of the target file.
 
 The moderator reviews the proposal, checks evidence and asks the operator
 before saving it anywhere active. Accepted project-local skills may be copied
 to `wavves/skills/accepted/`. Cursor IDE or plugin-level skills require a
 separate operator-approved pass.
-
-**Regression gate for edits to an installed skill file (added by lane
-SELF, wavves-self-improvement).** A proposal that edits an already-shipped
-`skills/*/SKILL.md` file is not promoted to `wavves/skills/accepted/`, and
-is never applied directly to the installed file, until `evals/run_fixtures.py`
-passes 3 consecutive times against the proposed edit. "Passes 3 consecutive
-times" means: apply the proposed diff to a scratch copy of the target file,
-point the runner at that scratch copy, run it 3 times in a row with no
-intervening edit, and confirm zero FAILs across all 3 runs. A proposal that
-adds a wholly new skill file, rather than editing an existing one, is
-exempt from this gate (there is no existing detection surface to regress),
-but is encouraged to add a fixture of its own to `evals/fixtures/` when it
-introduces a new review lens or verdict rule.
 
 ### Step 5, registry entry
 
@@ -329,6 +335,39 @@ lane home as work proceeds, never holding results to the end.
   to shared repo state before cross-actor use. an unpublished artifact is
   local-only and never crosses actors. An actor reading an artifact landed by
   another actor first syncs to the commit that landed it.
+
+## Batch wave reconciliation (AUTH-06)
+
+When a wave declares N parallel subagents, O0 reconciles **once** after all N
+complete or after a stated timeout with a partial report. Subagent completion
+notifications must not prompt the operator per lens unless one failed. Output:
+single verdict or commit plan.
+
+## Multi-repo lane profile (AUTH-07)
+
+When grounding paths span multiple repos (`~/friend`, `~/aimez`, etc.), set
+`lane_type: multi-repo` in `waveset.md`:
+
+```yaml
+lane_type: multi-repo
+repos:
+  - id: pax
+    path: <lane home repo>
+    role: lane_home
+  - id: product
+    path: <product repo>
+    role: product
+commit_plan:
+  order: [pax, ...]   # push order for W4 integration
+  note: rebase/stash if dirty working tree
+```
+
+W4 integration carries a per-repo checklist. Emit a commit plan artifact for O0.
+
+## Evidence ledger delta (AUTH-09)
+
+Rebrand or outbound lanes emit `decisions/EVIDENCE-LEDGER-DELTA.md` listing
+STALE atoms and new APPROVED atoms against the repo evidence ledger.
 
 ## Reconciliation duties (on the return notice)
 

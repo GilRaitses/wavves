@@ -1,7 +1,7 @@
 # Using wavves
 
-Type `/wavves` at the start of a task. It reads your request, checks the
-home, picks a playbook, and routes to the right leaf skill.
+Type `/wavves` at the start of a task. It routes to the right leaf skill,
+like `/poteto-mode` in pstack.
 
 ## System inventory
 
@@ -11,8 +11,8 @@ home, picks a playbook, and routes to the right leaf skill.
 | Home | `wavves/` | hydration contract across rotations |
 | Lane | `wavves/lanes/<date>_<label>/` | one bounded workstream |
 | Charter | `lanes/.../waveset.md` | scope, locks, waves, gates |
-| Dispatch | `lanes/.../dispatch.md` | paste block for background runners |
-| Registry | `wavves/registry.yml` | every lane and its status |
+| Dispatch | `lanes/.../dispatch-w{N}.md` | per-wave paste block for background runners |
+| Registry | `wavves/registry.yml` | every lane and its status (`active_dispatch`, `conflicts_with`, …) |
 | Rotation | `wavves/rotations/` | handoffs with term identity |
 | Gates | `lanes/.../gate-captures/` | runnable evidence (JSON + log) |
 
@@ -25,7 +25,7 @@ home, picks a playbook, and routes to the right leaf skill.
 | `/charter` | charter a lane only |
 | `/mod-check` | adversarial sanity-check of a landed spec or plan |
 | `/mod-decide` | lock open product/design calls after a check return |
-| `/layover` | read-only preflight audit of a bespoke multi-repo workspace before a cloud agent takes over |
+| `/layover` | workspace preflight audit before cloud handoff |
 | `/mod-rotate` | rotation only |
 
 ## Playbooks (`/wavves` routes here)
@@ -36,9 +36,11 @@ home, picks a playbook, and routes to the right leaf skill.
 | charter-lane | `/charter` | bug fix, audit, refactor, flaky CI, overnight lane |
 | check | `/mod-check` | adversarial review of a landed spec or plan before build |
 | decide | `/mod-decide` | lock open calls before BUILD charter |
-| layover | `/layover` | preflight a bespoke multi-repo workspace before a cloud agent takes over |
+| layover | `/layover` | preflight multi-repo workspace before cloud agent |
 | rotate | `/mod-rotate` | hand off to fresh thread |
 | pickup | hydrate | resume, "where are we" |
+| layover | `/layover` | preflight multi-repo workspace before cloud agent |
+| proceed | hydrate + execute | `proceed as recommended`, `/wavves proceed` |
 
 ## Quick reference
 
@@ -50,17 +52,14 @@ spec check:        /mod-check review docs/superpowers/specs/2026-07-08-example.m
                    wave. read-only. landing_commit_hash <hash>.
 decide:            /mod-decide navigate open calls from the check return.
                    one decision at a time. write decisions/*.md. no BUILD yet.
-                   Mid-queue: answer Pick: … only — do not re-slash each time.
-layover:           /wavves preflight the curl.code-workspace before a cloud
-                   agent takes over the pax repo. read-only, audit-only.
+layover:           /layover audit ~/my.code-workspace. read-only.
 rotate:            /wavves rotate this thread. write a handoff for active lanes.
 pickup:            /wavves hydrate from the rotation paste and tell me what's active.
+proceed:           /wavves proceed as recommended after mod-check or mod-decide return.
 setup only:        /wavves-init set up wavves in this repo. do not commit.
 charter only:      /charter migrate every callsite to the async config store.
 check only:        /mod-check the landed spec. GO / REVISE / BLOCK with named gaps.
 decide only:       /mod-decide lock the open calls. emit Locked decisions paste.
-layover only:      /layover audit ~/my.code-workspace. report untracked,
-                   unpushed and stashed state per sibling repo.
 rotate only:       /mod-rotate token velocity is too high. give me the one-line paste.
 ```
 
@@ -82,6 +81,27 @@ spec landed
 | 2. Decide | `/mod-decide` | one-at-a-time picks, `decisions/*.md`, Locked decisions paste | any fork a build agent would have to invent is still open |
 | 3. Charter | `/charter` | BUILD lane, waves, gated acceptance | locks missing, or two disjoint features stuffed into one lane |
 
+After mod-decide, O0 syncs locks to `waveset.md`, active `dispatch-w{N}.md`,
+and `registry.yml` before W2 dispatch. Each dispatch carries an authority
+precedence block (locks → waveset → findings marked STALE).
+
+Mod-check verdicts may include scoped blockers:
+
+```yaml
+verdict: REVISE
+blocks_w2: false
+blocks_w4: true
+recommended_actions:
+  - action: commit
+    files: [wavves/lanes/...]
+  - action: dispatch
+    wave: w2
+  - action: operator_gate
+    id: approve-quarantine-manifest
+```
+
+Use `/wavves proceed` to execute `recommended_actions` in order.
+
 **What belongs in decide vs what is already locked grounding**
 
 - **Decide (product / design forks):** gesture choice, which data source is
@@ -91,7 +111,7 @@ spec landed
   a naive server route). Confirm them into the Locked / Grounding paste; do
   not re-debate them unless new evidence appears.
 
-**Practical paste after a check return (start the queue once)**
+**Practical paste after a check return**
 
 ```text
 /mod-decide You are O0. Do not charter BUILD yet.
@@ -103,16 +123,6 @@ write decisions/<CODE>-<slug>.md, append to a Locked decisions draft.
 Do not reopen settled technical findings. When I say locks are complete,
 emit the Locked decisions paste and the /charter invocation(s). One feature
 per BUILD lane when scopes are disjoint.
-```
-
-**Mid-queue picks (same thread — no `/mod-decide` again)**
-
-Once Mod is already asking "Your pick?", answer the pick only. Re-slash only
-in a fresh chat or if the thread never ran decide.
-
-```text
-Pick: dedicated button.
-Record as DSO-01. Next decision when ready. No BUILD yet.
 ```
 
 **Practical paste once locks exist**
@@ -139,7 +149,6 @@ No commits/deploy without my ask. Escalate any lock conflict to O0.
 |:-----------|:--------|
 | `/charter` while forks are still open | build agents pick for you and fight the check |
 | `/mod-check` again to "make the decisions" | check reviews; decide locks |
-| `/mod-decide` again before every mid-queue pick | same thread already owns the queue; answer `Pick: …` only |
 | One mega-charter for two disjoint features | file ownership and risk diverge; split lanes |
 | Asking Mod to "just start building" mid-decide | O0's job is lock first, dispatch second |
 
@@ -150,7 +159,6 @@ BUILD path, the section above is the guide.
 - [B. Flaky test stabilization with proof](#b-flaky-test-stabilization-with-proof)
 - [C. Performance sprint with before/after numbers](#c-performance-sprint-with-beforeafter-numbers)
 - [D. A migration that outlives one chat session](#d-a-migration-that-outlives-one-chat-session)
-- [E. Preflighting a bespoke workspace for a cloud agent](#e-preflighting-a-bespoke-workspace-for-a-cloud-agent)
 
 ## A. Feature build with real parallelism
 
@@ -404,56 +412,6 @@ The operator pastes that into a fresh chat. The new thread:
 
 Nothing about picking up this lane required re-reading the original chat.
 Every fact the successor needed to act correctly was already on disk.
-
-## E. Preflighting a bespoke workspace for a cloud agent
-
-Shows: `/layover` as a single-purpose leaf skill, not a lane, run before
-handing moderation of one repo in a bespoke multi-root workspace over to a
-Cursor cloud agent, which cannot open a local `.code-workspace` file itself.
-
-```text
-/layover preflight ~/dev/my-project.code-workspace before a cloud agent
-takes over moderation of the "core" repo. read-only, audit-only.
-```
-
-`/wavves` matches the layover playbook, reads `/layover` in full, resolves
-the workspace file's `folders` array relative to the workspace file's own
-directory, and validates every path before any git command runs. One entry,
-`legacy-tools`, exists on disk but has no `.git`, so it is flagged
-("exists but is not a git repository") with no git detail beneath it.
-
-For each of the three remaining repos, `/layover` runs only read-only git
-commands: remotes, branch, ahead/behind against upstream (or the literal
-"no upstream configured" when there is none), uncommitted tracked changes,
-untracked files, and stashes. Nothing is staged, discarded, committed or
-pushed.
-
-```markdown
-# layover — my-project — 20260710
-
-## Summary
-
-| repo | path | remotes | branch | vs upstream | uncommitted | untracked | stashes | flags |
-|---|---|---|---|---|---|---|---|---|
-| core | ~/dev/core | 1 | main | 0/2 | dirty | 14 | 1 | - |
-| shared-lib | ~/dev/shared-lib | 2 | feature/retry | no upstream | clean | 3 | 0 | detached-from-remote |
-| infra | ~/dev/infra | 1 | main | 0/0 | clean | 212 | 0 | - |
-| legacy-tools | ~/dev/legacy-tools | - | - | - | - | - | - | not a git repository |
-```
-
-`core`'s 14 untracked files are listed flat (under the 20-file grouping
-threshold). `infra`'s 212 untracked files are grouped by top-level directory
-with per-bucket counts instead of a flat dump, and one file in the `config/`
-bucket matches the `*.env` filename pattern, so it carries a soft
-"review this one first" note, never a safe/unsafe verdict. The full flat
-list for `infra` is stated as available on request rather than discarded.
-
-The report is written once, to `wavves/layovers/my-project-20260710.md`, in
-the invoking repo's own `wavves/` home. No file in any of the four audited
-repos is touched. The operator reviews the flagged `legacy-tools` path and
-the `*.env` hint before deciding what, if anything, gets staged and pushed
-ahead of the cloud-agent handoff — a decision `/layover` deliberately leaves
-to the human, per its own non-negotiables.
 
 ## What lands on disk
 

@@ -61,10 +61,12 @@ we write the plan", `/mod-check`.
 - [ ] 5. Register the lane in wavves/registry.yml (status: chartered).
 - [ ] 6. Dispatch ONE wave of parallel high-reasoning reviewers (default 4
         lenses below). Background preferred. Do not poll.
-- [ ] 7. On return: reconcile findings, write findings/<CODE>-verdict.md
-        with GO | REVISE | BLOCK, named gaps and recommended next step.
-- [ ] 8. Report to the operator: verdict, top blockers, path to findings.
-        Do not start the implementation plan unless they ask.
+- [ ] 7. On return: reconcile findings **once** after all parallel lenses
+        complete (AUTH-06). Do not prompt the operator per lens unless one
+        failed. Write findings/<CODE>-verdict.md with scoped verdict (AUTH-04).
+- [ ] 8. Report to the operator: verdict, top blockers, path to findings,
+        and **recommended_actions** (AUTH-10). Do not start the implementation
+        plan unless they ask.
 ```
 
 ## Default parallel lenses (Wave 1 only)
@@ -80,20 +82,6 @@ Dispatch these as disjoint subagents unless the operator narrows the set:
 
 Add a fifth lens only when the operator names a domain (security, perf,
 migration blast radius). Keep ownership disjoint.
-
-**Regression gate for edits to this lens table (added by lane SELF,
-wavves-self-improvement).** A proposed edit to any lens's `Hunts for`
-wording, or to the set of lenses itself, is a proposal per
-`charter/SKILL.md`'s "Project skill proposals" section, never a direct edit.
-It is not promoted to `wavves/skills/accepted/` and never applied to this
-installed file until `evals/run_fixtures.py` passes 3 consecutive times
-against the proposed wording, applied to a scratch copy of this file. Each
-fixture under `evals/fixtures/` names a `lens_that_should_catch`; the
-runner checks whether that lens's current `Hunts for` wording still
-contains at least one of the fixture's declared keywords. A proposed
-wording edit that drops every keyword for any fixture that currently names
-this lens fails the gate and is returned to the proposing lane with the
-specific fixture(s) it broke.
 
 ## waveset.md shape (check lane)
 
@@ -142,23 +130,41 @@ Adversarial sanity-check of <artifact path>. No build. No implementation plan.
 
 O0 writes the verdict file. Wave members do not grade each other.
 
-**Verdict quality is checked against the fixture corpus, not asserted.**
-Before trusting a GO verdict on a check whose lens set was recently edited
-(within the same lane or the same operator session), re-run
-`evals/run_fixtures.py` against the current `mod-check/SKILL.md` and cite
-the result alongside the verdict. A verdict produced under a lens set that
-is failing the fixture corpus is not a trustworthy GO; O0 escalates rather
-than reconciling it as a clean pass.
+## Scoped verdict schema (AUTH-04)
+
+Verdict files must differentiate lane-wide REVISE from wave-scoped blocks:
+
+```yaml
+verdict: GO | REVISE | BLOCK
+blocks_w2: false
+blocks_w3: false
+blocks_w4: false
+blocks_w5: false
+blockers:
+  - id: string
+    wave: w2 | w3 | w4 | w5
+    evidence_path: string
+    summary: string
+```
+
+A lane may be **REVISE** overall while `blocks_w4: true` and `blocks_w2: false`.
+"Proceed as recommended" must map to an unambiguous next step.
+
+## Mandatory gate before W2+ (AUTH-05)
+
+When `registry.status` matches `mod-decide-complete*` and `waveset.md` is older
+than the newest `decisions/*.md`, require mod-check PASS or AUTH-01 authority
+sync before W2 dispatch.
 
 ## Operator return shape
 
 Keep it short:
 
-1. Verdict (`GO` / `REVISE` / `BLOCK`)
+1. Verdict (`GO` / `REVISE` / `BLOCK`) plus scoped `blocks_w2`…`blocks_w5`
 2. Top blockers (bullets with finding file refs)
 3. Lane home path
-4. Recommended next step (revise spec / `/mod-decide` if open calls remain /
-   `/charter` BUILD if locks are already complete or none were needed)
+4. **Recommended actions (ordered)** — commit files, dispatch, operator gates.
+   Invocable via `/wavves proceed` (AUTH-10).
 
 ## Related
 

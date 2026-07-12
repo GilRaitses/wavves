@@ -34,22 +34,18 @@ the decisions", "lock before charter", "decision packet", `/mod-decide`.
 
 1. **One decision at a time.** Present options in one line each, optional
    recommendation, then wait for the operator pick before the next call.
-2. **Invoke once per queue.** `/mod-decide` starts the decision queue. While
-   Mod is already asking for the next pick in the same thread, the operator
-   answers with `Pick: …` only — they do not re-slash before every decision.
-   Re-invoke only in a fresh chat or if the thread never ran decide.
-3. **No BUILD charter inside this skill.** Do not run `/charter` until the
+2. **No BUILD charter inside this skill.** Do not run `/charter` until the
    operator says the locks are complete.
-4. **No re-litigation of settled technical findings.** If the check already
+3. **No re-litigation of settled technical findings.** If the check already
    verified a fact (e.g. point-in-polygon renders nothing), treat it as
    grounding to lock, not as an open debate, unless the operator reopens it.
-5. **Write durable records.** Each pick lands in
+4. **Write durable records.** Each pick lands in
    `wavves/lanes/<lane>/decisions/<CODE>-<slug>.md`. Maintain a running
    Locked decisions draft the operator can paste into BUILD.
-6. **Separate lanes stay separate.** If two features have independent open
+5. **Separate lanes stay separate.** If two features have independent open
    calls (e.g. DSO and GEX), finish or explicitly park one before mixing
    locks into a single BUILD charter. Prefer one BUILD charter per feature.
-7. **No commit / push / deploy** unless the operator explicitly asks.
+6. **No commit / push / deploy** unless the operator explicitly asks.
 
 ## Workflow
 
@@ -66,8 +62,21 @@ the decisions", "lock before charter", "decision packet", `/mod-decide`.
 - [ ] 5. When the operator says locks are complete, emit the final Locked
         decisions paste and the recommended /charter invocation(s). Do not
         dispatch BUILD unless they ask in the same turn.
+- [ ] 5b. **Authority sync (AUTH-01).** Patch authority surfaces so locks
+        propagate before W2+ dispatch:
+        - `waveset.md` — Locked decisions section and gated-waves table
+        - active `dispatch-w{N}.md` — inline locks (retire or mark historical
+          prior `dispatch.md` when superseded)
+        - `wavves/registry.yml` — `status`, `note`, `mod_decide_complete_at`,
+          `waveset_synced_at`, `active_dispatch`
+        Show a diff preview or ask O0 to confirm if waveset has intentional
+        draft edits. **Block W2 dispatch** when `waveset.md` is older than the
+        newest `decisions/*-B-*.md` (or lane decision records) until sync passes.
 - [ ] 6. Update the check lane README or registry note: status awaiting
         BUILD charter, locks path listed.
+- [ ] 7. Emit **recommended_actions** (AUTH-10) — ordered block for O0:
+        commit file list, `/charter` or dispatch invocation, operator gates.
+        Operator may invoke `/wavves proceed` to execute the list.
 ```
 
 ## Decision record shape

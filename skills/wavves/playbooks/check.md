@@ -11,7 +11,9 @@ Route: **mod-check** (`/mod-check`)
 - [ ] 5. Run the mod-check workflow: lane home, registry entry, one
         adversarial parallel wave, reconcile to a GO | REVISE | BLOCK verdict.
 - [ ] 6. Dispatch to background. Do not poll. Reconcile on return notice.
-- [ ] 7. Report verdict, top blockers, lane home and recommended next step.
+- [ ] 7. Reconcile once after all parallel lenses complete (AUTH-06).
+- [ ] 8. Report scoped verdict (blocks_w2…blocks_w5), top blockers, lane home,
+        and recommended_actions. Operator may `/wavves proceed`.
         Do not write the implementation plan unless the operator asks.
 ```
 

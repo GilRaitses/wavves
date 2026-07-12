@@ -1,11 +1,11 @@
 ---
 name: wavves
 description: >-
-  Main entry point for the distributed deep orchestration harness. Reads your
-  request, checks the wavves home, picks a playbook and runs the leaf skill
-  (/wavves-init, /charter, /mod-check, /mod-decide, /layover or /mod-rotate).
-  Use for /wavves or any bounded lane work, setup, spec check, decision lock,
-  workspace preflight, rotation or pickup.
+  Main entry for durable multi-agent routing. Reads your request, checks the
+  wavves home, picks a playbook and runs the leaf skill (/wavves-init, /charter,
+  /mod-check, /mod-decide, /layover or /mod-rotate). Use for /wavves or any
+  bounded lane work, setup, spec check, decision lock, workspace preflight,
+  rotation, pickup or proceed.
 disable-model-invocation: true
 ---
 
@@ -21,8 +21,7 @@ skill in full** before acting.
    skill you will read.
 2. **Read the leaf skill in full** (`wavves-init`, `charter`, `mod-check`,
    `mod-decide`, `layover` or `mod-rotate`) before any substantive write. Do
-   not improvise charter, check, decide, layover or rotation steps from
-   memory.
+   not improvise charter, check, decide, layover or rotation steps from memory.
 3. **The moderator (O0) stays operator-facing.** Dispatched runners answer to
    O0, not the operator directly. Gates are runnable with captured evidence.
 4. **No commit, push, deploy or external mutation** unless the operator
@@ -37,9 +36,10 @@ skill in full** before acting.
 | charter-lane | `charter` (`/charter`) | bounded multi-wave work: bug fix, audit, refactor, feature, flaky CI, security pass, overnight lane |
 | check | `mod-check` (`/mod-check`) | adversarial sanity-check of a written spec or plan before implementation |
 | decide | `mod-decide` (`/mod-decide`) | lock open product/design calls after a check return, before BUILD charter |
+| layover | `layover` (`/layover`) | preflight a bespoke multi-repo workspace before a cloud agent takes over |
 | rotate | `mod-rotate` (`/mod-rotate`) | rotate, handoff, fresh thread, self-fork, replay, token velocity too high |
 | pickup | hydrate + moderate | resume from rotation paste, "where are we", reconcile active lanes |
-| layover | `layover` (`/layover`) | preflight a bespoke multi-repo workspace before a cloud agent takes over, map sibling repos, audit untracked/unpushed state before handoff |
+| proceed | hydrate + execute | `proceed as recommended`, `/wavves proceed`, execute verdict actions |
 
 When the request is ambiguous, default to **check** if the operator points at
 a landed spec/plan and asks for review before the next writing step. Default
@@ -60,6 +60,7 @@ before adding task-specific items.
 - **Layover.** `playbooks/layover.md`
 - **Rotate.** `playbooks/rotate.md`
 - **Pickup.** `playbooks/pickup.md`
+- **Proceed.** `playbooks/proceed.md`
 
 A step you skip stays in the list with `skip: <reason>`.
 
@@ -71,8 +72,8 @@ A step you skip stays in the list with `skip: <reason>`.
 | `charter` | `/charter` | you know you only need a new lane |
 | `mod-check` | `/mod-check` | you know you only need an adversarial spec/plan check |
 | `mod-decide` | `/mod-decide` | you know you only need to lock open calls before BUILD |
+| `layover` | `/layover` | you only need the workspace preflight audit |
 | `mod-rotate` | `/mod-rotate` | you know you only need rotation |
-| `layover` | `/layover` | you know you only need the workspace preflight audit |
 
 Most operators can type `/wavves` plus the task and let routing handle the rest.
 
