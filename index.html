@@ -245,7 +245,7 @@
     <section class="hero">
       <h1>wavves</h1>
       <p class="kicker">durable multi-agent routing · v0.2.0</p>
-      <p class="hero-copy">Moderator-led agent work needs durable state. wavves records alignment packets, check records and handoff files in a standing <code>wavves/</code> home so long-running sessions hydrate from files, not chat memory. After mod-decide, locks propagate to <code>waveset.md</code>, <code>dispatch-w{N}.md</code>, and the registry; verdicts carry scoped blockers and <code>/wavves proceed</code> runs the next steps.</p>
+      <p class="hero-copy">Fleet tools scale agent work. Execution discipline sharpens individual runners. The gap sits at the moderator layer: scope, settled decisions, accepting checks, and pickup state still live in chat scrollback, so the next thread has to replay the conversation to recover what mattered. wavves captures that alignment state in files before and during dispatch—alignment packets, check records, rotation handoffs—so a successor hydrates from a standing <code>wavves/</code> home instead of chat memory.</p>
       <div class="links">
         <a href="https://github.com/GilRaitses/wavves">GitHub repo</a>
         <a href="https://github.com/GilRaitses/wavves/blob/main/examples/usage.md">Usage guide</a>
@@ -296,7 +296,7 @@
     <section>
       <h2>The right way to invoke each command</h2>
       <p class="lead">One rule governs all commands: read the matched skill in full before acting, never improvise charter, check, decide, layover or rotation steps from memory, even inside a repeat session.</p>
-      <p class="lead" style="margin-top: 0.6rem;">Spec → BUILD order: <code>/mod-check</code> → <code>/mod-decide</code> → <code>/charter</code>. After mod-decide, authority syncs to <code>waveset.md</code>, <code>dispatch-w{N}.md</code>, and registry before W2+. Use <code>/wavves proceed</code> to run <code>recommended_actions</code> from a verdict.</p>
+      <p class="lead" style="margin-top: 0.6rem;">Spec → BUILD order: <code>/mod-check</code> → <code>/mod-decide</code> → <code>/charter</code>. Do not charter BUILD while product forks are still open. Authority sync, scoped verdicts, and <code>/wavves proceed</code> are documented below.</p>
 
       <div class="usage-grid">
         <article class="usage-card">
