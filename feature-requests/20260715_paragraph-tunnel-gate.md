@@ -13,9 +13,10 @@
 
 Prose lint and check_gates catch banned phrases. They do not catch a
 **wandering paragraph** that still "passes" mechanically: stacked claims,
-self-justification ("nice because"), meta gloss ("personality of the
-location"), comparisons to other shop types, or two-sentence profiles when
-the job is one recognizable place fact.
+meta gloss ("personality of the location"), comparisons to other shop types,
+or two-sentence profiles when the job is one recognizable place fact.
+
+**Operator lock:** "nice because" is **allowed**. Do not treat it as a fail.
 
 In APPL storefront outreach, opener and close stabilized early. Paragraph 2
 (the storefront profile) ate most operator REVISE cycles. Lint kept passing.
@@ -36,16 +37,16 @@ Add a reusable **paragraph tunnel** pattern to wavves:
 
 | id | fail condition |
 |---|---|
-| PN-EXPLAIN | Justifies why the subject is nice / interesting / a fit |
 | PN-STACK | Two or more distinct claims in one paragraph |
 | PN-COMPARE | Compares subject to other types or destinations |
-| PN-BECAUSE | "nice because" / "because it is" frame |
 | PN-GLOSS | Meta gloss ("personality of…", "part of how") |
 | PN-FIXTURE | Fixture inventory as sole content |
 | PN-MULTI | More than one sentence when tunnel requires one |
 
-**PASS:** one sentence; one concrete fact the recipient would recognize; no
-self-justification.
+**ALLOWED:** "nice because" / "because it is" as a profile frame.
+
+**PASS:** one sentence; one concrete fact the recipient would recognize;
+no gloss / compare / fixture-only / multi-sentence.
 
 ## Where it lands (proposed, not decided)
 
@@ -64,7 +65,7 @@ pre-build, this gate is mid-render).
 | tier | adversarial | rewrite |
 |---|---|---|
 | high Apollo | PASS | keep one-sentence sidewalk-line profile |
-| mid Ardesia | FAIL (EXPLAIN/STACK/BECAUSE/GLOSS/MULTI) | one sentence: patio frontage → evening sidewalk life on west 50s Hell's Kitchen block |
+| mid Ardesia | operator keeps "nice because" + patio/sidewalk come-together (agent BECAUSE ban struck) | restore nice-because patio-first line; do not strip |
 | low Scotts | FAIL (COMPARE/MULTI) | drop food-shop comparison; one sentence Midtown florist on working commercial block |
 
 ## Acceptance sketch (for future charter)

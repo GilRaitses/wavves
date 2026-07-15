@@ -7,7 +7,7 @@ Locked decisions (do NOT reopen):
 - PTG-MODEL: cursor-grok-4.5-high-fast for adversarial and rewrite (Grok only)
 - PTG-EVAL: evals/fixtures/paragraph-tunnel-* runnable; include FIXTURE/STANDIN cases
 - PTG-FAIL-CAP: after loop 1 still FAIL → operator REVISE; no auto-pass
-- PTG-VOCAB: PN-* + STANDIN/RESEARCH-META/FALSEFACT; alias map to P2-*
+- PTG-VOCAB: PN-* + STANDIN/RESEARCH-META/FALSEFACT; alias map to P2-*; STRIKE BECAUSE/EXPLAIN; nice because ALLOWED
 - PTG-JUDGE: separate re-adversarial capture + sibling freeze checksum
 - PTG-HASH: split evidence_verified_against vs landing_commit_hash in FR
 
