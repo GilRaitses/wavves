@@ -1,13 +1,16 @@
 # FR-20260715 — Paragraph tunnel gate
 
-- **Status:** locks-complete (awaiting BUILD charter)
+- **Status:** chartered (BUILD lane `20260715_paragraph-tunnel-build`)
 - **Check lane:** `wavves/lanes/20260715_paragraph-tunnel-gate-check/`
+- **Build lane:** `wavves/lanes/20260715_paragraph-tunnel-build/`
 - **Date:** 2026-07-15 (America/New_York)
-- **Product surface:** wavves skills / charter gate templates / optional playbook
+- **Product surface:** wavves skills / charter gate templates / playbook + evals
 - **Source lane evidence:** pax APPL
   `wavves/lanes/20260715_apply-case-crack-asp-send/decisions/APPL-P2-TUNNEL.md`
   plus gate-captures `APPL-p2-adversarial.json`, `APPL-p2-rewrite.json`
-- **repo_state_verified_against (evidence):** pax `21b1d7cf06557a19ee042d6fde00d60a7ed8e759`
+- **evidence_verified_against:** pax `21b1d7cf06557a19ee042d6fde00d60a7ed8e759`
+  (APPL tunnel evidence pin; not a landing commit)
+- **landing_commit_hash:** _(O0 completion report only; never self-embed in this FR)_
 
 ## Problem
 
@@ -17,6 +20,7 @@ meta gloss ("personality of the location"), comparisons to other shop types,
 or two-sentence profiles when the job is one recognizable place fact.
 
 **Operator lock:** "nice because" is **allowed**. Do not treat it as a fail.
+Do not emit `PN-BECAUSE`, `P2-BECAUSE`, `PN-EXPLAIN`, or `P2-EXPLAIN`.
 
 In APPL storefront outreach, opener and close stabilized early. Paragraph 2
 (the storefront profile) ate most operator REVISE cycles. Lint kept passing.
@@ -43,43 +47,53 @@ Add a reusable **paragraph tunnel** pattern to wavves:
 | PN-FIXTURE | Fixture inventory as sole content |
 | PN-MULTI | More than one sentence when tunnel requires one |
 
+Extensions: `STANDIN`, `RESEARCH-META`, `FALSEFACT`.
+
 **ALLOWED:** "nice because" / "because it is" as a profile frame.
 
 **PASS:** one sentence; one concrete fact the recipient would recognize;
 no gloss / compare / fixture-only / multi-sentence.
 
-## Where it lands (proposed, not decided)
+## Where it lands (locked)
 
-| option | meaning |
-|---|---|
-| A | New skill `/paragraph-tunnel` invoked from dispatch STEPS |
-| B | Extension to `mod-check` adversarial lens + charter Step "tunneled field" |
-| C | Playbook fragment under `skills/wavves/playbooks/` + eval fixture |
-
-Open call for `/mod-decide` when chartered. Evidence so far favors **A or C**
-as a reusable outbound-copy gate; **B** alone is too late (mod-check is
-pre-build, this gate is mid-render).
+| option | meaning | status |
+|---|---|---|
+| A | New skill `/paragraph-tunnel` | deferred |
+| B | Extension to `mod-check` | struck (phase leak) |
+| C | Playbook under `skills/wavves/playbooks/` + eval fixtures | **locked** |
 
 ## Worked example (live)
 
 | tier | adversarial | rewrite |
 |---|---|---|
 | high Apollo | PASS | keep one-sentence sidewalk-line profile |
-| mid Ardesia | operator keeps "nice because" + patio/sidewalk come-together (agent BECAUSE ban struck) | restore nice-because patio-first line; do not strip |
+| mid Ardesia | operator keeps "nice because" + patio/sidewalk (agent BECAUSE ban struck) | restore nice-because patio-first line; do not strip |
 | low Scotts | FAIL (COMPARE/MULTI) | drop food-shop comparison; one sentence Midtown florist on working commercial block |
 
-## Acceptance sketch (for future charter)
+## Acceptance (BUILD)
 
-1. Eval fixture: stacked / gloss / compare inputs FAIL; one-fact inputs PASS.
+1. `python3 evals/check_paragraph_tunnel.py` PASS on `paragraph-tunnel-*` fixtures
+   (include FIXTURE + STANDIN fails; include nice-because PASS).
 2. Rewrite pass clears fail ids without touching frozen sibling paragraphs.
 3. Dispatch template documents order: render → tunnel → lint → preview.
 4. No install from this folder; ship only via chartered lane + operator accept.
+
+## Hash hygiene (PTG-HASH)
+
+| field | meaning |
+|---|---|
+| `evidence_verified_against` | Commit/state the FR or capture **evaluated** (pre-landing) |
+| `landing_commit_hash` | Commit that **lands** the artifact — report only in O0 completion; never embed inside the same artifact |
+
+Do not equate the two. Do not set either field to the hash of the commit that
+contains this FR.
 
 ## Non-goals
 
 - Replacing prose_lint / purpose-gates / public-copy-gates.
 - Auto-sending outbound mail.
 - Broad tone rewriting of whole emails.
+- Reintroducing BECAUSE/EXPLAIN fail ids without operator ask.
 
 ## Operator note
 

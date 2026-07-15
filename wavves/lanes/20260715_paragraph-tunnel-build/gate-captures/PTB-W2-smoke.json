@@ -1,0 +1,20 @@
+{
+  "gate": "PTB-W2-smoke",
+  "captured_at": "2026-07-15T10:26:00-04:00",
+  "repo_state_verified_against": "f2fb8ce144b68d820b0992f5075a2cbbf44673d2",
+  "command": "python3 evals/check_paragraph_tunnel.py",
+  "exit_code": 0,
+  "pass": 6,
+  "fail": 0,
+  "total": 6,
+  "fixtures": [
+    "paragraph-tunnel-compare-fail",
+    "paragraph-tunnel-fixture-fail",
+    "paragraph-tunnel-nice-because-pass",
+    "paragraph-tunnel-one-fact-pass",
+    "paragraph-tunnel-stack-gloss-fail",
+    "paragraph-tunnel-standin-fail"
+  ],
+  "vocab_note": "BECAUSE/EXPLAIN struck; nice-because whitelisted; stack-gloss fixture retains nice-because text without BECAUSE fail id",
+  "model_enforcement": "cursor-grok-4.5-high-fast"
+}

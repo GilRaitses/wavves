@@ -19,4 +19,4 @@ or `wontfix`
 
 | id | title | status | source evidence |
 |---|---|---|---|
-| FR-20260715-paragraph-tunnel | Paragraph tunnel gate (adversarial + rewrite) | locks-complete | APPL-P2-TUNNEL + PTG check |
+| FR-20260715-paragraph-tunnel | Paragraph tunnel gate (adversarial + rewrite) | chartered (PTB build) | APPL-P2-TUNNEL + PTG + NICE-BECAUSE |

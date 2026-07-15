@@ -107,6 +107,25 @@ keyword survival in the lens table's wording. Until that harness exists,
 this script is a tripwire on lens-wording narrowing, not a test of review
 quality.
 
+## Paragraph tunnel fixtures (disjoint harness)
+
+Separate from the lens-wording tripwire above. Product surface for the
+paragraph-tunnel playbook (`skills/wavves/playbooks/paragraph-tunnel.md`).
+
+```bash
+python3 evals/check_paragraph_tunnel.py
+```
+
+- Discovers only `evals/fixtures/paragraph-tunnel-*/`
+- Stdlib mechanical fail-id tripwire (no LLM, no network)
+- Does **not** use or modify `run_fixtures.py`
+- Whitelist: `"nice because"` / `"because it is"` never alone fail
+- Closed vocab: `PN-STACK`, `PN-COMPARE`, `PN-GLOSS`, `PN-FIXTURE`, `PN-MULTI`,
+  plus `STANDIN` / `RESEARCH-META` / `FALSEFACT` (no BECAUSE/EXPLAIN)
+
+Known limitation: mechanical PASS ≠ live Grok adversarial judgment. ACCEPT
+still requires playbook spot-check plus measured checker output.
+
 ## Repeated-trial verification (3 consecutive passes)
 
 Per the SELF lane's locked decisions, a proposed skill edit affecting
