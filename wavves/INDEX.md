@@ -1,9 +1,17 @@
 # wavves index
 
-current_identity: O0.R1
-current_rotation: none (bootstrap term, no rotation file yet)
+current_identity: O0
+current_rotation: none
 
 active_lanes:
+  - code: PTB
+    home: lanes/20260715_paragraph-tunnel-build/
+    status: chartered-dispatched-w1w2
+    next_read: lanes/20260715_paragraph-tunnel-build/dispatch-w1.md
+  - code: PTG
+    home: lanes/20260715_paragraph-tunnel-gate-check/
+    status: mod-decide-complete-awaiting-build
+    next_read: lanes/20260715_paragraph-tunnel-gate-check/decisions/LOCKED-DECISIONS.md
   - code: SELF
     home: lanes/20260709_wavves-self-improvement/
     status: completed
@@ -12,14 +20,6 @@ active_lanes:
     home: lanes/20260709_layover-preflight/
     status: completed
     next_read: wavves/layovers/curl-20260709.md
-
-blocked_decisions:
-  - parked: mod-decide skill patch (broaden "when to use" beyond the
-    check->decide->charter gate, add safely-decidable auto-progression
-    criteria, sync the "Invoke once per queue" drift between repo source
-    and installed plugin copy). Operator held this on 2026-07-09 to finish
-    the active decision queue first. Drafted, not applied. Re-raise at the
-    start of a future /mod-decide invocation.
 
 project_skills:
   proposed: skills/proposed/
@@ -30,12 +30,10 @@ feature_requests:
   open:
     - id: FR-20260715-paragraph-tunnel
       path: ../feature-requests/20260715_paragraph-tunnel-gate.md
-      status: draft
+      status: locks-complete-ptb-building
 
 model_policy:
   default: record recommendation before dispatch
+  subagent_model_lock: cursor-grok-4.5-high-fast
   high_reasoning: architecture, integration, adversarial review, acceptance
-  balanced: bounded implementation with local validation
-  fast: inventory, search, formatting, link checks, mechanical scans
-  note: this repo has no confirmed model-slug mapping yet. tier names only
-    until an operator confirms concrete slugs available in this environment.
+  note: PTB/PTG require Grok for every subagent. No Claude/Composer fallback.
