@@ -1,6 +1,7 @@
 # FR-20260715 — Paragraph tunnel gate
 
-- **Status:** draft (ready for `/mod-check` when O0 picks it up)
+- **Status:** locks-complete (awaiting BUILD charter)
+- **Check lane:** `wavves/lanes/20260715_paragraph-tunnel-gate-check/`
 - **Date:** 2026-07-15 (America/New_York)
 - **Product surface:** wavves skills / charter gate templates / optional playbook
 - **Source lane evidence:** pax APPL

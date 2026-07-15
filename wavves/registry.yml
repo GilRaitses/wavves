@@ -1,0 +1,73 @@
+active:
+  PTB:
+    label: paragraph-tunnel-build
+    home: lanes/20260715_paragraph-tunnel-build/
+    waves: [PTB-W1, PTB-W2, PTB-INT, PTB-ACCEPT]
+    status: chartered-dispatched
+    type: execution
+    depends_on: [PTG]
+    conflicts_with: []
+    active_dispatch: dispatch-w1.md
+    dispatch_files: [dispatch-w1.md]
+    waveset_synced_at: "2026-07-15T10:20:00-04:00"
+    repo_state_verified_against: f2fb8ce144b68d820b0992f5075a2cbbf44673d2
+    note: >-
+      BUILD playbook + mechanical paragraph-tunnel eval fixtures per PTG
+      locks. Grok-only. W1+W2 now; INT/ACCEPT gated. No slash skill. No
+      mod-check runtime change.
+  PTG:
+    label: paragraph-tunnel-gate-check
+    home: lanes/20260715_paragraph-tunnel-gate-check/
+    waves: [PTG-W1, PTG-VERDICT]
+    status: mod-decide-complete-awaiting-build-charter
+    type: check
+    active_dispatch: null
+    mod_decide_complete_at: "2026-07-15T09:55:00-04:00"
+    waveset_synced_at: "2026-07-15T09:55:00-04:00"
+    repo_state_verified_against: f2fb8ce144b68d820b0992f5075a2cbbf44673d2
+    artifact: feature-requests/20260715_paragraph-tunnel-gate.md
+    note: >-
+      Check REVISE; locks landed (LAND=C+dispatch hook, Grok-only, runnable
+      eval, fail-cap escalate). Awaiting /charter BUILD. No build in this lane.
+  LAYOVER:
+    label: layover-preflight
+    home: lanes/20260709_layover-preflight/
+    waves: [LAYOVER-W1, LAYOVER-W2, LAYOVER-INT, LAYOVER-ACCEPT]
+    status: completed   # W1+W2+INT+ACCEPT all landed; real report at wavves/layovers/curl-20260709.md, see gate-captures/LAYOVER-ACCEPT.md
+    note: >-
+      Build /layover, a new wavves leaf skill that reads a .code-workspace
+      file (or folder list) for a bespoke desktop multi-repo workspace and
+      produces a read-only preflight audit of every sibling repo: remotes,
+      sync state vs origin, untracked files, uncommitted changes and stashes.
+      Root cause: a Cursor cloud agent attaches per-repo to a pushed remote
+      and cannot open a local multi-root workspace, so nothing today tells
+      the operator what local-only state (measured on the real curl.code-
+      workspace at design time: 101/17/56/131 untracked files across pax,
+      aimez, MAT761, PHY600) a cloud agent would miss on takeover. Audit-only
+      end state; no staging, hydration-file writes or handoff mechanics in
+      this lane. Wave split: W1 nails exact git command set + SKILL.md
+      insertion format (discovery, read-only), W2 writes the new skill,
+      playbook and layovers/README as brand-new files (build), INT adds two
+      rows to the shared skills/wavves/SKILL.md router (single serialized
+      editor, GATED per house skill-file-edit rule), ACCEPT runs /layover for
+      real against curl.code-workspace and verifies zero mutation plus
+      correct grouped output (GATED, independent evaluator).
+  SELF:
+    label: wavves-self-improvement
+    home: lanes/20260709_wavves-self-improvement/
+    waves: [SELF-W1, SELF-W2, SELF-W3, SELF-INT, SELF-ACCEPT]
+    status: completed   # W1+W2+INT+ACCEPT all landed; regression genuinely seeded and caught, see gate-captures/SELF-ACCEPT.md
+    note: >-
+      Build the eval-fixture, repeated-trial verification and failure-log
+      self-audit loop that lets wavves' own skills (mod-check, charter)
+      compound improvements from real lane outcomes instead of staying
+      static. Root cause: skill-edit proposals currently promote from
+      skills/proposed/ to skills/accepted/ on operator review alone, with no
+      regression check against known failure modes and no requirement that a
+      fix reproduce before being trusted. Wave split: W1 builds the fixture
+      corpus (discovery, read-only against existing skill files), W2 wires
+      the 3x repeated-trial verification harness plus failure-log schema
+      (build, new files), INT wires both into charter's skill-proposal
+      section and mod-check's promotion path (single serialized editor,
+      GATED), ACCEPT runs the fixture corpus end to end and confirms a
+      seeded regression is caught (GATED, independent evaluator).
