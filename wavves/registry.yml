@@ -3,18 +3,17 @@ active:
     label: paragraph-tunnel-build
     home: lanes/20260715_paragraph-tunnel-build/
     waves: [PTB-W1, PTB-W2, PTB-INT, PTB-ACCEPT]
-    status: chartered-dispatched
+    status: w1w2-complete-awaiting-int-accept
     type: execution
     depends_on: [PTG]
     conflicts_with: []
-    active_dispatch: dispatch-w1.md
+    active_dispatch: null
     dispatch_files: [dispatch-w1.md]
-    waveset_synced_at: "2026-07-15T10:20:00-04:00"
-    repo_state_verified_against: f2fb8ce144b68d820b0992f5075a2cbbf44673d2
+    waveset_synced_at: "2026-07-15T10:26:00-04:00"
+    repo_state_verified_against: c770eca76717342607bb0e48457e9873801001b8
     note: >-
-      BUILD playbook + mechanical paragraph-tunnel eval fixtures per PTG
-      locks. Grok-only. W1+W2 now; INT/ACCEPT gated. No slash skill. No
-      mod-check runtime change.
+      W1+W2 landed (playbook + mechanical checker + 6 fixtures; nice-because
+      PASS). Awaiting O0 unlock for gated INT (SKILL.md router) and ACCEPT.
   PTG:
     label: paragraph-tunnel-gate-check
     home: lanes/20260715_paragraph-tunnel-gate-check/
