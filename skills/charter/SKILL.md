@@ -366,20 +366,20 @@ single verdict or commit plan.
 
 ## Multi-repo lane profile (AUTH-07)
 
-When grounding paths span multiple repos (`~/friend`, `~/aimez`, etc.), set
-`lane_type: multi-repo` in `waveset.md`:
+When grounding paths span multiple repos (`~/plugin-home`, `~/product`, etc.),
+set `lane_type: multi-repo` in `waveset.md`:
 
 ```yaml
 lane_type: multi-repo
 repos:
-  - id: pax
+  - id: home
     path: <lane home repo>
     role: lane_home
   - id: product
     path: <product repo>
     role: product
 commit_plan:
-  order: [pax, ...]   # push order for W4 integration
+  order: [home, ...]   # push order for W4 integration
   note: rebase/stash if dirty working tree
 ```
 

@@ -18,7 +18,7 @@ blockers:
   - id: G1-paths
     wave: w2
     evidence_path: findings/PBA-grounding.md
-    summary: Pax evidence paths need absolute/pax@hash roots; BETA lane uncited; height-0 stronger than measured captures
+    summary: Originating product repo evidence paths need root+foreign-pin; beta visitor lane uncited; height-0 stronger than measured captures
   - id: CX-unlock-combo
     wave: w2
     evidence_path: findings/PBA-contradictions.md
@@ -35,8 +35,8 @@ blockers:
 
 ## Lane verdict
 
-**REVISE.** All four lenses agree. The fail mode is real and grounded in pax
-doctrine + RFU/CRE/BETA. The FR is not BUILD-ready until product forks and
+**REVISE.** All four lenses agree. The fail mode is real and grounded in originating product repo
+doctrine + visitor rebuild / product-look / beta visitor lanes. The FR is not BUILD-ready until product forks and
 runnable gates are locked.
 
 Not BLOCK: salvageable via FR edits + `/mod-decide` locks.
@@ -51,7 +51,7 @@ Not BLOCK: salvageable via FR edits + `/mod-decide` locks.
    (prefer DOM/host metrics; screenshot optional). No docs-only BUILD ACCEPT.
 4. **Operable PROC-*** — mechanical detector/fixtures that emit closed fail
    ids (paragraph-tunnel shape).
-5. **Evidence hygiene** — absolute pax paths; cite BETA lane; soften height-0
+5. **Evidence hygiene** — originating product repo paths with foreign pin; cite beta visitor lane; soften height-0
    to collapsed/zero-height class with cited captures.
 6. **Field schema** — `proof_job` / `proof_reference` / `chrome_freeze` /
    `visual_accept` homes, validation, and ACCEPT pass metrics; close opt-out

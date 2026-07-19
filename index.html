@@ -298,7 +298,7 @@
     <section>
       <h2>The right way to invoke each command</h2>
       <p class="lead">One rule governs all commands: read the matched skill in full before acting, never improvise charter, check, decide, layover or rotation steps from memory, even inside a repeat session.</p>
-      <p class="lead" style="margin-top: 0.6rem;">Spec → BUILD order: <code>/mod-check</code> → <code>/mod-decide</code> → <code>/charter</code>. Do not charter BUILD while product forks are still open. Authority sync, scoped verdicts, and <code>/wavves proceed</code> are documented below.</p>
+      <p class="lead" style="margin-top: 0.6rem;">Spec → BUILD order: <code>/mod-check</code> → <code>/mod-decide</code> → <code>/charter</code>. Do not charter BUILD while product forks are still open. Authority sync, scoped verdicts and <code>/wavves proceed</code> are documented below.</p>
 
       <div class="usage-grid">
         <article class="usage-card">
@@ -333,12 +333,12 @@ stay identical.</pre>
 before we write the implementation plan.
 adversarial parallel wave. read-only.
 landing_commit_hash &lt;hash&gt;</pre>
-          <p class="not-this"><strong>Not this:</strong> using it to write the plan, lock product picks, or start the build. It returns <code>GO</code> / <code>REVISE</code> / <code>BLOCK</code> with scoped <code>blocks_w2</code>…<code>blocks_w5</code> and <code>recommended_actions</code> under the lane findings.</p>
+          <p class="not-this"><strong>Not this:</strong> using it to write the plan, lock product picks or start the build. It returns <code>GO</code> / <code>REVISE</code> / <code>BLOCK</code> with scoped <code>blocks_w2</code>…<code>blocks_w5</code> and <code>recommended_actions</code> under the lane findings.</p>
         </article>
 
         <article class="usage-card">
           <h3>/mod-decide</h3>
-          <p class="when">After a check return leaves open product or design calls. Invoke once to start the queue. Mid-queue, just answer the pick — do not re-slash on every decision.</p>
+          <p class="when">After a check return leaves open product or design calls. Invoke once to start the queue. Mid-queue, just answer the pick. Do not re-slash on every decision.</p>
           <pre>/mod-decide navigate open calls from the check
 return. one decision at a time. write
 decisions/*.md. no BUILD until locks are complete.</pre>
@@ -354,12 +354,12 @@ No BUILD yet.</pre>
           <pre>/layover audit ~/my.code-workspace. report
 untracked, unpushed and stashed state per sibling.
 read-only, audit-only.</pre>
-          <p class="not-this"><strong>Not this:</strong> expecting it to start a cloud agent, make cloud multi-root, autoconfigure wavves elsewhere, stage, commit, push or classify anything as safe. One report under <code>wavves/layovers/</code>; you still open the cloud thread and hydrate wavves by hand.</p>
+          <p class="not-this"><strong>Not this:</strong> expecting it to start a cloud agent, make cloud multi-root, autoconfigure wavves elsewhere or stage/commit/push. It never classifies anything as safe. One report under <code>wavves/layovers/</code>; you still open the cloud thread and hydrate wavves by hand.</p>
         </article>
 
         <article class="usage-card">
           <h3>/wavves proceed</h3>
-          <p class="when">After mod-check or mod-decide returns <code>recommended_actions</code>. Executes commit, dispatch, and operator gates in order.</p>
+          <p class="when">After mod-check or mod-decide returns <code>recommended_actions</code>. Executes commit, dispatch and operator gates in order.</p>
           <pre>/wavves proceed as recommended</pre>
           <p class="not-this"><strong>Not this:</strong> using it without a verdict that names the actions, or skipping operator approval gates listed in the block.</p>
         </article>
@@ -369,7 +369,7 @@ read-only, audit-only.</pre>
           <p class="when">Only when the thread is genuinely heavy or you're stepping away, not preemptively.</p>
           <pre>/mod-rotate token velocity is too high. give me
 the one-line paste for a fresh thread.</pre>
-          <p class="not-this"><strong>Not this:</strong> rotating on every small task, or assigning the successor identity yourself. The rotation file assigns <code>O0.R&lt;N+1&gt;</code>, and the new thread verifies claimed commits are reachable from HEAD before trusting them.</p>
+          <p class="not-this"><strong>Not this:</strong> rotating on every small task, or assigning the successor identity yourself. The rotation file assigns <code>O0.R&lt;N+1&gt;</code>. The new thread verifies claimed commits are reachable from HEAD before trusting them.</p>
         </article>
 
         <article class="usage-card">
@@ -408,7 +408,7 @@ captured gates. no deploy without my approval.</pre>
         </article>
         <article class="demo-row">
           <p class="demo-label">layover</p>
-          <pre>/wavves preflight the curl.code-workspace. read-only audit of
+          <pre>/wavves preflight ~/my.code-workspace. read-only audit of
 sibling repos; I will open one cloud agent myself afterward.</pre>
         </article>
         <article class="demo-row">
@@ -460,9 +460,9 @@ one decision at a time. write decisions/*.md. no BUILD yet.</pre>
         <li>Install with <code>/add-plugin wavves</code> or a local copy under <code>~/.cursor/plugins/local/wavves/</code>.</li>
         <li>For spec work: <code>/mod-check</code> → <code>/mod-decide</code> → <code>/charter</code>. Do not BUILD while forks are open.</li>
         <li>Type <code>/wavves</code> plus a plain task description. If the home is missing, bootstrap runs first.</li>
-        <li>After a verdict, <code>/wavves proceed as recommended</code> runs commit, dispatch, and operator gates in order.</li>
+        <li>After a verdict, <code>/wavves proceed as recommended</code> runs commit, dispatch and operator gates in order.</li>
         <li>When the thread gets heavy, <code>/wavves rotate</code> or <code>/mod-rotate</code> and paste the one-liner into a fresh chat.</li>
-        <li>Pair with Cursor <code>/loop</code> for long lanes that need runnable gates instead of chat memory.</li>
+        <li>Pair with Cursor <code>/loop</code> for long lanes that need runnable gates on disk beside the lane home.</li>
       </ol>
     </section>
 

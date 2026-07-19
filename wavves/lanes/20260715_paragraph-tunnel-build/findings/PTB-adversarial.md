@@ -8,7 +8,7 @@
 
 **Hydrated:** `waveset.md`, `decisions/LOCKED-DECISIONS.md`, FR
 `feature-requests/20260715_paragraph-tunnel-gate.md`, PTG-LAND through
-PTG-HASH, APPL-P2-TUNNEL + captures, `evals/run_fixtures.py` + README known
+PTG-HASH, outbound copy lane-P2-TUNNEL + captures, `evals/run_fixtures.py` + README known
 limitation, `skills/wavves/playbooks/check.md`.
 
 ---
@@ -21,7 +21,7 @@ limitation, `skills/wavves/playbooks/check.md`.
 | 2 | Overloading `run_fixtures.py` / lens-wording tripwire with tunnel cases | **BLOCK** |
 | 3 | LLM-only acceptance without mechanical fixtures / checker | **BLOCK** |
 | 4 | Auto-pass after fail-cap (or silent keep / second rewrite) | **BLOCK** |
-| 5 | Fixtures that only cover APPL three-shop happy path (no FIXTURE/STANDIN) | **HIGH** |
+| 5 | Fixtures that only cover outbound copy lane three-shop happy path (no FIXTURE/STANDIN) | **HIGH** |
 
 ---
 
@@ -87,7 +87,7 @@ limitation, `skills/wavves/playbooks/check.md`.
 |---|---|
 | **Severity** | HIGH |
 | **What it looks like** | Single JSON with rewrite + inline "PASS" and freeze note; rewrite agent claims PASS without separate re-adversarial; no sibling checksum / opener-close hash verify. |
-| **Why it fails ACCEPT** | PTG-JUDGE pick A: separate re-adversarial capture + sibling freeze checksum. Same model allowed; **same capture / inline PASS** struck. APPL live pattern: adversarial JSON then rewrite JSON with `re_adversarial` + frozen opener/close — product must keep separation. |
+| **Why it fails ACCEPT** | PTG-JUDGE pick A: separate re-adversarial capture + sibling freeze checksum. Same model allowed; **same capture / inline PASS** struck. outbound copy lane live pattern: adversarial JSON then rewrite JSON with `re_adversarial` + frozen opener/close — product must keep separation. |
 | **W2 mitigation** | Playbook: Gate 1 capture, Gate 2 rewrite capture, mandatory re-adversarial step, freeze checksum on siblings. Document two capture filenames. Checker may assert schema presence of freeze + re-adversarial fields where fixtures cover rewrite path. |
 
 ### 8. Using Claude/Composer for tunnel gates (Grok lock)
@@ -108,7 +108,7 @@ limitation, `skills/wavves/playbooks/check.md`.
 | **Why it fails ACCEPT** | waveset: INT is **SINGLE editor**, **GATED** — wire router only after O0 approval. ACCEPT: mod-check untouched. W2: NEW files preferred. |
 | **W2 mitigation** | W2a–c: new playbook, new checker, new fixture dirs. W2d: FR + evals README only. WIRING note in findings for INT; do not apply router patch in W2. Never open mod-check. |
 
-### 10. Fixtures that only cover APPL three-shop happy path without FIXTURE/STANDIN
+### 10. Fixtures that only cover outbound copy lane three-shop happy path without FIXTURE/STANDIN
 
 | field | content |
 |---|---|
@@ -124,8 +124,8 @@ limitation, `skills/wavves/playbooks/check.md`.
 | # | anti-pattern | severity | ACCEPT failure mode | W2 mitigation |
 |---|--------------|----------|---------------------|---------------|
 | A | Checker that greps prose_lint banned phrases only | MED | Misses wandering-paragraph class (FR problem statement) | Fail_id rules on structure: MULTI, STACK, GLOSS, COMPARE, FIXTURE, STANDIN (never BECAUSE/EXPLAIN) |
-| A2 | Reintroducing PN-BECAUSE / PN-EXPLAIN or failing "nice because" | BLOCK | PTG-NICE-BECAUSE / APPL-NICE-BECAUSE-ALLOWED: struck; operator overturn | Whitelist nice-because in playbook + checker; no BECAUSE/EXPLAIN fixtures-as-fail |
-| B | Freeze that rewrites opener/close "for coherence" | HIGH | PTG-JUDGE sibling freeze; APPL opener/close frozen | Checksum/hash siblings; rewrite tunnel field only |
+| A2 | Reintroducing PN-BECAUSE / PN-EXPLAIN or failing "nice because" | BLOCK | PTG-NICE-BECAUSE / outbound copy lane-NICE-BECAUSE-ALLOWED: struck; operator overturn | Whitelist nice-because in playbook + checker; no BECAUSE/EXPLAIN fixtures-as-fail |
+| B | Freeze that rewrites opener/close "for coherence" | HIGH | PTG-JUDGE sibling freeze; outbound copy lane opener/close frozen | Checksum/hash siblings; rewrite tunnel field only |
 | C | Treating mechanical PASS as proof live Grok judgment matches | MED | Known-limitation class: mechanical ≠ full judgment | Document gap in README; ACCEPT = mechanical + playbook spot-check, not fake replay |
 | D | Default `tunnel_field` omitted / optional on CLEARED-preview outbound | MED | PTG-INVOKE: hard-fail if skipped on CLEARED-preview outbound | Playbook: require named field; hard-fail skip |
 | E | Reopening locked PTG picks in playbook "options" | MED | LOCKED-DECISIONS: do not reopen | State locks as binding; no A/B/C menu in product surface |
@@ -157,7 +157,7 @@ limitation, `skills/wavves/playbooks/check.md`.
 - Single capture for rewrite+judge+freeze
 - Claude/Composer for tunnel gates
 - Self-embed landing commit hash in landing artifact
-- Happy-path-only APPL three-shop fixtures
+- Happy-path-only outbound copy lane three-shop fixtures
 
 ---
 

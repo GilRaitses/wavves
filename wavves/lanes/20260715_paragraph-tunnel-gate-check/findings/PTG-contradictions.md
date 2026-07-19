@@ -37,7 +37,7 @@ Named internal / phase-boundary conflicts only. No grounding or completeness inv
 | Charter adversarial timing | `skills/charter/SKILL.md` model table: `adversarial gate … run after build artifacts exist` |
 | Charter gate semantics | `skills/charter/EXECUTION_WIRING.md` + charter workflow step 11: runnable adversarial/**acceptance** harnesses → `gate-captures/` for wave evidence |
 
-**Why it matters:** Reusing the word “adversarial” and `gate-captures/` from APPL evidence does not make the tunnel a charter wave gate. Extending charter templates for mid-render outbound rewrite would mutate charter purpose (build/accept evidence) into copy remediation.
+**Why it matters:** Reusing the word “adversarial” and `gate-captures/` from outbound copy lane evidence does not make the tunnel a charter wave gate. Extending charter templates for mid-render outbound rewrite would mutate charter purpose (build/accept evidence) into copy remediation.
 
 **Severity:** REVISE — drop “charter gate templates” from product surface unless the FR means “future chartered **build** of the skill installs templates,” not “runtime = charter adversarial step.”
 
@@ -62,14 +62,14 @@ Named internal / phase-boundary conflicts only. No grounding or completeness inv
 
 ## C4 — “Reusable for any paragraph” vs copy-adjacent closed vocab + storefront PASS rule
 
-**Conflict:** Pattern claims general paragraph/field reuse; default fail ids and PASS criteria are outbound storefront-copy semantics (APPL P2 lifted to `PN-*`).
+**Conflict:** Pattern claims general paragraph/field reuse; default fail ids and PASS criteria are outbound storefront-copy semantics (outbound copy lane P2 lifted to `PN-*`).
 
 | General claim | Copy-bound claim |
 |---|---|
 | FR: `Add a reusable **paragraph tunnel** pattern` | FR vocab header: `Default fail vocabulary (copy-adjacent; lane may extend)` |
 | FR: `attack only a named paragraph / field` | `PN-EXPLAIN` … `nice / interesting / a fit`; `PN-COMPARE` … `other types or destinations`; `PN-FIXTURE` … `Fixture inventory` |
 | Default field: `body paragraph 2` | PASS: `one concrete fact the recipient would recognize` |
-| Worked example + problem = APPL storefront P2 | Evidence `APPL-P2-TUNNEL.md`: shop/owner/cold-email PASS rule |
+| Worked example + problem = outbound copy lane storefront P2 | Evidence `outbound copy lane-P2-TUNNEL.md`: shop/owner/cold-email PASS rule |
 
 **Why it matters:** A lane that “extends” vocab cannot clear a default PASS rule that assumes a human recipient recognizing a place fact. Either the feature is **outbound-copy-scoped** (vocabulary + PASS are domain-bound) or the defaults must be **mechanism-only** (scoped field, freeze siblings, loop cap, capture names) with domain vocab supplied per lane. As written, both claims stand.
 
@@ -84,7 +84,7 @@ Named internal / phase-boundary conflicts only. No grounding or completeness inv
 | Surface | Meaning of “adversarial” |
 |---|---|
 | `skills/mod-check/SKILL.md` W1d | Read-only findings lens on a written artifact; no rewrite of production copy |
-| FR §Feature sketch + APPL-P2-TUNNEL | Attack named paragraph; on FAIL, rewrite that paragraph; capture JSON; loop cap 1 |
+| FR §Feature sketch + outbound copy lane-P2-TUNNEL | Attack named paragraph; on FAIL, rewrite that paragraph; capture JSON; loop cap 1 |
 | Option B | Literally extends “mod-check adversarial lens” |
 
 **Why it matters:** Without distinct naming (`paragraph-tunnel` / `copy-tunnel` vs `mod-check` adversarial), implementers can wire the tunnel into check lanes or treat check lenses as rewrite authorities.

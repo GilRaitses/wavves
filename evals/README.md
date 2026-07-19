@@ -66,7 +66,7 @@ LLM call, no other repo state mutated.
 
 `evals/check_public_copy.py` checks universal outbound prose rules (AFFIRM,
 DASH, FILLER, OXFORD, NO_LONGER; LEAD length as review). It does not include
-project-specific rules from the separate `prose-gates` repo (pax naming,
+project-specific rules from the separate `prose-gates` repo (internal naming,
 internal tokens, colon ban on full UI pages). See `docs/public-copy-gates.md`.
 
 ```bash

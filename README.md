@@ -33,7 +33,7 @@ The core ideas:
   contract, a rotations directory, a registry, a step log), never from
   transcripts.
 - **Authority propagation.** After mod-decide, locks sync to `waveset.md`,
-  `dispatch-w{N}.md`, and the registry so W2+ runners do not re-litigate
+  `dispatch-w{N}.md` and the registry so W2+ runners do not re-litigate
   settled decisions. Scoped mod-check verdicts (`blocks_w2`…`blocks_w5`) and
   `/wavves proceed` execute ordered recommended actions.
 
@@ -132,8 +132,8 @@ spec check:        /mod-check review docs/superpowers/specs/2026-07-08-example.m
                    wave. read-only. landing_commit_hash <hash>.
 decide:            /mod-decide navigate open calls from the check return.
                    one decision at a time. write decisions/*.md. no BUILD yet.
-                   Mid-queue: answer Pick: … only — do not re-slash each time.
-layover:           /wavves preflight the curl.code-workspace. read-only audit;
+                   Mid-queue: answer Pick: … only. Do not re-slash each time.
+layover:           /wavves preflight ~/my.code-workspace. read-only audit;
                    I will open one cloud agent myself afterward.
 rotate:            /wavves rotate this thread. write a handoff for active lanes.
 pickup:            /wavves hydrate from the rotation paste and tell me what's active.
@@ -164,7 +164,7 @@ worked examples: [examples/usage.md](examples/usage.md).
    spec or plan and returns a scoped verdict (`GO` / `REVISE` / `BLOCK`,
    `blocks_w2`…`blocks_w5`) with `recommended_actions`.
 5. **`/mod-decide`** walks open product/design calls one at a time, writes
-   `decisions/*.md`, syncs authority surfaces on completion, and emits a
+   `decisions/*.md`, syncs authority surfaces on completion and emits a
    Locked decisions paste for BUILD.
 6. **`/layover`** reads a bespoke multi-root `.code-workspace` file (or an
    explicit folder list) and writes a read-only audit of every sibling
@@ -178,7 +178,7 @@ worked examples: [examples/usage.md](examples/usage.md).
 (commit, dispatch, operator gates).
 
 `/wavves` pairs well with Cursor's `/loop` for long lanes with captured gates
-instead of chat memory.
+on disk beside the lane home.
 
 ## Project layout
 
@@ -279,7 +279,7 @@ OXFORD, NO_LONGER). wavves story rules are manual (`docs/purpose-gates.md`).
 python3 evals/check_public_copy.py
 ```
 
-See `docs/public-copy-gates.md`. Project-specific rules (pax naming, internal
+See `docs/public-copy-gates.md`. Project-specific rules (internal naming
 tokens, colon ban on full UI pages) stay in the separate `prose-gates` repo.
 
 ## Self-improvement loop
@@ -330,8 +330,8 @@ hard-coded paths from any particular project.
 
 ## Read more
 
-- [docs/public-copy-gates.md](docs/public-copy-gates.md) — universal mechanical rules (`evals/check_public_copy.py`)
-- [docs/purpose-gates.md](docs/purpose-gates.md) — wavves story fidelity (manual)
+- [docs/public-copy-gates.md](docs/public-copy-gates.md): universal mechanical rules (`evals/check_public_copy.py`)
+- [docs/purpose-gates.md](docs/purpose-gates.md): wavves story fidelity (manual)
 
 The launch article and companion whitepaper are omitted here until public URLs
 exist.

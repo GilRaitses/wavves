@@ -5,7 +5,7 @@
 - **Lens:** completeness (missing AC, unowned edges, silent assumptions, rollback / non-goals, open calls BUILD needs)
 - **Artifact:** `feature-requests/20260715_paragraph-tunnel-gate.md`
 - **repo_state_verified_against:** `f2fb8ce144b68d820b0992f5075a2cbbf44673d2` (wavves_build `main`)
-- **Evidence read:** pax `APPL-P2-TUNNEL.md`, `gate-captures/APPL-p2-adversarial.json`, `APPL-p2-rewrite.json`; wavves surfaces `skills/mod-check/SKILL.md`, `skills/mod-decide/SKILL.md`, `skills/charter/SKILL.md`, `skills/charter/EXECUTION_WIRING.md`, `evals/README.md`, `docs/purpose-gates.md`, `docs/public-copy-gates.md`, `feature-requests/README.md`, `skills/wavves/playbooks/`
+- **Evidence read:** outbound copy lane P2-TUNNEL decision, gate-captures p2-adversarial and p2-rewrite JSON; wavves surfaces `skills/mod-check/SKILL.md`, `skills/mod-decide/SKILL.md`, `skills/charter/SKILL.md`, `skills/charter/EXECUTION_WIRING.md`, `evals/README.md`, `docs/purpose-gates.md`, `docs/public-copy-gates.md`, `feature-requests/README.md`, `skills/wavves/playbooks/`
 - **model_enforcement:** Grok only (cursor-grok-4.5-high-fast)
 - **statement:** read-only; no git; no code edits outside this findings file
 
@@ -27,9 +27,9 @@ FR is strong enough for `/mod-decide` on landing shape, but incomplete as a BUIL
 
 ### G-INVOKE — Who invokes, when, on what STEPS surface
 
-**What is missing:** Sketch says “invoked from dispatch STEPS” (option A) without: which template family (outbound ASP/APPL-style vs any render lane), which role runs the gate (dispatch runner vs O0), whether tunnel is mandatory before CLEARED preview or opt-in per charter Step, and how a lane names the tunneled field (default p2 vs arbitrary field path).
+**What is missing:** Sketch says "invoked from dispatch STEPS" (option A) without: which template family (outbound ASP/outbound-copy-style vs any render lane), which role runs the gate (dispatch runner vs O0), whether tunnel is mandatory before CLEARED preview or opt-in per charter Step, and how a lane names the tunneled field (default p2 vs arbitrary field path).
 
-**Blocks plan?** Yes for BUILD wiring. Silent assumption today: every consumer has a “render → preview” mid-pipeline like APPL.
+**Blocks plan?** Yes for BUILD wiring. Silent assumption today: every consumer has a "render → preview" mid-pipeline like outbound copy.
 
 ---
 
@@ -43,16 +43,16 @@ FR is strong enough for `/mod-decide` on landing shape, but incomplete as a BUIL
 
 ### G-EVAL — Eval fixture structure underspecified vs repo `evals/`
 
-**What is missing:** Acceptance sketch item 1 says “stacked / gloss / compare FAIL; one-fact PASS” but does not own:
+**What is missing:** Acceptance sketch item 1 says "stacked / gloss / compare FAIL; one-fact PASS" but does not own:
 
 - home (`evals/fixtures/<case>/` vs lane-local vs skill-adjacent)
-- layout (`input.md` + `expected.md` like current corpus, or JSON captures like APPL)
+- layout (`input.md` + `expected.md` like current corpus, or JSON captures like outbound copy)
 - pass metric / runnable command (contrast `python3 evals/run_fixtures.py`, which is lens-wording tripwire only, not LLM judgment)
 - whether tunnel evals need a real replay harness (evals/README already calls this a known gap for mod-check fixtures)
 
-APPL captures prove a JSON shape that works; FR does not freeze that schema as the product fixture contract.
+Outbound copy captures prove a JSON shape that works; FR does not freeze that schema as the product fixture contract.
 
-**Blocks plan?** Yes for acceptance wave. Non-blocking for check→decide if listed as open call “fixture home + schema.”
+**Blocks plan?** Yes for acceptance wave. Non-blocking for check→decide if listed as open call "fixture home + schema."
 
 ---
 
@@ -62,11 +62,11 @@ APPL captures prove a JSON shape that works; FR does not freeze that schema as t
 
 | missing AC | why it matters |
 |---|---|
-| Re-adversarial after rewrite is mandatory | APPL does it (`re_adversarial`); FR loop cap 1 implies rewrite then stop without naming re-check PASS |
-| Sibling-freeze verify method | “without touching frozen siblings” has no hash/diff/capture field |
+| Re-adversarial after rewrite is mandatory | Outbound copy does it (`re_adversarial`); FR loop cap 1 implies rewrite then stop without naming re-check PASS |
+| Sibling-freeze verify method | "without touching frozen siblings" has no hash/diff/capture field |
 | Capture required before CLEARED/preview | Order stated; hard fail if capture absent not stated |
-| Closed vocabulary as allow-list | “lane may extend” with no merge/version rule |
-| PN-* vs evidence P2-* id mapping | Product renames P2→PN; no compat/migration note for consumers reading APPL captures |
+| Closed vocabulary as allow-list | "lane may extend" with no merge/version rule |
+| PN-* vs evidence P2-* id mapping | Product renames P2→PN; no compat/migration note for consumers reading outbound copy captures |
 
 **Blocks plan?** Partially. Re-adversarial + freeze verify + capture-hard-fail should be AC before BUILD; id rename is non-blocking documentation.
 
@@ -82,7 +82,7 @@ APPL captures prove a JSON shape that works; FR does not freeze that schema as t
 
 ### G-ROLLBACK — No disable / rollback surface
 
-**What is missing:** No way to turn the tunnel off per lane, no “ship bad skill → remove STEPS line / proposed→withdrawn” rollback, no non-goal that tunnel failure must not auto-send (auto-send is non-goal; disable path is not). Non-goals list three items only.
+**What is missing:** No way to turn the tunnel off per lane, no "ship bad skill → remove STEPS line / proposed→withdrawn" rollback, no non-goal that tunnel failure must not auto-send (auto-send is non-goal; disable path is not). Non-goals list three items only.
 
 **Blocks plan?** Soft-block for charter escalation text. Non-blocking for mod-decide if added as decide call or FR patch under Non-goals / Rollback.
 
@@ -90,16 +90,16 @@ APPL captures prove a JSON shape that works; FR does not freeze that schema as t
 
 ### G-GATE-FAMILY — Relation to prose_lint / purpose-gates / public-copy-gates incomplete
 
-**What is present:** Order “after render, before prose_lint / ASP-F-style preview”; non-goal “not replacing” those three.
+**What is present:** Order "after render, before prose_lint / ASP-F-style preview"; non-goal "not replacing" those three.
 
 **What is missing (positive contract):**
 
 - Whether tunnel PASS still requires `check_public_copy.py` / purpose-gates / project `prose_lint` (assume yes; not written)
 - Overlap risk: purpose-gates PG2 rewards causal multi-sentence synthesis on marketing surfaces; tunnel PN-MULTI/PN-STACK punish multi-claim paragraphs on outbound email — scope boundary (email body field vs landing/README) not stated
 - `prose_lint` / `check_gates` are not first-class wavves_build skills; they are consumer-lane tools. FR treats them as ambient without citing install path
-- ASP-F is APPL-specific; “ASP-F-style preview” has no generic wavves name/owner
+- ASP-F is outbound-copy-specific; "ASP-F-style preview" has no generic wavves name/owner
 
-**Blocks plan?** Yes for correct integration narrative. Does not block check if elevated to open call “gate-family matrix.”
+**Blocks plan?** Yes for correct integration narrative. Does not block check if elevated to open call "gate-family matrix."
 
 ---
 
@@ -110,7 +110,7 @@ FR explicitly opens landing (A/B/C). Completeness requires these additional deci
 1. **Landing** — A, C, or A+C (B alone already rejected in prose)
 2. **Invoker contract** — who / when / field selector
 3. **Model tiers** — adversarial vs rewrite (likely both high-reasoning)
-4. **Eval home + schema** — freeze APPL-like JSON vs `evals/fixtures` markdown pair; name pass command
+4. **Eval home + schema** — freeze outbound-copy-like JSON vs `evals/fixtures` markdown pair; name pass command
 5. **Fail-after-cap policy** — escalate vs block preview
 6. **Gate-family matrix** — tunnel ⊅ replace lint/purpose/public-copy; scope = named outbound field only
 7. **Skill lifecycle** — if A: proposed → moderator → operator → accepted path owned (wavves-init); FR never mentions promotion
@@ -157,7 +157,7 @@ Absent:
 - Remediation loop cap stated (value 1)
 - Capture naming pattern `<CODE>-pN-adversarial|rewrite.json`
 - Order relative to prose_lint / preview (directionally)
-- Worked example grounded in live APPL captures
+- Worked example grounded in live outbound copy captures
 - Explicit deferral of landing to `/mod-decide`
 - Ship path: chartered lane + operator accept; no install from feature-requests/
 - Thin non-goals skeleton exists
@@ -169,7 +169,7 @@ Absent:
 1. Lock landing (A / C / A+C) before BUILD; keep B-alone rejected.
 2. Own invoker: who, when, field selector, mandatory vs opt-in.
 3. Bind model tiers for adversarial + rewrite; note dual-call cost.
-4. Freeze eval home/schema/pass metric; do not treat APPL narrative table as the fixture corpus.
+4. Freeze eval home/schema/pass metric; do not treat outbound copy narrative table as the fixture corpus.
 5. Add AC: re-adversarial after rewrite, sibling-freeze verify, capture-before-preview hard fail, fail-after-cap escalate.
 6. Write gate-family matrix vs prose_lint / purpose-gates / public-copy-gates (complement, scoped field).
 7. Add rollback/disable + skill-promotion path if option A.

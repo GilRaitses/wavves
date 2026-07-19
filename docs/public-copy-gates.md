@@ -11,11 +11,23 @@ wavves-specific **purpose** gates (capture story, moderator framing) live in
 
 | ID | Rule |
 |---|---|
-| AFFIRM | No `rather than` or `instead of` |
+| AFFIRM | No contrast hedges in the AFFIRM class (see fenced list below) |
 | DASH | No em dash, en dash or spaced double hyphen in prose |
-| FILLER | No smug/filler devices (`actually`, `perhaps`, `it's not just`, …) |
-| OXFORD | No serial comma; no `, and` between clauses. Comma before `while` is allowed |
-| NO_LONGER | No `no longer` |
+| FILLER | No smug/filler devices (see fenced list below) |
+| OXFORD | No serial comma; no clause joiners of the OXFORD class (see fence) |
+| NO_LONGER | No banned tense hedge of the NO_LONGER class (see fence) |
+
+Banned substrings (fenced so this doc does not trip the checker):
+
+```
+rather than
+instead of
+actually
+perhaps
+it's not just
+no longer
+, and
+```
 
 ## Automated review (warn)
 
@@ -25,20 +37,18 @@ wavves-specific **purpose** gates (capture story, moderator framing) live in
 
 ## Not included (project-specific)
 
-These live in the separate `prose-gates` repo for aimez surfaces and are
+These live in the separate `prose-gates` repo for publisher surfaces and are
 **not** run by the plugin checker:
 
-- Lowercase `pax` / `magniphyq` naming (NAME)
-- Internal token leakage (`O0`, `Central Casting`, …)
+- Lowercase internal product-repo naming (NAME)
+- Internal token leakage (moderator identity tokens, private exhibit names)
 - Colon ban on full HTML UI pages (too many structural false positives)
 - Application/resume artifact presets
 
 ## Remedies (OXFORD)
 
-| Violation | Fix |
-|---|---|
-| `, X, and Y` | `, X and Y` |
-| `, and` between clauses | `, while` when subordinate, or split into two sentences |
+Split the list or drop the serial comma. Prefer two sentences when a clause
+joiner would otherwise trip OXFORD.
 
 ## Usage
 
@@ -52,5 +62,5 @@ python3 evals/check_public_copy.py --fix index.html
 
 Default scan (no paths): `index.html`, `README.md`, `docs/`, `examples/`.
 
-Purpose gates (PG1–PG11) are still read aloud before shipping hero or article
-copy. The script does not judge synthesis or ontology.
+Purpose gates (PG1 through PG11) are still read aloud before shipping hero or
+article copy. The script does not judge synthesis or ontology.

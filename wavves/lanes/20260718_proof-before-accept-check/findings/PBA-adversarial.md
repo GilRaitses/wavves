@@ -13,7 +13,7 @@ git_actions: none
 
 **REVISE**
 
-The FR names a real failure mode (RFU-ACCEPT process green while Proof unset).
+The FR names a real failure mode (visitor rebuild lane ACCEPT process green while Proof unset).
 As written, BUILD can ship the pattern and still leave `PROC-PASS-NO-PROOF`
 open: ACCEPT criteria are process-shaped, the visual gate is not runnable,
 PROC-* ids have no detector, and product-lane defaults allow opt-out.
@@ -37,11 +37,11 @@ FR Acceptance (BUILD in wavves_build) requires:
 None of those measure a felt Proof. A BUILD ACCEPT can green on charter
 prose + fixture files + instruction text while no screenshot harness, no
 DOM height check, and no closed fail-id detector exist. That is the same
-shape as RFU-ACCEPT (`gate-captures/RFU-ACCEPT.json`: LAND-C, honesty,
+shape as visitor rebuild lane ACCEPT (LAND-C, honesty,
 e2e shell PASS; Proof job not among gates).
 
-**Evidence:** FR §Acceptance items 1–4; RFU-ACCEPT.json `gates` object
-(no `proof_job` / visual-vs-reference); pax doctrine `accept_bar.required`
+**Evidence:** FR §Acceptance items 1–4; visitor rebuild ACCEPT capture `gates` object
+(no `proof_job` / visual-vs-reference); originating product repo doctrine `accept_bar.required`
 includes `proof_job_visible` and `visual_screenshot_vs_reference_class`,
 `insufficient_alone` includes `shell_mounts` and `e2e_land_c_only`.
 
@@ -138,8 +138,8 @@ B (or explicitly lock "B deferred" with a named residual fail id).
 **Class:** works on happy path only  
 **Severity:** blocking
 
-RFU-ACCEPT already PASSed honesty labels, shell e2e, and LAND-C while the
-operator reported empty product (height-0 map until klosr `c76e19b`). A gate
+Visitor rebuild lane ACCEPT already PASSed honesty labels, shell e2e, and LAND-C while the
+operator reported empty product (collapsed map host until visitor product foreign pin). A gate
 that only checks "named DOM proof markers present" or "honesty copy
 present" can green the same empty shell. Doctrine lists
 `honesty_toggle_copy_without_proof_job` under `insufficient_alone`.
@@ -190,17 +190,17 @@ Without editing that sentence, implementers may keep proof-bar optional.
 **Revise ask:** Explicit skill patch: proof-bar is default for
 visitor/product artifacts; research/check lanes remain four-lens.
 
-### FM-9 — Map-specific blank-canvas wording overfits klosr
+### FM-9 — Map-specific blank-canvas wording overfits visitor product
 
 **Severity:** non-blocking
 
 PROC-BLANK-CANVAS cites "map host height 0 or empty canvas / black-canvas
-class". wavves_build ships skills/playbooks, not MapLibre. A wavves-native
+class". wavves_build ships skills/playbooks, not a map runtime. A wavves-native
 BUILD may stub the id as N/A and never generalize to "primary product host
 empty while chrome PASS."
 
 **Revise ask:** Generalize the fail condition to primary product host /
-proof surface; keep map height as one example binding for pax/klosr lanes.
+proof surface; keep map host height as one example binding for originating product repo visitor lanes.
 
 ### FM-10 — No debt/`blocked_on` seam in wavves_build
 
@@ -212,7 +212,7 @@ wavves ACCEPT templates have no residual schema. Without that seam the id
 is slogan-only in this repo.
 
 **Revise ask:** Either add residual `blocked_on` to charter ACCEPT
-template, or scope PROC-DEBT-AS-DONE as pax-lane playbook guidance, not a
+template, or scope PROC-DEBT-AS-DONE as originating-product-repo lane playbook guidance, not a
 wavves_build mechanical ACCEPT id.
 
 ### FM-11 — Relationship to existing visual-verification rule unstated
@@ -256,7 +256,7 @@ ids + hard defaults, C+D+B still ships process-PASS.
 
 ## Out of scope for this lens
 
-- Grounding of pax paths (W1a)
+- Grounding of originating product repo paths (W1a)
 - Internal FR contradictions (W1b)
 - Completeness / missing edges inventory (W1c)
 - Implementation plan or code

@@ -58,8 +58,9 @@ active:
     note: >-
       W1+W2+INT+ACCEPT complete. Mechanical checker 4/4 PASS
       (gate-captures/PBB-ACCEPT.md). Skill wiring applied. No /proof-gate.
-      Originating-mod ack 538437c: keep shipped; product-look = VPB (pax);
-      follow-on lane PHF chartered for probe + playbook harden.
+      Originating-mod ack 538437c: keep shipped; product-look = product-look lane
+      (originating product repo); follow-on lane PHF chartered for probe +
+      playbook harden.
   PHF:
     label: proof-host-followon
     home: lanes/20260718_proof-host-followon/
@@ -76,7 +77,7 @@ active:
     note: >-
       ACCEPT PASS. skills/charter/scripts/proof_host_probe.py live (self-check
       EXIT 0). Rule 2b wired. visual_accept:yes hardened. Live URL bind still
-      lane-time. Product-look remains VPB. PBB not reopened.
+      lane-time. Product-look remains in product-look lane. PBB not reopened.
   LAYOVER:
     label: layover-preflight
     home: lanes/20260709_layover-preflight/
@@ -90,8 +91,8 @@ active:
       Root cause: a Cursor cloud agent attaches per-repo to a pushed remote
       and cannot open a local multi-root workspace, so nothing today tells
       the operator what local-only state (measured on the real curl.code-
-      workspace at design time: 101/17/56/131 untracked files across pax,
-      aimez, MAT761, PHY600) a cloud agent would miss on takeover. Audit-only
+      workspace at design time: 101/17/56/131 untracked files across sibling
+      course repos and the originating product repo) a cloud agent would miss on takeover. Audit-only
       end state; no staging, hydration-file writes or handoff mechanics in
       this lane. Wave split: W1 nails exact git command set + SKILL.md
       insertion format (discovery, read-only), W2 writes the new skill,

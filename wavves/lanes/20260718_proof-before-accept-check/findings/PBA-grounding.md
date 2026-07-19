@@ -8,7 +8,7 @@ model: cursor-grok-4.5-high-fast
 artifact: feature-requests/20260718_proof-before-accept.md
 check_lane: wavves/lanes/20260718_proof-before-accept-check/
 wavves_build_asserted_head: af0c0788cb2dbb865cbce6721fcdcbf6642b11d4
-pax_evidence_hash_in_fr: b083b5a76e580265ab3ebabaeb1df1053dc8a565
+originating_product_repo_evidence_hash_in_fr: foreign pin
 git_actions: none (git ban)
 ```
 
@@ -16,7 +16,7 @@ git_actions: none (git ban)
 
 **REVISE**
 
-Core fail mode is grounded in pax doctrine + RFU/CRE/BETA ACCEPT packets.
+Core fail mode is grounded in originating product repo doctrine + visitor rebuild / product-look / beta visitor lane ACCEPT packets.
 Named citation and measurement gaps should be fixed before BUILD treats the
 FR evidence block as complete. Not BLOCK: no false landing path inside
 wavves_build for the proposed surfaces, and the process-PASS story matches
@@ -24,60 +24,63 @@ captured gates.
 
 ## What grounds cleanly
 
+Evidence cited in the FR was verified in the originating product repo at check time.
+Absolute paths are redacted here for public tip hygiene.
+
 | claim | evidence | match |
 |---|---|---|
-| Doctrine exists and ratifies Proof-then-consume | `/Users/gilraitses/pax/.ddb/decisions/pax_multi_surface_proof_then_consume_doctrine_v1_20260718.yaml` (`status: ratified`, `repo_state_verified_against: b083b5a…`) | YES |
-| FR `evidence_verified_against` matches doctrine hash | FR line + doctrine `repo_state_verified_against` both `b083b5a76e580265ab3ebabaeb1df1053dc8a565` | YES |
-| RFU lane home present | `/Users/gilraitses/pax/wavves/lanes/20260718_route-first-ux/` | YES |
-| CRE lane home present | `/Users/gilraitses/pax/wavves/lanes/20260715_comfort-route-explorer/` | YES |
-| RFU ACCEPT PASS on process/shell gates, not visual proof class | `…/RFU/gate-captures/RFU-ACCEPT.json` gates: F1, F2, phone_IA, LAND_C, ComfortViewer_off, honesty; no screenshot-vs-reference | YES |
-| Post-ACCEPT map-height hotfix `c76e19b` | RFU `waveset.md` L84–86; RFU `README.md` L18–19; doctrine `blank_map_hotfix`; step-log note | YES |
-| CRE ACCEPT closes with residuals as debt notes | `…/CRE/gate-captures/CRE-ACCEPT.json` `PASS-WITH-RESIDUALS` + residual list | YES |
-| BETA W4 shipped alts + shade forks | `…/beta-visitor-interact/findings/BETA-W4-BUILD-RECONCILE.md` (W4e: `routeAlternates.ts` + `shadeForkMarkers.ts`); files exist under klosr `app/beta/` | YES |
+| Doctrine exists and ratifies Proof-then-consume | originating product repo multi-surface proof doctrine yaml (`status: ratified`, foreign pin) | YES |
+| FR `evidence_verified_against` matches doctrine hash | FR line + doctrine `repo_state_verified_against` both foreign pin | YES |
+| Visitor rebuild lane home present | originating product repo visitor rebuild lane home | YES |
+| Product-look lane home present | originating product repo product-look lane home | YES |
+| Visitor rebuild ACCEPT PASS on process/shell gates, not visual proof class | visitor rebuild ACCEPT capture gates: F1, F2, phone_IA, LAND_C, ComfortViewer_off, honesty; no screenshot-vs-reference | YES |
+| Post-ACCEPT map-host hotfix | visitor rebuild waveset post-ACCEPT hotfix note; doctrine `blank_map_hotfix`; step-log note | YES |
+| Product-look ACCEPT closes with residuals as debt notes | product-look ACCEPT capture `PASS-WITH-RESIDUALS` + residual list | YES |
+| Beta visitor lane W4 shipped route alternatives + fork markers | beta visitor lane W4 reconcile finding (route alternatives + fork marker modules); files exist under visitor product beta app path | YES |
 | Proposed wavves landing paths exist as directories / siblings | `skills/mod-check/SKILL.md`, `skills/mod-decide/SKILL.md`, `skills/charter/{SKILL.md,EXECUTION_WIRING.md}`, `evals/fixtures/`, `skills/wavves/playbooks/`, `docs/purpose-gates.md`, `feature-requests/README.md` | YES |
 | mod-check today has four default lenses; fifth is special-cased | `skills/mod-check/SKILL.md` L72–84 | YES (Option B is a proposal to change that) |
 | Non-goal boundary file exists | `docs/purpose-gates.md` (public-copy purpose gates, not ACCEPT process) | YES |
 
 ## Named gaps
 
-### G1 — Source evidence paths omit absolute repo root (blocking)
+### G1 — Source evidence paths omit repo root (blocking)
 
-**Claim:** Source evidence lists `.ddb/decisions/…` and `wavves/lanes/20260718_route-first-ux/` / `20260715_comfort-route-explorer/` under a `(pax)` label.
+**Claim:** Source evidence lists doctrine yaml and visitor rebuild / product-look lane homes under an originating-product-repo label.
 
-**Evidence:** Those paths resolve under `/Users/gilraitses/pax/`. They do **not** exist under `/Users/gilraitses/wavves_build/` (no `.ddb/`; no RFU/CRE lane homes in this repo's `wavves/lanes/`).
+**Evidence:** Those paths resolve in the originating product repo. They do **not** exist under `<repo-root>/` (no matching doctrine tree; no visitor rebuild / product-look lane homes in this repo's `wavves/lanes/`).
 
-**Gap:** Cross-repo FR in wavves_build cites pax-relative paths without an absolute or `pax@b083b5a:` prefix. Hydration from the FR's product repo alone fails.
+**Gap:** Cross-repo FR in wavves_build cites originating-product-repo-relative paths without an explicit root + hash prefix. Hydration from the FR's product repo alone fails.
 
-**Blocking:** yes — revise Source evidence to absolute paths (or explicit `pax` root + hash) for every cited file/lane.
+**Blocking:** yes — revise Source evidence to name originating product repo root + foreign pin for every cited file/lane (absolute paths redacted in public tip).
 
-### G2 — BETA lane home not cited (blocking)
+### G2 — Beta visitor lane home not cited (blocking)
 
-**Claim:** Source evidence and Problem cite "BETA W4 intent (alts + shade forks)" and chrome rebuild chain BETA → CRE → RFU.
+**Claim:** Source evidence and Problem cite "beta visitor lane W4 intent (route alternatives + fork markers)" and chrome rebuild chain beta visitor → product-look → visitor rebuild.
 
-**Evidence:** BETA home is `/Users/gilraitses/pax/wavves/lanes/20260715_beta-visitor-interact/` (present). FR Source evidence names RFU + CRE only; BETA is prose-only.
+**Evidence:** Beta visitor lane home is present in originating product repo. FR Source evidence names visitor rebuild + product-look only; beta visitor lane is prose-only.
 
 **Gap:** Missing cited seam for a named actor in the failure chain.
 
-**Blocking:** yes — add BETA lane path (and preferably `gate-captures/BETA-ACCEPT.json` + W4 reconcile).
+**Blocking:** yes — add beta visitor lane path (and preferably ACCEPT capture + W4 reconcile).
 
 ### G3 — "height-0" is stronger than cited measurements (blocking)
 
-**Claim:** Symptom 3: "height-0 map that still left chrome PASS"; Source line ties empty /beta feel to hotfix `c76e19b`.
+**Claim:** Symptom 3: "height-0 map that still left chrome PASS"; Source line ties empty /beta feel to visitor product hotfix foreign pin.
 
 **Evidence:**
-- RFU ACCEPT certifies klosr `651f25d` with no map-host height gate (`RFU-ACCEPT.json`).
-- RFU `waveset.md` records post-ACCEPT hotfix `c76e19b` for **collapsed** MapLibre host height (not a measured `clientHeight: 0` in that packet).
-- Later PRP capture at `c76e19b` measures healthy host (`PRP-W1-GATE.json` `map_host_clientHeight: 711`), and PRP fail vocabulary uses `clientHeight ≤ 0` as a class (`PRP-W1c-accept-bar.md`).
+- Visitor rebuild ACCEPT certifies visitor product foreign pin with no map-host height gate (visitor rebuild ACCEPT capture).
+- Visitor rebuild waveset records post-ACCEPT hotfix foreign pin for **collapsed** map host height (not a measured `clientHeight: 0` in that packet).
+- Later product-look lane capture at hotfix foreign pin measures healthy host (`map_host_clientHeight: 711`), and product-look fail vocabulary uses `clientHeight ≤ 0` as a class.
 
 **Gap:** Numeric "height-0" is not transcribed from a cited pre-hotfix capture. Timeline (ACCEPT PASS, then height hotfix) is grounded; the zero measurement is not.
 
-**Blocking:** yes — soften to "collapsed / zero-height class" and cite RFU waveset + PRP fail bar, or add a capture that measured height ≤ 0.
+**Blocking:** yes — soften to "collapsed / zero-height class" and cite visitor rebuild waveset + product-look fail bar, or add a capture that measured height ≤ 0.
 
-### G4 — Doctrine seams under-cited for alts/shade/ACCEPT (non-blocking)
+### G4 — Doctrine seams under-cited for route alternatives / fork markers / ACCEPT (non-blocking)
 
-**Claim:** Alts + shade forks vs process gates; RFU ACCEPT PASS while product felt empty.
+**Claim:** Route alternatives + fork markers vs process gates; visitor rebuild ACCEPT PASS while product felt empty.
 
-**Evidence doctrine lists:** `RFU-ACCEPT.json`, `klosr/app/beta/shadeForkMarkers.ts`, `klosr/app/beta/routeAlternates.ts`. FR cites lane folders only.
+**Evidence doctrine lists:** visitor rebuild ACCEPT capture, visitor product beta fork marker module, route alternatives module. FR cites lane folders only.
 
 **Gap:** Missing cited seams that already exist and directly support the claim.
 
@@ -138,7 +141,7 @@ captured gates.
 
 ## Optional stronger citation (not required to pass grounding)
 
-`/Users/gilraitses/pax/wavves/lanes/20260718_visitor-route-proof/` (`PRP-W1-GATE.json`) already records `process_pass_insufficient` / `G7_rfu_process_not_proof1` against the same doctrine hash. FR does not cite it; adding it would tighten the "felt empty after process PASS" claim without changing the proposal.
+Product-look lane gate capture in originating product repo already records `process_pass_insufficient` against the same doctrine hash. FR does not cite it; adding it would tighten the "felt empty after process PASS" claim without changing the proposal.
 
 ## Blocking count
 
@@ -146,10 +149,10 @@ captured gates.
 
 ## Recommended FR edits (grounding only)
 
-1. Prefix every Source evidence path with `/Users/gilraitses/pax/` (or `pax@b083b5a:`).
-2. Add BETA lane home + W4/ACCEPT capture paths.
-3. Replace bare "height-0" with "collapsed map host (post-ACCEPT hotfix `c76e19b`)" unless a pre-hotfix measurement path is added.
-4. Optionally cite `RFU-ACCEPT.json`, klosr `routeAlternates.ts` / `shadeForkMarkers.ts`, and PRP gate for process≠proof.
+1. Prefix every Source evidence path with originating product repo root + foreign pin (absolute paths redacted for public tip).
+2. Add beta visitor lane home + W4/ACCEPT capture paths.
+3. Replace bare "height-0" with "collapsed map host (post-ACCEPT hotfix foreign pin)" unless a pre-hotfix measurement path is added.
+4. Optionally cite visitor rebuild ACCEPT capture, visitor product route alternatives / fork marker modules, and product-look gate for process≠proof.
 
 ## Escalation
 

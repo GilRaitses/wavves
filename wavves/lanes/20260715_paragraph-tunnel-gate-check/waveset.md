@@ -12,9 +12,9 @@ implementation plan.
 - landing_commit_hash: `f2fb8ce144b68d820b0992f5075a2cbbf44673d2`
 - branch: `main`
 - repo_state_verified_against: `f2fb8ce144b68d820b0992f5075a2cbbf44673d2`
-- evidence cited: pax APPL-P2-TUNNEL at
-  `/Users/gilraitses/pax/wavves/lanes/20260715_apply-case-crack-asp-send/`
-  (decision + gate-captures; pax hash `21b1d7cf…`)
+- evidence cited: outbound copy lane P2-TUNNEL decision at
+  originating-product-repo/outbound-copy-lane/
+  (decision + gate-captures; foreign pin)
 
 ## Locked
 

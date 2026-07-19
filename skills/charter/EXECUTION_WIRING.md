@@ -156,8 +156,8 @@ When `visual_accept: yes`, capture-then-grade is required: frozen captures
 under `gate-captures/` plus independent product-look review against
 `proof_reference`. DOM/host green alone is not ACCEPT-complete.
 Screenshot is never the sole blank-canvas hard gate; DOM/host metrics
-remain required. Product-look fail vocab lives in the visitor lane / pax
-VPB pattern, not in wavves mechanical fixtures.
+remain required. Product-look fail vocab lives in the visitor product-look
+lane, not in wavves mechanical fixtures.
 
 ### Chrome freeze
 

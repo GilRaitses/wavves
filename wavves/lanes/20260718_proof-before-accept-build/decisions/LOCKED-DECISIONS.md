@@ -10,9 +10,9 @@ Locked decisions (do NOT reopen):
 - PBA-LENS: proof-bar conditional default for proof_required:yes / product-visitor FRs
 
 Grounding (already verified — do not rediscover):
-- Process-PASS fail mode grounded in pax doctrine + RFU/CRE/BETA ACCEPT packets
+- Process-PASS fail mode grounded in originating product repo doctrine + visitor rebuild / product-look / beta visitor lane ACCEPT packets
 - Docs-only BUILD ACCEPT recapitulates the bug (PBA-adversarial FM-1)
-- Evidence hygiene revised: absolute pax paths, BETA cited, collapsed/zero-height class wording
+- Evidence hygiene revised: originating product repo paths redacted, beta visitor lane cited, collapsed/zero-height class wording
 ```
 
 ## Recommended next

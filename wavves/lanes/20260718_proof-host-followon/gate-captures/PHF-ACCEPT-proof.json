@@ -23,7 +23,7 @@
   "spot_checks": {
     "execution_wiring_rule_2b_real_path": true,
     "playbook_visual_accept_capture_then_grade": true,
-    "no_vpb_product_look_port": true,
+    "no_product_look_lane_port": true,
     "pbb_not_reopened": true
   },
   "known_gap": "live --url/--selector not exercised; self-check only"

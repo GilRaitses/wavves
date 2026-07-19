@@ -11,5 +11,5 @@ Adversarial sanity-check of the proof-before-accept feature request.
 | landing_commit_hash | n/a (intake FR; not yet landed as product) |
 | branch | `main` |
 | repo_state_verified_against | `af0c0788cb2dbb865cbce6721fcdcbf6642b11d4` |
-| evidence (pax) | doctrine yaml + RFU/CRE/BETA lanes cited in FR |
+| evidence | originating product repo doctrine yaml + visitor rebuild / product-look / beta visitor lanes cited in FR |
 | status | chartered-check |

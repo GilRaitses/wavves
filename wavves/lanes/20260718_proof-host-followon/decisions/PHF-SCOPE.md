@@ -9,7 +9,7 @@
   - S1: Ship proof_host_probe.py only
   - S2: S1 + harden playbook/docs so visual_accept:yes ⇒ capture-then-grade (DOM green ≠ done)
   - S3: S2 + port product-look fail vocab / harness into wavves evals
-  - S4: Park all; klosr uses pax VPB only
+  - S4: Park all; visitor product uses originating product repo product-look lane only
 - **Pick:** S2
 - **Rationale:** Operator `¯\_(ツ)_/¯` / proceed as recommended.
-- **Implications for BUILD:** Do not reopen PBB. Do not port VPB product-look into wavves (pax owns that). Ship probe + playbook/EXECUTION_WIRING/docs harden.
+- **Implications for BUILD:** Do not reopen PBB. Do not port product-look into wavves (originating product repo owns that). Ship probe + playbook/EXECUTION_WIRING/docs harden.

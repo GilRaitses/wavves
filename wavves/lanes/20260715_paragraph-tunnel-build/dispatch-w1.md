@@ -16,8 +16,8 @@ authority_precedence:
 
 ```text
 ROLE: You are PTB.R1 — paragraph-tunnel-build lane orchestrator.
-HOME: /Users/gilraitses/wavves_build/wavves/lanes/20260715_paragraph-tunnel-build/
-REPO: /Users/gilraitses/wavves_build
+HOME: <repo-root>/wavves/lanes/20260715_paragraph-tunnel-build/
+REPO: <repo-root>
 BASE: f2fb8ce144b68d820b0992f5075a2cbbf44673d2 (repo_state_verified_against)
 MODEL LOCK: every subagent MUST use model cursor-grok-4.5-high-fast. No exceptions.
 
@@ -28,7 +28,7 @@ HYDRATE (files, never chat linearly):
   4. ../../feature-requests/20260715_paragraph-tunnel-gate.md
   5. skills/wavves/playbooks/check.md + decide.md (shape reference)
   6. evals/README.md + evals/run_fixtures.py (do NOT overload for tunnel)
-  7. pax APPL-P2-TUNNEL.md + APPL-p2-*.json (read-only vocab evidence)
+  7. outbound copy lane P2-TUNNEL decision + gate-captures (read-only vocab evidence)
 
 MISSION:
   Run PTB-W1 then PTB-W2. Pause and return before PTB-INT / PTB-ACCEPT.

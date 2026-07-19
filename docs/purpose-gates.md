@@ -4,16 +4,16 @@ Purpose gates are pass-or-fail checks for wavves public copy (landing page,
 README lead, outbound articles). They judge whether prose states the product
 point, not whether mechanics lint clean.
 
-**Mechanical style (universal):** `python3 evals/check_public_copy.py` — see
-`docs/public-copy-gates.md`.
+**Mechanical style (universal):** `python3 evals/check_public_copy.py` (see
+`docs/public-copy-gates.md`).
 
-**Story fidelity (wavves-specific):** this file (PG1–PG11).
+**Story fidelity (wavves-specific):** this file (PG1 through PG11).
 
 Surfaces in scope:
 
 - `index.html` hero and above-the-fold copy
 - `README.md` opening paragraphs
-- Published aimez articles and whitepaper excerpts that describe wavves
+- Published publisher articles and whitepaper excerpts that describe wavves
 
 ## Hard fail
 
@@ -25,8 +25,16 @@ Surfaces in scope:
 | PG4 | Do not open with inventory list buildup | Do not enumerate scope fields before the reader knows why the list matters |
 | PG5 | Every sentence at least 15 words | Short leads read as fragments on marketing surfaces |
 | PG6 | No Oxford commas | See `docs/public-copy-gates.md` (OXFORD); `evals/check_public_copy.py` |
-| PG7 | No `no longer` | Banned negation-adjacent hedge; state where things are or what fails, affirmatively |
-| PG8 | No `rather than` or `instead of` | Same affirmative rule as prose gate G1 on these surfaces |
+| PG7 | No banned tense hedge of the NO_LONGER class | State where things are or what fails, affirmatively |
+| PG8 | No contrast hedges of the AFFIRM class | Same affirmative rule as prose gate G1 on these surfaces |
+
+Banned substrings for PG7/PG8 (fenced):
+
+```
+no longer
+rather than
+instead of
+```
 
 ## Review (human)
 
@@ -45,7 +53,6 @@ Automated substring check for PG7, PG8 and PG6 (OXFORD) on hero copy:
 
 ```bash
 python3 evals/check_public_copy.py index.html
-rg -n 'no longer|rather than|instead of' index.html README.md
 ```
 
 Zero hard-fail on AFFIRM, NO_LONGER and OXFORD for hero. See `docs/public-copy-gates.md`

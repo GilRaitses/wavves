@@ -5,13 +5,11 @@
 - **Build lane:** `wavves/lanes/20260718_proof-before-accept-build/`
 - **Date:** 2026-07-18 (America/New_York)
 - **Product surface:** wavves skills / charter ACCEPT templates / playbooks + evals
-- **Source evidence (pax @ `b083b5a76e580265ab3ebabaeb1df1053dc8a565`):**
-  - `/Users/gilraitses/pax/.ddb/decisions/pax_multi_surface_proof_then_consume_doctrine_v1_20260718.yaml`
-  - `/Users/gilraitses/pax/wavves/lanes/20260718_route-first-ux/` (RFU ACCEPT PASS on process/shell gates while operator reported /beta felt empty; post-ACCEPT collapsed MapLibre host height hotfix `c76e19b` per RFU waveset; PRP fail bar uses `clientHeight ≤ 0` class)
-  - `/Users/gilraitses/pax/wavves/lanes/20260715_comfort-route-explorer/` (CRE ACCEPT PASS-WITH-RESIDUALS)
-  - `/Users/gilraitses/pax/wavves/lanes/20260715_beta-visitor-interact/` (BETA W4 alts + shade forks vs process gates)
-- **evidence_verified_against:** pax `b083b5a76e580265ab3ebabaeb1df1053dc8a565`
-  (repo state at FR authoring; doctrine lands in same pax pass — not this FR's landing)
+- **Source evidence:** originating visitor-product lanes where process/shell
+  ACCEPT passed while the named product Proof stayed unset or visually empty
+  (blank or collapsed primary host class; chrome thrash across rebuild waves).
+- **evidence_verified_against:** _(pin recorded in lane home at authoring; not
+  a landing commit)_
 - **landing_commit_hash:** _(O0 completion report only; never self-embed)_
 
 ## Problem
@@ -20,14 +18,13 @@ wavves can **PASS ACCEPT** on process metrics (LAND-C, honesty labels, e2e
 shell, HEAD match) while the operator's **product Proof** never became
 visible. That is a method failure mode, not only a product bug.
 
-Symptoms observed in pax klosr beta program:
+Symptoms observed in visitor-product programs:
 
-1. Multiple chrome rebuild lanes (BETA → CRE → RFU) without a frozen Proof.
+1. Multiple chrome rebuild lanes without a frozen Proof.
 2. ACCEPT graded mount/honesty/LAND-C, not "screenshot vs reference class."
 3. Debt notes closed as residuals while the felt product stayed empty
-   (including a **collapsed / zero-height-class** map host that still left
-   chrome PASS; see RFU waveset hotfix `c76e19b` and PRP `clientHeight ≤ 0`
-   fail bar — not a transcribed pre-hotfix `clientHeight: 0` capture).
+   (including a collapsed / zero-height-class primary host that still left
+   chrome PASS).
 4. No bake→visitor **consumer contract**, so workbench/chrome thrash is
    invited later.
 
@@ -82,7 +79,7 @@ Add a reusable **Proof-before-accept** pattern to wavves:
 **Locked for BUILD:** **C + D + B + E**. Defer standalone skill (A).
 See `wavves/lanes/20260718_proof-before-accept-check/decisions/LOCKED-DECISIONS.md`.
 
-## Acceptance (BUILD in wavves_build)
+## Acceptance (BUILD in this plugin repo)
 
 1. Charter template / playbook documents `proof_required` + the four fields
    with homes and pass metrics.
@@ -100,13 +97,15 @@ See `wavves/lanes/20260718_proof-before-accept-check/decisions/LOCKED-DECISIONS.
 - Replacing purpose-gates / public-copy-gates / paragraph-tunnel.
 - Mandating visual gates for lanes with `proof_required: no` or `n/a`
   (research/read-only check, plugin-meta, outbound-copy-only).
-- Implementing klosr Proof-1 inside wavves_build (that is a pax/klosr lane).
+- Implementing a specific visitor product's Proof job inside this plugin repo
+  (that stays in the product lane).
 
 ## Operator note
 
-Spawned from pax multi-surface Proof-then-consume ratification and the
-operator judgment that beta process PASS did not equal a felt product.
-Mod-decide complete via operator `¯\_(ツ)_/¯` (proceed as recommended).
-Originating-mod feedback (O0.R3): 
+Spawned from multi-surface Proof-then-consume ratification and the operator
+judgment that beta process PASS did not equal a felt product.
+Mod-decide complete via operator proceed-as-recommended.
+Originating-mod feedback:
 `feature-requests/20260718_proof-before-accept_ORIGINATING-MOD-FEEDBACK.md`
-(`538437c`) — PBB stays shipped; product-look extension is VPB in pax.
+— PBB stays shipped; product-look extension stays in the visitor product-look
+lane, not a PBB reopen.

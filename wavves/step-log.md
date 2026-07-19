@@ -30,7 +30,8 @@ operator-initiated brainstorm (design walked through with clarifying
 questions before any file was written, per the operator's own workflow
 preference for design-before-build). Intent: a new wavves leaf skill,
 `/layover`, that audits a bespoke desktop multi-repo workspace (concretely
-`~/.cursor/curl.code-workspace`: pax, aimez, MAT761, PHY600/mod4) for
+`~/.cursor/curl.code-workspace`: originating product repo, plugin publisher
+workspace, sibling-repo-a, sibling-repo-b/mod4) for
 local-only state a Cursor cloud agent would miss on takeover, since cloud
 agents attach per-repo to a pushed remote and cannot open a local multi-root
 workspace directly. Grounded against real measured git state of all 4 repos
@@ -66,7 +67,7 @@ validation before any git check, output to the invoking repo's own
 confirmed clear. No git write command appears anywhere in the sub-
 orchestrator's reported command set; only read-only commands were exercised,
 against `wavves_build` itself and a disposable `/tmp` scratch repo for edge
-cases, never against `pax`, `aimez`, `MAT761` or `PHY600`. Status moved
+cases, never against sibling repos in the audited workspace. Status moved
 `chartered` -> `in-progress` in `registry.yml`. LAYOVER-INT (router edit)
 and LAYOVER-ACCEPT (real run against `curl.code-workspace`) remain GATED,
 unchanged, pending operator approval.
@@ -171,20 +172,20 @@ No commits made.
 
 Operator approved `LAYOVER-ACCEPT`. Ran the real audit against
 `~/.cursor/curl.code-workspace`. Real finding not anticipated at charter
-time: the workspace's fourth folder (`../PHY600/mod4`) resolves to a real
-directory that is not itself a git repo (the actual `PHY600` root is one
+time: the workspace's fourth folder (`../sibling-repo-b/mod4`) resolves to a real
+directory that is not itself a git repo (the actual `sibling-repo-b` root is one
 level up) — the skill's path-validation rule handled this correctly,
 flagging it as blocking with no git commands run against it, rather than
 silently walking up to the parent. Real per-repo state (superseding the
-several-days-stale snapshot in `waveset.md`): `pax` 2 remotes / 28
+several-days-stale snapshot in `waveset.md`): originating product repo 2 remotes / 28
 uncommitted / 3277 untracked (the >20 grouping rule's real stress case) /
-5 stashes (2 on a non-`main` branch); `aimez` 14 uncommitted / 44
-untracked / 0 stashes; `MAT761` 2 uncommitted / 106 untracked / 0 stashes.
+5 stashes (2 on a non-`main` branch); plugin publisher workspace 14 uncommitted / 44
+untracked / 0 stashes; `sibling-repo-a` 2 uncommitted / 106 untracked / 0 stashes.
 Zero filename-pattern hits across all untracked paths in all 3 valid
 repos, reported as a soft non-clearing note, not a safe verdict.
 
-Zero-mutation check: `aimez`/`MAT761`/`PHY600` byte-identical before/after.
-`pax`'s hash differed — investigated per the "distrust an implausible
+Zero-mutation check: plugin publisher workspace / sibling-repo-a / sibling-repo-b byte-identical before/after.
+Originating product repo hash differed — investigated per the "distrust an implausible
 result" lock rather than waved off: full modified-list and untracked-count
 compares matched, and two snapshots taken 3 seconds apart just now were
 byte-identical, isolating the drift to concurrent background activity in
@@ -252,7 +253,7 @@ FR-20260718 → shipped. Disclosed gap: proof_host_probe.py not shipped.
 Received O0.R3 paste / landed file
 `feature-requests/20260718_proof-before-accept_ORIGINATING-MOD-FEEDBACK.md`.
 PBB remains shipped (no reopen). Keep C+D+B+E. Method match yes;
-felt-product gap owned by pax VPB (`1176046`), not PBB. Softened
+felt-product gap owned by product-look lane (originating product repo), not PBB. Softened
 proof-before-accept playbook: visual_accept:yes ⇒ DOM green ≠ done
 (capture-then-grade + independent product-look). Follow-ons noted:
 ship proof_host_probe.py (or Playwright clientHeight cite); optional
@@ -262,7 +263,7 @@ orchestrator-completion etiquette note from discovery section.
 
 Operator `/mod-decide` then `¯\_(ツ)_/¯`. Locked PHF from originating-mod
 feedback: SCOPE=S2, PROBE=skills/charter/scripts/proof_host_probe.py,
-EVAL=defer to VPB, ETIQUETTE=park. Chartered lane
+EVAL=defer to product-look lane, ETIQUETTE=park. Chartered lane
 `20260718_proof-host-followon`, dispatched W1+W2. PBB not reopened.
 
 ## 2026-07-18 — O0.R1 — PHF ACCEPT PASS

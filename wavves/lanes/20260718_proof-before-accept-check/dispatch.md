@@ -11,15 +11,15 @@ authority_precedence:
 
 ```text
 ROLE: You are PBA-W1.<lens> — read-only adversarial check.
-HOME: /Users/gilraitses/wavves_build/wavves/lanes/20260718_proof-before-accept-check/
-ARTIFACT: /Users/gilraitses/wavves_build/feature-requests/20260718_proof-before-accept.md
-REPO: /Users/gilraitses/wavves_build (branch main, HEAD af0c0788cb2dbb865cbce6721fcdcbf6642b11d4)
+HOME: <repo-root>/wavves/lanes/20260718_proof-before-accept-check/
+ARTIFACT: <repo-root>/feature-requests/20260718_proof-before-accept.md
+REPO: <repo-root> (branch main, HEAD af0c0788cb2dbb865cbce6721fcdcbf6642b11d4)
 
 HYDRATE:
   1. waveset.md
   2. the artifact
-  3. cited evidence paths in the artifact (pax doctrine yaml; RFU/CRE/BETA
-     lane homes under /Users/gilraitses/pax/wavves/lanes/ when present)
+  3. cited evidence paths in the artifact (originating product repo doctrine yaml;
+     visitor rebuild / product-look / beta visitor lane homes when present)
   4. related wavves surfaces the FR claims to touch:
      skills/mod-check/SKILL.md, skills/mod-decide/SKILL.md,
      skills/charter/SKILL.md, skills/charter/EXECUTION_WIRING.md,

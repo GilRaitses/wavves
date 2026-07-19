@@ -12,7 +12,7 @@ Locked decisions (do NOT reopen):
 - PTG-HASH: split evidence_verified_against vs landing_commit_hash in FR
 
 Grounding (already verified — do not rediscover):
-- APPL-P2-TUNNEL live evidence exists; worked examples match captures
+- outbound copy lane P2-TUNNEL live evidence exists; worked examples match captures
 - Landing parents playbooks/ and evals/ exist at wavves_build f2fb8ce…
 - Option B is a phase leak (mid-render ≠ mod-check)
 - Acceptance sketch alone is unrunnable (house FM class)

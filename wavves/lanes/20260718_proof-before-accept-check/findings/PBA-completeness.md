@@ -143,12 +143,12 @@ how §3's "mod-decide / charter gate" is satisfied by C alone.
 sketch and Acceptance omit consumer-contract deliverables.
 
 **Call:** Either add a BUILD item / non-goal, or state explicitly that
-consumer contract is out of scope for this FR (pax/klosr or later playbook).
+consumer contract is out of scope for this FR (originating product repo visitor product or later playbook).
 
 ### N2 — Rollback / migration for existing lanes absent
 
 **Evidence:** Completeness lens hunts absent rollback. Non-goals cover
-replacements and klosr Proof-1, not backfill or revert of the method change.
+replacements and visitor product Proof-1, not backfill or revert of the method change.
 
 **Call:** State whether historical wavesets must gain proof fields, and
 rollback if visual harness flakes (disable flag, remediation cap, escalate).
@@ -180,8 +180,8 @@ D is locked.
 3. Keyword/instruction edits plus fixtures are enough to prevent
    process-only ACCEPT PASS (contradicted by `evals/README.md` known
    limitation unless a structure/harness check is added).
-4. RFU/CRE/BETA evidence paths under pax are illustrative only for this FR
-   (BUILD lands in wavves_build; klosr Proof is non-goal). Completeness does
+4. Visitor rebuild / product-look / beta visitor lane evidence paths under originating product repo are illustrative only for this FR
+   (BUILD lands in wavves_build; visitor product Proof is non-goal). Completeness does
    not re-litigate grounding of those citations.
 
 ---
@@ -190,7 +190,7 @@ D is locked.
 
 Present and useful: does not replace purpose-gates / public-copy-gates /
 paragraph-tunnel; no visual mandate for pure research/read-only check lanes;
-no klosr Proof-1 inside wavves_build.
+no visitor product Proof-1 inside wavves_build.
 
 Still thin: no explicit non-goal for historical lane backfill, consumer
 contract, or standalone `/proof-gate` in v0 (A is deferred in options, not

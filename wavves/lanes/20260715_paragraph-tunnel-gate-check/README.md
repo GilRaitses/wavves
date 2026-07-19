@@ -11,5 +11,5 @@ Adversarial sanity-check of the paragraph-tunnel feature request.
 | landing_commit_hash | `f2fb8ce144b68d820b0992f5075a2cbbf44673d2` |
 | branch | `main` |
 | repo_state_verified_against | `f2fb8ce144b68d820b0992f5075a2cbbf44673d2` |
-| evidence_lane (pax) | APPL `21b1d7cf06557a19ee042d6fde00d60a7ed8e759` |
+| evidence_lane (outbound copy) | outbound copy lane home (foreign pin) |
 | status | chartered-check |

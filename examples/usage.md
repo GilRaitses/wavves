@@ -80,7 +80,7 @@ spec landed
 |:-----|:------|:--------|:--------|
 | 1. Check | `/mod-check` | verdict + named gaps + settled technical findings | `BLOCK` or `REVISE` until the artifact is fixed |
 | 2. Decide | `/mod-decide` | one-at-a-time picks, `decisions/*.md`, Locked decisions paste | any fork a build agent would have to invent is still open |
-| 3. Charter | `/charter` | BUILD lane, waves, gated acceptance | locks missing, or two disjoint features stuffed into one lane |
+| 3. Charter | `/charter` | BUILD lane, waves, gated acceptance | locks missing or two disjoint features stuffed into one lane |
 
 After mod-decide, O0 syncs locks to `waveset.md`, active `dispatch-w{N}.md`,
 and `registry.yml` before W2 dispatch. Each dispatch carries an authority
@@ -107,7 +107,7 @@ Use `/wavves proceed` to execute `recommended_actions` in order.
 
 - **Decide (product / design forks):** gesture choice, which data source is
   authoritative, v1 share scope, whether to replace a shipped behavior.
-- **Grounding (already verified — do not rediscover):** measured facts from
+- **Grounding (already verified; do not rediscover):** measured facts from
   the check (e.g. point-in-polygon renders nothing; Vercel body cap rules out
   a naive server route). Confirm them into the Locked / Grounding paste; do
   not re-debate them unless new evidence appears.
@@ -137,7 +137,7 @@ type: execution
 Locked decisions (do NOT reopen):
 <paste from /mod-decide>
 
-Grounding (already verified — do not rediscover):
+Grounding (already verified; do not rediscover):
 <paste from /mod-decide>
 
 Wave shape: discovery → build → gated integration → gated acceptance.
@@ -206,7 +206,7 @@ the new route into the router config. This is the only wave allowed to touch
 that shared file.
 
 **Wave 4, acceptance (GATED, high-reasoning, no authorship of the build).**
-Downloads the CSV from the real running app, not a mock, and diffs it
+Downloads the CSV from the real running app, not a mock, then diffs it
 row-by-row against the table's live data. Capture:
 
 ```json
@@ -262,7 +262,7 @@ checkout > final total        20     1          5%
 ```
 
 Root cause traced in `findings/FLK-baseline.md`: a shared test helper races a
-debounced UI update on a `setTimeout`, and the retry test additionally leaks
+debounced UI update on a `setTimeout`. The retry test additionally leaks
 mock state left over from the discount test.
 
 **Wave 2, build (balanced model, disjoint files, parallel).** One subagent
@@ -286,14 +286,14 @@ before/after comparison is apples-to-apples:
 }
 ```
 
-If the rerun had come back 2/20 instead of 0/20, the verdict is FAIL with the
-named test, and the wave repeats once against the charter's remediation-loop
-cap (default 2) before escalating to the operator instead of quietly calling
-it "mostly fixed."
+If the rerun had come back 2/20 where 0/20 was required, the verdict is FAIL
+with the named test. The wave repeats once against the charter's
+remediation-loop cap (default 2) before escalating to the operator. It does
+not quietly call the result "mostly fixed."
 
 ## C. Performance sprint with before/after numbers
 
-Shows: model routing with a real cost rationale, and a trace harness reused
+Shows: model routing with a real cost rationale plus a trace harness reused
 unchanged for baseline and acceptance so the improvement number is trustworthy.
 
 ```text
@@ -346,14 +346,13 @@ acceptance gate     high-reasoning   judges whether 3 fixes together clear the b
 ```
 
 The discovery and build roles don't need an expensive model to read a trace or
-apply a scoped fix. Judging whether the combined result actually clears the
-bar, on the other hand, is exactly the kind of call reserved for the
-high-reasoning tier.
+apply a scoped fix. Judging whether the combined result clears the bar, on the
+other hand, is exactly the kind of call reserved for the high-reasoning tier.
 
 ## D. A migration that outlives one chat session
 
 Shows: the standing home and rotation file are the real state-transfer
-mechanism, not a chat summary, and a successor verifies claims before trusting
+mechanism, not a chat summary. A successor verifies claims before trusting
 them.
 
 ```text
@@ -401,12 +400,11 @@ The operator pastes that into a fresh chat. The new thread:
 1. Reads `wavves/INDEX.md`, finds the newest rotation file, acks: "I am
    O0.R2, hydrated from rotation-r01-20260708-1940.md."
 2. Verifies the claimed positions before trusting them: opens the two
-   "migrated" files and confirms they actually match what the rotation file
-   claimed. A discrepancy here becomes a recorded gap, not a silently
-   executed pickup.
+   "migrated" files and confirms they match what the rotation file claimed.
+   A discrepancy here becomes a recorded gap, not a silently executed pickup.
 3. Checks on `MIG-W2c` and `MIG-W2d`. One finished while the rotation file was
    being written, a normal race; O0.R2 reconciles that return and keeps
-   waiting on the other rather than double-dispatching it.
+   waiting on the other without double-dispatching it.
 4. Once wave 2 fully lands, O0.R2 runs wave 3 (integration, gated) and wave 4
    (acceptance: the full test suite, same command as the pre-migration run,
    same pass/fail count expected).

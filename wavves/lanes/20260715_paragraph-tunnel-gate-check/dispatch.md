@@ -11,15 +11,15 @@ authority_precedence:
 
 ```text
 ROLE: You are PTG-W1.<lens> — read-only adversarial check.
-HOME: /Users/gilraitses/wavves_build/wavves/lanes/20260715_paragraph-tunnel-gate-check/
-ARTIFACT: /Users/gilraitses/wavves_build/feature-requests/20260715_paragraph-tunnel-gate.md
-REPO: /Users/gilraitses/wavves_build (branch main, HEAD f2fb8ce144b68d820b0992f5075a2cbbf44673d2)
-EVIDENCE (read-only): /Users/gilraitses/pax/wavves/lanes/20260715_apply-case-crack-asp-send/
+HOME: <repo-root>/wavves/lanes/20260715_paragraph-tunnel-gate-check/
+ARTIFACT: <repo-root>/feature-requests/20260715_paragraph-tunnel-gate.md
+REPO: <repo-root> (branch main, HEAD f2fb8ce144b68d820b0992f5075a2cbbf44673d2)
+EVIDENCE (read-only): originating-product-repo/outbound-copy-lane/
 
 HYDRATE:
   1. waveset.md
   2. the artifact
-  3. cited evidence paths in the artifact (APPL-P2-TUNNEL.md, gate-captures)
+  3. cited evidence paths in the artifact (P2-TUNNEL decision, gate-captures)
   4. related wavves surfaces the FR claims to touch (skills/mod-check, skills/charter,
      skills/wavves/playbooks/, evals/, feature-requests/README.md)
 

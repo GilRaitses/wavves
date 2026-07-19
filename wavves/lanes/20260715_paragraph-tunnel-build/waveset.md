@@ -20,7 +20,7 @@
 lane_type: single-repo
 repos:
   - id: wavves
-    path: /Users/gilraitses/wavves_build
+    path: <repo-root>
     role: lane_home_and_product
 commit_plan:
   order: [wavves]
@@ -42,7 +42,7 @@ slash skill. Do not extend mod-check as a mid-render gate.
 | `skills/wavves/playbooks/*.md` | playbook shape to match |
 | `skills/wavves/SKILL.md` | router INT target |
 | `evals/fixtures/` + `evals/run_fixtures.py` | existing corpus (lens-wording tripwire — **do not overload**) |
-| pax `…/APPL-P2-TUNNEL.md` + `gate-captures/APPL-p2-*.json` | live vocab/evidence (read-only) |
+| originating product repo outbound copy lane P2-TUNNEL decision + gate-captures | live vocab/evidence (read-only) |
 
 **Root cause:** outbound mid-render paragraphs fail human review while prose
 lint passes; product needs a reusable tunnel playbook and a **mechanical**
@@ -65,7 +65,7 @@ acceptance harness (not LLM self-grade alone).
 
 - PTB-W1a playbook-shape → findings/PTB-playbook-shape.md
 - PTB-W1b eval-harness-design → findings/PTB-eval-harness.md
-- PTB-W1c vocab-port → findings/PTB-vocab-port.md (PN-* + aliases from APPL)
+- PTB-W1c vocab-port → findings/PTB-vocab-port.md (PN-* + aliases from outbound copy lane)
 - PTB-W1d adversarial → findings/PTB-adversarial.md (build footguns)
 
 ### PTB-W2 — build (parallel, NEW files preferred)
@@ -98,7 +98,7 @@ playbook list). No other shared-file editors in parallel.
 
 - [ ] Playbook exists and matches locks (invoke order, vocab, fail-cap, judge, Grok)
 - [ ] Mechanical tunnel checker runnable with zero network/LLM
-- [ ] Fixtures include FIXTURE and STANDIN fail cases (not only APPL three-shop happy path)
+- [ ] Fixtures include FIXTURE and STANDIN fail cases (not only outbound three-shop happy path)
 - [ ] Router lists paragraph-tunnel playbook
 - [ ] FR hash fields split per PTG-HASH
 - [ ] Captures cite measured runner output

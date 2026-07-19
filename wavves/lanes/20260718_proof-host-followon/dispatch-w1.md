@@ -13,8 +13,8 @@ authority_precedence:
 
 ```text
 ROLE: You are the PHF lane orchestrator. Run W1 then W2. Pause before INT/ACCEPT if needed.
-HOME: /Users/gilraitses/wavves_build/wavves/lanes/20260718_proof-host-followon/
-REPO: /Users/gilraitses/wavves_build (branch main, HEAD 538437cad76764fd989cd028f64927b1ae839292)
+HOME: wavves/lanes/20260718_proof-host-followon/
+REPO: <repo-root> (branch main, HEAD 538437cad76764fd989cd028f64927b1ae839292)
 
 HYDRATE:
   1. waveset.md + decisions/LOCKED-DECISIONS.md
@@ -29,7 +29,7 @@ MISSION:
   W2: NEW skills/charter/scripts/proof_host_probe.py (stdlib; JSON fields
       host_client_height, blank_canvas); wire EXECUTION_WIRING Rule 2b to
       that path; harden playbook visual_accept:yes (DOM green ≠ done;
-      capture-then-grade required). No VPB product-look port. No PBB reopen.
+      capture-then-grade required). No product-look lane port. No PBB reopen.
   Prefer applying playbook + EXECUTION_WIRING in W2 if single-editor safe;
   otherwise draft INT patches under findings/.
   STOP before PHF-ACCEPT (and INT if still gated). Return commit file list.

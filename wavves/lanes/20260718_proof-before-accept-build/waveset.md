@@ -21,7 +21,7 @@
 lane_type: single-repo
 repos:
   - id: wavves
-    path: /Users/gilraitses/wavves_build
+    path: <repo-root>
     role: lane_home_and_product
 commit_plan:
   order: [wavves]
@@ -48,7 +48,7 @@ Defer `/proof-gate` slash skill.
 | `skills/mod-decide/SKILL.md` | E land (AUTH sync) |
 
 **Root cause:** ACCEPT can green on process/shell gates while product Proof
-is unset (RFU/CRE/BETA). Method needs runnable PROC-* detection + charter
+is unset (visitor rebuild / product-look / beta visitor lanes). Method needs runnable PROC-* detection + charter
 fields, not docs alone.
 
 ## Locked decisions (do NOT reopen)

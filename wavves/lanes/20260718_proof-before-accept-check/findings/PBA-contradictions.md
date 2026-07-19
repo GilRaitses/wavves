@@ -3,9 +3,9 @@
 - **Lens:** contradictions (internal conflicts, phase-boundary leaks, mutually exclusive requirements)
 - **Artifact:** `feature-requests/20260718_proof-before-accept.md`
 - **repo_state_verified_against (lane):** `af0c0788cb2dbb865cbce6721fcdcbf6642b11d4`
-- **Evidence hydrated:** FR; pax doctrine
-  `.ddb/decisions/pax_multi_surface_proof_then_consume_doctrine_v1_20260718.yaml`;
-  RFU lane `wavves/lanes/20260718_route-first-ux/`; `skills/mod-check/SKILL.md`;
+- **Evidence hydrated:** FR; originating product repo doctrine
+  (multi-surface proof-then-consume yaml);
+  visitor rebuild lane home; product-look lane home; `skills/mod-check/SKILL.md`;
   `skills/mod-decide/SKILL.md`; `skills/charter/SKILL.md`;
   `skills/charter/EXECUTION_WIRING.md`; `evals/README.md`;
   `skills/wavves/playbooks/check.md`; `feature-requests/README.md`;
@@ -16,7 +16,7 @@
 
 ## Verdict (this lens only)
 
-**REVISE.** The FR's intent matches the pax Proof-then-consume doctrine, but the
+**REVISE.** The FR's intent matches the originating product repo Proof-then-consume doctrine, but the
 recommended combo **C+D+B**, the BUILD-unlock claim, the research-lane
 exemption, and `chrome_freeze` are not simultaneously satisfiable as written.
 Salvageable by naming phase ownership and closing the open option forks before
@@ -62,13 +62,13 @@ and restate the hard bar as ACCEPT-only under C.
 | Charter mandatory fields for **every product/UX lane** (`proof_job`, `proof_reference`, `chrome_freeze`, `visual_accept`) | FR § Feature sketch, item 1 |
 | Non-goal: do **not** mandate visual gates for pure research/read-only check lanes | FR § Non-goals |
 | Charter lane `type` today: **execution vs research/read-only** only | `skills/charter/SKILL.md` waveset sections (~L119) |
-| Motivating RFU lane typed `research-discovery` yet ran W2 build + ACCEPT PASS on process/shell criteria | pax `wavves/lanes/20260718_route-first-ux/waveset.md` (type + RFU-ACCEPT) |
-| Doctrine accept_bar requires `proof_job_visible` + `visual_screenshot_vs_reference_class` for visitor proof | pax doctrine yaml `binding.accept_bar` |
+| Motivating visitor rebuild lane typed `research-discovery` yet ran W2 build + ACCEPT PASS on process/shell criteria | originating product repo visitor rebuild lane waveset (type + ACCEPT capture) |
+| Doctrine accept_bar requires `proof_job_visible` + `visual_screenshot_vs_reference_class` for visitor proof | originating product repo doctrine yaml `binding.accept_bar` |
 
 **Why blocking:** "Product/UX" is not a charter type. Without a predicate
 (visitor/product vs research/check vs plugin-meta), **C** either (a) applies
 visual/proof fields to research/check lanes and violates the non-goal, or (b)
-skips lanes that look like research but ship visitor chrome (RFU-shaped),
+skips lanes that look like research but ship visitor chrome (visitor rebuild-shaped),
 recreating `PROC-PASS-NO-PROOF`. The research exemption and the universal
 product/UX mandate cannot both be enforced from current type vocabulary.
 
@@ -86,8 +86,8 @@ before BUILD writes the charter template.
 |---|---|
 | `chrome_freeze`: "what must not change until Proof ACCEPT" | FR § Feature sketch, item 1 |
 | Fail id `PROC-CHROME-THRASH`: new IA/chrome wave with no frozen `proof_job` | FR § Default fail vocabulary |
-| Doctrine freeze is **selective**: no IA/residual visitor lanes **except those that unblock Proof-1** until Proof-1 ACCEPT with visual evidence | pax doctrine yaml `binding.proof_1.chrome_freeze` |
-| Product BUILD waves that close a proof job often must change visitor chrome/IA | RFU W2 IA ship + ACCEPT path (pax RFU waveset) |
+| Doctrine freeze is **selective**: no IA/residual visitor lanes **except those that unblock Proof-1** until Proof-1 ACCEPT with visual evidence | originating product repo doctrine yaml `binding.proof_1.chrome_freeze` |
+| Product BUILD waves that close a proof job often must change visitor chrome/IA | visitor rebuild W2 IA ship + ACCEPT path (originating product repo visitor rebuild waveset) |
 
 **Why blocking:** Read as absolute freeze, `chrome_freeze` forbids the chrome
 edits needed to make `proof_job` visible. Doctrine already uses
@@ -153,7 +153,7 @@ required for FR ACCEPT or only recommended.
 
 ---
 
-### CX-7 — `PROC-BLANK-CANVAS` map-host rule vs general wavves landing + klosr non-goal
+### CX-7 — `PROC-BLANK-CANVAS` map-host rule vs general wavves landing + visitor product non-goal
 
 **Conflict type:** domain leak into general method
 
@@ -161,13 +161,13 @@ required for FR ACCEPT or only recommended.
 |---|---|
 | Fail vocab / wiring: map host height 0 / blank black-canvas class | FR § Default fail vocabulary; Feature sketch item 4 |
 | Product surface: wavves skills / charter ACCEPT / playbooks + evals | FR header |
-| Non-goal: not implementing klosr Proof-1 inside wavves_build | FR § Non-goals |
-| Doctrine evidence includes blank-map hotfix klosr `c76e19b` | pax doctrine yaml `evidence.blank_map_hotfix` |
+| Non-goal: not implementing visitor product Proof-1 inside wavves_build | FR § Non-goals |
+| Doctrine evidence includes blank-map hotfix (visitor product foreign pin) | originating product repo doctrine yaml `evidence.blank_map_hotfix` |
 
 **Why non-blocking:** Motivating evidence is map-specific; generalizing the
 fail id is fine if scoped as an **example class** (product host empty while
 chrome PASS), not as a hard map-height rule in every wavves ACCEPT. As written,
-EXECUTION_WIRING addition can overfit klosr.
+EXECUTION_WIRING addition can overfit visitor product.
 
 ---
 
@@ -179,7 +179,7 @@ EXECUTION_WIRING addition can overfit klosr.
 |---|---|
 | `proof_reference` may be `none` with rationale; `visual_accept` yes/no | FR § Feature sketch, item 1 |
 | `PROC-PASS-NO-PROOF`: ACCEPT/check greens without measuring `proof_job` | FR § Default fail vocabulary |
-| Doctrine: visual screenshot vs reference class is **required** on accept_bar | pax doctrine yaml `binding.accept_bar.required` |
+| Doctrine: visual screenshot vs reference class is **required** on accept_bar | originating product repo doctrine yaml `binding.accept_bar.required` |
 
 **Why non-blocking:** Escape hatches are needed for non-visual lanes, but
 without a hard rule that visitor/product lanes cannot use `none`/`no` to skip
@@ -219,7 +219,7 @@ Otherwise the combo and the sketch disagree.
 
 ## Out of scope for this lens
 
-- Grounding of pax paths / commit hashes (PBA-W1a)
+- Grounding of originating product repo paths / commit hashes (PBA-W1a)
 - Missing acceptance edges / rollback (PBA-W1c)
 - Failure-mode inventiveness beyond internal conflict (PBA-W1d)
 - Implementation plan or skill patches

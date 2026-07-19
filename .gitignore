@@ -1,0 +1,11 @@
+# Operator-local layover evidence (absolute paths, private remotes)
+wavves/layovers/*-20*.md
+!wavves/layovers/README.md
+
+# Unshipped historical lane homes (keep local; do not publish raw audits)
+wavves/lanes/20260709_layover-preflight/README.md
+wavves/lanes/20260709_layover-preflight/dispatch.md
+wavves/lanes/20260709_layover-preflight/waveset.md
+wavves/lanes/20260709_layover-preflight/findings/
+wavves/lanes/20260709_layover-preflight/gate-captures/
+wavves/lanes/20260709_wavves-self-improvement/

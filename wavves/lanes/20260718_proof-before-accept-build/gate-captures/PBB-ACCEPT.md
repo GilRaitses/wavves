@@ -58,8 +58,9 @@ contract and example command for product lanes to bind.
 
 Landed `feature-requests/20260718_proof-before-accept_ORIGINATING-MOD-FEEDBACK.md`
 (`538437c`). Summary: PBB matches method fail (`PROC-PASS-NO-PROOF`); keep
-C+D+B+E; do not reopen. Felt-product / product-look bar is **VPB** (pax),
-not a PBB regress. Before next klosr visitor `proof_required: yes`: DOM hard
+C+D+B+E; do not reopen. Felt-product / product-look bar is the **product-look lane**
+(originating product repo), not a PBB regress. Before next visitor product
+`proof_required: yes`: DOM hard
 + capture-then-grade + independent product-look grade + author ≠ ACCEPT +
 ship probe (or cite Playwright `clientHeight`).
 

@@ -12,9 +12,9 @@ implementation plan.
 - landing_commit_hash: n/a
 - branch: `main`
 - repo_state_verified_against: `af0c0788cb2dbb865cbce6721fcdcbf6642b11d4`
-- evidence cited: pax doctrine
-  `.ddb/decisions/pax_multi_surface_proof_then_consume_doctrine_v1_20260718.yaml`
-  (pax `b083b5a76e580265ab3ebabaeb1df1053dc8a565`); RFU / CRE / BETA lanes
+- evidence cited: originating product repo doctrine
+  (multi-surface proof-then-consume yaml, foreign pin);
+  visitor rebuild / product-look / beta visitor lanes
 
 ## Locked
 

@@ -1,11 +1,11 @@
 # PTB-W1c — vocab port (corrected: no BECAUSE/EXPLAIN)
 
-- **Wave:** PTB-W1c (corrected per PTG-NICE-BECAUSE + APPL-NICE-BECAUSE-ALLOWED)
+- **Wave:** PTB-W1c (corrected per PTG-NICE-BECAUSE + outbound-copy NICE-BECAUSE-ALLOWED)
 - **Date:** 2026-07-15 (America/New_York)
 - **Lane:** `wavves/lanes/20260715_paragraph-tunnel-build/`
 - **Lock:** PTG-VOCAB with **STRIKE BECAUSE/EXPLAIN**; nice because **ALLOWED**
 - **repo_state_verified_against (wavves_build):** `f2fb8ce144b68d820b0992f5075a2cbbf44673d2`
-- **Authority:** `PTG-NICE-BECAUSE.md`; pax `APPL-NICE-BECAUSE-ALLOWED.md`
+- **Authority:** `PTG-NICE-BECAUSE.md`; outbound copy lane NICE-BECAUSE-ALLOWED decision
 
 **PASS rule:** one sentence; one concrete place fact the recipient would
 recognize; no gloss / compare / fixture-only / stand-in / research-meta /
@@ -17,7 +17,7 @@ profile frame is **ALLOWED**. Never emit `PN-BECAUSE`, `P2-BECAUSE`,
 
 **Emit rule:** fixtures and `check_paragraph_tunnel.py` emit **PN-*** and
 extension ids only (never P2-*). P2-* appears only in alias/compat notes
-when reading historical APPL captures (map struck ids to dropped).
+when reading historical outbound copy captures (map struck ids to dropped).
 
 ---
 
@@ -45,7 +45,7 @@ when reading historical APPL captures (map struck ids to dropped).
 
 ## 2. Alias map: legacy P2-* → product
 
-| legacy (APPL captures) | product emit |
+| legacy (outbound copy captures) | product emit |
 |---|---|
 | P2-STACK | PN-STACK |
 | P2-COMPARE | PN-COMPARE |
@@ -57,7 +57,7 @@ when reading historical APPL captures (map struck ids to dropped).
 
 No P2-* alias for STANDIN, RESEARCH-META, FALSEFACT.
 
-When ingesting historical APPL JSON, rewrite through this map and **discard**
+When ingesting historical outbound copy JSON, rewrite through this map and **discard**
 BECAUSE/EXPLAIN before comparing to fixture expected arrays.
 
 ---
@@ -87,7 +87,7 @@ FALSEFACT.
 
 ---
 
-## 4. APPL capture remapping (post-strike)
+## 4. Outbound copy capture remapping (post-strike)
 
 | shop | historical fail_ids | product fail_ids after strike |
 |---|---|---|
@@ -99,7 +99,7 @@ FALSEFACT.
 come-together with "nice because"; do not strip for tunnel. Still FAIL if
 STACK/GLOSS/MULTI remain.
 
-**Must fixture (APPL never fired):** PN-FIXTURE, STANDIN.
+**Must fixture (outbound copy never fired):** PN-FIXTURE, STANDIN.
 
 ---
 

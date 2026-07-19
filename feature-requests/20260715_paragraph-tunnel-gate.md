@@ -5,11 +5,10 @@
 - **Build lane:** `wavves/lanes/20260715_paragraph-tunnel-build/`
 - **Date:** 2026-07-15 (America/New_York)
 - **Product surface:** wavves skills / charter gate templates / playbook + evals
-- **Source lane evidence:** pax APPL
-  `wavves/lanes/20260715_apply-case-crack-asp-send/decisions/APPL-P2-TUNNEL.md`
-  plus gate-captures `APPL-p2-adversarial.json`, `APPL-p2-rewrite.json`
-- **evidence_verified_against:** pax `21b1d7cf06557a19ee042d6fde00d60a7ed8e759`
-  (APPL tunnel evidence pin; not a landing commit)
+- **Source lane evidence:** originating outbound-copy lane with a mid-render
+  paragraph gate (adversarial + capped rewrite captures under that lane home).
+- **evidence_verified_against:** _(pin recorded in lane home at authoring; not
+  a landing commit)_
 - **landing_commit_hash:** _(O0 completion report only; never self-embed in this FR)_
 
 ## Problem
@@ -22,8 +21,8 @@ or two-sentence profiles when the job is one recognizable place fact.
 **Operator lock:** "nice because" is **allowed**. Do not treat it as a fail.
 Do not emit `PN-BECAUSE`, `P2-BECAUSE`, `PN-EXPLAIN`, or `P2-EXPLAIN`.
 
-In APPL storefront outreach, opener and close stabilized early. Paragraph 2
-(the storefront profile) ate most operator REVISE cycles. Lint kept passing.
+In outbound storefront copy, opener and close stabilized early. The profile
+paragraph ate most operator REVISE cycles. Lint kept passing.
 
 ## Feature sketch
 
@@ -35,7 +34,7 @@ Add a reusable **paragraph tunnel** pattern to wavves:
    fail id. Freeze sibling paragraphs. Remediation loop cap: 1.
 3. **Captures** — `gate-captures/<CODE>-pN-adversarial.json` and
    `<CODE>-pN-rewrite.json` before any operator CLEARED preview or outbound.
-4. **Order** — after render, before prose_lint / ASP-F-style preview.
+4. **Order** — after render, before prose_lint / CLEARED preview.
 
 ### Default fail vocabulary (copy-adjacent; lane may extend)
 
@@ -98,7 +97,7 @@ contains this FR.
 
 ## Operator note
 
-Spawned from ASP/APPL clearance work. Treat as product FR for wavves, not as
-an APPL residual. Product shape: judgment + structure for one named
-paragraph (HITL rules, adversarial mid-render, mechanical checks), not
-voice transfer. Keep ACCEPT on that surface.
+Spawned from outbound-copy clearance work. Treat as product FR for wavves.
+Product shape: judgment + structure for one named paragraph (HITL rules,
+adversarial mid-render, mechanical checks), not voice transfer. Keep ACCEPT
+on that surface.

@@ -15,8 +15,8 @@ authority_precedence:
 
 ```text
 ROLE: You are the PBB lane orchestrator. Run W1 then W2. Pause before INT/ACCEPT.
-HOME: /Users/gilraitses/wavves_build/wavves/lanes/20260718_proof-before-accept-build/
-REPO: /Users/gilraitses/wavves_build (branch main, HEAD 517dd85190cf93cf744434338dec4b1eb1d859c5)
+HOME: <repo-root>/wavves/lanes/20260718_proof-before-accept-build/
+REPO: <repo-root> (branch main, HEAD 517dd85190cf93cf744434338dec4b1eb1d859c5)
 LOCKS: ../20260718_proof-before-accept-check/decisions/LOCKED-DECISIONS.md
 
 HYDRATE:

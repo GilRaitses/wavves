@@ -13,7 +13,7 @@ repo_state_verified_against: `f837244e5aa236240bc863d297cb01ed44cad7d9`
 2. EXECUTION_WIRING Rule 2b cites the real script path
 3. Playbook: `visual_accept: yes` ⇒ capture-then-grade; DOM green ≠ done
 4. PBB checker 4/4 and paragraph-tunnel 6/6 still PASS
-5. No VPB product-look port; PBB not reopened
+5. No product-look lane port; PBB not reopened
 
 ## (1) Probe self-check — measured
 
@@ -33,7 +33,7 @@ Live `--url/--selector` path not exercised (Playwright optional; disclosed).
 |---|---|---|
 | Rule 2b real path | EXECUTION_WIRING cites `skills/charter/scripts/proof_host_probe.py` | PASS |
 | visual_accept harden | playbook steps 8 + named harness | PASS |
-| no VPB port | no new product-look fixture corpus | PASS |
+| no product-look lane port | no new product-look fixture corpus | PASS |
 
 ## (3) Regression
 

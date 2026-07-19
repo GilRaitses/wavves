@@ -9,7 +9,7 @@ status: discovery complete
 ## Lock
 
 PHF-SCOPE S2: harden playbook/docs so `visual_accept: yes` ⇒ capture-then-grade
-required; DOM green ≠ done. No VPB product-look port. PBB stays shipped.
+required; DOM green ≠ done. No product-look lane port. PBB stays shipped.
 
 ## Current playbook state (measured)
 
@@ -31,9 +31,8 @@ locally (uncommitted per LOCKED-DECISIONS):
    review against `proof_reference`), not optional color.
 3. **Keep screenshot miss ≠ blank-canvas hard gate** (DOM/host still required
    for `PROC-BLANK-CANVAS`). Do not collapse the two gates.
-4. **Do not add** VPB product-look fail vocab rows (contradicting metrics,
-   near-dup alts, overlay-buried paths, reference-class readability) into
-   wavves closed fail table — PHF-EVAL parks that in pax VPB.
+4. **Do not add** product-look fail vocab rows into wavves closed fail table
+   — PHF-EVAL parks that in the originating product repo product-look lane.
 
 ## EXECUTION_WIRING Rule 2b doc harden (same wave, single editor)
 

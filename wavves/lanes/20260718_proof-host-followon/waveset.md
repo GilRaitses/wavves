@@ -21,7 +21,7 @@
 lane_type: single-repo
 repos:
   - id: wavves
-    path: /Users/gilraitses/wavves_build
+    path: <repo-root>
     role: lane_home_and_product
 commit_plan:
   order: [wavves]
@@ -32,7 +32,7 @@ commit_plan:
 
 Close the named PBB gap: ship a runnable DOM/host probe and harden
 proof-before-accept docs so `visual_accept: yes` cannot treat DOM green as
-done. Do not reopen PBB. Do not port pax VPB product-look into wavves.
+done. Do not reopen PBB. Do not port originating product repo product-look into wavves.
 
 ## Grounding
 
@@ -45,9 +45,9 @@ done. Do not reopen PBB. Do not port pax VPB product-look into wavves.
 
 ## Locked decisions (do NOT reopen)
 
-- PHF-SCOPE: S2 — probe + playbook/docs harden; no VPB port; PBB stays shipped
+- PHF-SCOPE: S2 — probe + playbook/docs harden; no product-look lane port; PBB stays shipped
 - PHF-PROBE: stdlib `skills/charter/scripts/proof_host_probe.py`; JSON `host_client_height` + `blank_canvas`
-- PHF-EVAL: defer screenshot+rubric fixtures to pax VPB
+- PHF-EVAL: defer screenshot+rubric fixtures to product-look lane (originating product repo)
 - PHF-ETIQUETTE: park orchestrator empty-return note outside this BUILD
 
 ## Wave structure
@@ -81,7 +81,7 @@ Single editor for EXECUTION_WIRING / playbook if not applied in W2.
 - [ ] EXECUTION_WIRING Rule 2b names the real path
 - [ ] Playbook visual_accept:yes path hardened
 - [ ] PBB checker regression 4/4; paragraph-tunnel 6/6
-- [ ] No VPB product-look port; no PBB reopen
+- [ ] No product-look lane port; no PBB reopen
 
 ## Gated waves
 
