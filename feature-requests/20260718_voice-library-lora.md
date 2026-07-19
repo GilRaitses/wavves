@@ -1,6 +1,8 @@
 # FR-20260718 — Voice library + optional LoRA (MoM pipeline)
 
-- **Status:** draft (ready for `/mod-check` when O0 unlocks)
+- **Status:** parked-pending-apollo-proof  
+  Proof lane: pax `wavves/lanes/20260718_apollo-voice-proof/` (AVP).  
+  Do not `/charter` wavves BUILD until AVP-ACCEPT.
 - **Date:** 2026-07-18 (America/New_York)
 - **Product surface:** wavves skill/playbook family (separate from paragraph-tunnel)
 - **External stimulus:** Matthew W. MoM pipeline (2026-07-18) — mailbox →

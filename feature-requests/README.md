@@ -22,5 +22,5 @@ or `wontfix`
 | FR-20260715-paragraph-tunnel | Paragraph tunnel gate (adversarial + rewrite) | shipped | originating outbound-copy mid-render gate + PTG |
 | FR-20260718-proof-before-accept | Proof-before-accept (process-PASS fail mode) | shipped | visitor process-PASS vs felt-product gap |
 | FR-20260718-proof-before-accept feedback | Originating-mod feedback | landed | `20260718_proof-before-accept_ORIGINATING-MOD-FEEDBACK.md` |
-| FR-20260718-voice-library-lora | Voice library + optional LoRA (MoM pipeline) | draft | Matthew W. MoM 2026-07-18 |
+| FR-20260718-voice-library-lora | Voice library + optional LoRA (MoM pipeline) | parked-pending-apollo-proof | AVP lane in pax |
 | FR-20260718-paragraph-tunnel MoM note | Tunnel × MoM introspection | landed | `20260718_paragraph-tunnel_MOM-introspection.md` |
