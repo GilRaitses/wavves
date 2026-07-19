@@ -64,19 +64,19 @@ active:
     label: proof-host-followon
     home: lanes/20260718_proof-host-followon/
     waves: [PHF-W1, PHF-W2, PHF-INT, PHF-ACCEPT]
-    status: chartered-dispatched-w1
+    status: completed
     type: execution
     depends_on: [PBB]
     conflicts_with: []
-    active_dispatch: dispatch-w1.md
+    active_dispatch: null
     dispatch_files: [dispatch-w1.md]
     mod_decide_complete_at: "2026-07-18T22:07:39-04:00"
-    waveset_synced_at: "2026-07-18T22:07:39-04:00"
-    repo_state_verified_against: 538437cad76764fd989cd028f64927b1ae839292
+    waveset_synced_at: "2026-07-18T22:10:11-04:00"
+    repo_state_verified_against: f837244e5aa236240bc863d297cb01ed44cad7d9
     note: >-
-      Mod-decide S2: ship skills/charter/scripts/proof_host_probe.py + harden
-      visual_accept:yes (DOM green ≠ done). Defer product-look evals to VPB.
-      Park etiquette note. Grok-only. PBB not reopened.
+      ACCEPT PASS. skills/charter/scripts/proof_host_probe.py live (self-check
+      EXIT 0). Rule 2b wired. visual_accept:yes hardened. Live URL bind still
+      lane-time. Product-look remains VPB. PBB not reopened.
   LAYOVER:
     label: layover-preflight
     home: lanes/20260709_layover-preflight/

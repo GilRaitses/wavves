@@ -22,8 +22,8 @@ active_lanes:
     next_read: lanes/20260718_proof-before-accept-build/gate-captures/PBB-ACCEPT.md
   - code: PHF
     home: lanes/20260718_proof-host-followon/
-    status: chartered-dispatched-w1
-    next_read: lanes/20260718_proof-host-followon/dispatch-w1.md
+    status: completed
+    next_read: lanes/20260718_proof-host-followon/gate-captures/PHF-ACCEPT.md
   - code: SELF
     home: lanes/20260709_wavves-self-improvement/
     status: completed

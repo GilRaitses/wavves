@@ -1,0 +1,37 @@
+{
+  "mode": "self-check",
+  "url": null,
+  "selector": null,
+  "host_client_height": 711,
+  "blank_canvas": false,
+  "pass": true,
+  "finished": "2026-07-19T02:09:34.044223+00:00",
+  "self_check_logic_ok": true,
+  "self_check_cases": [
+    {
+      "id": "healthy-host",
+      "host_client_height": 711,
+      "blank_canvas": false,
+      "expect_pass": true,
+      "actual_pass": true,
+      "ok": true
+    },
+    {
+      "id": "zero-height",
+      "host_client_height": 0,
+      "blank_canvas": false,
+      "expect_pass": false,
+      "actual_pass": false,
+      "ok": true
+    },
+    {
+      "id": "blank-canvas-class",
+      "host_client_height": 400,
+      "blank_canvas": true,
+      "expect_pass": false,
+      "actual_pass": false,
+      "ok": true
+    }
+  ],
+  "note": "Dry-run / self-check: no live browser. Required fields present; gate logic exercised. Live ACCEPT still needs --url/--selector with a browser backend."
+}

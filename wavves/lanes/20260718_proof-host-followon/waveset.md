@@ -9,8 +9,8 @@
 | owner | O0 |
 | type | execution |
 | proof_required | n/a |
-| status | chartered-dispatched-w1 |
-| active_dispatch | dispatch-w1.md |
+| status | w1-w2-complete-pause-accept |
+| active_dispatch | dispatch-w1.md (W1+W2 done; pause PHF-ACCEPT) |
 | home | `wavves/lanes/20260718_proof-host-followon/` |
 | repo_state_verified_against | `538437cad76764fd989cd028f64927b1ae839292` |
 | remediation_loop_cap | 2 |

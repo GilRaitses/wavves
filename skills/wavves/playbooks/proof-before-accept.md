@@ -45,12 +45,13 @@ ids are not sole BUILD ACCEPT criteria from the fixture script alone.
 Named harness:
 
 - `python3 evals/check_proof_before_accept.py` (fixture / field gate)
-- DOM/host hard gate for product ACCEPT: height ≤ 0 or blank-canvas → FAIL
-  (`PROC-BLANK-CANVAS`)
-- Screenshot / product-look grade: when `visual_accept: yes`, DOM/host green
-  alone is **not** done — still require capture-then-grade (or named
-  independent product-look review) against `proof_reference`. Screenshot is
-  never the sole hard gate for blank-canvas; DOM/host remains required.
+- DOM/host hard gate for product ACCEPT:
+  `python3 skills/charter/scripts/proof_host_probe.py` (see EXECUTION_WIRING
+  Rule 2b). height ≤ 0 or blank-canvas → FAIL (`PROC-BLANK-CANVAS`)
+- When `visual_accept: yes`, capture-then-grade is **required** (frozen
+  captures + independent product-look review against `proof_reference`).
+  DOM/host green alone is **not** ACCEPT-complete. Screenshot miss alone is
+  never the blank-canvas hard gate; DOM/host metrics remain required.
 
 ```
 - [ ] 1. Confirm waveset sets `proof_required` to yes, no, or n/a.
@@ -66,17 +67,20 @@ Named harness:
         allowlist is invalid (blocks proof delivery).
 - [ ] 5. Confirm waveset / ACCEPT packet names the harness:
         `python3 evals/check_proof_before_accept.py`, plus DOM/host hard
-        gate for product ACCEPT.
+        gate `python3 skills/charter/scripts/proof_host_probe.py` for
+        product ACCEPT.
 - [ ] 6. When fixtures are in scope, run
         `python3 evals/check_proof_before_accept.py`. Require PASS. Capture
         under `gate-captures/`. Mechanical FAIL ids only:
         `PROC-PASS-NO-PROOF`, `PROC-NO-VISUAL`.
-- [ ] 7. For product/visitor ACCEPT with `proof_required: yes`, run the
-        DOM/host harness on the proof surface. height ≤ 0 or blank canvas
-        → FAIL `PROC-BLANK-CANVAS`. Do not ACCEPT on docs alone.
-- [ ] 8. If `visual_accept: yes`, run capture-then-grade (frozen captures +
-        independent product-look review) against `proof_reference`. Do not
-        treat DOM/host green as ACCEPT-complete. Screenshot miss alone is
+- [ ] 7. For product/visitor ACCEPT with `proof_required: yes`, run
+        `python3 skills/charter/scripts/proof_host_probe.py` on the proof
+        surface (`--url` / `--selector`, or documented equivalent). height
+        ≤ 0 or blank canvas → FAIL `PROC-BLANK-CANVAS`. Do not ACCEPT on
+        docs alone. Do not hand-author the host JSON.
+- [ ] 8. If `visual_accept: yes`, capture-then-grade is required (frozen
+        captures + independent product-look review against
+        `proof_reference`). DOM/host green ≠ done. Screenshot miss alone is
         not the blank-canvas hard gate; DOM/host metrics still required.
 - [ ] 9. Adversarial / ACCEPT evaluators use
         `model: cursor-grok-4.5-high-fast`. Emit fail ids from the closed

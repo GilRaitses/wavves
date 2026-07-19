@@ -264,3 +264,10 @@ Operator `/mod-decide` then `¯\_(ツ)_/¯`. Locked PHF from originating-mod
 feedback: SCOPE=S2, PROBE=skills/charter/scripts/proof_host_probe.py,
 EVAL=defer to VPB, ETIQUETTE=park. Chartered lane
 `20260718_proof-host-followon`, dispatched W1+W2. PBB not reopened.
+
+## 2026-07-18 — O0.R1 — PHF ACCEPT PASS
+
+PHF W1+W2 returned (probe + Rule 2b + playbook harden). O0 ACCEPT: probe
+--self-check EXIT 0; PBB 4/4; tunnel 6/6. Captures under
+lanes/20260718_proof-host-followon/gate-captures/PHF-ACCEPT*. Lifted
+applications HOLD on naming proof_host_probe (self-check tooling).

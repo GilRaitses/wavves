@@ -1,0 +1,30 @@
+{
+  "gate": "PHF-ACCEPT",
+  "captured_at": "2026-07-18T22:10:11-0400",
+  "evaluator": "O0 (no authorship of W2 probe)",
+  "repo_state_verified_against": "f837244e5aa236240bc863d297cb01ed44cad7d9",
+  "commands": [
+    {
+      "command": "python3 skills/charter/scripts/proof_host_probe.py --self-check --out wavves/lanes/20260718_proof-host-followon/gate-captures/PHF-ACCEPT-probe-self-check.json",
+      "exit_code": 0,
+      "capture": "gate-captures/PHF-ACCEPT-probe-self-check.json"
+    },
+    {
+      "command": "python3 evals/check_proof_before_accept.py",
+      "exit_code": 0,
+      "summary": "pass=4 fail=0 total=4"
+    },
+    {
+      "command": "python3 evals/check_paragraph_tunnel.py",
+      "exit_code": 0,
+      "summary": "pass=6 fail=0 total=6"
+    }
+  ],
+  "spot_checks": {
+    "execution_wiring_rule_2b_real_path": true,
+    "playbook_visual_accept_capture_then_grade": true,
+    "no_vpb_product_look_port": true,
+    "pbb_not_reopened": true
+  },
+  "known_gap": "live --url/--selector not exercised; self-check only"
+}

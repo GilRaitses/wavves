@@ -118,21 +118,28 @@ replace a live product ACCEPT.
 
 ### Live DOM / primary product host harness (hard)
 
-Define pass metric before the run. Prefer dependency-free host geometry:
+Define pass metric before the run. Shared probe (stdlib self-check; live
+mode uses Playwright when installed):
 
 ```bash
 # Bind URL + CSS selector for the primary product host (lane-specific).
 # Fail if clientHeight <= 0 or blank-canvas class while chrome may PASS.
-python3 scripts/proof_host_probe.py \
+python3 skills/charter/scripts/proof_host_probe.py \
   --url "$PROOF_URL" \
   --selector "$PROOF_HOST_SELECTOR" \
   --out gate-captures/<CODE>-ACCEPT-proof-host.json
+
+# No live browser available: contract smoke (emits required JSON fields).
+python3 skills/charter/scripts/proof_host_probe.py --self-check \
+  --out gate-captures/<CODE>-probe-self-check.json
 ```
 
-If `scripts/proof_host_probe.py` is not yet in-repo, the lane MUST still
-name an equivalent runnable command that writes JSON with at least
-`host_client_height` and `blank_canvas` (bool) and FAIL when
-`host_client_height <= 0` or `blank_canvas: true` while chrome gates PASS.
+The command MUST write JSON with at least `host_client_height` and
+`blank_canvas` (bool) and FAIL when `host_client_height <= 0` or
+`blank_canvas: true` while chrome gates PASS. Do not hand-author the
+capture. Self-check proves the tool ships; product ACCEPT still needs a
+live `--url` / `--selector` run (or an equivalent measured command that
+emits the same fields).
 
 Pass metric examples:
 
@@ -143,11 +150,14 @@ Pass metric examples:
 Capture path under lane `gate-captures/`. Verdict cites measured numbers
 and the command that produced the capture. Hand-authored summaries FAIL.
 
-### Screenshot (optional)
+### Screenshot / capture-then-grade
 
-When `visual_accept: yes` and the environment supports it, capture
-screenshot-vs-reference under `gate-captures/` as an operator/visual step.
-Screenshot is never the sole hard gate; DOM/host metrics remain required.
+When `visual_accept: yes`, capture-then-grade is required: frozen captures
+under `gate-captures/` plus independent product-look review against
+`proof_reference`. DOM/host green alone is not ACCEPT-complete.
+Screenshot is never the sole blank-canvas hard gate; DOM/host metrics
+remain required. Product-look fail vocab lives in the visitor lane / pax
+VPB pattern, not in wavves mechanical fixtures.
 
 ### Chrome freeze
 
