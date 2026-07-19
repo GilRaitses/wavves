@@ -69,6 +69,16 @@ the decisions", "lock before charter", "decision packet", `/mod-decide`.
           prior `dispatch.md` when superseded)
         - `wavves/registry.yml` — `status`, `note`, `mod_decide_complete_at`,
           `waveset_synced_at`, `active_dispatch`
+        - **Proof fields (PBA-LAND E).** When the feature or check lane will
+          charter an execution lane with visitor/product surface, ensure
+          Locked decisions and the synced `waveset.md` carry
+          `proof_required: yes|no|n/a`. If `proof_required: yes`, AUTH sync
+          FAILS (block BUILD unlock / W2 dispatch) until `proof_job` appears
+          in the Locked decisions paste and in `waveset.md` Meta, along with
+          `proof_reference`, `chrome_freeze` (freeze list + proof-serving
+          allowlist), and `visual_accept` (with rationale if `no` or if
+          `proof_reference: none`). Dropping `proof_job` from the paste after
+          decide is a sync failure, not a soft warning.
         Show a diff preview or ask O0 to confirm if waveset has intentional
         draft edits. **Block W2 dispatch** when `waveset.md` is older than the
         newest `decisions/*-B-*.md` (or lane decision records) until sync passes.
@@ -119,6 +129,8 @@ charter) with:
 - `repo_state_verified_against` from the check landing
 - the Locked decisions paste
 - the Grounding paste
+- `proof_required` and, when `yes`, `proof_job` (+ three companion fields)
+  present in Locked decisions and waveset Meta before BUILD dispatch
 - one feature per lane when scopes are disjoint
 - gated integration + acceptance
 - no commits/deploy without an explicit ask

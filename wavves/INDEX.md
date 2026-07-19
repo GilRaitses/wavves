@@ -18,8 +18,8 @@ active_lanes:
     next_read: lanes/20260718_proof-before-accept-check/decisions/LOCKED-DECISIONS.md
   - code: PBB
     home: lanes/20260718_proof-before-accept-build/
-    status: chartered-dispatched-w1
-    next_read: lanes/20260718_proof-before-accept-build/dispatch-w1.md
+    status: completed
+    next_read: lanes/20260718_proof-before-accept-build/gate-captures/PBB-ACCEPT.md
   - code: SELF
     home: lanes/20260709_wavves-self-improvement/
     status: completed
@@ -35,14 +35,14 @@ project_skills:
 
 feature_requests:
   home: ../feature-requests/
-  open:
-    - id: FR-20260718-proof-before-accept
-      path: ../feature-requests/20260718_proof-before-accept.md
-      status: chartered-pbb-building
+  open: []
   shipped:
     - id: FR-20260715-paragraph-tunnel
       path: ../feature-requests/20260715_paragraph-tunnel-gate.md
-      status: shipped-accept-pass-landing-hash-pending-commit
+      status: shipped
+    - id: FR-20260718-proof-before-accept
+      path: ../feature-requests/20260718_proof-before-accept.md
+      status: shipped
 
 model_policy:
   default: record recommendation before dispatch

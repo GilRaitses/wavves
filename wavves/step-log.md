@@ -236,3 +236,13 @@ PBB (`20260718_proof-before-accept-build`). Dispatching W1+W2 orchestrator
 
 Proceed playbook also authorizes commit of listed artifacts; push still
 gated by house main-publish rule (no push unless separately asked).
+
+## 2026-07-18 — O0.R1 — PBB INT+ACCEPT PASS
+
+PBB W1+W2 returned (playbook + checker 4/4 + skill-patch drafts). Under
+prior proceed alias, unlocked INT and applied five patches to charter
+SKILL + EXECUTION_WIRING Rule 2b, mod-check proof-bar, mod-decide AUTH
+sync, wavves router. ACCEPT: check_proof_before_accept.py pass=4 fail=0;
+paragraph-tunnel regression 6/6; no /proof-gate. Captures under
+lanes/20260718_proof-before-accept-build/gate-captures/PBB-ACCEPT*.
+FR-20260718 → shipped. Disclosed gap: proof_host_probe.py not shipped.

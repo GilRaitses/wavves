@@ -1,0 +1,55 @@
+{
+  "gate": "PBB-ACCEPT",
+  "captured_at": "2026-07-18T21:36:40-0400",
+  "evaluator": "O0 (no authorship of W2 playbook/checker/fixtures)",
+  "repo_state_verified_against": "09c4e575e745956803180839540a5c3e16cb52e7",
+  "command": "python3 evals/check_proof_before_accept.py",
+  "exit_code": 0,
+  "pass": 4,
+  "fail": 0,
+  "total": 4,
+  "fixtures": [
+    {
+      "name": "proof-before-accept-no-visual-fail",
+      "status": "PASS",
+      "verdict": "FAIL",
+      "fail_ids": ["PROC-NO-VISUAL"]
+    },
+    {
+      "name": "proof-before-accept-optout-no-rationale-fail",
+      "status": "PASS",
+      "verdict": "FAIL",
+      "fail_ids": ["PROC-PASS-NO-PROOF"]
+    },
+    {
+      "name": "proof-before-accept-proc-pass-no-proof-fail",
+      "status": "PASS",
+      "verdict": "FAIL",
+      "fail_ids": ["PROC-PASS-NO-PROOF"]
+    },
+    {
+      "name": "proof-before-accept-with-proof-pass",
+      "status": "PASS",
+      "verdict": "PASS",
+      "fail_ids": []
+    }
+  ],
+  "regression": {
+    "command": "python3 evals/check_paragraph_tunnel.py",
+    "summary": "pass=6 fail=0 total=6"
+  },
+  "spot_checks": {
+    "playbook_classifier_freeze_optout_harness": true,
+    "execution_wiring_rule_2b": true,
+    "no_proof_gate_slash_skill_dir": true,
+    "paragraph_tunnel_untouched_regression": true
+  },
+  "int_wiring": {
+    "skills_charter_SKILL_md": true,
+    "skills_charter_EXECUTION_WIRING_md": true,
+    "skills_mod_check_SKILL_md": true,
+    "skills_mod_decide_SKILL_md": true,
+    "skills_wavves_SKILL_md": true
+  },
+  "known_gap": "scripts/proof_host_probe.py not shipped; contract named in EXECUTION_WIRING Rule 2b"
+}

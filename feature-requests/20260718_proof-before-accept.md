@@ -1,6 +1,6 @@
 # FR-20260718 — Proof-before-accept (process-PASS fail mode)
 
-- **Status:** chartered (BUILD lane `20260718_proof-before-accept-build`)
+- **Status:** chartered-build (PBB W1+W2 landed; INT/ACCEPT gated — skill file patches not yet applied)
 - **Check lane:** `wavves/lanes/20260718_proof-before-accept-check/`
 - **Build lane:** `wavves/lanes/20260718_proof-before-accept-build/`
 - **Date:** 2026-07-18 (America/New_York)

@@ -126,6 +126,30 @@ python3 evals/check_paragraph_tunnel.py
 Known limitation: mechanical PASS ≠ live Grok adversarial judgment. ACCEPT
 still requires playbook spot-check plus measured checker output.
 
+## Proof-before-accept fixtures (disjoint harness)
+
+Separate from the lens-wording tripwire and from paragraph-tunnel. Product
+surface for the proof-before-accept playbook
+(`skills/wavves/playbooks/proof-before-accept.md`).
+
+```bash
+python3 evals/check_proof_before_accept.py
+```
+
+- Discovers only `evals/fixtures/proof-before-accept-*/`
+- Stdlib mechanical fail-id tripwire (no LLM, no network)
+- Does **not** use or modify `run_fixtures.py` or `paragraph-tunnel-*`
+- Mechanical vocab: `PROC-PASS-NO-PROOF`, `PROC-NO-VISUAL`
+- Review/live ids (`PROC-CHROME-THRASH`, `PROC-DEBT-AS-DONE`,
+  `PROC-BLANK-CANVAS`) are not emitted by this script
+- Minimum cases: process-only ACCEPT → FAIL; full proof fields + harness →
+  PASS; opt-out without rationale → FAIL; `visual_accept: yes` without
+  harness → FAIL
+
+Known limitation: mechanical PASS ≠ live DOM/host Proof ACCEPT. Product
+lanes still need the named host-geometry harness and JSON capture under
+`gate-captures/` per EXECUTION_WIRING Rule 2b (applied at INT).
+
 ## Repeated-trial verification (3 consecutive passes)
 
 Per the SELF lane's locked decisions, a proposed skill edit affecting

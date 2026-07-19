@@ -60,7 +60,8 @@ we write the plan", `/mod-check`.
         "adversarial check only — no build, no implementation plan."
 - [ ] 5. Register the lane in wavves/registry.yml (status: chartered).
 - [ ] 6. Dispatch ONE wave of parallel high-reasoning reviewers (default 4
-        lenses below). Background preferred. Do not poll.
+        lenses below; add proof-bar when proof_required: yes or
+        product/visitor FR). Background preferred. Do not poll.
 - [ ] 7. On return: reconcile findings **once** after all parallel lenses
         complete (AUTH-06). Do not prompt the operator per lens unless one
         failed. Write findings/<CODE>-verdict.md with scoped verdict (AUTH-04).
@@ -80,8 +81,29 @@ Dispatch these as disjoint subagents unless the operator narrows the set:
 | `<CODE>-W1c` | completeness | `findings/<CODE>-completeness.md` | missing acceptance criteria, unowned edges, silent assumptions, absent rollback / non-goals |
 | `<CODE>-W1d` | adversarial | `findings/<CODE>-adversarial.md` | failure modes, unsafe defaults, "works on happy path only", gates that can't actually run |
 
-Add a fifth lens only when the operator names a domain (security, perf,
-migration blast radius). Keep ownership disjoint.
+### Conditional fifth lens: proof-bar (PBA-LENS)
+
+Dispatch `<CODE>-W1e` **proof-bar** as a default fifth parallel lens when the
+artifact or its waveset Meta sets `proof_required: yes`, or when the
+artifact is a product/visitor feature request that will charter an execution
+lane. Otherwise keep the four-lens default; operators may still name
+proof-bar as an optional fifth domain lens.
+
+| Wave id | Lens | Owns | Hunts for |
+|:--------|:-----|:-----|:----------|
+| `<CODE>-W1e` | proof-bar | `findings/<CODE>-proof-bar.md` | ACCEPT criteria that can PASS without measuring `proof_job`; chrome-only waves with no frozen proof_job; `proof_reference: none` / `visual_accept: no` without rationale on proof_required:yes; debt-close treated as product done; missing named DOM/host or mechanical proof harness |
+
+proof-bar owns its findings file alone. It does not replace grounding,
+contradictions, completeness, or adversarial. Playbook
+`skills/wavves/playbooks/proof-before-accept.md` teaches the same hunt for
+BUILD lanes.
+
+For research-only, mod-check-of-check, plugin-meta, or outbound-copy-only
+artifacts with `proof_required: no` or `n/a`, do not force proof-bar unless
+the operator asks.
+
+Other domain fifth lenses (security, perf, migration blast radius) remain
+operator-named and stay disjoint from proof-bar ownership.
 
 ## waveset.md shape (check lane)
 

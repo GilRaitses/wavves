@@ -120,6 +120,24 @@ Registry optional fields (AUTH-02, AUTH-08): `active_dispatch`, `dispatch_files`
   `repo_state_verified_against` (the main-branch hash BEFORE this pass. never
   embed this file's own landing commit, which would create a self-referential
   hash loop).
+- **`proof_required: yes|no|n/a`** (required Meta field). Explicit classifier;
+  never infer from prose keywords. Defaults guidance: visitor/product
+  execution lanes → `yes`; mod-check / research-discovery / plugin-meta /
+  outbound-copy-only → `no` or `n/a` with one-line rationale. When
+  `proof_required: yes`, the waveset MUST also declare:
+  - `proof_job` — one operator-facing sentence naming the Proof to measure
+  - `proof_reference` — path, URL, or figure class; `none` only with written
+    rationale
+  - `chrome_freeze` — non-proof-serving path/surface list plus an explicit
+    proof-serving allowlist (edits outside the allowlist before Proof ACCEPT
+    are thrash)
+  - `visual_accept` — `yes` or `no`; `no` requires written rationale
+  Acceptance criteria on such lanes MUST name a runnable proof gate
+  (mechanical fixture checker and/or DOM/host harness with JSON capture).
+  Process-only gates (LAND-C, honesty labels, e2e shell, HEAD match) are
+  insufficient alone. See playbook
+  `skills/wavves/playbooks/proof-before-accept.md` and
+  `EXECUTION_WIRING.md` proof-host rule.
 - **Intent** (the operator's framing. use verbatim wording when given).
 - **Grounding** (the real seams/data with exact paths and the verified root
   cause).
@@ -129,7 +147,10 @@ Registry optional fields (AUTH-02, AUTH-08): `active_dispatch`, `dispatch_files`
   evidence is escalated to the orchestrator with the evidence, never silently
   defended or silently reopened.
 - **Wave structure** (discovery, build, integrate, accept. see below).
-- **Acceptance criteria** (hard, checkable, no reassurance bias).
+- **Acceptance criteria** (hard, checkable, no reassurance bias). On
+  `proof_required: yes` lanes, acceptance is incomplete unless the named
+  `proof_job` is measured (capture under `gate-captures/`); docs-only or
+  process-only green is a FAIL (`PROC-PASS-NO-PROOF`).
 - **Gated waves and operator involvement.** Name at charter time which waves are
   GATED and which mutations are operator-gated, so a lane that touches
   production carries its gates from birth.

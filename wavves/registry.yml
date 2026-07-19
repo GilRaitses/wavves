@@ -47,18 +47,18 @@ active:
     label: proof-before-accept-build
     home: lanes/20260718_proof-before-accept-build/
     waves: [PBB-W1, PBB-W2, PBB-INT, PBB-ACCEPT]
-    status: chartered-dispatched-w1
+    status: completed
     type: execution
     depends_on: [PBA]
     conflicts_with: []
-    active_dispatch: dispatch-w1.md
+    active_dispatch: null
     dispatch_files: [dispatch-w1.md]
-    waveset_synced_at: "2026-07-18T21:29:54-04:00"
-    repo_state_verified_against: 517dd85190cf93cf744434338dec4b1eb1d859c5
+    waveset_synced_at: "2026-07-18T21:36:40-04:00"
+    repo_state_verified_against: 09c4e575e745956803180839540a5c3e16cb52e7
     note: >-
-      Build proof-before-accept playbook + mechanical evals + charter/wiring
-      + mod-check proof-bar + mod-decide AUTH sync. Grok-only. Pause before
-      gated INT/ACCEPT.
+      W1+W2+INT+ACCEPT complete. Mechanical checker 4/4 PASS
+      (gate-captures/PBB-ACCEPT.md). Skill wiring applied. No /proof-gate.
+      Known gap: scripts/proof_host_probe.py not shipped (contract named).
   LAYOVER:
     label: layover-preflight
     home: lanes/20260709_layover-preflight/

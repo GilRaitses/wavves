@@ -9,7 +9,7 @@ No `/proof-gate` slash skill.
 | label | proof-before-accept-build |
 | owner | O0 |
 | type | execution |
-| status | chartered |
+| status | w1-w2-complete; pause before INT |
 | depends_on | PBA |
 | home | `wavves/lanes/20260718_proof-before-accept-build/` |
 | repo_state_verified_against | `517dd85190cf93cf744434338dec4b1eb1d859c5` |
