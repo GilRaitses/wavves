@@ -3,22 +3,23 @@ active:
     label: paragraph-tunnel-build
     home: lanes/20260715_paragraph-tunnel-build/
     waves: [PTB-W1, PTB-W2, PTB-INT, PTB-ACCEPT]
-    status: w1w2-complete-awaiting-int-accept
+    status: completed
     type: execution
     depends_on: [PTG]
     conflicts_with: []
     active_dispatch: null
     dispatch_files: [dispatch-w1.md]
-    waveset_synced_at: "2026-07-15T10:26:00-04:00"
-    repo_state_verified_against: c770eca76717342607bb0e48457e9873801001b8
+    waveset_synced_at: "2026-07-18T17:17:36-04:00"
+    repo_state_verified_against: af0c0788cb2dbb865cbce6721fcdcbf6642b11d4
     note: >-
-      W1+W2 landed (playbook + mechanical checker + 6 fixtures; nice-because
-      PASS). Awaiting O0 unlock for gated INT (SKILL.md router) and ACCEPT.
+      W1+W2+INT+ACCEPT complete. Router lists paragraph-tunnel; mechanical
+      checker 6/6 PASS (gate-captures/PTB-ACCEPT.md + PTB-ACCEPT-tunnel.json).
+      No slash skill. mod-check SKILL.md untouched.
   PTG:
     label: paragraph-tunnel-gate-check
     home: lanes/20260715_paragraph-tunnel-gate-check/
     waves: [PTG-W1, PTG-VERDICT]
-    status: mod-decide-complete-awaiting-build-charter
+    status: completed
     type: check
     active_dispatch: null
     mod_decide_complete_at: "2026-07-15T09:55:00-04:00"
@@ -26,8 +27,38 @@ active:
     repo_state_verified_against: f2fb8ce144b68d820b0992f5075a2cbbf44673d2
     artifact: feature-requests/20260715_paragraph-tunnel-gate.md
     note: >-
-      Check REVISE; locks landed (LAND=C+dispatch hook, Grok-only, runnable
-      eval, fail-cap escalate). Awaiting /charter BUILD. No build in this lane.
+      Check REVISE; locks landed; BUILD (PTB) completed ACCEPT 2026-07-18.
+  PBA:
+    label: proof-before-accept-check
+    home: lanes/20260718_proof-before-accept-check/
+    waves: [PBA-W1, PBA-VERDICT]
+    status: mod-decide-complete-awaiting-build
+    type: check
+    active_dispatch: null
+    dispatch_files: [dispatch.md]
+    mod_decide_complete_at: "2026-07-18T21:29:00-04:00"
+    waveset_synced_at: "2026-07-18T21:29:00-04:00"
+    repo_state_verified_against: af0c0788cb2dbb865cbce6721fcdcbf6642b11d4
+    artifact: feature-requests/20260718_proof-before-accept.md
+    note: >-
+      Check REVISE; mod-decide locks landed (C+D+B+E). BUILD lane PBB
+      chartered. See decisions/LOCKED-DECISIONS.md.
+  PBB:
+    label: proof-before-accept-build
+    home: lanes/20260718_proof-before-accept-build/
+    waves: [PBB-W1, PBB-W2, PBB-INT, PBB-ACCEPT]
+    status: chartered-dispatched-w1
+    type: execution
+    depends_on: [PBA]
+    conflicts_with: []
+    active_dispatch: dispatch-w1.md
+    dispatch_files: [dispatch-w1.md]
+    waveset_synced_at: "2026-07-18T21:29:54-04:00"
+    repo_state_verified_against: 517dd85190cf93cf744434338dec4b1eb1d859c5
+    note: >-
+      Build proof-before-accept playbook + mechanical evals + charter/wiring
+      + mod-check proof-bar + mod-decide AUTH sync. Grok-only. Pause before
+      gated INT/ACCEPT.
   LAYOVER:
     label: layover-preflight
     home: lanes/20260709_layover-preflight/

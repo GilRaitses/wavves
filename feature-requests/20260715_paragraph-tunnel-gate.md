@@ -1,6 +1,6 @@
 # FR-20260715 — Paragraph tunnel gate
 
-- **Status:** chartered (BUILD lane `20260715_paragraph-tunnel-build`)
+- **Status:** shipped (ACCEPT PASS 2026-07-18; landing_commit_hash pending O0 commit)
 - **Check lane:** `wavves/lanes/20260715_paragraph-tunnel-gate-check/`
 - **Build lane:** `wavves/lanes/20260715_paragraph-tunnel-build/`
 - **Date:** 2026-07-15 (America/New_York)

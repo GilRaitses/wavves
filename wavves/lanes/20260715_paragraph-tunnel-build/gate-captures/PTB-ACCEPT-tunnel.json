@@ -1,0 +1,60 @@
+{
+  "gate": "PTB-ACCEPT",
+  "captured_at": "2026-07-18T17:17:36-0400",
+  "evaluator": "O0 (no authorship of W2 playbook/checker/fixtures)",
+  "repo_state_verified_against": "af0c0788cb2dbb865cbce6721fcdcbf6642b11d4",
+  "command": "python3 evals/check_paragraph_tunnel.py",
+  "exit_code": 0,
+  "pass": 6,
+  "fail": 0,
+  "total": 6,
+  "fixtures": [
+    {
+      "name": "paragraph-tunnel-compare-fail",
+      "status": "PASS",
+      "verdict": "FAIL",
+      "fail_ids": ["PN-COMPARE", "PN-MULTI"]
+    },
+    {
+      "name": "paragraph-tunnel-fixture-fail",
+      "status": "PASS",
+      "verdict": "FAIL",
+      "fail_ids": ["PN-FIXTURE"]
+    },
+    {
+      "name": "paragraph-tunnel-nice-because-pass",
+      "status": "PASS",
+      "verdict": "PASS",
+      "fail_ids": []
+    },
+    {
+      "name": "paragraph-tunnel-one-fact-pass",
+      "status": "PASS",
+      "verdict": "PASS",
+      "fail_ids": []
+    },
+    {
+      "name": "paragraph-tunnel-stack-gloss-fail",
+      "status": "PASS",
+      "verdict": "FAIL",
+      "fail_ids": ["PN-GLOSS", "PN-MULTI", "PN-STACK"]
+    },
+    {
+      "name": "paragraph-tunnel-standin-fail",
+      "status": "PASS",
+      "verdict": "FAIL",
+      "fail_ids": ["STANDIN"]
+    }
+  ],
+  "spot_checks": {
+    "playbook_order_render_tunnel_lint": true,
+    "fail_cap_escalate": true,
+    "grok_model_lock": true,
+    "judge_freeze_rules": true,
+    "no_paragraph_tunnel_slash_skill_dir": true,
+    "mod_check_skill_untouched_blob": "616fb7027ee1d60298662ce8b35a268a3168d7bf"
+  },
+  "int_wiring": {
+    "skills_wavves_SKILL_md": "router row + playbook list for paragraph-tunnel"
+  }
+}

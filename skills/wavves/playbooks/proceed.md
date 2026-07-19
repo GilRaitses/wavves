@@ -20,5 +20,6 @@ mod-decide completion, or lane reconcile return (AUTH-10).
         commit hash when commits occurred.
 ```
 
-Trigger language: `proceed as recommended`, `/wavves proceed`, `ship it` after
-a verdict with `recommended_actions`.
+Trigger language: `proceed as recommended`, `/wavves proceed`, `ship it`, or
+**¯\_(ツ)_/¯** (standing operator alias = proceed as recommended in sequence)
+after a verdict with `recommended_actions`.

@@ -37,6 +37,7 @@ skill in full** before acting.
 | check | `mod-check` (`/mod-check`) | adversarial sanity-check of a written spec or plan before implementation |
 | decide | `mod-decide` (`/mod-decide`) | lock open product/design calls after a check return, before BUILD charter |
 | layover | `layover` (`/layover`) | preflight a bespoke multi-repo workspace before a cloud agent takes over |
+| paragraph-tunnel | dispatch STEPS | mid-render outbound paragraph gate (adversarial + capped rewrite; no slash skill in v0) |
 | rotate | `mod-rotate` (`/mod-rotate`) | rotate, handoff, fresh thread, self-fork, replay, token velocity too high |
 | pickup | hydrate + moderate | resume from rotation paste, "where are we", reconcile active lanes |
 | proceed | hydrate + execute | `proceed as recommended`, `/wavves proceed`, execute verdict actions |
@@ -58,6 +59,7 @@ before adding task-specific items.
 - **Check.** `playbooks/check.md`
 - **Decide.** `playbooks/decide.md`
 - **Layover.** `playbooks/layover.md`
+- **Paragraph tunnel.** `playbooks/paragraph-tunnel.md`
 - **Rotate.** `playbooks/rotate.md`
 - **Pickup.** `playbooks/pickup.md`
 - **Proceed.** `playbooks/proceed.md`
