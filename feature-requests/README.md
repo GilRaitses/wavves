@@ -21,3 +21,4 @@ or `wontfix`
 |---|---|---|---|
 | FR-20260715-paragraph-tunnel | Paragraph tunnel gate (adversarial + rewrite) | shipped | APPL-P2-TUNNEL + PTG + NICE-BECAUSE |
 | FR-20260718-proof-before-accept | Proof-before-accept (process-PASS fail mode) | shipped | pax Proof-then-consume doctrine + RFU/beta chrome thrash |
+| FR-20260718-proof-before-accept feedback | Originating-mod feedback (O0.R3 → wavves) | landed | `20260718_proof-before-accept_ORIGINATING-MOD-FEEDBACK.md` |
