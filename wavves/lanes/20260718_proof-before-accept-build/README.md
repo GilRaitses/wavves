@@ -9,14 +9,15 @@ No `/proof-gate` slash skill.
 | label | proof-before-accept-build |
 | owner | O0 |
 | type | execution |
-| status | w1-w2-complete; pause before INT |
+| status | completed (INT+ACCEPT 2026-07-18) |
 | depends_on | PBA |
 | home | `wavves/lanes/20260718_proof-before-accept-build/` |
-| repo_state_verified_against | `517dd85190cf93cf744434338dec4b1eb1d859c5` |
-| active_dispatch | `dispatch-w1.md` |
+| repo_state_verified_against | `09c4e575e745956803180839540a5c3e16cb52e7` |
+| active_dispatch | null |
+| accept_capture | `gate-captures/PBB-ACCEPT.md` |
 | proof_required | n/a (plugin-meta method lane) |
 
-## Start
+## Done
 
-Hydrate `dispatch-w1.md`. Run W1+W2. Pause before gated INT/ACCEPT.
-All subagents: **Grok only** (`cursor-grok-4.5-high-fast`).
+W1+W2+INT+ACCEPT landed. Mechanical checker 4/4 PASS. Skill wiring applied.
+See `gate-captures/PBB-ACCEPT.md`.
