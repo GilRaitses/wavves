@@ -94,8 +94,11 @@ contains this FR.
 - Auto-sending outbound mail.
 - Broad tone rewriting of whole emails.
 - Reintroducing BECAUSE/EXPLAIN fail ids without operator ask.
+- Mailbox-scale voice-clone / SFT humanizer (different product).
 
 ## Operator note
 
 Spawned from ASP/APPL clearance work. Treat as product FR for wavves, not as
-an APPL residual.
+an APPL residual. Product shape: judgment + structure for one named
+paragraph (HITL rules, adversarial mid-render, mechanical checks), not
+voice transfer. Keep ACCEPT on that surface.

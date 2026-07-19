@@ -107,3 +107,6 @@ See `wavves/lanes/20260718_proof-before-accept-check/decisions/LOCKED-DECISIONS.
 Spawned from pax multi-surface Proof-then-consume ratification and the
 operator judgment that beta process PASS did not equal a felt product.
 Mod-decide complete via operator `¯\_(ツ)_/¯` (proceed as recommended).
+Originating-mod feedback (O0.R3): 
+`feature-requests/20260718_proof-before-accept_ORIGINATING-MOD-FEEDBACK.md`
+(`538437c`) — PBB stays shipped; product-look extension is VPB in pax.

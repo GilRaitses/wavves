@@ -54,7 +54,16 @@ Capture: `gate-captures/PBB-ACCEPT-proof.json`
 `scripts/proof_host_probe.py` not shipped; EXECUTION_WIRING names the JSON
 contract and example command for product lanes to bind.
 
+## Originating-mod read (O0.R3 → wavves_build)
+
+Landed `feature-requests/20260718_proof-before-accept_ORIGINATING-MOD-FEEDBACK.md`
+(`538437c`). Summary: PBB matches method fail (`PROC-PASS-NO-PROOF`); keep
+C+D+B+E; do not reopen. Felt-product / product-look bar is **VPB** (pax),
+not a PBB regress. Before next klosr visitor `proof_required: yes`: DOM hard
++ capture-then-grade + independent product-look grade + author ≠ ACCEPT +
+ship probe (or cite Playwright `clientHeight`).
+
 ## Verdict
 
 **PASS.** PBB ACCEPT criteria met for the method surface (playbook +
-mechanical evals + skill wiring). FR-20260718 may move to `shipped`.
+mechanical evals + skill wiring). FR-20260718 shipped. No reopen.

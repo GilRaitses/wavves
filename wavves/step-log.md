@@ -246,3 +246,21 @@ sync, wavves router. ACCEPT: check_proof_before_accept.py pass=4 fail=0;
 paragraph-tunnel regression 6/6; no /proof-gate. Captures under
 lanes/20260718_proof-before-accept-build/gate-captures/PBB-ACCEPT*.
 FR-20260718 → shipped. Disclosed gap: proof_host_probe.py not shipped.
+
+## 2026-07-18 — O0.R1 — originating-mod feedback on PBB (538437c)
+
+Received O0.R3 paste / landed file
+`feature-requests/20260718_proof-before-accept_ORIGINATING-MOD-FEEDBACK.md`.
+PBB remains shipped (no reopen). Keep C+D+B+E. Method match yes;
+felt-product gap owned by pax VPB (`1176046`), not PBB. Softened
+proof-before-accept playbook: visual_accept:yes ⇒ DOM green ≠ done
+(capture-then-grade + independent product-look). Follow-ons noted:
+ship proof_host_probe.py (or Playwright clientHeight cite); optional
+orchestrator-completion etiquette note from discovery section.
+
+## 2026-07-18 — O0.R1 — mod-decide PHF (shrug = S2 leans)
+
+Operator `/mod-decide` then `¯\_(ツ)_/¯`. Locked PHF from originating-mod
+feedback: SCOPE=S2, PROBE=skills/charter/scripts/proof_host_probe.py,
+EVAL=defer to VPB, ETIQUETTE=park. Chartered lane
+`20260718_proof-host-followon`, dispatched W1+W2. PBB not reopened.

@@ -58,8 +58,13 @@ Capture: `gate-captures/PTB-ACCEPT-tunnel.json`
 `playbooks/paragraph-tunnel.md` (router table + playbook list). Leaf =
 dispatch STEPS; no slash skill in v0.
 
+## Scope (what ACCEPT measured)
+
+Mid-render structural tunnel only: closed fail vocab, sibling freeze,
+rewrite cap → operator REVISE, mechanical fixtures. Not a voice-clone or
+mailbox-scale humanizer. Operator HITL overturns (e.g. nice-because
+whitelist) stay in the lock files. Slash skill deferred (LAND=C).
+
 ## Verdict
 
-**PASS.** PTB ACCEPT criteria met. FR-20260715 may move to `shipped` once
-O0 records `landing_commit_hash` after the operator-authorized commit that
-lands INT + this capture.
+**PASS.** PTB ACCEPT criteria met.

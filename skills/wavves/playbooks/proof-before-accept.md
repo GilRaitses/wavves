@@ -47,8 +47,10 @@ Named harness:
 - `python3 evals/check_proof_before_accept.py` (fixture / field gate)
 - DOM/host hard gate for product ACCEPT: height ≤ 0 or blank-canvas → FAIL
   (`PROC-BLANK-CANVAS`)
-- Screenshot-vs-reference is optional when `visual_accept: yes`; never the
-  sole hard gate
+- Screenshot / product-look grade: when `visual_accept: yes`, DOM/host green
+  alone is **not** done — still require capture-then-grade (or named
+  independent product-look review) against `proof_reference`. Screenshot is
+  never the sole hard gate for blank-canvas; DOM/host remains required.
 
 ```
 - [ ] 1. Confirm waveset sets `proof_required` to yes, no, or n/a.
@@ -72,9 +74,10 @@ Named harness:
 - [ ] 7. For product/visitor ACCEPT with `proof_required: yes`, run the
         DOM/host harness on the proof surface. height ≤ 0 or blank canvas
         → FAIL `PROC-BLANK-CANVAS`. Do not ACCEPT on docs alone.
-- [ ] 8. If `visual_accept: yes`, optionally compare screenshot to
-        `proof_reference`. Screenshot miss alone is not the hard gate;
-        DOM/host metrics are.
+- [ ] 8. If `visual_accept: yes`, run capture-then-grade (frozen captures +
+        independent product-look review) against `proof_reference`. Do not
+        treat DOM/host green as ACCEPT-complete. Screenshot miss alone is
+        not the blank-canvas hard gate; DOM/host metrics still required.
 - [ ] 9. Adversarial / ACCEPT evaluators use
         `model: cursor-grok-4.5-high-fast`. Emit fail ids from the closed
         vocab. Label each id mechanical vs review/live. Review-only ids

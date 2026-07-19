@@ -58,7 +58,25 @@ active:
     note: >-
       W1+W2+INT+ACCEPT complete. Mechanical checker 4/4 PASS
       (gate-captures/PBB-ACCEPT.md). Skill wiring applied. No /proof-gate.
-      Known gap: scripts/proof_host_probe.py not shipped (contract named).
+      Originating-mod ack 538437c: keep shipped; product-look = VPB (pax);
+      follow-on lane PHF chartered for probe + playbook harden.
+  PHF:
+    label: proof-host-followon
+    home: lanes/20260718_proof-host-followon/
+    waves: [PHF-W1, PHF-W2, PHF-INT, PHF-ACCEPT]
+    status: chartered-dispatched-w1
+    type: execution
+    depends_on: [PBB]
+    conflicts_with: []
+    active_dispatch: dispatch-w1.md
+    dispatch_files: [dispatch-w1.md]
+    mod_decide_complete_at: "2026-07-18T22:07:39-04:00"
+    waveset_synced_at: "2026-07-18T22:07:39-04:00"
+    repo_state_verified_against: 538437cad76764fd989cd028f64927b1ae839292
+    note: >-
+      Mod-decide S2: ship skills/charter/scripts/proof_host_probe.py + harden
+      visual_accept:yes (DOM green ≠ done). Defer product-look evals to VPB.
+      Park etiquette note. Grok-only. PBB not reopened.
   LAYOVER:
     label: layover-preflight
     home: lanes/20260709_layover-preflight/
