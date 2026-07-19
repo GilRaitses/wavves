@@ -244,8 +244,8 @@
   <main>
     <section class="hero">
       <h1>wavves</h1>
-      <p class="kicker">durable multi-agent routing · v0.2.0</p>
-      <p class="hero-copy">When context is summarized or a thread is replaced, the alignment record from the last dispatch remains trapped in the old scrollback, while every fresh session must rebuild governing constraints from the stream where settled decisions already sit beside tool output and abandoned runs. wavves captures that alignment state as versioned files under <code>wavves/</code>, turning operator intent into packets before runners start, persisting measured check evidence and rotation handoffs beside each lane while hydrating every successor from the home record when a fresh thread opens.</p>
+      <p class="kicker">durable multi-agent routing · v0.3.0</p>
+      <p class="hero-copy">When context is summarized or a thread is replaced, the alignment record from the last dispatch remains trapped in the old scrollback, while every fresh session must rebuild governing constraints from the stream where settled decisions already sit beside tool output and abandoned runs. wavves captures that alignment state as versioned files under <code>wavves/</code>, turning operator intent into packets before runners start, persisting disk gate captures and rotation handoffs beside each lane while hydrating every successor from the home record when a fresh thread opens.</p>
       <div class="links">
         <a href="https://github.com/GilRaitses/wavves">GitHub repo</a>
         <a href="https://github.com/GilRaitses/wavves/blob/main/examples/usage.md">Usage guide</a>
@@ -272,7 +272,7 @@
           <tr><td><code>/charter</code></td><td>Charter a bounded lane, dispatch background waves, multi-repo commit plans.</td></tr>
           <tr><td><code>/mod-check</code></td><td>Adversarial parallel check; scoped verdict (<code>blocks_w2</code>…<code>blocks_w5</code>) plus <code>recommended_actions</code>.</td></tr>
           <tr><td><code>/mod-decide</code></td><td>Lock open product/design calls after a check return; sync authority surfaces on complete.</td></tr>
-          <tr><td><code>/layover</code></td><td>Read-only preflight audit of a bespoke multi-repo workspace before a cloud agent takes over.</td></tr>
+          <tr><td><code>/layover</code></td><td>Read-only multi-repo workspace preflight audit. Cloud agents stay per-repo; you still open one cloud thread by hand.</td></tr>
           <tr><td><code>/mod-rotate</code></td><td>Rotate the moderator to a fresh thread with a handoff file.</td></tr>
         </tbody>
       </table>
@@ -285,7 +285,9 @@
           <tr><td>charter-lane</td><td><code>/charter</code></td><td>Bug fix, audit, refactor, flaky CI, overnight lane</td></tr>
           <tr><td>check</td><td><code>/mod-check</code></td><td>Adversarial review of a landed spec or plan before the implementation plan</td></tr>
           <tr><td>decide</td><td><code>/mod-decide</code></td><td>Lock open calls after a check return, before BUILD charter</td></tr>
-          <tr><td>layover</td><td><code>/layover</code></td><td>Preflight a bespoke multi-repo workspace before a cloud agent takes over</td></tr>
+          <tr><td>layover</td><td><code>/layover</code></td><td>Preflight a multi-repo desktop workspace (audit report; cloud stays per-repo)</td></tr>
+          <tr><td>paragraph-tunnel</td><td>dispatch STEPS</td><td>Mid-render structural gate for a named outbound paragraph</td></tr>
+          <tr><td>proof-before-accept</td><td>dispatch STEPS</td><td>Named proof job + host/blank-canvas checks before ACCEPT</td></tr>
           <tr><td>rotate</td><td><code>/mod-rotate</code></td><td>Hand off when context is heavy</td></tr>
           <tr><td>pickup</td><td>hydrate</td><td>Resume from rotation paste, reconcile active lanes</td></tr>
           <tr><td>proceed</td><td>hydrate + execute</td><td><code>proceed as recommended</code>, <code>/wavves proceed</code></td></tr>
@@ -348,11 +350,11 @@ No BUILD yet.</pre>
 
         <article class="usage-card">
           <h3>/layover</h3>
-          <p class="when">Before handing a bespoke, desktop-only, multi-repo workspace off to a Cursor cloud agent. Cloud agents attach per-repo to a pushed remote; they cannot open a local <code>.code-workspace</code> spanning several sibling repos.</p>
-          <pre>/layover preflight ~/my.code-workspace before a
-cloud agent takes over moderation of the primary
-repo. read-only, audit-only.</pre>
-          <p class="not-this"><strong>Not this:</strong> expecting it to stage, commit, push or classify anything as safe. It writes exactly one report to <code>wavves/layovers/</code> and never mutates an audited repo.</p>
+          <p class="when">When you need an eyes-open inventory of local-only state across sibling repos in a desktop <code>.code-workspace</code>, before you manually open a single-repo cloud agent on one of them.</p>
+          <pre>/layover audit ~/my.code-workspace. report
+untracked, unpushed and stashed state per sibling.
+read-only, audit-only.</pre>
+          <p class="not-this"><strong>Not this:</strong> expecting it to start a cloud agent, make cloud multi-root, autoconfigure wavves elsewhere, stage, commit, push or classify anything as safe. One report under <code>wavves/layovers/</code>; you still open the cloud thread and hydrate wavves by hand.</p>
         </article>
 
         <article class="usage-card">
@@ -406,8 +408,8 @@ captured gates. no deploy without my approval.</pre>
         </article>
         <article class="demo-row">
           <p class="demo-label">layover</p>
-          <pre>/wavves preflight the curl.code-workspace before a cloud agent
-takes over moderation of the primary repo. read-only, audit-only.</pre>
+          <pre>/wavves preflight the curl.code-workspace. read-only audit of
+sibling repos; I will open one cloud agent myself afterward.</pre>
         </article>
         <article class="demo-row">
           <p class="demo-label">proceed</p>
@@ -502,7 +504,7 @@ one decision at a time. write decisions/*.md. no BUILD yet.</pre>
         </article>
         <article class="card">
           <h3>Gate</h3>
-          <p>Captures runnable evidence under `gate-captures/` before any result is accepted.</p>
+          <p>Advances only after a disk gate capture under <code>gate-captures/</code>. Product lanes can also require a named proof job before ACCEPT.</p>
         </article>
       </div>
     </section>
@@ -522,7 +524,7 @@ one decision at a time. write decisions/*.md. no BUILD yet.</pre>
     </section>
 
     <footer style="margin-top: 2rem; opacity: 0.75; font-size: 0.9rem;">
-      <p>wavves v0.2.0 · MIT · community plugin by <a href="https://aimez.ai/">aimez</a> · not affiliated with Cursor</p>
+      <p>wavves v0.3.0 · MIT · community plugin by <a href="https://aimez.ai/">aimez</a> · not affiliated with Cursor</p>
     </footer>
   </main>
 </body>

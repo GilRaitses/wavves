@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.3.0 (2026-07-18)
+
+Disk-gate framing. Proof-before-accept. Paragraph tunnel. Honest layover scope.
+
+- **proof-before-accept:** charter `proof_required` fields; process-only
+  ACCEPT cannot clear product lanes; host probe
+  `skills/charter/scripts/proof_host_probe.py` (self-check); playbook +
+  `evals/check_proof_before_accept.py`.
+- **paragraph-tunnel:** mid-render structural gate for one outbound field;
+  playbook + `evals/check_paragraph_tunnel.py` (no slash skill in v0).
+- **layover:** keep the audit; document the known cloud boundary (single-repo
+  cloud agents; no autoconfig / multi-root migration). Soften marketplace
+  keyword; public copy frames layover as an audit with a stated cloud boundary.
+- **Public surfaces:** README, `index.html`, `examples/usage.md`, plugin
+  version bump to `0.3.0`. Preferred framing: advances only after a disk
+  gate capture.
+
 ## 0.2.0 (2026-07-12)
 
 Lane authority sync (AUTH-01–AUTH-10), from KLR mod-decide → mod-check run:

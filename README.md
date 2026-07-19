@@ -1,14 +1,13 @@
 # wavves
 
-Version: `0.2.0`.
+Version: `0.3.0`.
 
 Route durable multi-agent work through a moderator layer, with alignment
-packets, check records and handoff files saved beside the work.
+packets, disk gate captures and handoff files saved beside the work.
 
-wavves is a free Cursor plugin for managed distributed sessions. Six skills
-help a single operator prepare bounded work, dispatch parallel runners and
-rotate overloaded threads while the shared record lives in files instead of
-chat history.
+wavves is a free Cursor plugin for managed distributed sessions. Skills help
+a single operator prepare bounded work, dispatch parallel runners and rotate
+overloaded threads while the shared record lives in files on disk.
 
 The core ideas:
 
@@ -17,9 +16,14 @@ The core ideas:
 - **Bounded waves.** A dispatched sub-orchestrator runs focused waves of
   parallel subagents with strict file ownership while the operator-facing
   thread stays small.
-- **Check records.** Acceptance comes from a measured check captured to disk
-  by an independent evaluator. Failed gates are reported as failed, with
-  capped remediation loops.
+- **Disk gate captures.** A lane advances after a runnable harness writes
+  pass or block evidence under `gate-captures/`, graded by someone who did
+  not author the work under review. Failed gates are reported as failed,
+  with capped remediation loops.
+- **Proof-before-accept.** Product lanes declare a named proof job;
+  process-only ACCEPT cannot clear when `proof_required: yes`.
+- **Paragraph tunnel.** Mid-render structural gate for one outbound field
+  (adversarial + capped rewrite + mechanical fixtures), not a voice-clone.
 - **Rotation with term identity.** When a thread gets heavy, the orchestrator
   hands off to a fresh one via a rotation file that assigns the successor a
   monotonic term identity (a design borrowed from Raft terms, Kubernetes
@@ -75,7 +79,9 @@ picks a playbook and runs the leaf skill. Like `/poteto-mode` in pstack.
 | charter-lane | bounded work: bug fix, audit, refactor, flaky CI, overnight lane |
 | check | adversarial sanity-check of a landed spec or plan before build |
 | decide | lock open product/design calls after a check return, before BUILD |
-| layover | preflight a bespoke multi-repo desktop workspace before a cloud agent takes over |
+| layover | preflight a multi-repo desktop workspace (audit report; cloud stays per-repo) |
+| paragraph-tunnel | mid-render structural gate for a named outbound paragraph |
+| proof-before-accept | named proof job + host/blank-canvas checks before ACCEPT |
 | rotate | hand off to a fresh moderator thread |
 | pickup | resume from rotation paste, "where are we", reconcile active lanes |
 | proceed | execute `recommended_actions` from a verdict (`proceed as recommended`) |
@@ -127,8 +133,8 @@ spec check:        /mod-check review docs/superpowers/specs/2026-07-08-example.m
 decide:            /mod-decide navigate open calls from the check return.
                    one decision at a time. write decisions/*.md. no BUILD yet.
                    Mid-queue: answer Pick: … only — do not re-slash each time.
-layover:           /wavves preflight the curl.code-workspace before a cloud
-                   agent takes over the pax repo. read-only, audit-only.
+layover:           /wavves preflight the curl.code-workspace. read-only audit;
+                   I will open one cloud agent myself afterward.
 rotate:            /wavves rotate this thread. write a handoff for active lanes.
 pickup:            /wavves hydrate from the rotation paste and tell me what's active.
 proceed:           /wavves proceed as recommended after mod-check or mod-decide return.
@@ -164,6 +170,7 @@ worked examples: [examples/usage.md](examples/usage.md).
    explicit folder list) and writes a read-only audit of every sibling
    repo's remotes, branch sync state, uncommitted changes, untracked files
    and stashes. Audit-only: one report file, never mutates an audited repo.
+   Does not start cloud agents or autoconfigure wavves elsewhere.
 7. **`/mod-rotate`** writes a rotation file with term identity and emits a
    one-line paste for a fresh thread.
 
@@ -281,11 +288,23 @@ Lane orchestrators can propose edits to installed skill files. Any such edit
 is gated: `evals/run_fixtures.py` must pass 3 consecutive times before the
 moderator applies it live. Confirmed regressions append to `wavves/failure_log.yml`.
 
-## Workspace handoff to a cloud agent
+## Workspace preflight (`/layover`)
 
-`/layover` audits every sibling repo in a bespoke `.code-workspace` before a
-cloud agent takes over one repo. It writes one report under `wavves/layovers/`
-and never mutates an audited repo.
+`/layover` audits every sibling repo in a bespoke `.code-workspace` and writes
+one report under `wavves/layovers/`. It never mutates an audited repo.
+
+**Known boundary:** Cursor cloud agents remain single-repo. `/layover` does
+not start a cloud agent. It does not make cloud multi-root. It does not
+autoconfigure wavves in another thread. After the report, open one cloud
+agent on the chosen repo and hydrate wavves there by hand.
+
+## Paragraph tunnel and proof-before-accept
+
+- Playbook: `skills/wavves/playbooks/paragraph-tunnel.md`  
+  Checker: `python3 evals/check_paragraph_tunnel.py`
+- Playbook: `skills/wavves/playbooks/proof-before-accept.md`  
+  Checker: `python3 evals/check_proof_before_accept.py`  
+  Host probe: `python3 skills/charter/scripts/proof_host_probe.py --self-check`
 
 ## Components
 
@@ -298,7 +317,7 @@ and never mutates an audited repo.
 | `charter` (`/charter`) | Charter a lane and dispatch waves behind runnable gates. Multi-repo profile, `dispatch-w{N}.md`, authority precedence. |
 | `mod-check` (`/mod-check`) | Adversarial parallel sanity-check of a landed spec or plan. Scoped verdict + `recommended_actions`. |
 | `mod-decide` (`/mod-decide`) | Lock open product/design calls; authority sync on complete; emit Locked decisions for BUILD. |
-| `layover` (`/layover`) | Read-only preflight audit of a bespoke multi-repo workspace before a cloud agent takes over. |
+| `layover` (`/layover`) | Read-only multi-repo workspace preflight audit. Does not configure cloud agents. |
 | `mod-rotate` (`/mod-rotate`) | Hand the moderator or one lane to a fresh thread. |
 
 ## Examples on disk

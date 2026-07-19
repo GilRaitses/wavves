@@ -36,7 +36,7 @@ skill in full** before acting.
 | charter-lane | `charter` (`/charter`) | bounded multi-wave work: bug fix, audit, refactor, feature, flaky CI, security pass, overnight lane |
 | check | `mod-check` (`/mod-check`) | adversarial sanity-check of a written spec or plan before implementation |
 | decide | `mod-decide` (`/mod-decide`) | lock open product/design calls after a check return, before BUILD charter |
-| layover | `layover` (`/layover`) | preflight a bespoke multi-repo workspace before a cloud agent takes over |
+| layover | `layover` (`/layover`) | preflight a multi-repo desktop workspace (audit report; cloud stays per-repo) |
 | paragraph-tunnel | dispatch STEPS | mid-render outbound paragraph gate (adversarial + capped rewrite; no slash skill in v0) |
 | proof-before-accept | dispatch STEPS | pre-ACCEPT proof fields + mechanical/DOM harness (no `/proof-gate` slash skill in v0) |
 | rotate | `mod-rotate` (`/mod-rotate`) | rotate, handoff, fresh thread, self-fork, replay, token velocity too high |

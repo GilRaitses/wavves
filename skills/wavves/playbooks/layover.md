@@ -25,17 +25,18 @@ Route: **layover** (`/layover`)
         any audited repo during the run.
 - [ ] 9. Report the report path, the summary table, and any blocking
         flags (missing paths, no-upstream repos, non-git folders) to the
-        operator.
+        operator. State plainly that cloud remains per-repo: the operator
+        must open a single-repo cloud thread and start wavves there by hand.
 ```
 
 Lane types this playbook covers (same leaf skill, different operator framing):
 
 | type | operator says |
 |:-----|:--------------|
-| pre-handoff audit | preflight this workspace before a cloud agent takes over |
+| pre-handoff audit | preflight this workspace before I manually open a cloud agent on one repo |
 | multi-repo inventory | what's local-only across these sibling repos |
 | stale-clone check | what would a fresh clone of this repo miss |
 
-This playbook produces a report only. It never stages, commits, or hands
-off any of the audited repos; those steps are out of scope for `/layover`
-and belong to a future skill.
+This playbook produces a report only. It never stages, commits, hands off,
+starts a cloud agent, or autoconfigures multi-repo cloud. Those belong to a
+future skill (or stay manual).

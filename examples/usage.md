@@ -25,7 +25,7 @@ like `/poteto-mode` in pstack.
 | `/charter` | charter a lane only |
 | `/mod-check` | adversarial sanity-check of a landed spec or plan |
 | `/mod-decide` | lock open product/design calls after a check return |
-| `/layover` | workspace preflight audit before cloud handoff |
+| `/layover` | workspace preflight audit (cloud stays per-repo) |
 | `/mod-rotate` | rotation only |
 
 ## Playbooks (`/wavves` routes here)
@@ -36,10 +36,11 @@ like `/poteto-mode` in pstack.
 | charter-lane | `/charter` | bug fix, audit, refactor, flaky CI, overnight lane |
 | check | `/mod-check` | adversarial review of a landed spec or plan before build |
 | decide | `/mod-decide` | lock open calls before BUILD charter |
-| layover | `/layover` | preflight multi-repo workspace before cloud agent |
+| layover | `/layover` | preflight multi-repo workspace (audit; cloud stays per-repo) |
+| paragraph-tunnel | dispatch STEPS | mid-render structural gate for outbound paragraph |
+| proof-before-accept | dispatch STEPS | named proof job before ACCEPT |
 | rotate | `/mod-rotate` | hand off to fresh thread |
 | pickup | hydrate | resume, "where are we" |
-| layover | `/layover` | preflight multi-repo workspace before cloud agent |
 | proceed | hydrate + execute | `proceed as recommended`, `/wavves proceed` |
 
 ## Quick reference

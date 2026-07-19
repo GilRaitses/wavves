@@ -4,31 +4,34 @@ description: >-
   Reads a bespoke multi-root .code-workspace file (or an explicit folder
   list) and produces a read-only preflight audit of every sibling repo:
   remotes, branch-vs-upstream sync state, uncommitted tracked changes,
-  untracked files, and stashes. Use for /layover, or when preflighting a
-  bespoke multi-repo desktop workspace before a cloud agent takes over
-  moderation of one of its repos, so the operator knows exactly what
-  local-only state a fresh clone would never see. Audit-only: writes
-  nothing but its own report, mutates no audited repo.
+  untracked files, and stashes. Use for /layover when you need to know what
+  local-only state a fresh single-repo clone would miss. Audit-only: writes
+  nothing but its own report, mutates no audited repo. Does not start cloud
+  agents, does not make Cursor cloud multi-root, and does not autoconfigure
+  wavves in another thread.
 disable-model-invocation: true
 ---
 
 # layover
 
 A read-only preflight audit for a bespoke, desktop-only, multi-root
-workspace. Cursor's cloud agents attach per-repo to a pushed remote; they
-cannot open a local `.code-workspace` file spanning several sibling repos.
-Before a cloud agent takes over moderation of any one of those repos, `/layover`
-tells the operator exactly what local-only state exists in each sibling that
-a fresh clone from the remote would never surface.
+workspace. Cursor's cloud agents attach **per repo** to a pushed remote; they
+cannot open a local `.code-workspace` spanning several sibling repos.
+`/layover` tells the operator what local-only state exists in each sibling
+that a fresh clone would never surface, so a **manual** single-repo cloud
+handoff is eyes-open.
 
-The audit is the entire scope. Staging, hydration-file writing and actual
-handoff mechanics are explicitly out of scope for a future skill, not built
-here.
+The audit is the entire scope. It does **not** migrate a multi-repo workspace
+onto cloud, autoconfigure a cloud agent, or start `/wavves` / `/charter` in
+another thread. After the report, the operator still opens one cloud agent
+per chosen repo and hydrates wavves there by hand. Staging, hydration-file
+writing, and actual handoff packs are out of scope for a future skill.
 
 ## Non-negotiables
 
 1. **Audit-only.** `/layover` writes exactly one file: its own report. It
-   performs no other write, anywhere, ever.
+   performs no other write, anywhere, ever. It does not launch cloud agents
+   or rewrite another repo's agent config.
 2. **Zero mutation of audited repos.** Only read-only git commands run
    against any audited repo: `git config --get`, `git rev-parse`,
    `git rev-list`, `git status` (no flags that stage or discard), `git
@@ -162,10 +165,17 @@ If the invoking repo has no `wavves/` home yet, route to the `bootstrap`
 playbook (`wavves-init`) first, the same rule the router already applies
 before `/charter`.
 
+## Known boundary (cloud)
+
+Measured limit: a Cursor cloud agent remains single-repo. `/layover` does not
+bridge that. Useful outcome today: an inventory of what each sibling would
+lose on a fresh clone, before you pick **one** repo and start a cloud thread
+yourself. Not useful as: "run layover and the multi-repo desktop workspace
+continues in cloud automatically."
+
 ## Related
 
-- `wavves` (`/wavves`) routes here when the operator wants a workspace
-  preflight before a handoff.
-- `charter` (`/charter`) is the full multi-wave lane system this skill was
-  built under; `/layover` itself is a single-purpose leaf skill, not a lane.
+- `wavves` (`/wavves`) routes here for workspace preflight (audit report).
+- `charter` (`/charter`) is the full multi-wave lane system; `/layover` is a
+  single-purpose leaf skill, not a lane and not a cloud bootstrapper.
 - `wavves-init` (`/wavves-init`) for the bootstrap-first case.
