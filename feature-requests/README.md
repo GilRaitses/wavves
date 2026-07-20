@@ -24,3 +24,4 @@ or `wontfix`
 | FR-20260718-proof-before-accept feedback | Originating-mod feedback | landed | `20260718_proof-before-accept_ORIGINATING-MOD-FEEDBACK.md` |
 | FR-20260718-voice-library-lora | Voice library + optional LoRA (MoM pipeline) | parked-pending-apollo-proof | AVP lane in pax |
 | FR-20260718-paragraph-tunnel MoM note | Tunnel × MoM introspection | landed | `20260718_paragraph-tunnel_MOM-introspection.md` |
+| FR-20260719-ip-before-cutover | IP-before-cutover (authority timing vs terminal remasure) | ready-for-mod-check | VIB-A6 Midtown rollback; `20260719_ip-before-cutover.md` |
