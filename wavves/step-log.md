@@ -272,3 +272,7 @@ PHF W1+W2 returned (probe + Rule 2b + playbook harden). O0 ACCEPT: probe
 --self-check EXIT 0; PBB 4/4; tunnel 6/6. Captures under
 lanes/20260718_proof-host-followon/gate-captures/PHF-ACCEPT*. Lifted
 applications HOLD on naming proof_host_probe (self-check tooling).
+
+## 2026-07-20 04:06 EDT — O0.R3 file FR-20260720 pre-unlock options mod-check
+- feature-requests/20260720_pre-unlock-options-mod-check.md ready-for-mod-check
+- Evidence: pax RLW/RWC unlock hygiene; AUTH-11 sketch

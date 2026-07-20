@@ -39,7 +39,13 @@ project_skills:
 
 feature_requests:
   home: ../feature-requests/
-  open: []
+  open:
+    - id: FR-20260720-pre-unlock-options-mod-check
+      path: ../feature-requests/20260720_pre-unlock-options-mod-check.md
+      status: ready-for-mod-check
+    - id: FR-20260719-ip-before-cutover
+      path: ../feature-requests/20260719_ip-before-cutover.md
+      status: ready-for-mod-check
   shipped:
     - id: FR-20260715-paragraph-tunnel
       path: ../feature-requests/20260715_paragraph-tunnel-gate.md
