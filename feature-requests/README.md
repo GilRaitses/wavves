@@ -26,3 +26,4 @@ or `wontfix`
 | FR-20260718-paragraph-tunnel MoM note | Tunnel × MoM introspection | landed | `20260718_paragraph-tunnel_MOM-introspection.md` |
 | FR-20260719-ip-before-cutover | IP-before-cutover (authority timing vs terminal remasure) | ready-for-mod-check | VIB-A6 Midtown rollback; `20260719_ip-before-cutover.md` |
 | FR-20260720-pre-unlock-options-mod-check | Pre-unlock options mod-check (AUTH-11) | ready-for-mod-check | RLW/RWC unlock hygiene; `20260720_pre-unlock-options-mod-check.md` |
+| FR-20260722-mod-decide-decision-alignment | mod-decide decision-alignment interpretability (DECIDE-ALIGN) | ready-for-mod-check | IWD admit D5/D6 hold-loop; `20260722_mod-decide-decision-alignment.md` |
