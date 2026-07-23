@@ -37,6 +37,7 @@ skill in full** before acting.
 | check | `mod-check` (`/mod-check`) | adversarial sanity-check of a written spec or plan before implementation |
 | decide | `mod-decide` (`/mod-decide`) | lock open product/design calls after a check return, before BUILD charter |
 | layover | `layover` (`/layover`) | preflight a multi-repo desktop workspace (audit report; cloud stays per-repo) |
+| set-key | `set-key` (`/set-key`) | external Terminal paste helper for server-only env secrets |
 | paragraph-tunnel | dispatch STEPS | mid-render outbound paragraph gate (adversarial + capped rewrite; no slash skill in v0) |
 | proof-before-accept | dispatch STEPS | pre-ACCEPT proof fields + mechanical/DOM harness (no `/proof-gate` slash skill in v0) |
 | rotate | `mod-rotate` (`/mod-rotate`) | rotate, handoff, fresh thread, self-fork, replay, token velocity too high |
@@ -60,6 +61,7 @@ before adding task-specific items.
 - **Check.** `playbooks/check.md`
 - **Decide.** `playbooks/decide.md`
 - **Layover.** `playbooks/layover.md`
+- **set-key.** `playbooks/set-key.md`
 - **Paragraph tunnel.** `playbooks/paragraph-tunnel.md`
 - **Proof-before-accept.** `playbooks/proof-before-accept.md`
 - **Rotate.** `playbooks/rotate.md`
@@ -77,6 +79,7 @@ A step you skip stays in the list with `skip: <reason>`.
 | `mod-check` | `/mod-check` | you know you only need an adversarial spec/plan check |
 | `mod-decide` | `/mod-decide` | you know you only need to lock open calls before BUILD |
 | `layover` | `/layover` | you only need the workspace preflight audit |
+| `set-key` | `/set-key` | external Terminal paste helper for a server-only env secret |
 | `mod-rotate` | `/mod-rotate` | you know you only need rotation |
 
 Most operators can type `/wavves` plus the task and let routing handle the rest.

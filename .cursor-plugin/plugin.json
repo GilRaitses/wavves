@@ -23,6 +23,7 @@
     "mod-decide",
     "mod-rotate",
     "layover",
+    "set-key",
     "workspace-preflight",
     "paragraph-tunnel",
     "proof-before-accept",

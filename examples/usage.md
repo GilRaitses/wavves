@@ -26,6 +26,7 @@ like `/poteto-mode` in pstack.
 | `/mod-check` | adversarial sanity-check of a landed spec or plan |
 | `/mod-decide` | lock open product/design calls after a check return |
 | `/layover` | workspace preflight audit (cloud stays per-repo) |
+| `/set-key` | Terminal.app paste helper for a server-only env secret |
 | `/mod-rotate` | rotation only |
 
 ## Playbooks (`/wavves` routes here)

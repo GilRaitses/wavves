@@ -111,6 +111,7 @@ Fresh instances hydrate from the home files, never from chat transcripts.
 | `/mod-check` | you only need an adversarial spec/plan sanity-check wave |
 | `/mod-decide` | you only need to lock open calls before a BUILD charter |
 | `/layover` | you only need the workspace preflight audit |
+| `/set-key` | open Terminal.app paste helper for a server-only env secret |
 | `/mod-rotate` | you only need rotation |
 
 Most operators type `/wavves` plus the task. Reach for the leaf skills when you

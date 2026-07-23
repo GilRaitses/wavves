@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- **`/set-key`:** leaf skill + playbook + `skills/set-key/scripts/setkey_env.sh`.
+  Opens Terminal.app for paste-and-return server-only env secrets (default
+  klosr `GOOGLE_MAPS_API_KEY`). Remasure set/nchars only; never echo secrets.
+  FR: `feature-requests/20260723_set-key.md` (SHIPPED).
+
 ## 0.3.0 (2026-07-18)
 
 Disk-gate framing. Proof-before-accept. Paragraph tunnel. Honest layover scope.
