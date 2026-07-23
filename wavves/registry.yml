@@ -1,17 +1,83 @@
 active:
+  NTVB:
+    label: n8n-template-build
+    home: lanes/20260723_n8n-template-build/
+    waves: [NTVB-W1, NTVB-INT, NTVB-ACCEPT]
+    status: chartered
+    type: execution
+    depends_on: [NTV]
+    active_dispatch: dispatch-w1.md
+    dispatch_files: [dispatch-w1.md]
+    artifact: feature-requests/20260723_n8n-template-fit.md
+    repo_state_verified_against: de75b4c4118c78dcc0164fdaa916bbc53f99225f
+    note: >-
+      AUTH-10 all-the-way from NTV locks A/B/B/C/A. BUILD Free pack
+      (parent+charges, Data Table, stickies). W1+INT orch; ACCEPT+submit
+      operator-gated.
+  NTV:
+    label: n8n-template-fit
+    home: lanes/20260723_n8n-template-fit/
+    waves: [NTV-W1, NTV-INT, NTV-ACCEPT]
+    status: mod-decide-complete-build-chartered
+    type: research
+    active_dispatch: null
+    dispatch_files: [dispatch-w1.md, dispatch-w-int.md]
+    artifact: feature-requests/20260723_n8n-template-fit.md
+    mod_decide_complete_at: "2026-07-23T13:51:00-04:00"
+    waveset_synced_at: "2026-07-23T13:51:00-04:00"
+    repo_state_verified_against: de75b4c4118c78dcc0164fdaa916bbc53f99225f
+    note: >-
+      Locks complete (JOB=A, PACK=B, GATE-STORE=B, LLM=C, V0-SCOPE=A).
+      BUILD lane NTVB chartered.
+  KVC:
+    label: wave-context-kv-cache-check
+    home: lanes/20260723_wave-context-kv-cache-check/
+    waves: [KVC-W1, KVC-VERDICT]
+    status: chartered
+    type: check
+    active_dispatch: dispatch-w1.md
+    artifact: feature-requests/20260723_wave-context-kv-cache.md
+    repo_state_verified_against: de75b4c4118c78dcc0164fdaa916bbc53f99225f
+    note: AUTH-10 shrug proceed — mod-check KV-cache FR; orch dispatched.
+  PASB:
+    label: proceed-all-standing-build
+    home: lanes/20260723_proceed-all-standing-build/
+    waves: [PASB-W1, PASB-INT, PASB-ACCEPT]
+    status: chartered
+    type: execution
+    depends_on: [PAS]
+    active_dispatch: dispatch-w1.md
+    artifact: feature-requests/20260723_proceed-all-standing.md
+    repo_state_verified_against: de75b4c4118c78dcc0164fdaa916bbc53f99225f
+    note: AUTH-10 shrug proceed — BUILD from PAS locks C+A; orch dispatched.
   RTH:
     label: mod-rotate-theory-research
     home: lanes/20260723_mod-rotate-theory-research/
     waves: [RTH-W1, RTH-INT, RTH-ACCEPT]
-    status: chartered
+    status: completed
     type: research
-    active_dispatch: dispatch-w1.md
+    active_dispatch: null
     dispatch_files: [dispatch-w1.md]
+    mod_decide_complete_at: "2026-07-23T13:04:00-04:00"
+    waveset_synced_at: "2026-07-23T13:06:00-04:00"
     repo_state_verified_against: 7aecdfb50d8d6fc53fa00a08b021e4cd9926aa67
     note: >-
-      Deeper research into DS/graph framing behind /mod-rotate (Raft terms,
-      StatefulSet ordinals, Erlang incarnations, star handoff, state snapshot).
-      Read-only; no skill installs; INT/ACCEPT gated after W1 rollup.
+      ACCEPT PASS (gate-captures/RTH-ACCEPT.md). W1e honesty FAIL stands.
+      Proposed fences draft under skills/proposed/ only.
+  PAS:
+    label: proceed-all-standing-check
+    home: lanes/20260723_proceed-all-standing-check/
+    waves: [PAS-W1, PAS-VERDICT]
+    status: mod-decide-complete-awaiting-build
+    type: check
+    active_dispatch: null
+    dispatch_files: [dispatch.md]
+    mod_decide_complete_at: "2026-07-23T13:04:00-04:00"
+    repo_state_verified_against: 7aecdfb50d8d6fc53fa00a08b021e4cd9926aa67
+    artifact: feature-requests/20260723_proceed-all-standing.md
+    note: >-
+      Locks complete (COMMIT-AUTH-GRAIN=C, SCOPE-FALLBACK=A). See
+      decisions/LOCKED-DECISIONS.md. Awaiting BUILD charter.
   PUO:
     label: pre-unlock-options-check
     home: lanes/20260723_pre-unlock-options-check/
@@ -66,19 +132,6 @@ active:
     artifact: feature-requests/20260723_wave-orchestrator-fanout.md
     note: >-
       OF-01..OF-10 shipped. Eval 11/11 PASS. See findings/WOFB-GATE.md.
-  PAS:
-    label: proceed-all-standing-check
-    home: lanes/20260723_proceed-all-standing-check/
-    waves: [PAS-W1, PAS-VERDICT]
-    status: check-revise
-    type: check
-    active_dispatch: null
-    dispatch_files: [dispatch.md]
-    repo_state_verified_against: 73b09bad223ed004a2e8f10443f48196cbbbf396
-    artifact: feature-requests/20260723_proceed-all-standing.md
-    note: >-
-      W1 REVISE applied to FR (revised-after-PAS). Residual mod-decide or
-      re-check. No BUILD until locks clear. See findings/PAS-verdict.md.
   PTB:
     label: paragraph-tunnel-build
     home: lanes/20260715_paragraph-tunnel-build/

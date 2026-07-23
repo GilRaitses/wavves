@@ -292,3 +292,72 @@ Operator `/charter` deeper research into mod-rotate DS/graph framing (not
 RotatE). Lane `20260723_mod-rotate-theory-research` at tip `7aecdfb`. Read-only
 W1 (five charges via wave orch); INT/ACCEPT gated. No other term owns RTH.
 Dispatched RTH-W1 orch only (moderator does not fan-out charges). No git land.
+
+## 2026-07-23 — O0 — shrug all three (KV FR + RTH-INT unlock + PAS decide)
+
+Operator `¯\_(ツ)_/¯` + all three. (1) Filed
+`feature-requests/20260723_wave-context-kv-cache.md` ready-for-mod-check.
+(2) Unlocked RTH-INT under W1e MUST-NOT bans; resumed orch for synthesis.
+(3) PAS mod-decide complete: COMMIT-AUTH-GRAIN=C, SCOPE-FALLBACK=A
+(`decisions/LOCKED-DECISIONS.md`). No BUILD charter this turn. No git land.
+
+## 2026-07-23 — O0 — bare shrug AUTH-10 proceed
+
+Operator bare `¯\_(ツ)_/¯`. Executed recommended_actions: charter+dispatch
+KVC check orch; charter+dispatch PASB BUILD orch; unlock+dispatch RTH-ACCEPT
+evaluator. Tip `de75b4c`. No git land (commit not in authorize list this turn).
+Not all-standing widen.
+
+## 2026-07-23 — O0 — charter NTV (n8n template fit)
+
+Operator `/charter` n8n version of wavves: decide fit + what to remove vs
+submission guidelines and example workflow 4817. Root constraint: zero n8n
+artifacts in repo; Cursor plugin is not the template. Lane
+`20260723_n8n-template-fit` at tip `de75b4c`. Research W1 (five charges via
+wave orch); INT/ACCEPT gated; Free pricing locked for first submit. No other
+term owns NTV. Dispatched NTV-W1 orch only. No git land.
+
+## 2026-07-23 — O0 — pickup NTV; unlock INT
+
+Operator pickup. Remeasured W1 complete: rollup + GATE PASS
+(`gate-captures/NTV-W1.md`); spot-check OK (matrix REMOVE slash/home;
+library gap ≥2 URLs; honesty PASS). Unlocked NTV-INT; dispatched INT orch
+(`dispatch-w-int.md`). No BUILD/submit. No git land.
+
+## 2026-07-23 — O0 — NTV mod-decide pre-auth
+
+Operator pre-auth for `/mod-decide`. INTa never landed; O0 remediated
+`NTV-SYNTHESIS.md` + `NTV-DECIDE-QUEUE.md` (5 forks) +
+`NTV-MOD-DECIDE-PREAUTH.md`. AUTH-01 blocked until picks. Walk starts at
+NTV-JOB. No BUILD. No git land.
+
+## 2026-07-23 — O0 — NTV-JOB lock (shrug)
+
+Operator bare shrug on NTV-JOB. AUTH-10 → pick **A** (`NTV-B-JOB.md`).
+Next call NTV-PACK.
+
+## 2026-07-23 — O0 — NTV-PACK lock B
+
+Operator "duh B". Locked **B** (`NTV-B-PACK.md`). Next NTV-GATE-STORE.
+
+## 2026-07-23 — O0 — NTV-GATE-STORE lock B
+
+Operator bare shrug. AUTH-10 → **B** Data Table (`NTV-B-GATE-STORE.md`).
+Next NTV-LLM.
+
+## 2026-07-23 — O0 — NTV-LLM lock C
+
+Operator bare shrug. AUTH-10 → **C** generic LangChain chat (`NTV-B-LLM.md`).
+Next NTV-V0-SCOPE.
+
+## 2026-07-23 — O0 — NTV mod-decide complete
+
+Operator bare shrug on NTV-V0-SCOPE → **A**. All five locks written.
+AUTH-01 synced waveset + registry. `LOCKED-DECISIONS.md` ready. No BUILD
+dispatched this turn. No git land.
+
+## 2026-07-23 — O0 — shrug all-the-way NTV → NTVB
+
+Operator `¯\_(ツ)_/¯` all the way. AUTH-10 recommended_actions: commit NTV
+surfaces + charter/dispatch NTVB BUILD (W1+INT). ACCEPT + n8n submit remain
+operator_gate. Tip base `de75b4c`.

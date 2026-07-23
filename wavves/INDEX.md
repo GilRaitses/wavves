@@ -4,11 +4,34 @@ current_identity: O0
 current_rotation: none
 
 active_lanes:
+  - code: NTVB
+    home: lanes/20260723_n8n-template-build/
+    status: chartered-dispatch
+    next_read: lanes/20260723_n8n-template-build/dispatch-w1.md
+    note: BUILD Free n8n pack from NTV locks
+  - code: NTV
+    home: lanes/20260723_n8n-template-fit/
+    status: mod-decide-complete
+    next_read: lanes/20260723_n8n-template-fit/decisions/LOCKED-DECISIONS.md
+    note: Locks A/B/B/C/A; BUILD = NTVB
+  - code: KVC
+    home: lanes/20260723_wave-context-kv-cache-check/
+    status: chartered-dispatch
+    next_read: lanes/20260723_wave-context-kv-cache-check/dispatch-w1.md
+  - code: PASB
+    home: lanes/20260723_proceed-all-standing-build/
+    status: chartered-dispatch
+    next_read: lanes/20260723_proceed-all-standing-build/dispatch-w1.md
   - code: RTH
     home: lanes/20260723_mod-rotate-theory-research/
-    status: chartered-dispatch
-    next_read: lanes/20260723_mod-rotate-theory-research/dispatch-w1.md
-    note: research into mod-rotate theory; W1 orch dispatched; INT gated
+    status: completed
+    next_read: lanes/20260723_mod-rotate-theory-research/gate-captures/RTH-ACCEPT.md
+    note: ACCEPT PASS; W1e honesty FAIL stands; proposed draft only
+  - code: PAS
+    home: lanes/20260723_proceed-all-standing-check/
+    status: mod-decide-complete
+    next_read: lanes/20260723_proceed-all-standing-check/decisions/LOCKED-DECISIONS.md
+    note: BUILD lane PASB chartered
   - code: WOF
     home: lanes/20260723_wave-orchestrator-fanout-check/
     status: completed
@@ -31,11 +54,6 @@ active_lanes:
     home: lanes/20260722_mod-decide-alignment-check/
     status: check-revise
     next_read: lanes/20260722_mod-decide-alignment-check/findings/MDA-verdict.md
-  - code: PAS
-    home: lanes/20260723_proceed-all-standing-check/
-    status: check-revise-awaiting-decide
-    next_read: lanes/20260723_proceed-all-standing-check/decisions/PAS-DECIDE-QUEUE.md
-    note: FR revised-after-PAS; mod-decide residual COMMIT-AUTH-GRAIN
   - code: PTB
     home: lanes/20260715_paragraph-tunnel-build/
     status: completed

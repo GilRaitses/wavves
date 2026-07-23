@@ -24,9 +24,11 @@ or `wontfix`
 | FR-20260718-proof-before-accept feedback | Originating-mod feedback | landed | `20260718_proof-before-accept_ORIGINATING-MOD-FEEDBACK.md` |
 | FR-20260718-voice-library-lora | Voice library + optional LoRA (MoM pipeline) | parked-pending-apollo-proof | AVP lane in pax |
 | FR-20260718-paragraph-tunnel MoM note | Tunnel × MoM introspection | landed | `20260718_paragraph-tunnel_MOM-introspection.md` |
-| FR-20260719-ip-before-cutover | IP-before-cutover (authority timing vs terminal remasure) | ready-for-mod-check | VIB-A6 Midtown rollback; `20260719_ip-before-cutover.md` |
-| FR-20260720-pre-unlock-options-mod-check | Pre-unlock options mod-check (AUTH-11) | ready-for-mod-check | RLW/RWC unlock hygiene; `20260720_pre-unlock-options-mod-check.md` |
-| FR-20260722-mod-decide-decision-alignment | mod-decide decision-alignment interpretability (DECIDE-ALIGN) | ready-for-mod-check | IWD admit D5/D6 hold-loop; `20260722_mod-decide-decision-alignment.md` |
+| FR-20260719-ip-before-cutover | IP-before-cutover (authority timing vs terminal remasure) | revised-after-IPB | IPB REVISE applied; hard-block + Acceptance + harness homes; `20260719_ip-before-cutover.md` |
+| FR-20260720-pre-unlock-options-mod-check | Pre-unlock options mod-check (AUTH-11) | revised-after-PUO | PUO REVISE applied; AUTH-11 locks + Acceptance; `20260720_pre-unlock-options-mod-check.md` |
+| FR-20260722-mod-decide-decision-alignment | mod-decide decision-alignment interpretability (DECIDE-ALIGN) | revised-after-MDA | MDA REVISE applied; AC + eval homes + AUTH merge + open calls; `20260722_mod-decide-decision-alignment.md` |
 | FR-20260723-set-key | `/set-key` Terminal paste helper | shipped | `20260723_set-key.md`; v0.4.0 |
-| FR-20260723-proceed-all-standing | Proceed-all-standing (queue all standing and move) | revised-after-PAS | PAS REVISE applied; `/shrug` + scope/remasure locks; `20260723_proceed-all-standing.md` |
-| FR-20260723-wave-orchestrator-fanout | Wave orchestrator fan-out + mod background etiquette | ready-for-mod-check | IWD W29 orch stall; `20260723_wave-orchestrator-fanout.md` |
+| FR-20260723-proceed-all-standing | Proceed-all-standing (queue all standing and move) | mod-decide-complete | locks C+A; `LOCKED-DECISIONS.md`; awaiting BUILD |
+| FR-20260723-wave-orchestrator-fanout | Wave orchestrator fan-out + mod background etiquette | revised-after-WOF | WOF REVISE applied; leave-acts + eval homes + fail ids; `20260723_wave-orchestrator-fanout.md` |
+| FR-20260723-wave-context-kv-cache | Wave/context KV cache (durable resume; WOF+PAS+rotate) | ready-for-mod-check | HF KV-cache analogy; `20260723_wave-context-kv-cache.md` |
+| FR-20260723-n8n-template-fit | n8n template fit (wavves → publishable workflow) | build-chartered | NTVB BUILD; locks A/B/B/C/A |
