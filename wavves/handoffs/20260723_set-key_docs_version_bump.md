@@ -14,7 +14,7 @@ local_plugin_mirror: ~/.cursor/plugins/local/wavves/  (rsync after land)
 ## One-line paste (fresh thread)
 
 ```text
-/wavves You are the wavves product mod. Hydrate from wavves/handoffs/20260723_set-key_docs_version_bump.md at commit 17539cb913c397f0469a6f6598c9774992935878. Charge: (1) review FR-20260723 and make it official in the FR index lifecycle, (2) sync ALL public docs / usage grid / index.html / skill frontmatter with the landed /set-key skill, (3) bump version 0.3.0 → 0.4.0 (new public slash skill), fold CHANGELOG Unreleased into 0.4.0, commit+push main, rsync to ~/.cursor/plugins/local/wavves/. Do not reopen skill behavior unless a doc contradiction forces a tiny fix. Prefer cursor-grok-4.5-high-fast for any runners.
+/wavves You are the wavves product mod. Hydrate from wavves/handoffs/20260723_set-key_docs_version_bump.md (handoff land e437b9b; feature code 17539cb). Charge: (1) review FR-20260723 and make it official in the FR index lifecycle, (2) sync ALL public docs / usage grid / index.html / skill frontmatter with the landed /set-key skill, (3) bump version 0.3.0 → 0.4.0 (new public slash skill), fold CHANGELOG Unreleased into 0.4.0, commit+push main, rsync to ~/.cursor/plugins/local/wavves/. Do not reopen skill behavior unless a doc contradiction forces a tiny fix. Prefer cursor-grok-4.5-high-fast for any runners.
 ```
 
 ## What already landed (do not rebuild)
