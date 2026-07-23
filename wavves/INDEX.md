@@ -4,10 +4,28 @@ current_identity: O0
 current_rotation: none
 
 active_lanes:
+  - code: WOF
+    home: lanes/20260723_wave-orchestrator-fanout-check/
+    status: chartered-check
+    next_read: lanes/20260723_wave-orchestrator-fanout-check/dispatch.md
+    note: W1 in flight; standing queue 20260723_all-queued-lanes
+  - code: PUO
+    home: lanes/20260723_pre-unlock-options-check/
+    status: chartered-check
+    next_read: lanes/20260723_pre-unlock-options-check/dispatch.md
+  - code: IPB
+    home: lanes/20260719_ip-before-cutover-check/
+    status: chartered-check
+    next_read: lanes/20260719_ip-before-cutover-check/dispatch.md
+  - code: MDA
+    home: lanes/20260722_mod-decide-alignment-check/
+    status: chartered-check
+    next_read: lanes/20260722_mod-decide-alignment-check/dispatch.md
   - code: PAS
     home: lanes/20260723_proceed-all-standing-check/
-    status: check-revise
-    next_read: lanes/20260723_proceed-all-standing-check/findings/PAS-verdict.md
+    status: check-revise-awaiting-decide
+    next_read: lanes/20260723_proceed-all-standing-check/decisions/PAS-DECIDE-QUEUE.md
+    note: FR revised-after-PAS; mod-decide residual COMMIT-AUTH-GRAIN
   - code: PTB
     home: lanes/20260715_paragraph-tunnel-build/
     status: completed
@@ -44,9 +62,13 @@ project_skills:
 feature_requests:
   home: ../feature-requests/
   open:
+    - id: FR-20260723-wave-orchestrator-fanout
+      path: ../feature-requests/20260723_wave-orchestrator-fanout.md
+      status: ready-for-mod-check
+      check_lane: lanes/20260723_wave-orchestrator-fanout-check/
     - id: FR-20260723-proceed-all-standing
       path: ../feature-requests/20260723_proceed-all-standing.md
-      status: ready-for-mod-check
+      status: revised-after-PAS
       check_lane: lanes/20260723_proceed-all-standing-check/
     - id: FR-20260720-pre-unlock-options-mod-check
       path: ../feature-requests/20260720_pre-unlock-options-mod-check.md

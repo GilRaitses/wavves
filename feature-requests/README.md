@@ -28,5 +28,5 @@ or `wontfix`
 | FR-20260720-pre-unlock-options-mod-check | Pre-unlock options mod-check (AUTH-11) | ready-for-mod-check | RLW/RWC unlock hygiene; `20260720_pre-unlock-options-mod-check.md` |
 | FR-20260722-mod-decide-decision-alignment | mod-decide decision-alignment interpretability (DECIDE-ALIGN) | ready-for-mod-check | IWD admit D5/D6 hold-loop; `20260722_mod-decide-decision-alignment.md` |
 | FR-20260723-set-key | `/set-key` Terminal paste helper | shipped | `20260723_set-key.md`; v0.4.0 |
-| FR-20260723-proceed-all-standing | Proceed-all-standing (queue all standing and move) | ready-for-mod-check | IWD shrug+all-standing pass; `20260723_proceed-all-standing.md` |
+| FR-20260723-proceed-all-standing | Proceed-all-standing (queue all standing and move) | revised-after-PAS | PAS REVISE applied; `/shrug` + scope/remasure locks; `20260723_proceed-all-standing.md` |
 | FR-20260723-wave-orchestrator-fanout | Wave orchestrator fan-out + mod background etiquette | ready-for-mod-check | IWD W29 orch stall; `20260723_wave-orchestrator-fanout.md` |

@@ -1,4 +1,44 @@
 active:
+  PUO:
+    label: pre-unlock-options-check
+    home: lanes/20260723_pre-unlock-options-check/
+    waves: [PUO-W1, PUO-VERDICT]
+    status: chartered
+    type: check
+    active_dispatch: dispatch.md
+    artifact: feature-requests/20260720_pre-unlock-options-mod-check.md
+    repo_state_verified_against: 26ad2d2afbb9196f2b690000f6a50f1cabfe20e5
+  IPB:
+    label: ip-before-cutover-check
+    home: lanes/20260719_ip-before-cutover-check/
+    waves: [IPB-W1, IPB-VERDICT]
+    status: chartered
+    type: check
+    active_dispatch: dispatch.md
+    artifact: feature-requests/20260719_ip-before-cutover.md
+    repo_state_verified_against: 26ad2d2afbb9196f2b690000f6a50f1cabfe20e5
+  MDA:
+    label: mod-decide-alignment-check
+    home: lanes/20260722_mod-decide-alignment-check/
+    waves: [MDA-W1, MDA-VERDICT]
+    status: chartered
+    type: check
+    active_dispatch: dispatch.md
+    artifact: feature-requests/20260722_mod-decide-decision-alignment.md
+    repo_state_verified_against: 26ad2d2afbb9196f2b690000f6a50f1cabfe20e5
+  WOF:
+    label: wave-orchestrator-fanout-check
+    home: lanes/20260723_wave-orchestrator-fanout-check/
+    waves: [WOF-W1, WOF-VERDICT]
+    status: chartered
+    type: check
+    active_dispatch: dispatch.md
+    dispatch_files: [dispatch.md]
+    repo_state_verified_against: 26ad2d2afbb9196f2b690000f6a50f1cabfe20e5
+    artifact: feature-requests/20260723_wave-orchestrator-fanout.md
+    note: >-
+      Adversarial check of wave orchestrator fan-out + O0 background etiquette.
+      No build.
   PAS:
     label: proceed-all-standing-check
     home: lanes/20260723_proceed-all-standing-check/
@@ -10,8 +50,8 @@ active:
     repo_state_verified_against: 73b09bad223ed004a2e8f10443f48196cbbbf396
     artifact: feature-requests/20260723_proceed-all-standing.md
     note: >-
-      W1 complete. Verdict REVISE (blocks_w2). See findings/PAS-verdict.md.
-      Bare shrug / /shrug non-widen; no BUILD until locks.
+      W1 REVISE applied to FR (revised-after-PAS). Residual mod-decide or
+      re-check. No BUILD until locks clear. See findings/PAS-verdict.md.
   PTB:
     label: paragraph-tunnel-build
     home: lanes/20260715_paragraph-tunnel-build/
