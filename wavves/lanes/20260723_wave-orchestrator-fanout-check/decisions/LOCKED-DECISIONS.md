@@ -23,7 +23,7 @@
 pax RLI-W2 wave orch (`cursor-grok-4.5-high-fast`) illegally
 `return_to_O0` after background-launching W2a only — no
 `RLI-W2-orch-checkpoint.md`, no rollup/gate. Recurrence of
-`PROC-ORCH-LAUNCH-AND-EXIT` / `PROC-ORCH-NO-RESUME-CONTRACT`. O0 remasured
+`PROC-ORCH-LAUNCH-AND-EXIT` / `PROC-ORCH-NO-RESUME-CONTRACT`. O0 remeasured
 and finished the critical path (fail remediation, not designed path).
 
 ## recommended_actions

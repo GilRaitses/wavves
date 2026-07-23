@@ -23,7 +23,7 @@
     + `dispatch-w29.md` `role: wave_orchestrator`
 - **evidence_verified_against:** pax `20782d2d7` (OPERATOR_ORCHESTRATION
   background bind); IWD-W29 orchestrator early return after W29a launch
-  (foreign pins are illustration; BUILD remasures in-repo seams only)
+  (foreign pins are illustration; BUILD remeasures in-repo seams only)
 - **Originating mod feedback:** O0.R3 — plugin/home text is half-clear on
   O0→background and **uncleared** on orchestrator→parallel charge workers,
   “do not return until critical path completes”, and **moderator session
@@ -165,7 +165,7 @@ OF-02…05).
    binds.
 3. **No poll.** Do not busy-wait or “check again shortly.” Integrate when
    completion notifications / operator ping arrives.
-4. **Reconcile then land.** On return: remasure against disk, git per
+4. **Reconcile then land.** On return: remeasure against disk, git per
    protocol, update registry/waveset. Do not re-do charge work in O0
    (violation → `PROC-MOD-FOREGROUND-HOLD` / role collapse).
 5. **Resume is fail remediation only.** If a wave orchestrator early-exits,
@@ -248,7 +248,7 @@ classes, resume=remediation, pax sync out of AC were already locked — not open
 | Lane bind (interim, illustration) | pax `wavves/lanes/20260722_island-wide-discovery/OPERATOR_ORCHESTRATION.md` |
 | W29 dispatch role (illustration) | pax `.../dispatch-w29.md` (`role: wave_orchestrator`) |
 | Early exit | W29 orchestrator returned after background-deploying W29a only |
-| Early exit (recurrence) | pax RLI-W2 orch returned after launching W2a only (2026-07-23 ~03:42–03:46 EDT); no checkpoint; O0 remasured + finished critical path |
+| Early exit (recurrence) | pax RLI-W2 orch returned after launching W2a only (2026-07-23 ~03:42–03:46 EDT); no checkpoint; O0 remeasured + finished critical path |
 | Prior related note | `feature-requests/20260718_proof-before-accept_ORIGINATING-MOD-FEEDBACK.md` (mid-dispatch empty returns; orchestrator owns completion) |
 | WOF check | `wavves/lanes/20260723_wave-orchestrator-fanout-check/findings/WOF-verdict.md` |
 | Locked decisions | `wavves/lanes/20260723_wave-orchestrator-fanout-check/decisions/LOCKED-DECISIONS.md` |
