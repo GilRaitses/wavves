@@ -8,7 +8,7 @@
 
 | id | source_path | class | proposed_action | result | land_hash / gate_path | blocked_reason |
 |---|---|---|---|---|---|---|
-| WOF | `wavves/lanes/20260723_wave-orchestrator-fanout-check/` | dispatch | await W1 lenses → AUTH-06 verdict | in_flight | `dispatch.md` active | W1a+W1c not on disk yet; W1b+W1d present — no early verdict |
+| WOF | `wavves/lanes/20260723_wave-orchestrator-fanout-check/` | operator_gate | revise FR / mod-decide after REVISE | gated | `findings/WOF-verdict.md` | check complete; blocks_w2; no BUILD |
 | PAS-FR | `feature-requests/20260723_proceed-all-standing.md` | operator_gate | `/mod-decide` residual (COMMIT-AUTH-GRAIN → SCOPE-FALLBACK) | gated | `findings/PAS-verdict.md` | FR revised; BUILD blocked until decide locks |
 | PAS-lane | `wavves/lanes/20260723_proceed-all-standing-check/` | skip_done | cite PAS-VERDICT REVISE | skip_done | `findings/PAS-verdict.md` | check wave complete |
 | FR-PUO | `feature-requests/20260720_pre-unlock-options-mod-check.md` | dispatch | charter PUO check + W1 | dispatched | `lanes/20260723_pre-unlock-options-check/dispatch.md` | W1 background; reconcile on notify |

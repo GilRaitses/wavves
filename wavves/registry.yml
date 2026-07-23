@@ -30,15 +30,14 @@ active:
     label: wave-orchestrator-fanout-check
     home: lanes/20260723_wave-orchestrator-fanout-check/
     waves: [WOF-W1, WOF-VERDICT]
-    status: chartered
+    status: check-revise
     type: check
-    active_dispatch: dispatch.md
+    active_dispatch: null
     dispatch_files: [dispatch.md]
     repo_state_verified_against: 26ad2d2afbb9196f2b690000f6a50f1cabfe20e5
     artifact: feature-requests/20260723_wave-orchestrator-fanout.md
     note: >-
-      Adversarial check of wave orchestrator fan-out + O0 background etiquette.
-      No build.
+      W1 complete. Verdict REVISE (blocks_w2). See findings/WOF-verdict.md.
   PAS:
     label: proceed-all-standing-check
     home: lanes/20260723_proceed-all-standing-check/

@@ -6,9 +6,9 @@ current_rotation: none
 active_lanes:
   - code: WOF
     home: lanes/20260723_wave-orchestrator-fanout-check/
-    status: chartered-check
-    next_read: lanes/20260723_wave-orchestrator-fanout-check/dispatch.md
-    note: W1 in flight; standing queue 20260723_all-queued-lanes
+    status: check-revise
+    next_read: lanes/20260723_wave-orchestrator-fanout-check/findings/WOF-verdict.md
+    note: REVISE; standing queue 20260723_all-queued-lanes
   - code: PUO
     home: lanes/20260723_pre-unlock-options-check/
     status: chartered-check
