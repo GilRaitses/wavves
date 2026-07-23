@@ -11,9 +11,9 @@
 | WOF | `wavves/lanes/20260723_wave-orchestrator-fanout-check/` | operator_gate | revise FR / mod-decide after REVISE | gated | `findings/WOF-verdict.md` | check complete; blocks_w2; no BUILD |
 | PAS-FR | `feature-requests/20260723_proceed-all-standing.md` | operator_gate | `/mod-decide` residual (COMMIT-AUTH-GRAIN → SCOPE-FALLBACK) | gated | `findings/PAS-verdict.md` | FR revised; BUILD blocked until decide locks |
 | PAS-lane | `wavves/lanes/20260723_proceed-all-standing-check/` | skip_done | cite PAS-VERDICT REVISE | skip_done | `findings/PAS-verdict.md` | check wave complete |
-| FR-PUO | `feature-requests/20260720_pre-unlock-options-mod-check.md` | dispatch | charter PUO check + W1 | dispatched | `lanes/20260723_pre-unlock-options-check/dispatch.md` | W1 background; reconcile on notify |
-| FR-IPB | `feature-requests/20260719_ip-before-cutover.md` | dispatch | charter IPB check + W1 | dispatched | `lanes/20260719_ip-before-cutover-check/dispatch.md` | W1 background; reconcile on notify |
-| FR-MDA | `feature-requests/20260722_mod-decide-decision-alignment.md` | dispatch | charter MDA check + W1 | dispatched | `lanes/20260722_mod-decide-alignment-check/dispatch.md` | W1 background; reconcile on notify |
+| FR-PUO | `feature-requests/20260720_pre-unlock-options-mod-check.md` | operator_gate | revise FR after REVISE | gated | `findings/PUO-verdict.md` | blocks_w2 |
+| FR-IPB | `feature-requests/20260719_ip-before-cutover.md` | operator_gate | revise FR after REVISE | gated | `findings/IPB-verdict.md` | blocks_w2 |
+| FR-MDA | `feature-requests/20260722_mod-decide-decision-alignment.md` | operator_gate | revise FR after REVISE | gated | `findings/MDA-verdict.md` | blocks_w2 |
 | PAS-DECIDE | `.../decisions/PAS-DECIDE-QUEUE.md` | operator_gate | Pick COMMIT-AUTH-GRAIN A\|B\|C | gated | `decisions/PAS-DECIDE-QUEUE.md` | awaiting operator Pick |
 | FR-VOICE | `feature-requests/20260718_voice-library-lora.md` | operator_gate | park until AVP-ACCEPT | gated | FR status parked-pending-apollo-proof | hard park; no BUILD invent |
 | FR-SETKEY | `feature-requests/20260723_set-key.md` | skip_done | shipped v0.4.0 | skip_done | README shipped row | — |

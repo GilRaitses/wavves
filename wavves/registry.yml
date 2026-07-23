@@ -3,29 +3,32 @@ active:
     label: pre-unlock-options-check
     home: lanes/20260723_pre-unlock-options-check/
     waves: [PUO-W1, PUO-VERDICT]
-    status: chartered
+    status: check-revise
     type: check
-    active_dispatch: dispatch.md
+    active_dispatch: null
     artifact: feature-requests/20260720_pre-unlock-options-mod-check.md
     repo_state_verified_against: 26ad2d2afbb9196f2b690000f6a50f1cabfe20e5
+    note: W1 REVISE (blocks_w2). See findings/PUO-verdict.md.
   IPB:
     label: ip-before-cutover-check
     home: lanes/20260719_ip-before-cutover-check/
     waves: [IPB-W1, IPB-VERDICT]
-    status: chartered
+    status: check-revise
     type: check
-    active_dispatch: dispatch.md
+    active_dispatch: null
     artifact: feature-requests/20260719_ip-before-cutover.md
     repo_state_verified_against: 26ad2d2afbb9196f2b690000f6a50f1cabfe20e5
+    note: W1 REVISE (blocks_w2). See findings/IPB-verdict.md.
   MDA:
     label: mod-decide-alignment-check
     home: lanes/20260722_mod-decide-alignment-check/
     waves: [MDA-W1, MDA-VERDICT]
-    status: chartered
+    status: check-revise
     type: check
-    active_dispatch: dispatch.md
+    active_dispatch: null
     artifact: feature-requests/20260722_mod-decide-decision-alignment.md
     repo_state_verified_against: 26ad2d2afbb9196f2b690000f6a50f1cabfe20e5
+    note: W1 REVISE (blocks_w2). See findings/MDA-verdict.md.
   WOF:
     label: wave-orchestrator-fanout-check
     home: lanes/20260723_wave-orchestrator-fanout-check/

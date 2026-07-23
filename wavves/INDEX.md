@@ -11,16 +11,16 @@ active_lanes:
     note: REVISE; standing queue 20260723_all-queued-lanes
   - code: PUO
     home: lanes/20260723_pre-unlock-options-check/
-    status: chartered-check
-    next_read: lanes/20260723_pre-unlock-options-check/dispatch.md
+    status: check-revise
+    next_read: lanes/20260723_pre-unlock-options-check/findings/PUO-verdict.md
   - code: IPB
     home: lanes/20260719_ip-before-cutover-check/
-    status: chartered-check
-    next_read: lanes/20260719_ip-before-cutover-check/dispatch.md
+    status: check-revise
+    next_read: lanes/20260719_ip-before-cutover-check/findings/IPB-verdict.md
   - code: MDA
     home: lanes/20260722_mod-decide-alignment-check/
-    status: chartered-check
-    next_read: lanes/20260722_mod-decide-alignment-check/dispatch.md
+    status: check-revise
+    next_read: lanes/20260722_mod-decide-alignment-check/findings/MDA-verdict.md
   - code: PAS
     home: lanes/20260723_proceed-all-standing-check/
     status: check-revise-awaiting-decide
