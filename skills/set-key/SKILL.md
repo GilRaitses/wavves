@@ -26,15 +26,25 @@ client secret".
    `open -a Terminal`). Do not ask the operator to paste into the Cursor shell.
 2. **Never print, log, commit, or chat the secret value.** Remasure with
    `set=True/False` and `nchars=N` (and path + key name) only.
-3. **Default target:** repo `/Users/gilraitses/klosr`, file `.env.local`,
+3. **Never put the secret on an agent shell argv/env/heredoc.** If the
+   operator pastes a key into chat, tell them to rotate it and use Terminal
+   `setkey.sh` — do not `GOOGLE_MAPS_API_KEY=… ./setkey.sh` from the agent.
+4. **Default target:** repo `/Users/gilraitses/klosr`, file `.env.local`,
    key `GOOGLE_MAPS_API_KEY`. Helper: prefer repo-local `setkey.sh` if present;
    else use `skills/set-key/scripts/setkey_env.sh`.
-4. **Named secrets.** If the operator names another key (`TWILIO_ACCOUNT_SID`,
+5. **Named secrets.** If the operator names another key (`TWILIO_ACCOUNT_SID`,
    client secret, etc.), pass `--key-name` / `--env-file` / `--repo` to the
    helper. Same paste UX.
-5. **chmod 600** on the env file after write. Do not stage `.env.local`.
-6. **After paste:** remasure; report path + key name + set/nchars; hint next
-   step (restart Next / unlock densify) only if a standing wave needs it.
+6. **chmod 600** on the env file after write. Do not stage `.env.local`.
+7. **Reject ≠ write.** On validation failure the helper must leave the env
+   file **UNCHANGED** and print that explicitly (otherwise remasure looks like
+   "paste failed" while an old bad value remains).
+8. **Sanitize paste.** Strip bracketed-paste markers, all whitespace, and
+   control chars before validate (Terminal `read -s` paste often injects these).
+9. **After paste:** remasure; report path + key name + set/nchars; hint next
+   step only if a standing wave needs it.
+10. **Heavy follow-ups (densify, API campaigns) go to background
+    sub-orchestrators** — never block the O0 thread running long densify.
 
 ## Steps
 

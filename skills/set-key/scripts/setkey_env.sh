@@ -1,23 +1,19 @@
 #!/usr/bin/env bash
 # Generic paste-and-return env writer for /set-key.
-# Usage:
-#   setkey_env.sh --repo DIR --env-file .env.local --key-name NAME
-#   setkey_env.sh --repo DIR --env-file .env.local --key-name NAME --from-env
-# Never echoes the secret.
+# Interactive TTY only for secrets. Agent must NOT pass secret on argv/env.
+# On reject: env file UNCHANGED.
 
 set -euo pipefail
 
 REPO=""
 ENV_FILE=".env.local"
 KEY_NAME=""
-FROM_ENV=0
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --repo) REPO="${2:-}"; shift 2 ;;
     --env-file) ENV_FILE="${2:-}"; shift 2 ;;
     --key-name) KEY_NAME="${2:-}"; shift 2 ;;
-    --from-env) FROM_ENV=1; shift ;;
     *)
       echo "error: unknown arg: $1" >&2
       exit 1
@@ -26,7 +22,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 if [[ -z "$REPO" || -z "$KEY_NAME" ]]; then
-  echo "usage: setkey_env.sh --repo DIR --env-file FILE --key-name NAME [--from-env]" >&2
+  echo "usage: setkey_env.sh --repo DIR --env-file FILE --key-name NAME" >&2
   exit 1
 fi
 
@@ -35,32 +31,39 @@ umask 077
 mkdir -p "$REPO"
 cd "$REPO"
 
-read_key() {
-  if [[ "$FROM_ENV" -eq 1 ]]; then
-    if [[ -z "${!KEY_NAME:-}" ]]; then
-      echo "error: ${KEY_NAME} empty in environment" >&2
-      exit 1
-    fi
-    printf '%s' "${!KEY_NAME}"
-    return
-  fi
-  if [[ ! -t 0 ]]; then
-    echo "error: no TTY — run in Terminal.app" >&2
-    exit 1
-  fi
-  echo "Paste secret for ${KEY_NAME} (input hidden)."
-  echo "Target: ${ENV_LOCAL}"
-  # shellcheck disable=SC2162
-  read -r -s -p "${KEY_NAME}: " KEY
-  echo
-  printf '%s' "$KEY"
+sanitize_key() {
+  python3 -c '
+import re, sys
+raw = sys.stdin.buffer.read()
+s = raw.decode("utf-8", "replace")
+s = s.replace("\r", "").replace("\n", "")
+s = re.sub(r"\x1b\[\??200~", "", s)
+s = re.sub(r"\x1b\[\??201~", "", s)
+s = re.sub(r"\x1b\[[0-9;]*[A-Za-z]", "", s)
+s = re.sub(r"\s+", "", s)
+s = re.sub(r"[^A-Za-z0-9_\-]", "", s)
+sys.stdout.write(s)
+'
 }
 
-KEY="$(read_key)"
-KEY="$(printf '%s' "$KEY" | tr -d '\r\n' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
-if [[ -z "$KEY" ]]; then
-  echo "error: empty key" >&2
+reject() {
+  echo "error: $*" >&2
+  echo "note: ${ENV_LOCAL} UNCHANGED (previous value still on disk if any)." >&2
   exit 1
+}
+
+if [[ ! -t 0 ]]; then
+  reject "no TTY — run in Terminal.app"
+fi
+
+echo "Paste secret for ${KEY_NAME} (hidden). Target: ${ENV_LOCAL}"
+# shellcheck disable=SC2162
+read -r -s -p "${KEY_NAME}: " KEY_RAW || true
+echo
+KEY="$(printf '%s' "${KEY_RAW:-}" | sanitize_key)"
+
+if [[ -z "$KEY" ]]; then
+  reject "empty key after sanitize"
 fi
 
 touch "$ENV_LOCAL"
