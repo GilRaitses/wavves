@@ -8,7 +8,8 @@ Route: **charter** (`/charter`)
 - [ ] 3. Read the charter skill (skills/charter/SKILL.md) in full.
 - [ ] 4. Carry the operator's task verbatim into the charter intent section.
 - [ ] 5. Run the charter workflow: lane home, registry entry, dispatch.
-- [ ] 6. Dispatch to background. Do not poll. Reconcile on return notice.
+- [ ] 6. Dispatch wave orchestrator to background; O0_release_window. Do not
+        poll or foreground-hold BUILD. Reconcile on return notice.
 - [ ] 7. Report lane code, home path, dispatch status and any operator gates.
 ```
 

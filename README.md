@@ -90,7 +90,9 @@ picks a playbook and runs the leaf skill. Like `/poteto-mode` in pstack.
 
 | Piece | Where it lives | What it is |
 |:------|:---------------|:-----------|
-| **Moderator (O0)** | the operator-facing thread | charters lanes, dispatches background work, reconciles returns |
+| **O0** | the operator-facing thread | charters lanes, background-dispatches wave orchestrators, reconciles on notify, lands git; then `O0_release_window` |
+| **wave orchestrator** | background Task under O0 | fans out charge workers; integrates; writes rollup+gate (or hard FAIL / operator_gate). No early `return_to_O0`. Yield requires `findings/<wave>-orch-checkpoint.md` |
+| **charge worker** | one background Task per charge id | one bounded disjoint task; never git; never solicit the operator |
 | **Home** | `<repo>/wavves/` | standing hydration contract that outlives any one chat |
 | **Lane** | `wavves/lanes/<date>_<label>/` | one bounded workstream with its own charter and findings |
 | **Charter** | `lanes/.../waveset.md` | alignment packet: scope, locked decisions, waves, gates |
@@ -98,6 +100,15 @@ picks a playbook and runs the leaf skill. Like `/poteto-mode` in pstack.
 | **Registry** | `wavves/registry.yml` | map of every chartered lane and its status |
 | **Rotation** | `wavves/rotations/` | handoff files with term identity (`O0.R1`, `O0.R2`, ...) |
 | **Gates** | `lanes/.../gate-captures/` | runnable checks with JSON + log evidence on disk |
+
+Orchestration fail ids (skill text; append to `wavves/failure_log.yml` only
+when observed in a real run): `PROC-ORCH-EARLY-EXIT`,
+`PROC-ORCH-LAUNCH-AND-EXIT`, `PROC-ORCH-NO-RESUME-CONTRACT`,
+`PROC-ORCH-SOLO-BUILD`, `PROC-ORCH-ROLE-COLLAPSE`, `PROC-ORCH-DEP-OVERCLAIM`,
+`PROC-ORCH-FOREGROUND-HOLD`, `PROC-MOD-FOREGROUND-HOLD`,
+`PROC-MOD-PROGRESS-THEATER`. Checker:
+`python3 evals/check_wave_orchestrator_fanout.py`. Canonical Roles:
+`skills/charter/SKILL.md`.
 
 Fresh instances hydrate from the home files, never from chat transcripts.
 

@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- **Wave orchestrator fan-out (OF-01…OF-10):** charter Roles rename
+  (O0 → wave orchestrator → charge worker); leave-acts
+  (`return_to_O0` / `yield_awaiting_children` / `O0_release_window`);
+  Moderator background etiquette; dispatch example;
+  `evals/check_wave_orchestrator_fanout.py` (11 fixtures). FR
+  `feature-requests/20260723_wave-orchestrator-fanout.md` shipped (WOFB).
+
 ## 0.4.0 (2026-07-23)
 
 - **`/set-key`:** leaf skill + playbook + `skills/set-key/scripts/setkey_env.sh`.

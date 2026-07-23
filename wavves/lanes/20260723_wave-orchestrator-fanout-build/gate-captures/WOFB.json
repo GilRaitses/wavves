@@ -1,0 +1,31 @@
+{
+  "lane": "WOFB",
+  "wave": "WOFB-GATE",
+  "status": "PASS",
+  "wave_status": "PASS",
+  "date_america_new_york": "2026-07-23",
+  "owner": "O0.R4",
+  "answers_to": "O0.R4",
+  "repo_state_verified_against": "5805f7b017cad41ac546ff2835c71345d0caaa3e",
+  "orch_status": "ABORTED_O0_TAKEOVER",
+  "eval_command": "python3 evals/check_wave_orchestrator_fanout.py",
+  "eval_pass": "11/11",
+  "gate_path": "findings/WOFB-GATE.md",
+  "rollup_path": "findings/WOFB-ROLLUP.md",
+  "wof_blocks_w2_cleared": true,
+  "recommended_next": "plugin reload if needed; pax home sync optional non-goal",
+  "operator_gate": null,
+  "artifacts": [
+    "evals/check_wave_orchestrator_fanout.py",
+    "evals/fixtures/wave-orch-fanout-*/",
+    "skills/charter/SKILL.md",
+    "skills/charter/dispatch-wave-orchestrator.example.md",
+    "skills/wavves-init/SKILL.md",
+    "wavves/AGENTS.md",
+    "README.md",
+    "skills/wavves/playbooks/proceed.md",
+    "skills/wavves/playbooks/charter-lane.md",
+    "skills/set-key/SKILL.md",
+    "skills/wavves/SKILL.md"
+  ]
+}

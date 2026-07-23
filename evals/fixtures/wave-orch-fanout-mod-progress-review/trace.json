@@ -1,0 +1,15 @@
+{
+  "charges_launched": [
+    "a"
+  ],
+  "worker_ids": [
+    "w1"
+  ],
+  "charge_id_to_worker_id": {
+    "a": "w1"
+  },
+  "mod_progress_theater": true,
+  "rollup_path_present": true,
+  "gate_path_present": true,
+  "orch_returned_before_rollup": false
+}

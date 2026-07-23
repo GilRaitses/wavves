@@ -1,0 +1,19 @@
+{
+  "charges_launched": [
+    "a",
+    "b",
+    "c"
+  ],
+  "worker_ids": [
+    "w1"
+  ],
+  "charge_id_to_worker_id": {
+    "a": "w1",
+    "b": "w1",
+    "c": "w1"
+  },
+  "same_worker_for_independent_charges": true,
+  "rollup_path_present": true,
+  "gate_path_present": true,
+  "orch_returned_before_rollup": false
+}

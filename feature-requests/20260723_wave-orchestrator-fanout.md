@@ -1,6 +1,6 @@
 # FR-20260723 — Wave orchestrator fan-out + moderator background etiquette
 
-- **Status:** mod-decide-complete (residual locks A/A; ready `/charter` BUILD)
+- **Status:** SHIPPED (WOFB BUILD PASS; WOF `blocks_w2` cleared)
 - **Date:** 2026-07-23 (America/New_York)
 - **WOF check:** `wavves/lanes/20260723_wave-orchestrator-fanout-check/` —
   verdict **REVISE** (`findings/WOF-verdict.md`); this file applies that revise
@@ -197,16 +197,16 @@ non-mod window and O0 has released).
 
 ## Acceptance
 
-- [ ] `skills/charter/SKILL.md` three-role table + dispatch mechanics updated (fan-out, leave-acts, background, no-early-exit, checkpoint-on-yield)
-- [ ] `skills/wavves-init/SKILL.md` Roles + live `wavves/AGENTS.md` Roles updated with rename table (same BUILD)
-- [ ] README (+ optional `/wavves` router) name O0 / wave orchestrator / charge worker and the fail ids table
-- [ ] Moderator background etiquette block present (OF-08), not buried under densify-only; set-key densify links back
-- [ ] Dispatch paste at `skills/charter/SKILL.md` Dispatch mechanics + `skills/charter/dispatch-wave-orchestrator.example.md` includes fan-out + background + no-early-exit + checkpoint
-- [ ] OF-09 one-liners in `playbooks/proceed.md` and `playbooks/charter-lane.md`
-- [ ] Leave-acts + OF-10 replacement sentences shipped; “empty mid-dispatch return” not reintroduced as absolute session-hold
-- [ ] `python3 evals/check_wave_orchestrator_fanout.py` PASS on `evals/fixtures/wave-orch-fanout-*/` covering at least: EARLY-EXIT, LAUNCH-AND-EXIT, SOLO-BUILD, ROLE-COLLAPSE, DEP-OVERCLAIM, NO-RESUME-CONTRACT, **PROC-ORCH-FOREGROUND-HOLD** (mechanical or explicit review-only label), plus review-only MOD-FOREGROUND-HOLD / MOD-PROGRESS-THEATER cases
-- [ ] Fail ids documented in skill/README; append to `wavves/failure_log.yml` only when observed in a real run (ids may ship in skill text first)
-- [ ] Re-`/mod-check` GO or `/mod-decide` residual locks complete before BUILD charter
+- [x] `skills/charter/SKILL.md` three-role table + dispatch mechanics updated (fan-out, leave-acts, background, no-early-exit, checkpoint-on-yield)
+- [x] `skills/wavves-init/SKILL.md` Roles + live `wavves/AGENTS.md` Roles updated with rename table (same BUILD)
+- [x] README (+ optional `/wavves` router) name O0 / wave orchestrator / charge worker and the fail ids table
+- [x] Moderator background etiquette block present (OF-08), not buried under densify-only; set-key densify links back
+- [x] Dispatch paste at `skills/charter/SKILL.md` Dispatch mechanics + `skills/charter/dispatch-wave-orchestrator.example.md` includes fan-out + background + no-early-exit + checkpoint
+- [x] OF-09 one-liners in `playbooks/proceed.md` and `playbooks/charter-lane.md`
+- [x] Leave-acts + OF-10 replacement sentences shipped; “empty mid-dispatch return” not reintroduced as absolute session-hold
+- [x] `python3 evals/check_wave_orchestrator_fanout.py` PASS on `evals/fixtures/wave-orch-fanout-*/` covering at least: EARLY-EXIT, LAUNCH-AND-EXIT, SOLO-BUILD, ROLE-COLLAPSE, DEP-OVERCLAIM, NO-RESUME-CONTRACT, **PROC-ORCH-FOREGROUND-HOLD** (mechanical or explicit review-only label), plus review-only MOD-FOREGROUND-HOLD / MOD-PROGRESS-THEATER cases
+- [x] Fail ids documented in skill/README; append to `wavves/failure_log.yml` only when observed in a real run (ids may ship in skill text first)
+- [x] Re-`/mod-check` GO or `/mod-decide` residual locks complete before BUILD charter
 
 ## Non-goals
 
@@ -255,6 +255,7 @@ classes, resume=remediation, pax sync out of AC were already locked — not open
 
 ## Next
 
-`/charter` BUILD into charter skill + wavves-init/AGENTS + paste example +
-evals. Residual mod-decide closed. Clear WOF `blocks_w2` on BUILD charter
-AUTH sync.
+**SHIPPED.** WOFB lane
+`wavves/lanes/20260723_wave-orchestrator-fanout-build/` GATE PASS.
+WOF `blocks_w2` cleared. Optional: reload installed plugin; sync foreign
+pax home (non-goal).

@@ -50,13 +50,67 @@ the rotation contract.
 
 | Role | Who | Does | Does NOT |
 |---|---|---|---|
-| **O0 / central orchestrator** | the operator-facing thread | charters, dispatches, reconciles returns, holds the map | execute lane work. mutate code directly. block waiting on a dispatch |
-| **Dispatched orchestrator** | a background subagent OR a fresh thread | runs the waves, gates, reports to O0 | solicit the human operator directly (see escalation catch) |
-| **Parallel subagents** | the wave members | one bounded, disjoint task each | touch another agent's files. cross wave boundaries |
+| **O0** | the operator-facing thread | charters, background-dispatches wave orchestrators, reconciles on notify, lands git | execute charge work inline when a dispatch fits; poll/await a wave; hold the operator window on long BUILD |
+| **wave orchestrator** | background Task under O0 | fans out **charge workers**, integrates, writes rollup+gate (or hard FAIL / operator_gate) | execute multiple independent charges itself; `return_to_O0` before rollup/gate/FAIL/operator_gate; poll workers |
+| **charge worker** | one background Task per charge id | one bounded disjoint task; writes only its owned files | touch sibling files; git; solicit the operator; nest further orchestrators unless charter grants depth |
 
-The point is that **O0 stays unblocked**. Dispatch to the background, keep
-working or end the turn and receive the return notice. Never sit and poll a
-dispatch.
+Rename map (live → product): Dispatched orchestrator → **wave orchestrator**;
+Parallel / Wave subagents → **charge worker**. Do not keep two triads.
+
+### Leave-acts (do not collapse under “return”)
+
+| act | who | meaning | legal when |
+|---|---|---|---|
+| `return_to_O0` | wave orchestrator | wave finished; orch Task done | **only** rollup+gate on disk, or hard FAIL artifact, or legal `operator_gate` escalate. Launching a child ≠ return authority. |
+| `yield_awaiting_children` | wave orchestrator | end turn; responsibility persists | requires `findings/<wave>-orch-checkpoint.md` (charge table, pending worker ids, next integrate step) before leave. Notify-driven resume; never poll/timer promises. |
+| `O0_release_window` | O0 | end operator-facing turn after charter + background deploy | always after deploy; integrate on notify. |
+
+Fail ids: `PROC-ORCH-EARLY-EXIT`, `PROC-ORCH-LAUNCH-AND-EXIT`,
+`PROC-ORCH-NO-RESUME-CONTRACT`, `PROC-ORCH-SOLO-BUILD`,
+`PROC-ORCH-ROLE-COLLAPSE`, `PROC-ORCH-DEP-OVERCLAIM`,
+`PROC-ORCH-FOREGROUND-HOLD` (mechanical when trace has poll/blocking await;
+else review-only), `PROC-MOD-FOREGROUND-HOLD`, `PROC-MOD-PROGRESS-THEATER`.
+
+### Fan-out + background
+
+- Each independent charge id → its own background charge-worker Task.
+- Sequence only real file-path dependencies. Shared colliding **file** →
+  sequential **separate** workers (one charge each), never multi-charge solo.
+- False “shared findings/” without a colliding file → `PROC-ORCH-DEP-OVERCLAIM`.
+- Wave orch and charge workers are always background / non-blocking (v0:
+  background-Task-only for wave orch).
+- Return contract must map charge id → `worker_agent_id` or
+  `serialized_reason` citing a real colliding file path.
+
+**OF-10 (mid-dispatch wording — locked):**
+
+1. **Workers always background.** Every charge-worker Task launch is
+   non-blocking / background. Wave orchestrators themselves are launched
+   background by O0 (v0: background-Task-only; fresh-thread wave orch is
+   out of scope).
+2. **Orchestrator returns to O0 only when rollup+gate or hard FAIL (or
+   legal operator_gate escalate) exists on disk.** Launching children is
+   not return authority. “Empty” means `return_to_O0` without
+   rollup/checkpoint/gate artifact.
+3. **Yield requires checkpoint.** If the host forces the orch Task to end
+   before rollup, write `findings/<wave>-orch-checkpoint.md` (pending
+   charges, worker ids, next integrate step) before any leave; resume is
+   notify-driven, never poll/timer/monitor promises. Responsibility
+   persists across notify-driven resumes.
+
+Do not reintroduce “empty mid-dispatch return” as an absolute session-hold.
+
+### Moderator (O0) background etiquette
+
+1. Dispatch wave orchestrators background.
+2. `O0_release_window` after charter + deploy (+ AUTH/git if that is the land).
+3. No poll / “check again shortly.”
+4. Reconcile then land on notify; do not re-do charge work in O0.
+5. Resume is **fail remediation** only (from checkpoint), not the designed path.
+6. Brief note of what was backgrounded; progress theater is a fail.
+
+The point is that **O0 stays unblocked**. Dispatch to the background, release
+the window, reconcile on the return notice. Never sit and poll a dispatch.
 
 ## When to use
 
@@ -457,23 +511,25 @@ while work runs in the background.
 
 ## Dispatch mechanics
 
-- **Background orchestrator.** Launch a subagent with run-in-background,
-  prompt = the dispatch block (or "hydrate from
-  dispatch.md"). State the execution order (for example
-  run W1+W2, then pause for O0 approval before gated W3/W4) and the return
-  contract. Then continue or end the turn. reconcile on return.
-- **Dispatch depth is bounded.** A dispatched orchestrator dispatches wave
-  subagents only, never further background orchestrators, unless the charter
-  grants it explicitly with a stated depth.
+- **Background wave orchestrator.** Launch with `run_in_background`, prompt =
+  the dispatch block (or "hydrate from dispatch-w{N}.md"). Role:
+  `wave_orchestrator`. Do not execute charges yourself — fan out charge
+  workers. Critical-path example: `a → (b‖c) → d`. Return contract required.
+  Then `O0_release_window`. Reconcile on return notice.
+- **Canonical paste example:** `skills/charter/dispatch-wave-orchestrator.example.md`.
+- **Dispatch depth is bounded.** A wave orchestrator dispatches **charge
+  workers** only, never further wave orchestrators, unless the charter grants
+  depth explicitly.
+- **No early `return_to_O0`.** Illegal until rollup+gate (or hard FAIL /
+  operator_gate) exists. If the host forces a yield, write
+  `findings/<wave>-orch-checkpoint.md` first (`yield_awaiting_children`).
 - **A dispatch that never returns is a blocked item.** Record it in the
-  registry and step log with a stated pickup action (how to check whether it
-  crashed and what to re-dispatch). a lane is never left open silently.
-- **Fresh thread.** Use `mod-rotate` (`/mod-rotate`) to emit the one-line
-  paste the operator drops into a new thread.
-- **Term stamping.** When the house runs term identities, a dispatched
-  runner's id carries the dispatching term as suffix (`PERF-INT.R2`), so the
-  chartering term is preserved even when the return reconciles under a later
-  term.
+  registry and step log with a stated pickup action. A lane is never left
+  open silently.
+- **Fresh thread.** Use `mod-rotate` (`/mod-rotate`) for operator paste into a
+  new thread (not the v0 default for wave orch).
+- **Term stamping.** When the house runs term identities, a charge worker's
+  id carries the dispatching term as suffix (`PERF-INT.R2`).
 
 ## Origin note (why this is a named pattern)
 

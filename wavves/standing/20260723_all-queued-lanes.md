@@ -8,7 +8,8 @@
 
 | id | source_path | class | proposed_action | result | land_hash / gate_path | blocked_reason |
 |---|---|---|---|---|---|---|
-| WOF | `wavves/lanes/20260723_wave-orchestrator-fanout-check/` | operator_gate | revise FR / mod-decide after REVISE | gated | `findings/WOF-verdict.md` | check complete; blocks_w2; no BUILD |
+| WOF | `wavves/lanes/20260723_wave-orchestrator-fanout-check/` | skip_done | WOFB cleared blocks_w2 | skip_done | `findings/WOF-verdict.md` | — |
+| WOFB | `wavves/lanes/20260723_wave-orchestrator-fanout-build/` | skip_done | OF-01..OF-10 SHIPPED; eval 11/11 | skip_done | `findings/WOFB-GATE.md` | — |
 | PAS-FR | `feature-requests/20260723_proceed-all-standing.md` | operator_gate | `/mod-decide` residual (COMMIT-AUTH-GRAIN → SCOPE-FALLBACK) | gated | `findings/PAS-verdict.md` | FR revised; BUILD blocked until decide locks |
 | PAS-lane | `wavves/lanes/20260723_proceed-all-standing-check/` | skip_done | cite PAS-VERDICT REVISE | skip_done | `findings/PAS-verdict.md` | check wave complete |
 | FR-PUO | `feature-requests/20260720_pre-unlock-options-mod-check.md` | operator_gate | revise FR after REVISE | gated | `findings/PUO-verdict.md` | blocks_w2 |
@@ -31,4 +32,4 @@
 2. Non-gate moves: charter+background-dispatch PUO / IPB / MDA checks.
 3. Surface operator_gates: PAS mod-decide residual #1; voice park.
 4. WOF: do not invent verdict; integrate on lens notify.
-5. No BUILD charter for PAS/WOF/PUO/IPB/MDA until their checks clear.
+5. No BUILD charter for PAS/PUO/IPB/MDA until their checks clear. WOF/WOFB shipped.

@@ -126,6 +126,29 @@ python3 evals/check_paragraph_tunnel.py
 Known limitation: mechanical PASS ≠ live Grok adversarial judgment. ACCEPT
 still requires playbook spot-check plus measured checker output.
 
+## Wave-orchestrator fan-out fixtures (disjoint harness)
+
+Separate from lens-wording, paragraph-tunnel, and proof-before-accept.
+Product surface for charter Roles / leave-acts / fan-out
+(`skills/charter/SKILL.md`).
+
+```bash
+python3 evals/check_wave_orchestrator_fanout.py
+```
+
+- Discovers only `evals/fixtures/wave-orch-fanout-*/`
+- Stdlib mechanical fail-id tripwire over synthetic orch traces
+- Does **not** use or modify `run_fixtures.py`
+- Mechanical: `PROC-ORCH-EARLY-EXIT`, `PROC-ORCH-LAUNCH-AND-EXIT`,
+  `PROC-ORCH-SOLO-BUILD`, `PROC-ORCH-ROLE-COLLAPSE`,
+  `PROC-ORCH-DEP-OVERCLAIM`, `PROC-ORCH-NO-RESUME-CONTRACT`,
+  `PROC-ORCH-FOREGROUND-HOLD` (when trace encodes poll/blocking)
+- Review-only fixtures label `PROC-ORCH-FOREGROUND-HOLD` /
+  `PROC-MOD-FOREGROUND-HOLD` / `PROC-MOD-PROGRESS-THEATER` when not
+  mechanical
+
+Known limitation: mechanical PASS ≠ live Cursor Task fan-out judgment.
+
 ## Proof-before-accept fixtures (disjoint harness)
 
 Separate from the lens-wording tripwire and from paragraph-tunnel. Product

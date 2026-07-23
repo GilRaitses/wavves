@@ -1,0 +1,22 @@
+{
+  "charges_launched": [
+    "a",
+    "b",
+    "c"
+  ],
+  "worker_ids": [
+    "w1",
+    "w2",
+    "w3"
+  ],
+  "charge_id_to_worker_id": {
+    "a": "w1",
+    "b": "w2",
+    "c": "w3"
+  },
+  "rollup_path_present": true,
+  "gate_path_present": true,
+  "orch_returned_before_rollup": false,
+  "checkpoint_path_present": false,
+  "yield_awaiting_children": false
+}

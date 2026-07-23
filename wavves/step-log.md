@@ -276,3 +276,19 @@ applications HOLD on naming proof_host_probe (self-check tooling).
 ## 2026-07-20 04:06 EDT — O0.R3 file FR-20260720 pre-unlock options mod-check
 - feature-requests/20260720_pre-unlock-options-mod-check.md ready-for-mod-check
 - Evidence: pax RLW/RWC unlock hygiene; AUTH-11 sketch
+
+## 2026-07-23 — O0.R4 — WOFB BUILD SHIPPED (orch fan-out)
+
+WOF residual locks A/A already landed. Background WOFB orch
+`ABORTED_O0_TAKEOVER`; O0 finished BUILD inline. Eval 11/11 PASS. Cleared
+WOF `blocks_w2`. Surfaces: charter Roles/Dispatch + OF-10, dispatch
+example, wavves-init + live AGENTS, README tracking/fail ids, OF-09
+playbooks, set-key densify link-back, wavves router note. FR shipped.
+Lane: `lanes/20260723_wave-orchestrator-fanout-build/`.
+
+## 2026-07-23 — O0 — charter RTH (mod-rotate theory research)
+
+Operator `/charter` deeper research into mod-rotate DS/graph framing (not
+RotatE). Lane `20260723_mod-rotate-theory-research` at tip `7aecdfb`. Read-only
+W1 (five charges via wave orch); INT/ACCEPT gated. No other term owns RTH.
+Dispatched RTH-W1 orch only (moderator does not fan-out charges). No git land.

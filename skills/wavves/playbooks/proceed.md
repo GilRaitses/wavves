@@ -12,8 +12,9 @@ mod-decide completion, or lane reconcile return (AUTH-10).
         only when the operator explicitly asked or said "proceed as recommended"
         / "ship it" in this turn.
 - [ ] 3. For each `dispatch` action: read the named `dispatch_file`, verify
-        AUTH-05 gate (waveset synced after mod-decide). Dispatch to background.
-        Do not poll.
+        AUTH-05 gate (waveset synced after mod-decide). Dispatch wave
+        orchestrator to background; then O0_release_window. Do not poll or
+        foreground-hold BUILD.
 - [ ] 4. For each `operator_gate` action: surface the gate to the operator and
         pause until they respond. Do not skip approval gates.
 - [ ] 5. Report what ran, what is blocked on operator input, and landing

@@ -126,18 +126,29 @@ Do not copy long findings, logs or transcripts into `INDEX.md`. Point to them.
 
 ### 2. The three roles (never collapse)
 
-- The central orchestrator (O0) is operator-facing, charters lanes,
-  dispatches sub-orchestrators in the background, reconciles returns and
-  handles commits per the repo protocol. O0 never executes lane work inline
-  when a dispatch fits and never blocks polling a dispatch. Reconciling is
-  verification. Before landing a return it spot-checks the evidence and it
-  refreshes derived outputs against canonical inputs that moved during the
-  dispatch, recording the refresh.
-- Dispatched orchestrators/runners run waves, write findings incrementally
-  into their lane home, never run git write operations and never solicit the
-  operator directly (escalation returns to O0).
-- Wave subagents take one bounded disjoint task each, with no shared-file
-  collisions.
+- **O0** is operator-facing: charters lanes, background-dispatches **wave
+  orchestrators**, reconciles on notify, lands commits per repo protocol.
+  Never executes charge work inline when a dispatch fits. Never polls.
+  After deploy: `O0_release_window`. Resume of a wave orch is fail
+  remediation only (from `findings/<wave>-orch-checkpoint.md`).
+- **wave orchestrator** (background Task) fans out **charge workers**,
+  integrates, writes rollup+gate. Must not `return_to_O0` before those
+  artifacts (or hard FAIL / operator_gate). Must not solo-serialize
+  independent charges. Yield requires checkpoint.
+- **charge worker** takes one bounded disjoint task each; no shared-file
+  collisions; never git; never solicit the operator (escalate to O0 via
+  orch).
+
+**Moderator (O0) background etiquette** (canonical; densify/set-key link here):
+
+1. Dispatch wave orchestrators background.
+2. `O0_release_window` after charter + deploy (+ AUTH/git if that is the land).
+3. No poll / “check again shortly.”
+4. Reconcile then land on notify; do not re-do charge work in O0.
+5. Resume is fail remediation only (from `findings/<wave>-orch-checkpoint.md`).
+6. Brief note of what was backgrounded; progress theater is a fail
+   (`PROC-MOD-PROGRESS-THEATER`). Inline BUILD / foreground await →
+   `PROC-MOD-FOREGROUND-HOLD`.
 
 ### 3. Etiquette locks (carried into every charter and dispatch)
 

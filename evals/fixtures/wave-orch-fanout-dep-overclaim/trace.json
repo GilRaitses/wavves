@@ -1,0 +1,19 @@
+{
+  "charges_launched": [
+    "a",
+    "b"
+  ],
+  "worker_ids": [
+    "w1",
+    "w2"
+  ],
+  "charge_id_to_worker_id": {
+    "a": "w1",
+    "b": "w2"
+  },
+  "serialize_reason": "shared findings/ directory",
+  "colliding_file_path": "",
+  "rollup_path_present": true,
+  "gate_path_present": true,
+  "orch_returned_before_rollup": false
+}

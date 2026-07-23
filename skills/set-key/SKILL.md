@@ -43,8 +43,12 @@ client secret".
    control chars before validate (Terminal `read -s` paste often injects these).
 9. **After paste:** remasure; report path + key name + set/nchars; hint next
    step only if a standing wave needs it.
-10. **Heavy follow-ups (densify, API campaigns) go to background
-    sub-orchestrators** — never block the O0 thread running long densify.
+10. **Heavy follow-ups (densify, API campaigns) go to background wave
+    orchestrators / charge workers** — never block the O0 thread. Canonical
+    Moderator (O0) background etiquette:
+    `skills/charter/SKILL.md` (Roles → Moderator etiquette) and live
+    `wavves/AGENTS.md` §2. Fail ids: `PROC-MOD-FOREGROUND-HOLD`,
+    `PROC-MOD-PROGRESS-THEATER`.
 
 ## Steps
 

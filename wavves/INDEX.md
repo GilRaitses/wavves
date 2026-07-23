@@ -4,11 +4,21 @@ current_identity: O0
 current_rotation: none
 
 active_lanes:
+  - code: RTH
+    home: lanes/20260723_mod-rotate-theory-research/
+    status: chartered-dispatch
+    next_read: lanes/20260723_mod-rotate-theory-research/dispatch-w1.md
+    note: research into mod-rotate theory; W1 orch dispatched; INT gated
   - code: WOF
     home: lanes/20260723_wave-orchestrator-fanout-check/
-    status: check-revise
+    status: completed
     next_read: lanes/20260723_wave-orchestrator-fanout-check/findings/WOF-verdict.md
-    note: REVISE; standing queue 20260723_all-queued-lanes
+    note: blocks_w2 cleared by WOFB
+  - code: WOFB
+    home: lanes/20260723_wave-orchestrator-fanout-build/
+    status: completed
+    next_read: lanes/20260723_wave-orchestrator-fanout-build/findings/WOFB-GATE.md
+    note: orch fan-out + mod etiquette SHIPPED; eval 11/11
   - code: PUO
     home: lanes/20260723_pre-unlock-options-check/
     status: check-revise
@@ -64,8 +74,9 @@ feature_requests:
   open:
     - id: FR-20260723-wave-orchestrator-fanout
       path: ../feature-requests/20260723_wave-orchestrator-fanout.md
-      status: ready-for-mod-check
+      status: shipped
       check_lane: lanes/20260723_wave-orchestrator-fanout-check/
+      build_lane: lanes/20260723_wave-orchestrator-fanout-build/
     - id: FR-20260723-proceed-all-standing
       path: ../feature-requests/20260723_proceed-all-standing.md
       status: revised-after-PAS

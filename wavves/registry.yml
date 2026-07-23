@@ -1,4 +1,17 @@
 active:
+  RTH:
+    label: mod-rotate-theory-research
+    home: lanes/20260723_mod-rotate-theory-research/
+    waves: [RTH-W1, RTH-INT, RTH-ACCEPT]
+    status: chartered
+    type: research
+    active_dispatch: dispatch-w1.md
+    dispatch_files: [dispatch-w1.md]
+    repo_state_verified_against: 7aecdfb50d8d6fc53fa00a08b021e4cd9926aa67
+    note: >-
+      Deeper research into DS/graph framing behind /mod-rotate (Raft terms,
+      StatefulSet ordinals, Erlang incarnations, star handoff, state snapshot).
+      Read-only; no skill installs; INT/ACCEPT gated after W1 rollup.
   PUO:
     label: pre-unlock-options-check
     home: lanes/20260723_pre-unlock-options-check/
@@ -33,14 +46,26 @@ active:
     label: wave-orchestrator-fanout-check
     home: lanes/20260723_wave-orchestrator-fanout-check/
     waves: [WOF-W1, WOF-VERDICT]
-    status: check-revise
+    status: completed
     type: check
     active_dispatch: null
     dispatch_files: [dispatch.md]
-    repo_state_verified_against: 26ad2d2afbb9196f2b690000f6a50f1cabfe20e5
+    repo_state_verified_against: 5805f7b017cad41ac546ff2835c71345d0caaa3e
     artifact: feature-requests/20260723_wave-orchestrator-fanout.md
     note: >-
-      W1 complete. Verdict REVISE (blocks_w2). See findings/WOF-verdict.md.
+      REVISE cleared by WOFB BUILD. blocks_w2 false. See findings/WOF-verdict.md.
+  WOFB:
+    label: wave-orchestrator-fanout-build
+    home: lanes/20260723_wave-orchestrator-fanout-build/
+    waves: [WOFB-W1, WOFB-GATE]
+    status: completed
+    type: execution
+    depends_on: [WOF]
+    active_dispatch: null
+    repo_state_verified_against: 5805f7b017cad41ac546ff2835c71345d0caaa3e
+    artifact: feature-requests/20260723_wave-orchestrator-fanout.md
+    note: >-
+      OF-01..OF-10 shipped. Eval 11/11 PASS. See findings/WOFB-GATE.md.
   PAS:
     label: proceed-all-standing-check
     home: lanes/20260723_proceed-all-standing-check/

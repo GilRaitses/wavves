@@ -102,4 +102,6 @@ have to invent. Do not re-run check to "make decisions." See
 ## Pairing with `/loop`
 
 `/wavves` plus Cursor's `/loop` works for long lanes: charter once, let the
-background orchestrator run waves with captured gates, rotate when context fills.
+background **wave orchestrator** fan out **charge workers** with captured
+gates, then `O0_release_window`. Rotate when context fills. Roles:
+`skills/charter/SKILL.md`.
