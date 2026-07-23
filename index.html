@@ -244,7 +244,7 @@
   <main>
     <section class="hero">
       <h1>wavves</h1>
-      <p class="kicker">durable multi-agent routing · v0.3.0</p>
+      <p class="kicker">durable multi-agent routing · v0.4.0</p>
       <p class="hero-copy">When context is summarized or a thread is replaced, the alignment record from the last dispatch remains trapped in the old scrollback, while every fresh session must rebuild governing constraints from the stream where settled decisions already sit beside tool output and abandoned runs. wavves captures that alignment state as versioned files under <code>wavves/</code>, turning operator intent into packets before runners start, persisting disk gate captures and rotation handoffs beside each lane while hydrating every successor from the home record when a fresh thread opens.</p>
       <div class="links">
         <a href="https://github.com/GilRaitses/wavves">GitHub repo</a>
@@ -273,6 +273,7 @@
           <tr><td><code>/mod-check</code></td><td>Adversarial parallel check; scoped verdict (<code>blocks_w2</code>…<code>blocks_w5</code>) plus <code>recommended_actions</code>.</td></tr>
           <tr><td><code>/mod-decide</code></td><td>Lock open product/design calls after a check return; sync authority surfaces on complete.</td></tr>
           <tr><td><code>/layover</code></td><td>Read-only multi-repo workspace preflight audit. Cloud agents stay per-repo; you still open one cloud thread by hand.</td></tr>
+          <tr><td><code>/set-key</code></td><td>Terminal.app paste helper for a server-only env secret (default klosr <code>GOOGLE_MAPS_API_KEY</code>). Never echoes the secret.</td></tr>
           <tr><td><code>/mod-rotate</code></td><td>Rotate the moderator to a fresh thread with a handoff file.</td></tr>
         </tbody>
       </table>
@@ -286,6 +287,7 @@
           <tr><td>check</td><td><code>/mod-check</code></td><td>Adversarial review of a landed spec or plan before the implementation plan</td></tr>
           <tr><td>decide</td><td><code>/mod-decide</code></td><td>Lock open calls after a check return, before BUILD charter</td></tr>
           <tr><td>layover</td><td><code>/layover</code></td><td>Preflight a multi-repo desktop workspace (audit report; cloud stays per-repo)</td></tr>
+          <tr><td>set-key</td><td><code>/set-key</code></td><td>External Terminal paste helper for server-only env secrets</td></tr>
           <tr><td>paragraph-tunnel</td><td>dispatch STEPS</td><td>Mid-render structural gate for a named outbound paragraph</td></tr>
           <tr><td>proof-before-accept</td><td>dispatch STEPS</td><td>Named proof job + host/blank-canvas checks before ACCEPT</td></tr>
           <tr><td>rotate</td><td><code>/mod-rotate</code></td><td>Hand off when context is heavy</td></tr>
@@ -355,6 +357,14 @@ No BUILD yet.</pre>
 untracked, unpushed and stashed state per sibling.
 read-only, audit-only.</pre>
           <p class="not-this"><strong>Not this:</strong> expecting it to start a cloud agent, make cloud multi-root, autoconfigure wavves elsewhere or stage/commit/push. It never classifies anything as safe. One report under <code>wavves/layovers/</code>; you still open the cloud thread and hydrate wavves by hand.</p>
+        </article>
+
+        <article class="usage-card">
+          <h3>/set-key</h3>
+          <p class="when">When a wave needs a server-only env secret (e.g. klosr <code>GOOGLE_MAPS_API_KEY</code>). Paste in the external Terminal window only.</p>
+          <pre>/set-key open Terminal paste helper for klosr
+GOOGLE_MAPS_API_KEY. remasure set/nchars only.</pre>
+          <p class="not-this"><strong>Not this:</strong> pasting the secret into Cursor chat or an agent shell argv/env. Reject leaves <code>.env.local</code> unchanged. Densify/API follow-ups go to background runners.</p>
         </article>
 
         <article class="usage-card">
@@ -446,6 +456,9 @@ one decision at a time. write decisions/*.md. no BUILD yet.</pre>
         <article class="demo-row">
           <p class="demo-label">leaf: layover</p>
           <pre>/layover audit ~/my.code-workspace. read-only.</pre>
+          <p class="demo-label">leaf: set-key</p>
+          <pre>/set-key open Terminal paste helper for klosr
+GOOGLE_MAPS_API_KEY. remasure set/nchars only.</pre>
         </article>
         <article class="demo-row">
           <p class="demo-label">leaf: rotate only</p>
@@ -524,7 +537,7 @@ one decision at a time. write decisions/*.md. no BUILD yet.</pre>
     </section>
 
     <footer style="margin-top: 2rem; opacity: 0.75; font-size: 0.9rem;">
-      <p>wavves v0.3.0 · MIT · community plugin by <a href="https://aimez.ai/">aimez</a> · not affiliated with Cursor</p>
+      <p>wavves v0.4.0 · MIT · community plugin by <a href="https://aimez.ai/">aimez</a> · not affiliated with Cursor</p>
     </footer>
   </main>
 </body>

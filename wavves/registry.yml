@@ -1,4 +1,17 @@
 active:
+  PAS:
+    label: proceed-all-standing-check
+    home: lanes/20260723_proceed-all-standing-check/
+    waves: [PAS-W1, PAS-VERDICT]
+    status: check-revise
+    type: check
+    active_dispatch: null
+    dispatch_files: [dispatch.md]
+    repo_state_verified_against: 73b09bad223ed004a2e8f10443f48196cbbbf396
+    artifact: feature-requests/20260723_proceed-all-standing.md
+    note: >-
+      W1 complete. Verdict REVISE (blocks_w2). See findings/PAS-verdict.md.
+      Bare shrug / /shrug non-widen; no BUILD until locks.
   PTB:
     label: paragraph-tunnel-build
     home: lanes/20260715_paragraph-tunnel-build/

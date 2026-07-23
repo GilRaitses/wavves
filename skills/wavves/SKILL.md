@@ -3,9 +3,9 @@ name: wavves
 description: >-
   Main entry for durable multi-agent routing. Reads your request, checks the
   wavves home, picks a playbook and runs the leaf skill (/wavves-init, /charter,
-  /mod-check, /mod-decide, /layover or /mod-rotate). Use for /wavves or any
-  bounded lane work, setup, spec check, decision lock, workspace preflight,
-  rotation, pickup or proceed.
+  /mod-check, /mod-decide, /layover, /set-key or /mod-rotate). Use for /wavves
+  or any bounded lane work, setup, spec check, decision lock, workspace
+  preflight, set-key, rotation, pickup or proceed.
 disable-model-invocation: true
 ---
 
@@ -20,8 +20,9 @@ skill in full** before acting.
 1. **Start with a todo list.** First item: match a playbook and name the leaf
    skill you will read.
 2. **Read the leaf skill in full** (`wavves-init`, `charter`, `mod-check`,
-   `mod-decide`, `layover` or `mod-rotate`) before any substantive write. Do
-   not improvise charter, check, decide, layover or rotation steps from memory.
+   `mod-decide`, `layover`, `set-key` or `mod-rotate`) before any substantive
+   write. Do not improvise charter, check, decide, layover, set-key or rotation
+   steps from memory.
 3. **The moderator (O0) stays operator-facing.** Dispatched runners answer to
    O0, not the operator directly. Gates are runnable with captured evidence.
 4. **No commit, push, deploy or external mutation** unless the operator

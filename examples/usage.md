@@ -38,6 +38,7 @@ like `/poteto-mode` in pstack.
 | check | `/mod-check` | adversarial review of a landed spec or plan before build |
 | decide | `/mod-decide` | lock open calls before BUILD charter |
 | layover | `/layover` | preflight multi-repo workspace (audit; cloud stays per-repo) |
+| set-key | `/set-key` | Terminal.app paste helper for a server-only env secret |
 | paragraph-tunnel | dispatch STEPS | mid-render structural gate for outbound paragraph |
 | proof-before-accept | dispatch STEPS | named proof job before ACCEPT |
 | rotate | `/mod-rotate` | hand off to fresh thread |
@@ -62,6 +63,8 @@ setup only:        /wavves-init set up wavves in this repo. do not commit.
 charter only:      /charter migrate every callsite to the async config store.
 check only:        /mod-check the landed spec. GO / REVISE / BLOCK with named gaps.
 decide only:       /mod-decide lock the open calls. emit Locked decisions paste.
+set-key only:      /set-key open Terminal.app paste helper for a server-only
+                   env secret. never put the secret in chat.
 rotate only:       /mod-rotate token velocity is too high. give me the one-line paste.
 ```
 

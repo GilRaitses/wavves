@@ -4,6 +4,10 @@ current_identity: O0
 current_rotation: none
 
 active_lanes:
+  - code: PAS
+    home: lanes/20260723_proceed-all-standing-check/
+    status: check-revise
+    next_read: lanes/20260723_proceed-all-standing-check/findings/PAS-verdict.md
   - code: PTB
     home: lanes/20260715_paragraph-tunnel-build/
     status: completed
@@ -40,6 +44,10 @@ project_skills:
 feature_requests:
   home: ../feature-requests/
   open:
+    - id: FR-20260723-proceed-all-standing
+      path: ../feature-requests/20260723_proceed-all-standing.md
+      status: ready-for-mod-check
+      check_lane: lanes/20260723_proceed-all-standing-check/
     - id: FR-20260720-pre-unlock-options-mod-check
       path: ../feature-requests/20260720_pre-unlock-options-mod-check.md
       status: ready-for-mod-check

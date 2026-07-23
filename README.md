@@ -1,6 +1,6 @@
 # wavves
 
-Version: `0.3.0`.
+Version: `0.4.0`.
 
 Route durable multi-agent work through a moderator layer, with alignment
 packets, disk gate captures and handoff files saved beside the work.
@@ -145,6 +145,8 @@ check only:        /mod-check the landed spec. GO / REVISE / BLOCK with named ga
 decide only:       /mod-decide lock the open calls. emit Locked decisions paste.
 layover only:      /layover audit ~/my.code-workspace. report untracked,
                    unpushed and stashed state per sibling repo.
+set-key only:      /set-key open Terminal.app paste helper for klosr
+                   GOOGLE_MAPS_API_KEY (never put the secret in chat).
 rotate only:       /mod-rotate token velocity is too high. give me the one-line paste.
 ```
 
@@ -172,7 +174,11 @@ worked examples: [examples/usage.md](examples/usage.md).
    repo's remotes, branch sync state, uncommitted changes, untracked files
    and stashes. Audit-only: one report file, never mutates an audited repo.
    Does not start cloud agents or autoconfigure wavves elsewhere.
-7. **`/mod-rotate`** writes a rotation file with term identity and emits a
+7. **`/set-key`** opens Terminal.app with a paste-and-return helper that
+   writes a server-only env secret (default klosr `GOOGLE_MAPS_API_KEY`).
+   Never echoes the secret; remasures set/nchars only; reject leaves the
+   env file unchanged.
+8. **`/mod-rotate`** writes a rotation file with term identity and emits a
    one-line paste for a fresh thread.
 
 `/wavves proceed` executes ordered `recommended_actions` from a verdict
@@ -319,6 +325,7 @@ agent on the chosen repo and hydrate wavves there by hand.
 | `mod-check` (`/mod-check`) | Adversarial parallel sanity-check of a landed spec or plan. Scoped verdict + `recommended_actions`. |
 | `mod-decide` (`/mod-decide`) | Lock open product/design calls; authority sync on complete; emit Locked decisions for BUILD. |
 | `layover` (`/layover`) | Read-only multi-repo workspace preflight audit. Does not configure cloud agents. |
+| `set-key` (`/set-key`) | Terminal.app paste helper for a server-only env secret. Never agent-shells the secret. |
 | `mod-rotate` (`/mod-rotate`) | Hand the moderator or one lane to a fresh thread. |
 
 ## Examples on disk

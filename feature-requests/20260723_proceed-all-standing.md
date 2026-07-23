@@ -56,24 +56,34 @@ ridership) instead of emitting an operator_gate artifact.
 | PS-04 | Move rules | `dispatch` → background only; `commit_land` → only when shrug/proceed authorizes; `operator_gate` → write/surface gate, **do not** invent unlock; `skip_done` → one-line cite of PASS artifact; never invent work for non-gating research already PASS unless operator expands charter. |
 | PS-05 | Trigger language | `all still standing`, `queue all standing and move`, `proceed all standing`, and shrug **when** followed by all-standing scope. Bare shrug alone remains AUTH-10 `recommended_actions` only (do not widen bare shrug). |
 | PS-06 | Return card | Table: id \| class \| action taken \| land hash or gate path \| blocked reason. |
+| PS-07 | `/shrug` leaf skill | Thin slash skill (`skills/shrug/SKILL.md`, `disable-model-invocation: true`) that is a discoverable alias for the emoji shrug. Bare `/shrug` → AUTH-10 proceed (`recommended_actions` only). `/shrug` + all-standing scope → **proceed-all-standing**. Same move rules as emoji; do not give `/shrug` a wider body than proceed. |
 
 ## Triggers (proposed)
 
 | phrase | route |
 |---|---|
 | `¯\_(ツ)_/¯` alone | existing proceed (`recommended_actions`) |
+| `/shrug` alone | same as bare emoji shrug → proceed (`recommended_actions`) |
 | `¯\_(ツ)_/¯` + “all still standing” / “the rest” | **proceed-all-standing** |
+| `/shrug` + “all still standing” / “the rest” | **proceed-all-standing** |
 | `/wavves proceed all standing` | **proceed-all-standing** |
 | “queue all standing and move” | **proceed-all-standing** |
 
+## Open calls (for `/mod-decide`)
+
+1. **SHRUG-LEAF** — ship thin `/shrug` skill (PS-07) in the same BUILD as proceed-all-standing, or defer to docs-only “type `/wavves proceed`”. Operator lean (2026-07-23): **ship `/shrug`** (emoji is personal; slash is the public surface).
+2. **STANDING-PATH** — `wavves/standing/<date>_<label>.md` vs lane `standing.md` (or both with precedence).
+3. **SCOPE-DEFAULT** — how “current conversation’s program” is remasured from disk when the operator names no lanes.
+
 ## Acceptance
 
-- [ ] Playbook documents proceed-all-standing vs bare proceed (no widen of bare shrug)
+- [ ] Playbook documents proceed-all-standing vs bare proceed (no widen of bare shrug / bare `/shrug`)
+- [ ] Thin `/shrug` leaf ships (or mod-decide explicitly defers SHRUG-LEAF)
 - [ ] Standing queue is written to disk before moves
 - [ ] Eval/fixture: blocked lock → operator_gate, not dispatch
 - [ ] Eval/fixture: open dispatchable wave → background dispatch
 - [ ] Eval/fixture: already PASS → skip_done with cite
-- [ ] README / usage / index row when shipped
+- [ ] README / usage / index row when shipped (`/shrug` in invokable commands)
 - [ ] `/mod-check` GO (or REVISE applied) before BUILD charter of the skill change
 
 ## Non-goals
@@ -95,6 +105,6 @@ ridership) instead of emitting an operator_gate artifact.
 
 ## Next
 
-`/mod-check` this FR → `/mod-decide` any open calls (queue path, bare-shrug
-non-widen, persistence path) → `/charter` BUILD into proceed playbook (+
-optional thin leaf if slash-only surface wanted).
+`/mod-check` this FR → `/mod-decide` open calls (SHRUG-LEAF, STANDING-PATH,
+SCOPE-DEFAULT; bare-shrug/`/shrug` non-widen) → `/charter` BUILD into proceed
+playbook + thin `/shrug` leaf (operator lean).
