@@ -119,3 +119,7 @@ grep_set_key_ok: yes|no
 ## Operator note
 
 Skill code already on `main` at `17539cb`. This handoff is **docs + FR officialize + version cut** only. Standing operator phrase **set key** remains covered by alwaysApply rules even before the slash skill is rediscovered after rsync.
+
+**Sibling FR (do not fold into this bump unless trivial):**  
+`feature-requests/20260723_proceed-all-standing.md` — proceed-all-standing /
+“queue all standing and move.” Separate `/mod-check` → decide → charter.
