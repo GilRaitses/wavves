@@ -29,3 +29,4 @@ or `wontfix`
 | FR-20260722-mod-decide-decision-alignment | mod-decide decision-alignment interpretability (DECIDE-ALIGN) | ready-for-mod-check | IWD admit D5/D6 hold-loop; `20260722_mod-decide-decision-alignment.md` |
 | FR-20260723-set-key | `/set-key` Terminal paste helper | shipped | `20260723_set-key.md`; v0.4.0 |
 | FR-20260723-proceed-all-standing | Proceed-all-standing (queue all standing and move) | ready-for-mod-check | IWD shrug+all-standing pass; `20260723_proceed-all-standing.md` |
+| FR-20260723-wave-orchestrator-fanout | Wave orchestrator fan-out (no solo BUILD / no early exit) | ready-for-mod-check | IWD W29 orch stall; `20260723_wave-orchestrator-fanout.md` |
