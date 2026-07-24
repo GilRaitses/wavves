@@ -32,3 +32,4 @@ or `wontfix`
 | FR-20260723-wave-orchestrator-fanout | Wave orchestrator fan-out + mod background etiquette | shipped | WOFB BUILD; OF-01…OF-10; `20260723_wave-orchestrator-fanout.md` |
 | FR-20260723-wave-context-kv-cache | Wave/context KV cache (durable resume; WOF+PAS+rotate) | ready-for-mod-check | HF KV-cache analogy; `20260723_wave-context-kv-cache.md` |
 | FR-20260723-n8n-template-fit | n8n template fit (wavves → publishable workflow) | build-accept-pass | NTVB ACCEPT PASS; submit operator-gated |
+| FR-20260724-gate-outcome-invocables | Gate-outcome invocables (`next` / `remedia` / `park` / `accept`) | ready-for-mod-check | Multi-mod PASS_WITH_GAPS forks (DDX-R1, BCA-W2); `20260724_gate-outcome-invocables.md` |
