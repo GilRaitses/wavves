@@ -1,0 +1,160 @@
+# wavves public-surface asset brief
+# Hand to nano-banana (or any image gen) as the job packet.
+# Repo: GilRaitses/wavves (local checkout: wavves_build)
+# Brand: aimez / wavves · site: https://wavves.aimez.ai/
+# Version pin at brief time: 0.4.1
+
+project:
+  name: wavves
+  publisher: aimez
+  site_url: https://wavves.aimez.ai/
+  github: https://github.com/GilRaitses/wavves
+  plugin_logo_path: assets/wavves-logo.svg
+  existing_assets:
+    - path: assets/wavves-logo.svg
+      note: "EXISTS (~1MB). Likely raster-in-SVG. Prefer clean vector remake under 200KB."
+    - path: assets/wavves-logo.png
+      note: "EXISTS 1200x1200 RGBA. Keep as raster master or regenerate."
+  visual_direction:
+    mood: "editorial paper + copper ink; durable routing, not neon AI chrome"
+    palette:
+      ink: "#151515"
+      charcoal: "#24313b"
+      paper: "#f8efe2"
+      cream: "#fbf5e7"
+      copper: "#bd6d36"
+      olive: "#8f9171"
+      blue: "#304f78"
+    typography_refs:
+      display: "Cormorant Garamond"
+      ui: "IBM Plex Sans"
+      mono: "IBM Plex Mono"
+    avoid:
+      - purple-on-white AI gradients
+      - glow / neon cyberpunk
+      - generic robot / brain icons
+      - dark-mode default looks
+    motifs_ok:
+      - waves / lanes as parallel tracks
+      - packets / envelopes as alignment packets
+      - handoff / rotation as term stamps (O0.R1)
+      - disk / gate stamps (not padlocks-as-product)
+
+# Surfaces that need assets (inventory)
+surfaces:
+  - id: cursor_marketplace
+    what: Cursor plugin listing
+    requires: [logo_marketplace, logo_svg_clean]
+  - id: github_pages
+    what: index.html at wavves.aimez.ai
+    requires: [favicon_pack, og_social, hero_optional, apple_touch]
+  - id: github_repo
+    what: GilRaitses/wavves social preview + README
+    requires: [og_social, logo_readme_badge_optional]
+  - id: aimez_crosslink
+    what: aimez.ai / portfolio mentions
+    requires: [logo_lockup_horizontal, wordmark]
+
+jobs:
+  - id: logo_svg_clean
+    priority: P0
+    filename: assets/wavves-logo.svg
+    format: svg
+    size: "viewBox 0 0 512 512; file < 200KB; true vectors only"
+    brief: >
+      Clean wavves mark for Cursor plugin.json logo field. Wordmark or
+      compact mark that reads at 64px. Paper/cream field optional; copper +
+      charcoal ink. No photo embeds. Replace bloated existing SVG.
+    deliver_to: assets/wavves-logo.svg
+
+  - id: logo_marketplace
+    priority: P0
+    filename: assets/wavves-logo-marketplace.png
+    format: png
+    size: "1024x1024 (also export 512 and 256)"
+    brief: >
+      Square marketplace tile. Same mark as logo_svg_clean. Must read on
+      light and mid-gray marketplace cards. Safe margin 10%. No avatar crop.
+    deliver_to: assets/wavves-logo-marketplace.png
+
+  - id: favicon_pack
+    priority: P0
+    files:
+      - { filename: assets/favicon.ico, size: "multi-res 16/32/48" }
+      - { filename: assets/favicon-32.png, size: "32x32" }
+      - { filename: assets/favicon-16.png, size: "16x16" }
+      - { filename: assets/icon-192.png, size: "192x192" }
+      - { filename: assets/icon-512.png, size: "512x512" }
+    brief: >
+      Simplified mark (not full wordmark) for tab favicon. High contrast
+      copper-on-cream or ink-on-cream. Wire into index.html after delivery.
+    deliver_to: assets/
+
+  - id: apple_touch
+    priority: P1
+    filename: assets/apple-touch-icon.png
+    format: png
+    size: "180x180"
+    brief: Same simplified mark as favicon; iOS home-screen.
+    deliver_to: assets/apple-touch-icon.png
+
+  - id: og_social
+    priority: P0
+    filename: assets/og-wavves.png
+    format: png
+    size: "1200x630"
+    brief: >
+      Open Graph / Twitter card for wavves.aimez.ai and GitHub social
+      preview. Brand-first: large wordmark "wavves", one short line
+      "durable multi-agent routing", aimez small. Paper/cream field,
+      copper accent. No screenshots of IDE. No triad list copy.
+    deliver_to: assets/og-wavves.png
+    meta_hookup_after:
+      - index.html og:image + twitter:image
+      - optional README badge
+
+  - id: logo_lockup_horizontal
+    priority: P1
+    filename: assets/wavves-lockup-horizontal.svg
+    format: svg
+    size: "width ~1200; height ~280"
+    brief: >
+      Horizontal lockup for docs headers / aimez crosslink. Mark + wordmark
+      + optional small "by aimez".
+    deliver_to: assets/wavves-lockup-horizontal.svg
+
+  - id: wordmark
+    priority: P1
+    filename: assets/wavves-wordmark.svg
+    format: svg
+    brief: Wordmark only, for footer / README. Matches Cormorant-like serif feel without embedding font files.
+    deliver_to: assets/wavves-wordmark.svg
+
+  - id: hero_optional
+    priority: P2
+    filename: assets/hero-wave-lanes.png
+    format: png
+    size: "1600x900"
+    brief: >
+      Optional full-bleed hero atmosphere for index.html (currently CSS-only).
+      Abstract parallel lanes / packets on paper field. Not a dashboard.
+      Brand still wins over illustration. Skip if logo pack is enough for v0.
+    deliver_to: assets/hero-wave-lanes.png
+
+  - id: skill_icons_optional
+    priority: P3
+    note: Cursor does not require per-skill icons today. Skip unless marketplace starts asking.
+    filenames: []
+
+acceptance:
+  - all P0 delivered under assets/
+  - no purple neon AI tropes
+  - logo_svg_clean file size < 200KB
+  - og_social 1200x630 exact
+  - after delivery: wire favicon + og tags into index.html; remasure Pages
+
+wiring_checklist_for_operator:
+  - "index.html: <link rel=icon>, apple-touch-icon, og:image, twitter:card"
+  - "plugin.json logo stays assets/wavves-logo.svg (clean)"
+  - "rsync ~/.cursor/plugins/local/wavves/ after land"
+  - "push main; confirm Pages deploy single github-pages artifact"
