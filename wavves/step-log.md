@@ -308,6 +308,14 @@ KVC check orch; charter+dispatch PASB BUILD orch; unlock+dispatch RTH-ACCEPT
 evaluator. Tip `de75b4c`. No git land (commit not in authorize list this turn).
 Not all-standing widen.
 
+## 2026-07-24 — O0 — yield-resume remasure (DPR docs gap A–D)
+
+Evidence: pax `DPR-DOCS-GAP-O0-YIELD-RESUME.md`. Same-turn remasure of parked
+yields: PASB rollup+ACCEPT already on disk → treat `return_to_O0` (PASS 10/10);
+KVC verdict on disk → REVISE `blocks_w2`. Locked yield-resume into
+wavves-init + charter etiquette §5, AGENTS, pickup playbook (mandatory
+reconcile branch). Fail-remediation-only no longer covers mid-wave yield.
+
 ## 2026-07-23 — O0 — charter NTV (n8n template fit)
 
 Operator `/charter` n8n version of wavves: decide fit + what to remove vs
@@ -361,3 +369,36 @@ dispatched this turn. No git land.
 Operator `¯\_(ツ)_/¯` all the way. AUTH-10 recommended_actions: commit NTV
 surfaces + charter/dispatch NTVB BUILD (W1+INT). ACCEPT + n8n submit remain
 operator_gate. Tip base `de75b4c`.
+
+## 2026-07-23 — O0 — pickup NTVB; unlock ACCEPT
+
+Operator pickup. Remeasured W1 PASS + INT parent on disk; json.tool 3/3 OK;
+proof path nodes present; cleared schema false-positive home-path string.
+Dispatched independent ACCEPT evaluator. Submit still operator_gate.
+
+## 2026-07-23 — O0 — NTVB ACCEPT PASS reconcile
+
+Independent ACCEPT PASS remasured (`gate-captures/NTVB-ACCEPT.json` result
+PASS). Lane completed. Pack at
+`lanes/20260723_n8n-template-build/pack/`. Commit of pack+captures pending
+operator ask. **operator_gate:** n8n.io Submit for AI review.
+
+## 2026-07-23 — O0 — charter NSC mod-check (SUBMIT JSON)
+
+Operator `/mod-check` on single-file upload
+`pack/SUBMIT-coordinate-parallel-research-proof-gated-accept.json` (+ pack
+companions). Lane `20260723_n8n-submit-check` at tip `8c073e6`. Five lenses
+incl. proof-bar via wave orch. No submit from runners. No git land.
+
+## 2026-07-23 — O0 — NSC verdict REVISE (drive to gate)
+
+Operator pickup drive-to-gate. Remasured W1 rollup + five lenses; spot-checked
+SUBMIT (parameter embeds, modular stickies, no WAF tokens, PLACEHOLDER in
+embeds, Charge B missing inputSource). Wrote `findings/NSC-verdict.md`:
+**REVISE** `blocks_w2: true`. Proof path GO (W1e). No submit. No git land.
+
+## 2026-07-23 — O0 — NSC REVISE applied (shrug all)
+
+Operator approached-for-all + shrug. Patched stickies/DESCRIPTION/STICKIES,
+Charge B inputSource, removed PLACEHOLDER creds, regenerated SUBMIT JSON.
+See `findings/NSC-REVISE-APPLIED.md`. Submit still operator_gate. No git land.

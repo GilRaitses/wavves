@@ -1,0 +1,13 @@
+{
+  "mode": "auth10-proceed",
+  "trigger": "¯\\_(ツ)_/¯ leftover chat about densify and the rest of last night",
+  "trigger_has_all_standing_phrase": false,
+  "bare_shrug": true,
+  "standing_queue_path_present": false,
+  "standing_queue_remasured": false,
+  "items": [],
+  "widened_from_bare_shrug": false,
+  "inventory_from_chat": false,
+  "dispatch_storm": false,
+  "auth10_recommended_actions_only": true
+}

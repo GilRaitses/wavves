@@ -40,7 +40,14 @@ Transcripts are keyword-search-only, and only when a rotation file cites one.
 2. `O0_release_window` after charter + deploy (+ AUTH/git if that is the land).
 3. No poll / “check again shortly.”
 4. Reconcile then land on notify; do not re-do charge work in O0.
-5. Resume is fail remediation only (from `findings/<wave>-orch-checkpoint.md`).
+5. **Yield resume is normal pickup.** On orch `yield_awaiting_children`
+   notify: same-turn remasure checkpoint + named child outs; Task-resume
+   (or re-dispatch from checkpoint) when children COMPLETE and next charge
+   is due — never step-log-and-park. If rollup+gate already on disk, treat
+   as `return_to_O0` and land `commit_file_list`. **Fail remediation only**
+   = resume after true fail / illegal early exit / poisoned wave, not
+   mid-wave yield. Nested charge completes may not notify O0; disk remasure
+   is authority. See `skills/wavves/playbooks/pickup.md`.
 6. Brief note of what was backgrounded; progress theater is a fail
    (`PROC-MOD-PROGRESS-THEATER`). Inline BUILD / foreground await →
    `PROC-MOD-FOREGROUND-HOLD`.

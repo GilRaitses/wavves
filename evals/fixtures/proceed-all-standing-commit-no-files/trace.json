@@ -1,0 +1,27 @@
+{
+  "mode": "proceed-all-standing",
+  "trigger": "queue all standing and move",
+  "trigger_has_all_standing_phrase": true,
+  "bare_shrug": false,
+  "standing_queue_path_present": true,
+  "standing_queue_remasured": true,
+  "standing_queue_path": "wavves/standing/20260723_fixture-commit-no-files.md",
+  "items": [
+    {
+      "id": "set-key-land",
+      "class": "commit",
+      "source_path_exists": true,
+      "hard_lock": false,
+      "forced_past_lock": false,
+      "gate_path": null,
+      "blocked_reason": null,
+      "files_list_present": false,
+      "dispatch_background": false,
+      "cite_path": null,
+      "result": "commit_attempted_without_files"
+    }
+  ],
+  "widened_from_bare_shrug": false,
+  "inventory_from_chat": false,
+  "dispatch_storm": false
+}

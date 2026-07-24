@@ -129,8 +129,8 @@ Do not copy long findings, logs or transcripts into `INDEX.md`. Point to them.
 - **O0** is operator-facing: charters lanes, background-dispatches **wave
   orchestrators**, reconciles on notify, lands commits per repo protocol.
   Never executes charge work inline when a dispatch fits. Never polls.
-  After deploy: `O0_release_window`. Resume of a wave orch is fail
-  remediation only (from `findings/<wave>-orch-checkpoint.md`).
+  After deploy: `O0_release_window`. On orch notify, follow the
+  **yield vs return reconcile branch** (pickup playbook + etiquette below).
 - **wave orchestrator** (background Task) fans out **charge workers**,
   integrates, writes rollup+gate. Must not `return_to_O0` before those
   artifacts (or hard FAIL / operator_gate). Must not solo-serialize
@@ -145,7 +145,18 @@ Do not copy long findings, logs or transcripts into `INDEX.md`. Point to them.
 2. `O0_release_window` after charter + deploy (+ AUTH/git if that is the land).
 3. No poll / “check again shortly.”
 4. Reconcile then land on notify; do not re-do charge work in O0.
-5. Resume is fail remediation only (from `findings/<wave>-orch-checkpoint.md`).
+5. **Yield resume is normal pickup (not fail remediation).** On any orch
+   return notice whose leave-act is `yield_awaiting_children`, O0 MUST in
+   the **same turn** remeasure `findings/<wave>-orch-checkpoint.md` and
+   the named child outs on disk. If children are COMPLETE and the next
+   integrate/ACCEPT charge is due, Task-resume the orch (or re-dispatch
+   from the checkpoint). Do **not** step-log-and-park. If rollup+gate
+   (or hard FAIL / legal operator_gate) is already on disk at that
+   remeasure, treat as `return_to_O0` and land the orch `commit_file_list`
+   per repo protocol — do not wait for a second notify. Nested charge-worker
+   Task completions may not surface as O0 notices; disk remasure is the
+   authority. **Fail remediation only** applies when resuming after a true
+   fail / illegal early exit / poisoned wave — not to mid-wave yield.
 6. Brief note of what was backgrounded; progress theater is a fail
    (`PROC-MOD-PROGRESS-THEATER`). Inline BUILD / foreground await →
    `PROC-MOD-FOREGROUND-HOLD`.

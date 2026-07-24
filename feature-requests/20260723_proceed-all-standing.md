@@ -1,6 +1,7 @@
 # FR-20260723 — Proceed-all-standing (`queue all standing and move`)
 
-- **Status:** revised-after-PAS (awaiting re-check or `/mod-decide`)
+- **Status:** revised-after-PAS (mod-decide complete; locks in PAS-LOCKED;
+  awaiting `/charter` BUILD or re-check)
 - **Date:** 2026-07-23 (America/New_York)
 - **PAS check:** `wavves/lanes/20260723_proceed-all-standing-check/` —
   verdict **REVISE** (`findings/PAS-verdict.md`); this file applies that revise
@@ -91,11 +92,10 @@ must surface instead of being skipped or forced.
 
 ## Open calls (for `/mod-decide` — residual only)
 
-1. **COMMIT-AUTH-GRAIN** — does one all-standing authorize utterance cover every
-   `commit` row with explicit `files:`, or does each land need its own
-   `operator_gate` / “ship it” when multi-repo?
-2. **SCOPE-FALLBACK** — when the trigger names no lanes and INDEX has zero
-   active lanes: empty queue + stop (default lean) vs refuse mode with message
+**Locked 2026-07-23** (`lanes/20260723_proceed-all-standing-check/decisions/`):
+
+1. **COMMIT-AUTH-GRAIN** → **C** (same-repo one authorize; cross-repo per-land gate)
+2. **SCOPE-FALLBACK** → **A** (empty queue file + stop)
 
 (Bare-shrug non-widen, standing path `wavves/standing/`, scope-then-remasure,
 gate-continue, `/shrug` leaf, and SKILL wiring are **locked** above — not open.)
@@ -111,6 +111,6 @@ gate-continue, `/shrug` leaf, and SKILL wiring are **locked** above — not open
 
 ## Next
 
-`/mod-decide` residual open calls (or re-`/mod-check` if O0 wants a second
-pass) → `/charter` BUILD into proceed playbook + `/shrug` leaf + evals.
-No BUILD while PAS `blocks_w2` uncleared relative to this revise.
+`/charter` BUILD into proceed playbook + `/shrug` leaf + evals, using
+`decisions/LOCKED-DECISIONS.md`. Re-`/mod-check` optional if O0 wants a
+second pass on the revise before BUILD.

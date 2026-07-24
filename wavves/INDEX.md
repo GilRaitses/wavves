@@ -4,11 +4,16 @@ current_identity: O0
 current_rotation: none
 
 active_lanes:
+  - code: NSC
+    home: lanes/20260723_n8n-submit-check/
+    status: revise-applied
+    next_read: lanes/20260723_n8n-submit-check/findings/NSC-REVISE-APPLIED.md
+    note: SUBMIT regenerated; operator submit gated
   - code: NTVB
     home: lanes/20260723_n8n-template-build/
-    status: chartered-dispatch
-    next_read: lanes/20260723_n8n-template-build/dispatch-w1.md
-    note: BUILD Free n8n pack from NTV locks
+    status: completed
+    next_read: lanes/20260723_n8n-template-build/gate-captures/NTVB-ACCEPT.md
+    note: ACCEPT PASS; submit operator-gated
   - code: NTV
     home: lanes/20260723_n8n-template-fit/
     status: mod-decide-complete
@@ -16,12 +21,14 @@ active_lanes:
     note: Locks A/B/B/C/A; BUILD = NTVB
   - code: KVC
     home: lanes/20260723_wave-context-kv-cache-check/
-    status: chartered-dispatch
-    next_read: lanes/20260723_wave-context-kv-cache-check/dispatch-w1.md
+    status: check-revise
+    next_read: lanes/20260723_wave-context-kv-cache-check/findings/KVC-verdict.md
+    note: REVISE blocks_w2; FR revise or mod-decide before BUILD
   - code: PASB
     home: lanes/20260723_proceed-all-standing-build/
-    status: chartered-dispatch
-    next_read: lanes/20260723_proceed-all-standing-build/dispatch-w1.md
+    status: completed
+    next_read: lanes/20260723_proceed-all-standing-build/gate-captures/PASB-ACCEPT.md
+    note: proceed-all-standing + /shrug SHIPPED; eval 10/10
   - code: RTH
     home: lanes/20260723_mod-rotate-theory-research/
     status: completed
@@ -29,9 +36,9 @@ active_lanes:
     note: ACCEPT PASS; W1e honesty FAIL stands; proposed draft only
   - code: PAS
     home: lanes/20260723_proceed-all-standing-check/
-    status: mod-decide-complete
+    status: completed
     next_read: lanes/20260723_proceed-all-standing-check/decisions/LOCKED-DECISIONS.md
-    note: BUILD lane PASB chartered
+    note: locks C+A; PASB shipped
   - code: WOF
     home: lanes/20260723_wave-orchestrator-fanout-check/
     status: completed

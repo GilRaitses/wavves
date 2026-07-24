@@ -1,0 +1,55 @@
+{
+  "gate": "PASB-ACCEPT",
+  "command": "python3 evals/check_proceed_all_standing.py",
+  "exit_code": 0,
+  "fixture_count": 10,
+  "pass_count": 10,
+  "fail_count": 0,
+  "fixtures": [
+    {
+      "name": "proceed-all-standing-bare-shrug-auth10",
+      "result": "PASS"
+    },
+    {
+      "name": "proceed-all-standing-bare-shrug-widen",
+      "result": "PASS"
+    },
+    {
+      "name": "proceed-all-standing-blocked-lock-force",
+      "result": "PASS"
+    },
+    {
+      "name": "proceed-all-standing-blocked-lock-gate",
+      "result": "PASS"
+    },
+    {
+      "name": "proceed-all-standing-commit-no-files",
+      "result": "PASS"
+    },
+    {
+      "name": "proceed-all-standing-dispatch-open",
+      "result": "PASS"
+    },
+    {
+      "name": "proceed-all-standing-no-queue",
+      "result": "PASS"
+    },
+    {
+      "name": "proceed-all-standing-silent-skip-lock",
+      "result": "PASS"
+    },
+    {
+      "name": "proceed-all-standing-skip-done",
+      "result": "PASS"
+    },
+    {
+      "name": "proceed-all-standing-stale-queue",
+      "result": "PASS"
+    }
+  ],
+  "locks": {
+    "COMMIT-AUTH-GRAIN": "C",
+    "SCOPE-FALLBACK": "A",
+    "bare_shrug_non_widen": true
+  }
+}

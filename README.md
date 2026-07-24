@@ -84,7 +84,8 @@ picks a playbook and runs the leaf skill. Like `/poteto-mode` in pstack.
 | proof-before-accept | named proof job + host/blank-canvas checks before ACCEPT |
 | rotate | hand off to a fresh moderator thread |
 | pickup | resume from rotation paste, "where are we", reconcile active lanes |
-| proceed | execute `recommended_actions` from a verdict (`proceed as recommended`) |
+| proceed | execute `recommended_actions` from a verdict (`proceed as recommended`); all-standing mode on closed phrases only |
+| shrug | `/shrug` alias for emoji shrug; bare → AUTH-10 proceed; with closed all-standing phrase → proceed-all-standing |
 
 ### What wavves tracks
 
@@ -123,6 +124,7 @@ Fresh instances hydrate from the home files, never from chat transcripts.
 | `/mod-decide` | you only need to lock open calls before a BUILD charter |
 | `/layover` | you only need the workspace preflight audit |
 | `/set-key` | open Terminal.app paste helper for a server-only env secret |
+| `/shrug` | alias for emoji shrug; bare → AUTH-10 proceed; with closed all-standing phrase → proceed-all-standing |
 | `/mod-rotate` | you only need rotation |
 
 Most operators type `/wavves` plus the task. Reach for the leaf skills when you
@@ -150,6 +152,10 @@ layover:           /wavves preflight ~/my.code-workspace. read-only audit;
 rotate:            /wavves rotate this thread. write a handoff for active lanes.
 pickup:            /wavves hydrate from the rotation paste and tell me what's active.
 proceed:           /wavves proceed as recommended after mod-check or mod-decide return.
+all-standing:      /wavves proceed all standing
+                   (or: all still standing / queue all standing and move)
+shrug:             /shrug
+                   (bare → AUTH-10 proceed; add a closed all-standing phrase to widen)
 setup only:        /wavves-init set up wavves in this repo. Do not commit.
 charter only:      /charter migrate every callsite to the async config store.
 check only:        /mod-check the landed spec. GO / REVISE / BLOCK with named gaps.
@@ -193,7 +199,10 @@ worked examples: [examples/usage.md](examples/usage.md).
    one-line paste for a fresh thread.
 
 `/wavves proceed` executes ordered `recommended_actions` from a verdict
-(commit, dispatch, operator gates).
+(commit, dispatch, operator gates). Closed all-standing phrases
+(`all still standing`, `queue all standing and move`, `proceed all standing`,
+`/wavves proceed all standing`) route to proceed-all-standing. Bare shrug or
+bare `/shrug` stays AUTH-10 proceed only.
 
 `/wavves` pairs well with Cursor's `/loop` for long lanes with captured gates
 on disk beside the lane home.
@@ -337,6 +346,7 @@ agent on the chosen repo and hydrate wavves there by hand.
 | `mod-decide` (`/mod-decide`) | Lock open product/design calls; authority sync on complete; emit Locked decisions for BUILD. |
 | `layover` (`/layover`) | Read-only multi-repo workspace preflight audit. Does not configure cloud agents. |
 | `set-key` (`/set-key`) | Terminal.app paste helper for a server-only env secret. Never agent-shells the secret. |
+| `shrug` (`/shrug`) | Thin alias for emoji shrug. Bare → AUTH-10 proceed; with closed all-standing phrase → proceed-all-standing. |
 | `mod-rotate` (`/mod-rotate`) | Hand the moderator or one lane to a fresh thread. |
 
 ## Examples on disk

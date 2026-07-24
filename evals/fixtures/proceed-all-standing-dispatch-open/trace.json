@@ -1,0 +1,27 @@
+{
+  "mode": "proceed-all-standing",
+  "trigger": "/wavves proceed all standing",
+  "trigger_has_all_standing_phrase": true,
+  "bare_shrug": false,
+  "standing_queue_path_present": true,
+  "standing_queue_remasured": true,
+  "standing_queue_path": "wavves/standing/20260723_fixture-dispatch-open.md",
+  "items": [
+    {
+      "id": "densify-follow",
+      "class": "dispatch",
+      "source_path_exists": true,
+      "hard_lock": false,
+      "forced_past_lock": false,
+      "gate_path": null,
+      "blocked_reason": null,
+      "files_list_present": false,
+      "dispatch_background": true,
+      "cite_path": null,
+      "result": "background_dispatch"
+    }
+  ],
+  "widened_from_bare_shrug": false,
+  "inventory_from_chat": false,
+  "dispatch_storm": false
+}

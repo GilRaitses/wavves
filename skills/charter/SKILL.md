@@ -62,7 +62,7 @@ Parallel / Wave subagents → **charge worker**. Do not keep two triads.
 | act | who | meaning | legal when |
 |---|---|---|---|
 | `return_to_O0` | wave orchestrator | wave finished; orch Task done | **only** rollup+gate on disk, or hard FAIL artifact, or legal `operator_gate` escalate. Launching a child ≠ return authority. |
-| `yield_awaiting_children` | wave orchestrator | end turn; responsibility persists | requires `findings/<wave>-orch-checkpoint.md` (charge table, pending worker ids, next integrate step) before leave. Notify-driven resume; never poll/timer promises. |
+| `yield_awaiting_children` | wave orchestrator | end turn; responsibility persists | requires `findings/<wave>-orch-checkpoint.md` (charge table, pending worker ids, next integrate step) before leave. Notify-driven resume; never poll/timer promises. On O0's orch-yield notify: same-turn disk remasure + Task-resume if children complete (see Moderator etiquette §5). |
 | `O0_release_window` | O0 | end operator-facing turn after charter + background deploy | always after deploy; integrate on notify. |
 
 Fail ids: `PROC-ORCH-EARLY-EXIT`, `PROC-ORCH-LAUNCH-AND-EXIT`,
@@ -106,7 +106,14 @@ Do not reintroduce “empty mid-dispatch return” as an absolute session-hold.
 2. `O0_release_window` after charter + deploy (+ AUTH/git if that is the land).
 3. No poll / “check again shortly.”
 4. Reconcile then land on notify; do not re-do charge work in O0.
-5. Resume is **fail remediation** only (from checkpoint), not the designed path.
+5. **Yield resume is normal pickup.** On orch leave-act `yield_awaiting_children`,
+   same-turn remasure checkpoint + named child outs; Task-resume (or
+   re-dispatch from checkpoint) when children COMPLETE and next charge is
+   due — never step-log-and-park. If rollup+gate already on disk, treat as
+   `return_to_O0` and land `commit_file_list`. **Fail remediation only**
+   means resume after true fail / illegal early exit / poisoned wave, not
+   mid-wave yield. (Cursor: nested charge completes may not notify O0; disk
+   remasure is authority.)
 6. Brief note of what was backgrounded; progress theater is a fail.
 
 The point is that **O0 stays unblocked**. Dispatch to the background, release

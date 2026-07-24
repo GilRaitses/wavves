@@ -1,0 +1,26 @@
+{
+  "mode": "proceed-all-standing",
+  "trigger": "queue all standing and move",
+  "trigger_has_all_standing_phrase": true,
+  "bare_shrug": false,
+  "standing_queue_path_present": true,
+  "standing_queue_remasured": true,
+  "standing_queue_path": "wavves/standing/20260723_fixture-force-lock.md",
+  "items": [
+    {
+      "id": "hard-lock-item",
+      "class": "dispatch",
+      "source_path_exists": true,
+      "hard_lock": true,
+      "forced_past_lock": true,
+      "gate_path": null,
+      "blocked_reason": null,
+      "files_list_present": false,
+      "dispatch_background": true,
+      "cite_path": null
+    }
+  ],
+  "widened_from_bare_shrug": false,
+  "inventory_from_chat": false,
+  "dispatch_storm": false
+}

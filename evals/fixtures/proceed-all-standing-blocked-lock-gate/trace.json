@@ -1,0 +1,26 @@
+{
+  "mode": "proceed-all-standing",
+  "trigger": "proceed all standing",
+  "trigger_has_all_standing_phrase": true,
+  "bare_shrug": false,
+  "standing_queue_path_present": true,
+  "standing_queue_remasured": true,
+  "standing_queue_path": "wavves/standing/20260723_fixture-blocked-lock.md",
+  "items": [
+    {
+      "id": "train-busy-lock",
+      "class": "operator_gate",
+      "source_path_exists": true,
+      "hard_lock": true,
+      "forced_past_lock": false,
+      "gate_path": "findings/TRAIN_OPERATOR_GATE.md",
+      "blocked_reason": "hard lock ABSENT honesty; surface gate, do not invent unlock",
+      "files_list_present": false,
+      "dispatch_background": false,
+      "cite_path": null
+    }
+  ],
+  "widened_from_bare_shrug": false,
+  "inventory_from_chat": false,
+  "dispatch_storm": false
+}

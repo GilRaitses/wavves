@@ -274,6 +274,7 @@
           <tr><td><code>/mod-decide</code></td><td>Lock open product/design calls after a check return; sync authority surfaces on complete.</td></tr>
           <tr><td><code>/layover</code></td><td>Read-only multi-repo workspace preflight audit. Cloud agents stay per-repo; you still open one cloud thread by hand.</td></tr>
           <tr><td><code>/set-key</code></td><td>Terminal.app paste helper for a server-only env secret (default klosr <code>GOOGLE_MAPS_API_KEY</code>). Never echoes the secret.</td></tr>
+          <tr><td><code>/shrug</code></td><td>Thin alias for emoji shrug. Bare <code>/shrug</code> → AUTH-10 proceed. <code>/shrug</code> plus a closed all-standing phrase → proceed-all-standing. Never widens bare shrug.</td></tr>
           <tr><td><code>/mod-rotate</code></td><td>Rotate the moderator to a fresh thread with a handoff file.</td></tr>
         </tbody>
       </table>
@@ -292,7 +293,7 @@
           <tr><td>proof-before-accept</td><td>dispatch STEPS</td><td>Named proof job + host/blank-canvas checks before ACCEPT</td></tr>
           <tr><td>rotate</td><td><code>/mod-rotate</code></td><td>Hand off when context is heavy</td></tr>
           <tr><td>pickup</td><td>hydrate</td><td>Resume from rotation paste, reconcile active lanes</td></tr>
-          <tr><td>proceed</td><td>hydrate + execute</td><td><code>proceed as recommended</code>, <code>/wavves proceed</code></td></tr>
+          <tr><td>proceed</td><td>hydrate + execute</td><td><code>proceed as recommended</code>, <code>/wavves proceed</code>; all-standing on closed phrases (<code>all still standing</code>, <code>queue all standing and move</code>, <code>proceed all standing</code>); bare shrug / bare <code>/shrug</code> stay AUTH-10 only</td></tr>
         </tbody>
       </table>
     </section>
@@ -369,9 +370,18 @@ GOOGLE_MAPS_API_KEY. remasure set/nchars only.</pre>
 
         <article class="usage-card">
           <h3>/wavves proceed</h3>
-          <p class="when">After mod-check or mod-decide returns <code>recommended_actions</code>. Executes commit, dispatch and operator gates in order.</p>
-          <pre>/wavves proceed as recommended</pre>
-          <p class="not-this"><strong>Not this:</strong> using it without a verdict that names the actions, or skipping operator approval gates listed in the block.</p>
+          <p class="when">After mod-check or mod-decide returns <code>recommended_actions</code>. Executes commit, dispatch and operator gates in order. Closed all-standing phrases inventory disk standing and move what can.</p>
+          <pre>/wavves proceed as recommended
+/wavves proceed all standing</pre>
+          <p class="not-this"><strong>Not this:</strong> using it without a verdict that names the actions, skipping operator approval gates, or treating bare shrug as all-standing.</p>
+        </article>
+
+        <article class="usage-card">
+          <h3>/shrug</h3>
+          <p class="when">Discoverable alias for emoji shrug. Bare form is AUTH-10 proceed only. Pair with a closed all-standing phrase to widen.</p>
+          <pre>/shrug
+/shrug queue all standing and move</pre>
+          <p class="not-this"><strong>Not this:</strong> widening bare <code>/shrug</code> or bare <code>¯\_(ツ)_/¯</code> to all-standing (<code>PROC-PROCEED-SHRUG-WIDEN</code>).</p>
         </article>
 
         <article class="usage-card">
@@ -456,9 +466,6 @@ one decision at a time. write decisions/*.md. no BUILD yet.</pre>
         <article class="demo-row">
           <p class="demo-label">leaf: layover</p>
           <pre>/layover audit ~/my.code-workspace. read-only.</pre>
-          <p class="demo-label">leaf: set-key</p>
-          <pre>/set-key open Terminal paste helper for klosr
-GOOGLE_MAPS_API_KEY. remasure set/nchars only.</pre>
         </article>
         <article class="demo-row">
           <p class="demo-label">leaf: rotate only</p>

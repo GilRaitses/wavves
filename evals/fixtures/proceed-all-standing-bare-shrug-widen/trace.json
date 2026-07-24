@@ -1,0 +1,26 @@
+{
+  "mode": "proceed-all-standing",
+  "trigger": "¯\\_(ツ)_/¯ leftover chat about densify and the rest of last night",
+  "trigger_has_all_standing_phrase": false,
+  "bare_shrug": true,
+  "standing_queue_path_present": true,
+  "standing_queue_remasured": true,
+  "standing_queue_path": "wavves/standing/20260723_fixture-shrug-widen.md",
+  "items": [
+    {
+      "id": "invented-from-chat",
+      "class": "dispatch",
+      "source_path_exists": false,
+      "hard_lock": false,
+      "forced_past_lock": false,
+      "gate_path": null,
+      "blocked_reason": null,
+      "files_list_present": false,
+      "dispatch_background": true,
+      "cite_path": null
+    }
+  ],
+  "widened_from_bare_shrug": true,
+  "inventory_from_chat": false,
+  "dispatch_storm": false
+}

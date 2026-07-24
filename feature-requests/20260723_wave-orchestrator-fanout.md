@@ -144,9 +144,12 @@ colliding file → `PROC-ORCH-DEP-OVERCLAIM`.
 (2) hard FAIL artifact, (3) operator_gate escalate artifact. Everything else
 is EARLY-EXIT / LAUNCH-AND-EXIT / NO-RESUME-CONTRACT.
 
-**O0 resume (etiquette §5):** fail remediation only, not the default
-critical path. Resume binds to the checkpoint path above. Early exit remains
-a fail even when O0 remediates.
+**O0 resume (etiquette §5 — amended 2026-07-24):** Mid-wave
+`yield_awaiting_children` resume is **normal pickup** (same-turn remasure +
+Task-resume / treat rollup+gate as `return_to_O0`). **Fail remediation only**
+applies to true fail / illegal early exit / poisoned wave, not yield.
+Evidence: pax DPR-DOCS-GAP-O0-YIELD-RESUME. Live text:
+`skills/wavves-init/SKILL.md`, `skills/charter/SKILL.md`, pickup playbook.
 
 ## Moderator (O0) background etiquette (required product text)
 
@@ -168,9 +171,12 @@ OF-02…05).
 4. **Reconcile then land.** On return: remeasure against disk, git per
    protocol, update registry/waveset. Do not re-do charge work in O0
    (violation → `PROC-MOD-FOREGROUND-HOLD` / role collapse).
-5. **Resume is fail remediation only.** If a wave orchestrator early-exits,
-   O0 may background-resume from the checkpoint artifact — still without
-   foreground-holding. Resume is not the designed critical path.
+5. **Yield resume is normal pickup; fail remediation is separate.** On orch
+   `yield_awaiting_children` notify: same-turn remasure checkpoint + child
+   outs; Task-resume when children COMPLETE; if rollup+gate already on disk,
+   treat as `return_to_O0` and land `commit_file_list`. **Fail remediation
+   only** = resume after true fail / illegal early exit / poisoned wave —
+   still background, never foreground-hold.
 6. **Say what shipped.** Brief operator note: what was backgrounded + where.
    Live progress theater / “checking shortly” → `PROC-MOD-PROGRESS-THEATER`.
 

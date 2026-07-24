@@ -1,0 +1,12 @@
+{
+  "mode": "proceed-all-standing",
+  "trigger": "queue all standing and move",
+  "trigger_has_all_standing_phrase": true,
+  "bare_shrug": false,
+  "standing_queue_path_present": false,
+  "standing_queue_remasured": false,
+  "items": [],
+  "widened_from_bare_shrug": false,
+  "inventory_from_chat": false,
+  "dispatch_storm": false
+}

@@ -27,6 +27,7 @@ like `/poteto-mode` in pstack.
 | `/mod-decide` | lock open product/design calls after a check return |
 | `/layover` | workspace preflight audit (cloud stays per-repo) |
 | `/set-key` | Terminal.app paste helper for a server-only env secret |
+| `/shrug` | alias for emoji shrug; bare → AUTH-10 proceed; with closed all-standing phrase → proceed-all-standing |
 | `/mod-rotate` | rotation only |
 
 ## Playbooks (`/wavves` routes here)
@@ -43,7 +44,7 @@ like `/poteto-mode` in pstack.
 | proof-before-accept | dispatch STEPS | named proof job before ACCEPT |
 | rotate | `/mod-rotate` | hand off to fresh thread |
 | pickup | hydrate | resume, "where are we" |
-| proceed | hydrate + execute | `proceed as recommended`, `/wavves proceed` |
+| proceed | hydrate + execute | `proceed as recommended`, `/wavves proceed`; all-standing on closed phrases only; bare `/shrug` stays AUTH-10 |
 
 ## Quick reference
 
@@ -59,6 +60,10 @@ layover:           /layover audit ~/my.code-workspace. read-only.
 rotate:            /wavves rotate this thread. write a handoff for active lanes.
 pickup:            /wavves hydrate from the rotation paste and tell me what's active.
 proceed:           /wavves proceed as recommended after mod-check or mod-decide return.
+all-standing:      /wavves proceed all standing
+                   (or: all still standing / queue all standing and move)
+shrug:             /shrug
+                   (bare → AUTH-10 proceed; add a closed all-standing phrase to widen)
 setup only:        /wavves-init set up wavves in this repo. do not commit.
 charter only:      /charter migrate every callsite to the async config store.
 check only:        /mod-check the landed spec. GO / REVISE / BLOCK with named gaps.
@@ -105,7 +110,9 @@ recommended_actions:
     id: approve-quarantine-manifest
 ```
 
-Use `/wavves proceed` to execute `recommended_actions` in order.
+Use `/wavves proceed` to execute `recommended_actions` in order. Closed
+all-standing phrases route to proceed-all-standing. Bare shrug or bare
+`/shrug` stays AUTH-10 proceed only.
 
 **What belongs in decide vs what is already locked grounding**
 

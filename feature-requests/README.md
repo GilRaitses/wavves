@@ -28,7 +28,7 @@ or `wontfix`
 | FR-20260720-pre-unlock-options-mod-check | Pre-unlock options mod-check (AUTH-11) | revised-after-PUO | PUO REVISE applied; AUTH-11 locks + Acceptance; `20260720_pre-unlock-options-mod-check.md` |
 | FR-20260722-mod-decide-decision-alignment | mod-decide decision-alignment interpretability (DECIDE-ALIGN) | revised-after-MDA | MDA REVISE applied; AC + eval homes + AUTH merge + open calls; `20260722_mod-decide-decision-alignment.md` |
 | FR-20260723-set-key | `/set-key` Terminal paste helper | shipped | `20260723_set-key.md`; v0.4.0 |
-| FR-20260723-proceed-all-standing | Proceed-all-standing (queue all standing and move) | mod-decide-complete | locks C+A; `LOCKED-DECISIONS.md`; awaiting BUILD |
+| FR-20260723-proceed-all-standing | Proceed-all-standing (queue all standing and move) | shipped | PASB ACCEPT 10/10; `/shrug` + proceed-all-standing |
 | FR-20260723-wave-orchestrator-fanout | Wave orchestrator fan-out + mod background etiquette | revised-after-WOF | WOF REVISE applied; leave-acts + eval homes + fail ids; `20260723_wave-orchestrator-fanout.md` |
 | FR-20260723-wave-context-kv-cache | Wave/context KV cache (durable resume; WOF+PAS+rotate) | ready-for-mod-check | HF KV-cache analogy; `20260723_wave-context-kv-cache.md` |
-| FR-20260723-n8n-template-fit | n8n template fit (wavves → publishable workflow) | build-chartered | NTVB BUILD; locks A/B/B/C/A |
+| FR-20260723-n8n-template-fit | n8n template fit (wavves → publishable workflow) | build-accept-pass | NTVB ACCEPT PASS; submit operator-gated |
