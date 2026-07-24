@@ -3,9 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>wavves | durable multi-agent routing</title>
-  <meta name="description" content="wavves is a Cursor plugin for durable multi-agent routing through alignment packets, model recommendations, check records and handoff files.">
+  <title>wavves | orchestration OS</title>
+  <meta name="description" content="wavves is the aimez orchestration OS for durable multi-agent routing. File-backed alignment packets and gate captures for Cursor agents. Beta / testflight infrastructure.">
   <link rel="canonical" href="https://wavves.aimez.ai/">
+  <meta name="theme-color" content="#bd6d36">
+  <link rel="icon" href="/assets/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="wavves">
+  <meta property="og:title" content="wavves | orchestration OS">
+  <meta property="og:description" content="aimez orchestration OS for durable multi-agent routing. Beta / testflight infrastructure — not a customer workflow demo.">
+  <meta property="og:image" content="https://wavves.aimez.ai/assets/og-wavves.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://wavves.aimez.ai/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="wavves | orchestration OS">
+  <meta name="twitter:description" content="aimez orchestration OS for durable multi-agent routing. Beta / testflight infrastructure — not a customer workflow demo.">
+  <meta name="twitter:image" content="https://wavves.aimez.ai/assets/og-wavves.png">
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -244,7 +263,7 @@
   <main>
     <section class="hero">
       <h1>wavves</h1>
-      <p class="kicker">durable multi-agent routing · v0.4.1</p>
+      <p class="kicker">orchestration OS · Beta / testflight · v0.4.1</p>
       <p class="hero-copy">When context is summarized or a thread is replaced, the alignment record from the last dispatch remains trapped in the old scrollback, while every fresh session must rebuild governing constraints from the stream where settled decisions already sit beside tool output and abandoned runs. wavves captures that alignment state as versioned files under <code>wavves/</code>, turning operator intent into packets before runners start, persisting disk gate captures and rotation handoffs beside each lane while hydrating every successor from the home record when a fresh thread opens.</p>
       <div class="links">
         <a href="https://github.com/GilRaitses/wavves">GitHub repo</a>
@@ -292,7 +311,7 @@
           <tr><td>paragraph-tunnel</td><td>dispatch STEPS</td><td>Mid-render structural gate for a named outbound paragraph</td></tr>
           <tr><td>proof-before-accept</td><td>dispatch STEPS</td><td>Named proof job + host/blank-canvas checks before ACCEPT</td></tr>
           <tr><td>rotate</td><td><code>/mod-rotate</code></td><td>Hand off when context is heavy</td></tr>
-          <tr><td>pickup</td><td>hydrate</td><td>Resume from rotation paste; mandatory same-turn remasure on <code>yield_awaiting_children</code> vs <code>return_to_O0</code> / hard FAIL</td></tr>
+          <tr><td>pickup</td><td>hydrate</td><td>Resume from rotation paste; mandatory same-turn remeasure on <code>yield_awaiting_children</code> vs <code>return_to_O0</code> / hard FAIL</td></tr>
           <tr><td>proceed</td><td>hydrate + execute</td><td><code>proceed as recommended</code>, <code>/wavves proceed</code>; all-standing on closed phrases (<code>all still standing</code>, <code>queue all standing and move</code>, <code>proceed all standing</code>); bare shrug / bare <code>/shrug</code> stay AUTH-10 only</td></tr>
         </tbody>
       </table>
@@ -364,7 +383,7 @@ read-only, audit-only.</pre>
           <h3>/set-key</h3>
           <p class="when">When a wave needs a server-only env secret (e.g. klosr <code>GOOGLE_MAPS_API_KEY</code>). Paste in the external Terminal window only.</p>
           <pre>/set-key open Terminal paste helper for klosr
-GOOGLE_MAPS_API_KEY. remasure set/nchars only.</pre>
+GOOGLE_MAPS_API_KEY. remeasure set/nchars only.</pre>
           <p class="not-this"><strong>Not this:</strong> pasting the secret into Cursor chat or an agent shell argv/env. Reject leaves <code>.env.local</code> unchanged. Densify/API follow-ups go to background runners.</p>
         </article>
 
@@ -394,9 +413,9 @@ the one-line paste for a fresh thread.</pre>
 
         <article class="usage-card">
           <h3>/wavves pickup</h3>
-          <p class="when">Resume from a rotation handoff or ask what lanes are active. Hydrates from <code>wavves/INDEX.md</code> and the newest rotation file, not chat history. On in-flight orch notify, same-turn remasure <code>yield_awaiting_children</code> vs <code>return_to_O0</code> / hard FAIL (do not step-log-and-park).</p>
+          <p class="when">Resume from a rotation handoff or ask what lanes are active. Hydrates from <code>wavves/INDEX.md</code> and the newest rotation file, not chat history. On in-flight orch notify, same-turn remeasure <code>yield_awaiting_children</code> vs <code>return_to_O0</code> / hard FAIL (do not step-log-and-park).</p>
           <pre>/wavves hydrate from the rotation paste and tell me what's active.</pre>
-          <p class="not-this"><strong>Not this:</strong> treating orch yield as park-and-wait, or re-deriving settled locks from transcript scrollback. Remasure checkpoint + child outs on disk; fail-remediation-only is for true fails, not mid-wave yield.</p>
+          <p class="not-this"><strong>Not this:</strong> treating orch yield as park-and-wait, or re-deriving settled locks from transcript scrollback. Remeasure checkpoint + child outs on disk; fail-remediation-only is for true fails, not mid-wave yield.</p>
         </article>
       </div>
     </section>
