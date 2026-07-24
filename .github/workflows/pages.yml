@@ -1,0 +1,66 @@
+# Publish only the public site surface (not the whole plugin/lane tree).
+# Replaces legacy "Deploy from a branch" which timed out on updating_pages
+# after overlapping full-repo artifacts.
+
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "CNAME"
+      - "assets/**"
+      - ".nojekyll"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Stage site only
+        run: |
+          set -euo pipefail
+          mkdir -p _site/assets
+          cp index.html CNAME _site/
+          # Prefer empty .nojekyll so Pages never runs Jekyll on the artifact
+          : > _site/.nojekyll
+          if [ -d assets ]; then
+            cp -R assets/. _site/assets/
+          fi
+          # Fail closed if logo path in plugin.json would 404 on site (optional)
+          test -f _site/index.html
+          test -f _site/CNAME
+          ls -la _site _site/assets | head -40
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
