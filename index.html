@@ -244,7 +244,7 @@
   <main>
     <section class="hero">
       <h1>wavves</h1>
-      <p class="kicker">durable multi-agent routing · v0.4.0</p>
+      <p class="kicker">durable multi-agent routing · v0.4.1</p>
       <p class="hero-copy">When context is summarized or a thread is replaced, the alignment record from the last dispatch remains trapped in the old scrollback, while every fresh session must rebuild governing constraints from the stream where settled decisions already sit beside tool output and abandoned runs. wavves captures that alignment state as versioned files under <code>wavves/</code>, turning operator intent into packets before runners start, persisting disk gate captures and rotation handoffs beside each lane while hydrating every successor from the home record when a fresh thread opens.</p>
       <div class="links">
         <a href="https://github.com/GilRaitses/wavves">GitHub repo</a>
@@ -292,7 +292,7 @@
           <tr><td>paragraph-tunnel</td><td>dispatch STEPS</td><td>Mid-render structural gate for a named outbound paragraph</td></tr>
           <tr><td>proof-before-accept</td><td>dispatch STEPS</td><td>Named proof job + host/blank-canvas checks before ACCEPT</td></tr>
           <tr><td>rotate</td><td><code>/mod-rotate</code></td><td>Hand off when context is heavy</td></tr>
-          <tr><td>pickup</td><td>hydrate</td><td>Resume from rotation paste, reconcile active lanes</td></tr>
+          <tr><td>pickup</td><td>hydrate</td><td>Resume from rotation paste; mandatory same-turn remasure on <code>yield_awaiting_children</code> vs <code>return_to_O0</code> / hard FAIL</td></tr>
           <tr><td>proceed</td><td>hydrate + execute</td><td><code>proceed as recommended</code>, <code>/wavves proceed</code>; all-standing on closed phrases (<code>all still standing</code>, <code>queue all standing and move</code>, <code>proceed all standing</code>); bare shrug / bare <code>/shrug</code> stay AUTH-10 only</td></tr>
         </tbody>
       </table>
@@ -373,7 +373,7 @@ GOOGLE_MAPS_API_KEY. remasure set/nchars only.</pre>
           <p class="when">After mod-check or mod-decide returns <code>recommended_actions</code>. Executes commit, dispatch and operator gates in order. Closed all-standing phrases inventory disk standing and move what can.</p>
           <pre>/wavves proceed as recommended
 /wavves proceed all standing</pre>
-          <p class="not-this"><strong>Not this:</strong> using it without a verdict that names the actions, skipping operator approval gates, or treating bare shrug as all-standing.</p>
+          <p class="not-this"><strong>Not this:</strong> using it without a verdict that names the actions, skipping operator approval gates or treating bare shrug as all-standing.</p>
         </article>
 
         <article class="usage-card">
@@ -394,9 +394,9 @@ the one-line paste for a fresh thread.</pre>
 
         <article class="usage-card">
           <h3>/wavves pickup</h3>
-          <p class="when">Resume from a rotation handoff or ask what lanes are active. Hydrates from <code>wavves/INDEX.md</code> and the newest rotation file, not chat history.</p>
+          <p class="when">Resume from a rotation handoff or ask what lanes are active. Hydrates from <code>wavves/INDEX.md</code> and the newest rotation file, not chat history. On in-flight orch notify, same-turn remasure <code>yield_awaiting_children</code> vs <code>return_to_O0</code> / hard FAIL (do not step-log-and-park).</p>
           <pre>/wavves hydrate from the rotation paste and tell me what's active.</pre>
-          <p class="not-this"><strong>Not this:</strong> re-deriving settled locks from transcript scrollback. Read the lane home and registry first.</p>
+          <p class="not-this"><strong>Not this:</strong> treating orch yield as park-and-wait, or re-deriving settled locks from transcript scrollback. Remasure checkpoint + child outs on disk; fail-remediation-only is for true fails, not mid-wave yield.</p>
         </article>
       </div>
     </section>
@@ -544,7 +544,7 @@ one decision at a time. write decisions/*.md. no BUILD yet.</pre>
     </section>
 
     <footer style="margin-top: 2rem; opacity: 0.75; font-size: 0.9rem;">
-      <p>wavves v0.4.0 · MIT · community plugin by <a href="https://aimez.ai/">aimez</a> · not affiliated with Cursor</p>
+      <p>wavves v0.4.1 · MIT · community plugin by <a href="https://aimez.ai/">aimez</a> · not affiliated with Cursor</p>
     </footer>
   </main>
 </body>

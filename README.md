@@ -1,6 +1,6 @@
 # wavves
 
-Version: `0.4.0`.
+Version: `0.4.1`.
 
 Route durable multi-agent work through a moderator layer, with alignment
 packets, disk gate captures and handoff files saved beside the work.
@@ -13,9 +13,9 @@ The core ideas:
 
 - **Alignment packets.** Each lane gets a home directory with scope, grounded
   facts, locked decisions, file boundaries and acceptance checks.
-- **Bounded waves.** A dispatched sub-orchestrator runs focused waves of
-  parallel subagents with strict file ownership while the operator-facing
-  thread stays small.
+- **Bounded waves.** O0 background-dispatches a **wave orchestrator** that
+  fans out **charge workers** (one Task per charge) with strict file
+  ownership while the operator-facing thread stays small.
 - **Disk gate captures.** A lane advances after a runnable harness writes
   pass or block evidence under `gate-captures/`, graded by someone who did
   not author the work under review. Failed gates are reported as failed,
@@ -26,9 +26,9 @@ The core ideas:
   (adversarial + capped rewrite + mechanical fixtures), not a voice-clone.
 - **Rotation with term identity.** When a thread gets heavy, the orchestrator
   hands off to a fresh one via a rotation file that assigns the successor a
-  monotonic term identity (a design borrowed from Raft terms, Kubernetes
-  StatefulSet ordinals and Erlang incarnation numbers), so stale instructions
-  are recognizable and provenance survives.
+  monotonic term identity (`O0.R<N>`). The naming uses **analogies** to Raft
+  terms, Kubernetes StatefulSet ordinals and Erlang incarnation numbers (not
+  protocol isomorphisms): house fences are handoff files, stamps and etiquette.
 - **A standing home.** Any fresh instance hydrates from files (an index, a home
   contract, a rotations directory, a registry, a step log), never from
   transcripts.
@@ -83,7 +83,7 @@ picks a playbook and runs the leaf skill. Like `/poteto-mode` in pstack.
 | paragraph-tunnel | mid-render structural gate for a named outbound paragraph |
 | proof-before-accept | named proof job + host/blank-canvas checks before ACCEPT |
 | rotate | hand off to a fresh moderator thread |
-| pickup | resume from rotation paste, "where are we", reconcile active lanes |
+| pickup | resume from rotation paste, "where are we"; mandatory yield vs `return_to_O0` remasure |
 | proceed | execute `recommended_actions` from a verdict (`proceed as recommended`); all-standing mode on closed phrases only |
 | shrug | `/shrug` alias for emoji shrug; bare → AUTH-10 proceed; with closed all-standing phrase → proceed-all-standing |
 
@@ -92,7 +92,7 @@ picks a playbook and runs the leaf skill. Like `/poteto-mode` in pstack.
 | Piece | Where it lives | What it is |
 |:------|:---------------|:-----------|
 | **O0** | the operator-facing thread | charters lanes, background-dispatches wave orchestrators, reconciles on notify, lands git; then `O0_release_window` |
-| **wave orchestrator** | background Task under O0 | fans out charge workers; integrates; writes rollup+gate (or hard FAIL / operator_gate). No early `return_to_O0`. Yield requires `findings/<wave>-orch-checkpoint.md` |
+| **wave orchestrator** | background Task under O0 | fans out charge workers; integrates; writes rollup+gate (or hard FAIL / operator_gate). No early `return_to_O0`. Yield requires `findings/<wave>-orch-checkpoint.md`; O0 same-turn remasures and resumes yield (not fail-remediation-only) |
 | **charge worker** | one background Task per charge id | one bounded disjoint task; never git; never solicit the operator |
 | **Home** | `<repo>/wavves/` | standing hydration contract that outlives any one chat |
 | **Lane** | `wavves/lanes/<date>_<label>/` | one bounded workstream with its own charter and findings |
@@ -117,7 +117,7 @@ Fresh instances hydrate from the home files, never from chat transcripts.
 
 | skill | use it when |
 |:------|:------------|
-| `/wavves` | default entry. routes to bootstrap, charter, check, decide, rotate, pickup or proceed |
+| `/wavves` | default entry. routes to bootstrap, charter, check, decide, layover, set-key, rotate, pickup, proceed or shrug |
 | `/wavves-init` | you only need home setup |
 | `/charter` | you only need a new lane chartered |
 | `/mod-check` | you only need an adversarial spec/plan sanity-check wave |
@@ -177,7 +177,7 @@ worked examples: [examples/usage.md](examples/usage.md).
 2. **`/wavves-init`** creates `<repo>/wavves/` with `INDEX.md`, `AGENTS.md`,
    `registry.yml`, `step-log.md` and `rotations/`.
 3. **`/charter`** writes the lane home, registers the lane and dispatches a
-   background sub-orchestrator with runnable gates in `gate-captures/`.
+   background **wave orchestrator** with runnable gates in `gate-captures/`.
    Multi-repo lanes declare a `repos` table and commit plan; each dispatch
    carries an authority precedence block.
 4. **`/mod-check`** charters a read-only adversarial wave against a landed
@@ -195,14 +195,19 @@ worked examples: [examples/usage.md](examples/usage.md).
    writes a server-only env secret (default klosr `GOOGLE_MAPS_API_KEY`).
    Never echoes the secret; remasures set/nchars only; reject leaves the
    env file unchanged.
-8. **`/mod-rotate`** writes a rotation file with term identity and emits a
+8. **`/shrug`** is a thin alias for emoji shrug. Bare `/shrug` → AUTH-10
+   proceed; with a closed all-standing phrase → proceed-all-standing.
+9. **`/mod-rotate`** writes a rotation file with term identity and emits a
    one-line paste for a fresh thread.
 
 `/wavves proceed` executes ordered `recommended_actions` from a verdict
 (commit, dispatch, operator gates). Closed all-standing phrases
 (`all still standing`, `queue all standing and move`, `proceed all standing`,
 `/wavves proceed all standing`) route to proceed-all-standing. Bare shrug or
-bare `/shrug` stays AUTH-10 proceed only.
+bare `/shrug` stays AUTH-10 proceed only. On orch
+`yield_awaiting_children`, pickup / O0 same-turn remasures disk and resumes
+(or treats rollup+gate as `return_to_O0`); fail-remediation-only is for true
+fails.
 
 `/wavves` pairs well with Cursor's `/loop` for long lanes with captured gates
 on disk beside the lane home.

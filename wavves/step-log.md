@@ -316,6 +316,13 @@ KVC verdict on disk → REVISE `blocks_w2`. Locked yield-resume into
 wavves-init + charter etiquette §5, AGENTS, pickup playbook (mandatory
 reconcile branch). Fail-remediation-only no longer covers mid-wave yield.
 
+## 2026-07-24 — O0 — v0.4.1 docs bump + push
+
+Operator shrug proceed: land RTH research + proposed fences draft; bump
+plugin/docs `0.4.0` → `0.4.1`; sync public README / index.html / usage /
+CHANGELOG for fan-out, yield-resume, `/shrug`, proceed-all-standing; push
+main; rsync local plugin mirror.
+
 ## 2026-07-23 — O0 — charter NTV (n8n template fit)
 
 Operator `/charter` n8n version of wavves: decide fit + what to remove vs

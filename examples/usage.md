@@ -43,7 +43,7 @@ like `/poteto-mode` in pstack.
 | paragraph-tunnel | dispatch STEPS | mid-render structural gate for outbound paragraph |
 | proof-before-accept | dispatch STEPS | named proof job before ACCEPT |
 | rotate | `/mod-rotate` | hand off to fresh thread |
-| pickup | hydrate | resume, "where are we" |
+| pickup | hydrate | resume, "where are we"; same-turn yield vs return_to_O0 remasure |
 | proceed | hydrate + execute | `proceed as recommended`, `/wavves proceed`; all-standing on closed phrases only; bare `/shrug` stays AUTH-10 |
 
 ## Quick reference

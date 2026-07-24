@@ -2,12 +2,24 @@
 
 ## Unreleased
 
+## 0.4.1 (2026-07-24)
+
 - **Wave orchestrator fan-out (OF-01…OF-10):** charter Roles rename
   (O0 → wave orchestrator → charge worker); leave-acts
   (`return_to_O0` / `yield_awaiting_children` / `O0_release_window`);
   Moderator background etiquette; dispatch example;
   `evals/check_wave_orchestrator_fanout.py` (11 fixtures). FR
   `feature-requests/20260723_wave-orchestrator-fanout.md` shipped (WOFB).
+- **O0 yield-resume pickup:** mid-wave `yield_awaiting_children` is normal
+  pickup (same-turn remasure checkpoint + child outs; Task-resume or treat
+  rollup+gate as `return_to_O0`). Fail-remediation-only is for true fails /
+  illegal early exit only. Locked in `wavves-init`, `charter`, `AGENTS.md`,
+  and `skills/wavves/playbooks/pickup.md` (mandatory reconcile branch).
+- **Proceed-all-standing + `/shrug`:** playbook mode fork; thin `/shrug`
+  leaf; standing queue under `wavves/standing/`; evals
+  `evals/check_proceed_all_standing.py` (10 fixtures PASS). FR
+  `feature-requests/20260723_proceed-all-standing.md` shipped (PASB).
+- Public docs / usage grid / `index.html` synced; plugin version `0.4.1`.
 
 ## 0.4.0 (2026-07-23)
 
