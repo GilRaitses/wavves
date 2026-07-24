@@ -14,4 +14,5 @@ Depends on NTV locks.
 | `findings/` | returns / rollups |
 | `gate-captures/` | ACCEPT evidence |
 
-**Status:** chartered; W1+INT via orch. ACCEPT and n8n submit operator-gated.
+**Status:** ACCEPT PASS (`gate-captures/NTVB-ACCEPT.md`). Pack ready under
+`pack/`. n8n.io submit remains operator-gated.

@@ -1,6 +1,6 @@
 # FR-20260723 — n8n template fit (wavves → publishable workflow)
 
-status: build-chartered
+status: build-accept-pass
 lane: `wavves/lanes/20260723_n8n-template-fit/`
 build_lane: `wavves/lanes/20260723_n8n-template-build/`
 code: NTV

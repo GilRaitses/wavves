@@ -8,3 +8,5 @@
 | ownership_check | no other term owns NTVB (new lane) |
 | unlocks | W1 + INT |
 | gated | ACCEPT; n8n submit |
+| orch_agent_id | c4c3a033-a171-48f2-856a-8fd3c7825c5e |
+| land_commit | 8c073e6cade8e6aeb0b42bfc2922e101cfb86736 |

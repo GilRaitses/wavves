@@ -1,0 +1,83 @@
+{
+  "gate": "NTVB-ACCEPT",
+  "lane": "NTVB",
+  "role": "acceptance_evaluator",
+  "answers_to": "O0",
+  "captured_at": "2026-07-23T14:02:13-04:00",
+  "tip_base": "de75b4c4118c78dcc0164fdaa916bbc53f99225f",
+  "git_actions_by_runner": "none",
+  "authored_pack": false,
+  "verdict": "PASS",
+  "named_failures": [],
+  "checks": {
+    "json_tool": {
+      "01-charge-research-a.json": {"exit_code": 0},
+      "02-charge-research-b.json": {"exit_code": 0},
+      "03-parent-orchestrator.json": {"exit_code": 0},
+      "result": "PASS"
+    },
+    "residue_scan": {
+      "real_secrets": false,
+      "emails": false,
+      "absolute_home_paths": false,
+      "wavves_install_steps": false,
+      "slash_skill_requirements": false,
+      "instructional_ban_mentions_ok": true,
+      "result": "PASS"
+    },
+    "guidelines_musts": {
+      "stickies_parent_or_stickies_md": true,
+      "set_fields": true,
+      "pricing_free": true,
+      "seo_title_in_description": true,
+      "description_sections": true,
+      "description_word_count_approx": 221,
+      "no_4817_plagiarize_claim": true,
+      "result": "PASS"
+    },
+    "proof_job": {
+      "named_proof_check": "Proof Merge Complete",
+      "proof_check_id": "proof_merge_complete",
+      "if_node": "IF Outcome Pass",
+      "data_table_pass": "Append Proof Gate Row",
+      "data_table_block": "Append Block Gate Row",
+      "data_table_name": "wavves_proof_gate",
+      "gate_table_schema_non_empty": true,
+      "gate_table_schema_bytes": 3738,
+      "path": [
+        "Merge Charge Returns",
+        "Proof Merge Complete",
+        "IF Outcome Pass",
+        "Append Proof Gate Row|Append Block Gate Row",
+        "Emit Pass Rollup|Emit Block Rollup"
+      ],
+      "result": "PASS"
+    },
+    "locks": {
+      "NTV-PACK": "B",
+      "NTV-GATE-STORE": "B",
+      "NTV-LLM": "C",
+      "NTV-V0-SCOPE": "A",
+      "pricing": "Free",
+      "no_term_id_fields": true,
+      "no_paragraph_tunnel_fields": true,
+      "result": "PASS"
+    }
+  },
+  "observations_non_blocking": [
+    "Charge LLM nodes are lmChatOpenAi with openAiApi placeholders; LLM=C satisfied via placeholder + importer-swap docs",
+    "Charge B has no sticky; parent + STICKIES.md cover guidelines must",
+    "Execute Workflow IDs are PLACEHOLDER_CHARGE_*_WORKFLOW_ID pending importer wire"
+  ],
+  "pack_files": [
+    "pack/01-charge-research-a.json",
+    "pack/02-charge-research-b.json",
+    "pack/03-parent-orchestrator.json",
+    "pack/DESCRIPTION.md",
+    "pack/STICKIES.md",
+    "pack/GATE-TABLE-SCHEMA.md",
+    "pack/README.md"
+  ],
+  "remediation_loop": 0,
+  "pack_rewritten_by_evaluator": false
+}

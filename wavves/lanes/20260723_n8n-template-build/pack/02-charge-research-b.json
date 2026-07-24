@@ -1,0 +1,295 @@
+{
+  "name": "Charge Research B \u2014 Wave Packet",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "topic",
+              "type": "string"
+            },
+            {
+              "name": "proof_job",
+              "type": "string"
+            },
+            {
+              "name": "packet_id",
+              "type": "string"
+            }
+          ]
+        },
+        "inputSource": "workflowInputs"
+      },
+      "id": "a7c3e91f-2b48-4d6a-9e1c-5f0d8b2a6c41",
+      "name": "Execute Sub-workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "lock-ntv-job",
+              "name": "ntv_job",
+              "type": "string",
+              "value": "A"
+            },
+            {
+              "id": "lock-ntv-pack",
+              "name": "ntv_pack",
+              "type": "string",
+              "value": "B"
+            },
+            {
+              "id": "lock-ntv-llm",
+              "name": "ntv_llm",
+              "type": "string",
+              "value": "C"
+            },
+            {
+              "id": "lock-ntv-v0-scope",
+              "name": "ntv_v0_scope",
+              "type": "string",
+              "value": "A"
+            },
+            {
+              "id": "lock-pricing",
+              "name": "pricing",
+              "type": "string",
+              "value": "Free"
+            },
+            {
+              "id": "lock-cursor-residue",
+              "name": "cursor_residue",
+              "type": "string",
+              "value": "REMOVE"
+            },
+            {
+              "id": "field-topic",
+              "name": "topic",
+              "type": "string",
+              "value": "={{ $json.topic }}"
+            },
+            {
+              "id": "field-proof-job",
+              "name": "proof_job",
+              "type": "string",
+              "value": "={{ $json.proof_job }}"
+            },
+            {
+              "id": "field-packet-id",
+              "name": "packet_id",
+              "type": "string",
+              "value": "={{ $json.packet_id }}"
+            },
+            {
+              "id": "field-charge-role",
+              "name": "charge_role",
+              "type": "string",
+              "value": "B"
+            },
+            {
+              "id": "field-charge-lens",
+              "name": "charge_lens",
+              "type": "string",
+              "value": "adversarial_gaps"
+            },
+            {
+              "id": "field-charge-id",
+              "name": "charge_id",
+              "type": "string",
+              "value": "research-b"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b1d84f02-6e5a-4c93-8f17-9a3e0c1d7b55",
+      "name": "Lock Wave Packet Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        280,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Research topic (adversarial charge B):\n{{ $json.topic }}\n\nPacket id: {{ $json.packet_id }}\nProof job context: {{ $json.proof_job }}\n\nLocks (do not reopen): NTV-JOB={{ $json.ntv_job }}, NTV-PACK={{ $json.ntv_pack }}, NTV-LLM={{ $json.ntv_llm }}, NTV-V0-SCOPE={{ $json.ntv_v0_scope }}, pricing={{ $json.pricing }}, cursor_residue={{ $json.cursor_residue }}.\n\nReturn a single JSON object with keys:\n- findings (string): counter-claims and refutations that would weaken a naive accept\n- gaps_risks (string): missing evidence, untested assumptions, and accept-blocking risks\n- status (string): \"done\" if the adversarial pass completed, \"blocked\" if the topic is empty or research cannot proceed",
+        "options": {
+          "systemMessage": "You are Charge Research B in a bounded parallel research wave. Your lens is adversarial: surface counter-claims, missing evidence, and accept-blocking risks. Do not cite-map supportive sources (that is Charge A). Do not invent credentials, file paths, or secrets. Stay within Free v0 core scope: packet + fan-out + proof gate + Data Table evidence. Ignore Cursor slash skills and plugin install paths. Prefer concrete gaps over generic skepticism. Output JSON only matching the user schema."
+        }
+      },
+      "id": "c5e2a0b8-3f19-4d71-a862-0e4b9c7d1f28",
+      "name": "Adversarial Research Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        560,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "id": "d9f6b3c1-8a24-4e05-9b70-1c2d5e8f0a63",
+      "name": "Chat Model Credential Slot",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        560,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ret-charge-id",
+              "name": "charge_id",
+              "type": "string",
+              "value": "={{ $('Lock Wave Packet Fields').item.json.charge_id }}"
+            },
+            {
+              "id": "ret-charge-role",
+              "name": "charge_role",
+              "type": "string",
+              "value": "B"
+            },
+            {
+              "id": "ret-charge-lens",
+              "name": "charge_lens",
+              "type": "string",
+              "value": "adversarial_gaps"
+            },
+            {
+              "id": "ret-topic",
+              "name": "topic",
+              "type": "string",
+              "value": "={{ $('Lock Wave Packet Fields').item.json.topic }}"
+            },
+            {
+              "id": "ret-packet-id",
+              "name": "packet_id",
+              "type": "string",
+              "value": "={{ $('Lock Wave Packet Fields').item.json.packet_id }}"
+            },
+            {
+              "id": "ret-findings",
+              "name": "findings",
+              "type": "string",
+              "value": "={{ $json.output }}"
+            },
+            {
+              "id": "ret-gaps-risks",
+              "name": "gaps_risks",
+              "type": "string",
+              "value": "={{ $json.output }}"
+            },
+            {
+              "id": "ret-status",
+              "name": "status",
+              "type": "string",
+              "value": "={{ $json.output && String($json.output).trim() ? 'done' : 'blocked' }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e0a17d45-9c36-4b82-8d5e-2f6a1b3c4e79",
+      "name": "Structure Charge Return",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        840,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Charge Research B (embedded)\nAttach chat-model credential on **Chat Model Credential Slot**.\nDefault OpenAI-compatible; swap model node for other providers.",
+        "height": 240,
+        "width": 320,
+        "color": 7
+      },
+      "id": "43ffc90f-bc9d-4ce3-bf2f-04d92ddc4036",
+      "name": "Charge B Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        -280
+      ]
+    }
+  ],
+  "connections": {
+    "Execute Sub-workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Lock Wave Packet Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lock Wave Packet Fields": {
+      "main": [
+        [
+          {
+            "node": "Adversarial Research Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Adversarial Research Agent": {
+      "main": [
+        [
+          {
+            "node": "Structure Charge Return",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Model Credential Slot": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Adversarial Research Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "pinData": {},
+  "tags": []
+}

@@ -1,0 +1,823 @@
+{
+  "name": "Coordinate parallel research agents with OpenAI and n8n Data Tables",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## Coordinate parallel research agents with OpenAI and n8n Data Tables\n\n### How it works\n\nThis workflow runs a manual research wave. It prepares topic and proof metadata, sends the same packet to two **embedded** charge sub-workflows in parallel (LangChain agents with OpenAI-compatible chat models), merges their returns, proof-checks that both produced usable findings, writes pass/block to Data Table `wavves_proof_gate`, then emits an accept rollup only on pass.\n\n### Setup steps\n\n1. Attach OpenAI (or OpenAI-compatible) credentials to **Chat Model Credential Slot** inside both embedded charge graphs (open **Run Charge A Workflow** / **Run Charge B Workflow**). Do **not** re-point Execute Workflow to other database workflows \u2014 charges are already embedded as parameter JSON.\n2. Create Data Table `wavves_proof_gate` with columns: `outcome`, `proof_check_id`, `proof_check_name`, `recorded_at`, `wave_run_id`, `reason`, optional `merge_fingerprint`, optional `topic`. Reselect the table on the Data Table insert nodes if name lookup fails after import.\n3. Edit **Prepare Topic and Locks** (`topic`, `locks`, `proof_job`) before each run.\n\n### Customization\n\nAdd more parallel charge branches before the merge, tighten **Execute Proof Merge Code** acceptance rules, or extend the Data Table columns for your audit format. Keep proof-before-accept intact.\n",
+        "width": 480,
+        "height": 900,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1328,
+        -32
+      ],
+      "id": "sticky-overview-portal-001",
+      "name": "Sticky \u2014 Template overview"
+    },
+    {
+      "parameters": {
+        "content": "## Initialize wave inputs\n\nManual trigger prepares the shared research topic, locks, proof job text, and wave run id sent into both charges.",
+        "width": 432,
+        "height": 336,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -768,
+        64
+      ],
+      "id": "sticky-init-portal-002",
+      "name": "Sticky \u2014 Initialize wave inputs"
+    },
+    {
+      "parameters": {
+        "content": "## Run parallel charges\n\nTwo embedded Execute Workflow charges run in parallel (A = findings/sources; B = adversarial gaps). Attach chat credentials inside each embedded graph.",
+        "width": 480,
+        "height": 560,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        -32
+      ],
+      "id": "sticky-parallel-portal-003",
+      "name": "Sticky \u2014 Run parallel charges"
+    },
+    {
+      "parameters": {
+        "content": "## Evaluate proof gate\n\n**Execute Proof Merge Code** sets `outcome` to pass only if both charges return usable status and findings. **Check Outcome Status** branches pass vs block.",
+        "width": 432,
+        "height": 336,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        272,
+        64
+      ],
+      "id": "sticky-proof-portal-004",
+      "name": "Sticky \u2014 Evaluate proof gate"
+    },
+    {
+      "parameters": {
+        "content": "## Record pass result\n\nWrites a pass row to `wavves_proof_gate`, then emits the accepted rollup (`accept=true`).",
+        "width": 448,
+        "height": 320,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        768,
+        -32
+      ],
+      "id": "sticky-pass-portal-005",
+      "name": "Sticky \u2014 Record pass result"
+    },
+    {
+      "parameters": {
+        "content": "## Record block result\n\nWrites a block row to `wavves_proof_gate`, then emits the blocked rollup (`accept=false`).",
+        "width": 448,
+        "height": 320,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        768,
+        320
+      ],
+      "id": "sticky-block-portal-006",
+      "name": "Sticky \u2014 Record block result"
+    },
+    {
+      "parameters": {},
+      "id": "p01-manual-trigger-0001-0001-000000000001",
+      "name": "Start Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -720,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "sf-topic",
+              "name": "topic",
+              "value": "governed wave accept",
+              "type": "string"
+            },
+            {
+              "id": "sf-locks",
+              "name": "locks",
+              "value": "Bounded parallel research to proof-gated accept. Evidence in n8n Data Table wavves_proof_gate. Use chat-model credentials only (no hardcoded API keys). Free template. Core scope only.",
+              "type": "string"
+            },
+            {
+              "id": "sf-proof-job",
+              "name": "proof_job",
+              "value": "After parallel charges merge, named proof check Proof Merge Complete must write a pass or block row to Data Table wavves_proof_gate before accept/rollup may emit success.",
+              "type": "string"
+            },
+            {
+              "id": "sf-wave-run-id",
+              "name": "wave_run_id",
+              "value": "={{ $execution.id }}",
+              "type": "string"
+            },
+            {
+              "id": "sf-research-brief",
+              "name": "research_brief",
+              "value": "Charge A: cite-backed findings. Charge B: adversarial gaps and accept risks. Stay in Free v0 core scope.",
+              "type": "string"
+            },
+            {
+              "id": "sf-packet-id",
+              "name": "packet_id",
+              "value": "wave_packet_v0",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "p02-set-fields-0002-0002-000000000002",
+      "name": "Prepare Topic and Locks",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -480,
+        240
+      ],
+      "notes": "Edit topic, locks, and proof_job before each run. wave_run_id defaults to $execution.id."
+    },
+    {
+      "parameters": {
+        "source": "parameter",
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "topic": "={{ $json.topic }}",
+            "locks": "={{ $json.locks }}",
+            "charge_role": "research_a",
+            "proof_job": "={{ $json.proof_job }}",
+            "research_brief": "={{ $json.research_brief }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "topic",
+              "displayName": "topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "locks",
+              "displayName": "locks",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "charge_role",
+              "displayName": "charge_role",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "proof_job",
+              "displayName": "proof_job",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "research_brief",
+              "displayName": "research_brief",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "mode": "once",
+        "options": {
+          "waitForSubWorkflow": true
+        },
+        "workflowJson": "{\"name\":\"Charge Research A \\u2014 Wave Packet\",\"nodes\":[{\"parameters\":{\"inputSource\":\"workflowInputs\",\"workflowInputs\":{\"values\":[{\"name\":\"topic\",\"type\":\"string\"},{\"name\":\"locks\",\"type\":\"string\"},{\"name\":\"charge_role\",\"type\":\"string\"},{\"name\":\"proof_job\",\"type\":\"string\"},{\"name\":\"research_brief\",\"type\":\"string\"}]}},\"id\":\"44145dc5-3214-47c0-a0b3-1e85fca16b0c\",\"name\":\"Sub-workflow Entry\",\"type\":\"n8n-nodes-base.executeWorkflowTrigger\",\"typeVersion\":1.1,\"position\":[-480,0]},{\"parameters\":{\"assignments\":{\"assignments\":[{\"id\":\"a1111111-1111-4111-8111-111111111111\",\"name\":\"topic\",\"value\":\"={{ $json.topic }}\",\"type\":\"string\"},{\"id\":\"a2222222-2222-4222-8222-222222222222\",\"name\":\"locks\",\"value\":\"={{ $json.locks }}\",\"type\":\"string\"},{\"id\":\"a3333333-3333-4333-8333-333333333333\",\"name\":\"charge_role\",\"value\":\"={{ $json.charge_role || 'research_a' }}\",\"type\":\"string\"},{\"id\":\"a4444444-4444-4444-8444-444444444444\",\"name\":\"proof_job\",\"value\":\"={{ $json.proof_job }}\",\"type\":\"string\"},{\"id\":\"a5555555-5555-4555-8555-555555555555\",\"name\":\"research_brief\",\"value\":\"={{ $json.research_brief }}\",\"type\":\"string\"},{\"id\":\"a6666666-6666-4666-8666-666666666666\",\"name\":\"charge_id\",\"value\":\"A\",\"type\":\"string\"}]},\"options\":{}},\"id\":\"06f01477-328b-4d43-961b-60a1044c43bb\",\"name\":\"Propagate Locks And Topic\",\"type\":\"n8n-nodes-base.set\",\"typeVersion\":3.4,\"position\":[-240,0]},{\"parameters\":{\"promptType\":\"define\",\"text\":\"=Research topic: {{ $json.topic }}\\n\\nCharge role: {{ $json.charge_role }}\\nCharge id: {{ $json.charge_id }}\\n\\nStanding locks (do not reopen):\\n{{ $json.locks }}\\n\\nProof job context (informational for this charge):\\n{{ $json.proof_job }}\\n\\nOptional research brief from parent:\\n{{ $json.research_brief }}\\n\\nReturn structured findings for a parallel research wave. Stay inside core scope: no term_id, no paragraph-tunnel. Prefer citable claims with short source labels. If evidence is thin, say so in status.\",\"hasOutputParser\":true,\"options\":{\"systemMessage\":\"You are Charge Research A in a bounded parallel research wave. Produce an honest findings summary, a list of sources/claims, and a status of done or blocked. Do not invent URLs. Do not reopen locked decisions. Do not mention Cursor slash skills or plugin install steps.\"}},\"id\":\"0291b26c-a05c-40e2-bba8-9cc051a9992e\",\"name\":\"Research Agent A\",\"type\":\"@n8n/n8n-nodes-langchain.agent\",\"typeVersion\":2.2,\"position\":[40,0]},{\"parameters\":{\"model\":{\"__rl\":true,\"value\":\"gpt-4o-mini\",\"mode\":\"list\",\"cachedResultName\":\"gpt-4o-mini\"},\"options\":{\"temperature\":0.2}},\"id\":\"8a217905-828b-4415-b705-e496e84abd74\",\"name\":\"Chat Model Credential Slot\",\"type\":\"@n8n/n8n-nodes-langchain.lmChatOpenAi\",\"typeVersion\":1.2,\"position\":[-40,240]},{\"parameters\":{\"schemaType\":\"fromJson\",\"jsonSchemaExample\":\"{\\n  \\\"findings_summary\\\": \\\"Short synthesis of what Charge A found on the topic.\\\",\\n  \\\"sources_claims\\\": [\\n    {\\n      \\\"claim\\\": \\\"One concrete claim\\\",\\n      \\\"source_label\\\": \\\"Publisher or doc name\\\",\\n      \\\"confidence\\\": \\\"high\\\"\\n    }\\n  ],\\n  \\\"status\\\": \\\"done\\\"\\n}\"},\"id\":\"b533f8b5-3cfc-4371-9528-f0d7f75c6e1b\",\"name\":\"Charge Return Parser\",\"type\":\"@n8n/n8n-nodes-langchain.outputParserStructured\",\"typeVersion\":1.3,\"position\":[200,240]},{\"parameters\":{\"assignments\":{\"assignments\":[{\"id\":\"b1111111-1111-4111-8111-111111111111\",\"name\":\"charge_id\",\"value\":\"={{ $('Propagate Locks And Topic').item.json.charge_id }}\",\"type\":\"string\"},{\"id\":\"b2222222-2222-4222-8222-222222222222\",\"name\":\"charge_role\",\"value\":\"={{ $('Propagate Locks And Topic').item.json.charge_role }}\",\"type\":\"string\"},{\"id\":\"b3333333-3333-4333-8333-333333333333\",\"name\":\"topic\",\"value\":\"={{ $('Propagate Locks And Topic').item.json.topic }}\",\"type\":\"string\"},{\"id\":\"b4444444-4444-4444-8444-444444444444\",\"name\":\"locks\",\"value\":\"={{ $('Propagate Locks And Topic').item.json.locks }}\",\"type\":\"string\"},{\"id\":\"b5555555-5555-4555-8555-555555555555\",\"name\":\"findings_summary\",\"value\":\"={{ $json.output && $json.output.findings_summary ? $json.output.findings_summary : ($json.findings_summary ? $json.findings_summary : $json.output) }}\",\"type\":\"string\"},{\"id\":\"b6666666-6666-4666-8666-666666666666\",\"name\":\"sources_claims\",\"value\":\"={{ $json.output && $json.output.sources_claims ? $json.output.sources_claims : ($json.sources_claims ? $json.sources_claims : []) }}\",\"type\":\"array\"},{\"id\":\"b7777777-7777-4777-8777-777777777777\",\"name\":\"status\",\"value\":\"={{ $json.output && $json.output.status ? $json.output.status : ($json.status ? $json.status : 'blocked') }}\",\"type\":\"string\"}]},\"options\":{}},\"id\":\"4faf3209-c97d-4e07-86db-0c977f765c09\",\"name\":\"Emit Charge Return\",\"type\":\"n8n-nodes-base.set\",\"typeVersion\":3.4,\"position\":[320,0]},{\"parameters\":{\"content\":\"## Charge Research A (embedded)\\nAttach your chat-model credential on **Chat Model Credential Slot**.\\nDefault node is OpenAI-compatible; swap the model node for other providers.\\nNo separate import required for Creator Portal single-file upload.\",\"height\":300,\"width\":360,\"color\":7},\"id\":\"8c763083-d528-4808-a03d-225ea7985ccf\",\"name\":\"Charge A Note\",\"type\":\"n8n-nodes-base.stickyNote\",\"typeVersion\":1,\"position\":[-500,-320]}],\"connections\":{\"Sub-workflow Entry\":{\"main\":[[{\"node\":\"Propagate Locks And Topic\",\"type\":\"main\",\"index\":0}]]},\"Propagate Locks And Topic\":{\"main\":[[{\"node\":\"Research Agent A\",\"type\":\"main\",\"index\":0}]]},\"Research Agent A\":{\"main\":[[{\"node\":\"Emit Charge Return\",\"type\":\"main\",\"index\":0}]]},\"Chat Model Credential Slot\":{\"ai_languageModel\":[[{\"node\":\"Research Agent A\",\"type\":\"ai_languageModel\",\"index\":0}]]},\"Charge Return Parser\":{\"ai_outputParser\":[[{\"node\":\"Research Agent A\",\"type\":\"ai_outputParser\",\"index\":0}]]}},\"settings\":{\"executionOrder\":\"v1\",\"callerPolicy\":\"workflowsFromSameOwner\",\"saveDataSuccessExecution\":\"all\",\"saveDataErrorExecution\":\"all\"}}"
+      },
+      "id": "p03-exec-charge-a-0003-0003-000000000003",
+      "name": "Run Charge A Workflow",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        -200,
+        120
+      ],
+      "notes": "Charge embedded (single-file submit). Attach credential on Chat Model Credential Slot inside the embedded graph.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "source": "parameter",
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "topic": "={{ $json.topic }}",
+            "proof_job": "={{ $json.proof_job }}",
+            "packet_id": "={{ $json.packet_id }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "topic",
+              "displayName": "topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "proof_job",
+              "displayName": "proof_job",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "packet_id",
+              "displayName": "packet_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "mode": "once",
+        "options": {
+          "waitForSubWorkflow": true
+        },
+        "workflowJson": "{\"name\":\"Charge Research B \\u2014 Wave Packet\",\"nodes\":[{\"parameters\":{\"workflowInputs\":{\"values\":[{\"name\":\"topic\",\"type\":\"string\"},{\"name\":\"proof_job\",\"type\":\"string\"},{\"name\":\"packet_id\",\"type\":\"string\"}]},\"inputSource\":\"workflowInputs\"},\"id\":\"a7c3e91f-2b48-4d6a-9e1c-5f0d8b2a6c41\",\"name\":\"Execute Sub-workflow Trigger\",\"type\":\"n8n-nodes-base.executeWorkflowTrigger\",\"typeVersion\":1.1,\"position\":[0,0]},{\"parameters\":{\"assignments\":{\"assignments\":[{\"id\":\"lock-ntv-job\",\"name\":\"ntv_job\",\"type\":\"string\",\"value\":\"A\"},{\"id\":\"lock-ntv-pack\",\"name\":\"ntv_pack\",\"type\":\"string\",\"value\":\"B\"},{\"id\":\"lock-ntv-llm\",\"name\":\"ntv_llm\",\"type\":\"string\",\"value\":\"C\"},{\"id\":\"lock-ntv-v0-scope\",\"name\":\"ntv_v0_scope\",\"type\":\"string\",\"value\":\"A\"},{\"id\":\"lock-pricing\",\"name\":\"pricing\",\"type\":\"string\",\"value\":\"Free\"},{\"id\":\"lock-cursor-residue\",\"name\":\"cursor_residue\",\"type\":\"string\",\"value\":\"REMOVE\"},{\"id\":\"field-topic\",\"name\":\"topic\",\"type\":\"string\",\"value\":\"={{ $json.topic }}\"},{\"id\":\"field-proof-job\",\"name\":\"proof_job\",\"type\":\"string\",\"value\":\"={{ $json.proof_job }}\"},{\"id\":\"field-packet-id\",\"name\":\"packet_id\",\"type\":\"string\",\"value\":\"={{ $json.packet_id }}\"},{\"id\":\"field-charge-role\",\"name\":\"charge_role\",\"type\":\"string\",\"value\":\"B\"},{\"id\":\"field-charge-lens\",\"name\":\"charge_lens\",\"type\":\"string\",\"value\":\"adversarial_gaps\"},{\"id\":\"field-charge-id\",\"name\":\"charge_id\",\"type\":\"string\",\"value\":\"research-b\"}]},\"options\":{}},\"id\":\"b1d84f02-6e5a-4c93-8f17-9a3e0c1d7b55\",\"name\":\"Lock Wave Packet Fields\",\"type\":\"n8n-nodes-base.set\",\"typeVersion\":3.4,\"position\":[280,0]},{\"parameters\":{\"promptType\":\"define\",\"text\":\"=Research topic (adversarial charge B):\\n{{ $json.topic }}\\n\\nPacket id: {{ $json.packet_id }}\\nProof job context: {{ $json.proof_job }}\\n\\nLocks (do not reopen): NTV-JOB={{ $json.ntv_job }}, NTV-PACK={{ $json.ntv_pack }}, NTV-LLM={{ $json.ntv_llm }}, NTV-V0-SCOPE={{ $json.ntv_v0_scope }}, pricing={{ $json.pricing }}, cursor_residue={{ $json.cursor_residue }}.\\n\\nReturn a single JSON object with keys:\\n- findings (string): counter-claims and refutations that would weaken a naive accept\\n- gaps_risks (string): missing evidence, untested assumptions, and accept-blocking risks\\n- status (string): \\\"done\\\" if the adversarial pass completed, \\\"blocked\\\" if the topic is empty or research cannot proceed\",\"options\":{\"systemMessage\":\"You are Charge Research B in a bounded parallel research wave. Your lens is adversarial: surface counter-claims, missing evidence, and accept-blocking risks. Do not cite-map supportive sources (that is Charge A). Do not invent credentials, file paths, or secrets. Stay within Free v0 core scope: packet + fan-out + proof gate + Data Table evidence. Ignore Cursor slash skills and plugin install paths. Prefer concrete gaps over generic skepticism. Output JSON only matching the user schema.\"}},\"id\":\"c5e2a0b8-3f19-4d71-a862-0e4b9c7d1f28\",\"name\":\"Adversarial Research Agent\",\"type\":\"@n8n/n8n-nodes-langchain.agent\",\"typeVersion\":1.7,\"position\":[560,0]},{\"parameters\":{\"model\":{\"__rl\":true,\"mode\":\"list\",\"value\":\"gpt-4.1-mini\"},\"options\":{}},\"id\":\"d9f6b3c1-8a24-4e05-9b70-1c2d5e8f0a63\",\"name\":\"Chat Model Credential Slot\",\"type\":\"@n8n/n8n-nodes-langchain.lmChatOpenAi\",\"typeVersion\":1.2,\"position\":[560,220]},{\"parameters\":{\"assignments\":{\"assignments\":[{\"id\":\"ret-charge-id\",\"name\":\"charge_id\",\"type\":\"string\",\"value\":\"={{ $('Lock Wave Packet Fields').item.json.charge_id }}\"},{\"id\":\"ret-charge-role\",\"name\":\"charge_role\",\"type\":\"string\",\"value\":\"B\"},{\"id\":\"ret-charge-lens\",\"name\":\"charge_lens\",\"type\":\"string\",\"value\":\"adversarial_gaps\"},{\"id\":\"ret-topic\",\"name\":\"topic\",\"type\":\"string\",\"value\":\"={{ $('Lock Wave Packet Fields').item.json.topic }}\"},{\"id\":\"ret-packet-id\",\"name\":\"packet_id\",\"type\":\"string\",\"value\":\"={{ $('Lock Wave Packet Fields').item.json.packet_id }}\"},{\"id\":\"ret-findings\",\"name\":\"findings\",\"type\":\"string\",\"value\":\"={{ $json.output }}\"},{\"id\":\"ret-gaps-risks\",\"name\":\"gaps_risks\",\"type\":\"string\",\"value\":\"={{ $json.output }}\"},{\"id\":\"ret-status\",\"name\":\"status\",\"type\":\"string\",\"value\":\"={{ $json.output && String($json.output).trim() ? 'done' : 'blocked' }}\"}]},\"options\":{}},\"id\":\"e0a17d45-9c36-4b82-8d5e-2f6a1b3c4e79\",\"name\":\"Structure Charge Return\",\"type\":\"n8n-nodes-base.set\",\"typeVersion\":3.4,\"position\":[840,0]},{\"parameters\":{\"content\":\"## Charge Research B (embedded)\\nAttach chat-model credential on **Chat Model Credential Slot**.\\nDefault OpenAI-compatible; swap model node for other providers.\",\"height\":240,\"width\":320,\"color\":7},\"id\":\"43ffc90f-bc9d-4ce3-bf2f-04d92ddc4036\",\"name\":\"Charge B Note\",\"type\":\"n8n-nodes-base.stickyNote\",\"typeVersion\":1,\"position\":[-200,-280]}],\"connections\":{\"Execute Sub-workflow Trigger\":{\"main\":[[{\"node\":\"Lock Wave Packet Fields\",\"type\":\"main\",\"index\":0}]]},\"Lock Wave Packet Fields\":{\"main\":[[{\"node\":\"Adversarial Research Agent\",\"type\":\"main\",\"index\":0}]]},\"Adversarial Research Agent\":{\"main\":[[{\"node\":\"Structure Charge Return\",\"type\":\"main\",\"index\":0}]]},\"Chat Model Credential Slot\":{\"ai_languageModel\":[[{\"node\":\"Adversarial Research Agent\",\"type\":\"ai_languageModel\",\"index\":0}]]}},\"settings\":{\"executionOrder\":\"v1\",\"callerPolicy\":\"workflowsFromSameOwner\"}}"
+      },
+      "id": "p04-exec-charge-b-0004-0004-000000000004",
+      "name": "Run Charge B Workflow",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        -200,
+        360
+      ],
+      "notes": "Charge embedded (single-file submit). Attach credential on Chat Model Credential Slot inside the embedded graph.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "mode": "append",
+        "options": {}
+      },
+      "id": "p05-merge-returns-0005-0005-000000000005",
+      "name": "Merge Workflow Results",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        80,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "const items = $input.all();\nconst packet = $('Prepare Topic and Locks').first().json;\n\nfunction pickCharge(preferredIds, preferredRoles, fallbackIndex) {\n  const found = items.find((item) => {\n    const j = item.json || {};\n    const id = String(j.charge_id || '');\n    const role = String(j.charge_role || '');\n    return preferredIds.includes(id) || preferredRoles.includes(role);\n  });\n  return found || items[fallbackIndex] || null;\n}\n\nfunction usable(item) {\n  if (!item || !item.json) return false;\n  const j = item.json;\n  const status = String(j.status || '').toLowerCase();\n  const hasFindings = Boolean(\n    j.findings_summary ||\n      j.findings ||\n      j.gaps_risks ||\n      (Array.isArray(j.sources_claims) && j.sources_claims.length) ||\n      (typeof j.output === 'string' && j.output.trim())\n  );\n  return (status === 'done' || status === 'pass') && hasFindings;\n}\n\nconst chargeA = pickCharge(['A', 'a'], ['research_a', 'A'], 0);\nconst chargeB = pickCharge(['B', 'b', 'research-b'], ['B', 'research_b', 'adversarial_gaps'], 1);\n\nconst aOk = usable(chargeA);\nconst bOk = usable(chargeB);\nconst outcome = aOk && bOk ? 'pass' : 'block';\n\nlet reason;\nif (outcome === 'pass') {\n  reason = 'Both charges returned usable status and findings';\n} else {\n  const parts = [];\n  if (!aOk) parts.push('Charge A missing usable status/findings');\n  if (!bOk) parts.push('Charge B missing usable status/findings');\n  if (items.length < 2) parts.push('Merge returned fewer than two charge items');\n  reason = parts.join('; ') || 'Merge proof failed';\n}\n\nconst aSnippet = String(\n  (chargeA && (chargeA.json.findings_summary || chargeA.json.findings || chargeA.json.status)) || ''\n).slice(0, 48);\nconst bSnippet = String(\n  (chargeB && (chargeB.json.findings || chargeB.json.gaps_risks || chargeB.json.status)) || ''\n).slice(0, 48);\nconst merge_fingerprint = [String((chargeA && chargeA.json.status) || ''), String((chargeB && chargeB.json.status) || ''), aSnippet, bSnippet].join('|');\n\nreturn [\n  {\n    json: {\n      outcome,\n      proof_check_id: 'proof_merge_complete',\n      proof_check_name: 'Merge + proof check',\n      recorded_at: new Date().toISOString(),\n      wave_run_id: String(packet.wave_run_id || ''),\n      reason,\n      merge_fingerprint,\n      topic: String(packet.topic || ''),\n      charge_a_status: String((chargeA && chargeA.json.status) || ''),\n      charge_b_status: String((chargeB && chargeB.json.status) || ''),\n      proof_job: String(packet.proof_job || ''),\n    },\n  },\n];"
+      },
+      "id": "p06-proof-merge-0006-0006-000000000006",
+      "name": "Execute Proof Merge Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        320,
+        240
+      ],
+      "notes": "Named proof check. Emits outcome pass|block plus GATE-TABLE-SCHEMA fields (proof_check_id=proof_merge_complete)."
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cond-outcome-pass",
+              "leftValue": "={{ $json.outcome }}",
+              "rightValue": "pass",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "p07-if-outcome-0007-0007-000000000007",
+      "name": "Check Outcome Status",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        560,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "row",
+        "operation": "insert",
+        "dataTableId": {
+          "__rl": true,
+          "value": "wavves_proof_gate",
+          "mode": "name",
+          "cachedResultName": "wavves_proof_gate"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "outcome": "={{ $json.outcome }}",
+            "proof_check_id": "={{ $json.proof_check_id }}",
+            "proof_check_name": "={{ $json.proof_check_name }}",
+            "recorded_at": "={{ $json.recorded_at }}",
+            "wave_run_id": "={{ $json.wave_run_id }}",
+            "reason": "={{ $json.reason }}",
+            "merge_fingerprint": "={{ $json.merge_fingerprint }}",
+            "topic": "={{ $json.topic }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "outcome",
+              "displayName": "outcome",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "proof_check_id",
+              "displayName": "proof_check_id",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "proof_check_name",
+              "displayName": "proof_check_name",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "recorded_at",
+              "displayName": "recorded_at",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "date",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "wave_run_id",
+              "displayName": "wave_run_id",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "reason",
+              "displayName": "reason",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "merge_fingerprint",
+              "displayName": "merge_fingerprint",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "topic",
+              "displayName": "topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "p08-datatable-pass-0008-0008-000000000008",
+      "name": "Add to Proof Gate DataTable",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        820,
+        120
+      ],
+      "notes": "Create Data Table wavves_proof_gate from GATE-TABLE-SCHEMA.md before first run. Re-point this node to that table after import if name mode does not resolve.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "resource": "row",
+        "operation": "insert",
+        "dataTableId": {
+          "__rl": true,
+          "value": "wavves_proof_gate",
+          "mode": "name",
+          "cachedResultName": "wavves_proof_gate"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "outcome": "={{ $json.outcome }}",
+            "proof_check_id": "={{ $json.proof_check_id }}",
+            "proof_check_name": "={{ $json.proof_check_name }}",
+            "recorded_at": "={{ $json.recorded_at }}",
+            "wave_run_id": "={{ $json.wave_run_id }}",
+            "reason": "={{ $json.reason }}",
+            "merge_fingerprint": "={{ $json.merge_fingerprint }}",
+            "topic": "={{ $json.topic }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "outcome",
+              "displayName": "outcome",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "proof_check_id",
+              "displayName": "proof_check_id",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "proof_check_name",
+              "displayName": "proof_check_name",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "recorded_at",
+              "displayName": "recorded_at",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "date",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "wave_run_id",
+              "displayName": "wave_run_id",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "reason",
+              "displayName": "reason",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "merge_fingerprint",
+              "displayName": "merge_fingerprint",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "topic",
+              "displayName": "topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "p09-datatable-block-0009-0009-000000000009",
+      "name": "Add to Block Gate DataTable",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        820,
+        400
+      ],
+      "notes": "Block path still writes a gate row (outcome=block) before Emit Block Rollup. Same table wavves_proof_gate.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "roll-outcome",
+              "name": "outcome",
+              "value": "pass",
+              "type": "string"
+            },
+            {
+              "id": "roll-accepted",
+              "name": "accept",
+              "value": "true",
+              "type": "boolean"
+            },
+            {
+              "id": "roll-summary",
+              "name": "rollup_summary",
+              "value": "={{ 'Wave accept: proof_merge_complete passed. ' + ($json.reason || '') }}",
+              "type": "string"
+            },
+            {
+              "id": "roll-wave-run",
+              "name": "wave_run_id",
+              "value": "={{ $json.wave_run_id }}",
+              "type": "string"
+            },
+            {
+              "id": "roll-topic",
+              "name": "topic",
+              "value": "={{ $json.topic }}",
+              "type": "string"
+            },
+            {
+              "id": "roll-proof-id",
+              "name": "proof_check_id",
+              "value": "={{ $json.proof_check_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "p10-pass-rollup-0010-0010-000000000010",
+      "name": "Set Pass Rollup Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1080,
+        120
+      ],
+      "notes": "Success accept/rollup only on this path after a pass Data Table row."
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "block-outcome",
+              "name": "outcome",
+              "value": "block",
+              "type": "string"
+            },
+            {
+              "id": "block-accepted",
+              "name": "accept",
+              "value": "false",
+              "type": "boolean"
+            },
+            {
+              "id": "block-summary",
+              "name": "rollup_summary",
+              "value": "={{ 'Wave blocked: ' + ($json.reason || 'proof check failed') }}",
+              "type": "string"
+            },
+            {
+              "id": "block-wave-run",
+              "name": "wave_run_id",
+              "value": "={{ $json.wave_run_id }}",
+              "type": "string"
+            },
+            {
+              "id": "block-topic",
+              "name": "topic",
+              "value": "={{ $json.topic }}",
+              "type": "string"
+            },
+            {
+              "id": "block-proof-id",
+              "name": "proof_check_id",
+              "value": "={{ $json.proof_check_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "p11-block-rollup-0011-0011-000000000011",
+      "name": "Set Block Rollup Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1080,
+        400
+      ],
+      "notes": "Block path: gate row written; no success accept."
+    }
+  ],
+  "connections": {
+    "Start Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Prepare Topic and Locks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Topic and Locks": {
+      "main": [
+        [
+          {
+            "node": "Run Charge A Workflow",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Run Charge B Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run Charge A Workflow": {
+      "main": [
+        [
+          {
+            "node": "Merge Workflow Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Run Charge B Workflow": {
+      "main": [
+        [
+          {
+            "node": "Merge Workflow Results",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge Workflow Results": {
+      "main": [
+        [
+          {
+            "node": "Execute Proof Merge Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Proof Merge Code": {
+      "main": [
+        [
+          {
+            "node": "Check Outcome Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Check Outcome Status": {
+      "main": [
+        [
+          {
+            "node": "Add to Proof Gate DataTable",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Add to Block Gate DataTable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add to Proof Gate DataTable": {
+      "main": [
+        [
+          {
+            "node": "Set Pass Rollup Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add to Block Gate DataTable": {
+      "main": [
+        [
+          {
+            "node": "Set Block Rollup Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "saveDataSuccessExecution": "all",
+    "saveDataErrorExecution": "all"
+  }
+}

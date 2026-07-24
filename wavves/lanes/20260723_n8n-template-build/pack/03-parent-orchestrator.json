@@ -1,0 +1,855 @@
+{
+  "name": "Parent Orchestrator \u2014 Proof-Gated Wave Accept",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "p01-manual-trigger-0001-0001-000000000001",
+      "name": "Start Wave Run",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -720,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "sf-topic",
+              "name": "topic",
+              "value": "governed wave accept",
+              "type": "string"
+            },
+            {
+              "id": "sf-locks",
+              "name": "locks",
+              "value": "NTV-JOB=A bounded parallel research to proof-gated accept. NTV-PACK=B parent plus Execute Workflow charges. NTV-GATE-STORE=B Data Table evidence. NTV-LLM=C generic LangChain chat-model credential. NTV-V0-SCOPE=A core only; no term_id; no paragraph-tunnel. Pricing Free. Do not reopen locks.",
+              "type": "string"
+            },
+            {
+              "id": "sf-proof-job",
+              "name": "proof_job",
+              "value": "After parallel charges merge, named proof check Proof Merge Complete must write a pass or block row to Data Table wavves_proof_gate before accept/rollup may emit success.",
+              "type": "string"
+            },
+            {
+              "id": "sf-wave-run-id",
+              "name": "wave_run_id",
+              "value": "={{ $execution.id }}",
+              "type": "string"
+            },
+            {
+              "id": "sf-research-brief",
+              "name": "research_brief",
+              "value": "Charge A: cite-backed findings. Charge B: adversarial gaps and accept risks. Stay in Free v0 core scope.",
+              "type": "string"
+            },
+            {
+              "id": "sf-packet-id",
+              "name": "packet_id",
+              "value": "wave_packet_v0",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "p02-set-fields-0002-0002-000000000002",
+      "name": "Set Fields \u2014 Topic Locks Proof",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -480,
+        240
+      ],
+      "notes": "Edit topic, locks, and proof_job before each run. wave_run_id defaults to $execution.id."
+    },
+    {
+      "parameters": {
+        "source": "database",
+        "workflowId": {
+          "__rl": true,
+          "value": "PLACEHOLDER_CHARGE_A_WORKFLOW_ID",
+          "mode": "id",
+          "cachedResultName": "Charge Research A \u2014 Wave Packet"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "topic": "={{ $json.topic }}",
+            "locks": "={{ $json.locks }}",
+            "charge_role": "research_a",
+            "proof_job": "={{ $json.proof_job }}",
+            "research_brief": "={{ $json.research_brief }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "topic",
+              "displayName": "topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "locks",
+              "displayName": "locks",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "charge_role",
+              "displayName": "charge_role",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "proof_job",
+              "displayName": "proof_job",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "research_brief",
+              "displayName": "research_brief",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "mode": "once",
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "id": "p03-exec-charge-a-0003-0003-000000000003",
+      "name": "Execute Workflow \u2014 Charge A",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        -200,
+        120
+      ],
+      "notes": "IMPORTER: after importing charge workflows, open this node and select workflow named Charge Research A \u2014 Wave Packet (or paste its workflow ID). Do not leave PLACEHOLDER_CHARGE_A_WORKFLOW_ID.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "source": "database",
+        "workflowId": {
+          "__rl": true,
+          "value": "PLACEHOLDER_CHARGE_B_WORKFLOW_ID",
+          "mode": "id",
+          "cachedResultName": "Charge Research B \u2014 Wave Packet"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "topic": "={{ $json.topic }}",
+            "proof_job": "={{ $json.proof_job }}",
+            "packet_id": "={{ $json.packet_id }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "topic",
+              "displayName": "topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "proof_job",
+              "displayName": "proof_job",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "packet_id",
+              "displayName": "packet_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "mode": "once",
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "id": "p04-exec-charge-b-0004-0004-000000000004",
+      "name": "Execute Workflow \u2014 Charge B",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        -200,
+        360
+      ],
+      "notes": "IMPORTER: after importing charge workflows, open this node and select workflow named Charge Research B \u2014 Wave Packet (or paste its workflow ID). Do not leave PLACEHOLDER_CHARGE_B_WORKFLOW_ID.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "mode": "append",
+        "options": {}
+      },
+      "id": "p05-merge-returns-0005-0005-000000000005",
+      "name": "Merge Charge Returns",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        80,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "language": "javaScript",
+        "jsCode": "const items = $input.all();\nconst packet = $('Set Fields \u2014 Topic Locks Proof').first().json;\n\nfunction pickCharge(preferredIds, preferredRoles, fallbackIndex) {\n  const found = items.find((item) => {\n    const j = item.json || {};\n    const id = String(j.charge_id || '');\n    const role = String(j.charge_role || '');\n    return preferredIds.includes(id) || preferredRoles.includes(role);\n  });\n  return found || items[fallbackIndex] || null;\n}\n\nfunction usable(item) {\n  if (!item || !item.json) return false;\n  const j = item.json;\n  const status = String(j.status || '').toLowerCase();\n  const hasFindings = Boolean(\n    j.findings_summary ||\n      j.findings ||\n      j.gaps_risks ||\n      (Array.isArray(j.sources_claims) && j.sources_claims.length) ||\n      (typeof j.output === 'string' && j.output.trim())\n  );\n  return (status === 'done' || status === 'pass') && hasFindings;\n}\n\nconst chargeA = pickCharge(['A', 'a'], ['research_a', 'A'], 0);\nconst chargeB = pickCharge(['B', 'b', 'research-b'], ['B', 'research_b', 'adversarial_gaps'], 1);\n\nconst aOk = usable(chargeA);\nconst bOk = usable(chargeB);\nconst outcome = aOk && bOk ? 'pass' : 'block';\n\nlet reason;\nif (outcome === 'pass') {\n  reason = 'Both charges returned usable status and findings';\n} else {\n  const parts = [];\n  if (!aOk) parts.push('Charge A missing usable status/findings');\n  if (!bOk) parts.push('Charge B missing usable status/findings');\n  if (items.length < 2) parts.push('Merge returned fewer than two charge items');\n  reason = parts.join('; ') || 'Merge proof failed';\n}\n\nconst aSnippet = String(\n  (chargeA && (chargeA.json.findings_summary || chargeA.json.findings || chargeA.json.status)) || ''\n).slice(0, 48);\nconst bSnippet = String(\n  (chargeB && (chargeB.json.findings || chargeB.json.gaps_risks || chargeB.json.status)) || ''\n).slice(0, 48);\nconst merge_fingerprint = [String((chargeA && chargeA.json.status) || ''), String((chargeB && chargeB.json.status) || ''), aSnippet, bSnippet].join('|');\n\nreturn [\n  {\n    json: {\n      outcome,\n      proof_check_id: 'proof_merge_complete',\n      proof_check_name: 'Merge + proof check',\n      recorded_at: new Date().toISOString(),\n      wave_run_id: String(packet.wave_run_id || ''),\n      reason,\n      merge_fingerprint,\n      topic: String(packet.topic || ''),\n      charge_a_status: String((chargeA && chargeA.json.status) || ''),\n      charge_b_status: String((chargeB && chargeB.json.status) || ''),\n      proof_job: String(packet.proof_job || ''),\n    },\n  },\n];"
+      },
+      "id": "p06-proof-merge-0006-0006-000000000006",
+      "name": "Proof Merge Complete",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        320,
+        240
+      ],
+      "notes": "Named proof check. Emits outcome pass|block plus GATE-TABLE-SCHEMA fields (proof_check_id=proof_merge_complete)."
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cond-outcome-pass",
+              "leftValue": "={{ $json.outcome }}",
+              "rightValue": "pass",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "p07-if-outcome-0007-0007-000000000007",
+      "name": "IF Outcome Pass",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        560,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "row",
+        "operation": "insert",
+        "dataTableId": {
+          "__rl": true,
+          "value": "wavves_proof_gate",
+          "mode": "name",
+          "cachedResultName": "wavves_proof_gate"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "outcome": "={{ $json.outcome }}",
+            "proof_check_id": "={{ $json.proof_check_id }}",
+            "proof_check_name": "={{ $json.proof_check_name }}",
+            "recorded_at": "={{ $json.recorded_at }}",
+            "wave_run_id": "={{ $json.wave_run_id }}",
+            "reason": "={{ $json.reason }}",
+            "merge_fingerprint": "={{ $json.merge_fingerprint }}",
+            "topic": "={{ $json.topic }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "outcome",
+              "displayName": "outcome",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "proof_check_id",
+              "displayName": "proof_check_id",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "proof_check_name",
+              "displayName": "proof_check_name",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "recorded_at",
+              "displayName": "recorded_at",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "date",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "wave_run_id",
+              "displayName": "wave_run_id",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "reason",
+              "displayName": "reason",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "merge_fingerprint",
+              "displayName": "merge_fingerprint",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "topic",
+              "displayName": "topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "p08-datatable-pass-0008-0008-000000000008",
+      "name": "Append Proof Gate Row",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        820,
+        120
+      ],
+      "notes": "Create Data Table wavves_proof_gate from GATE-TABLE-SCHEMA.md before first run. Re-point this node to that table after import if name mode does not resolve.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "resource": "row",
+        "operation": "insert",
+        "dataTableId": {
+          "__rl": true,
+          "value": "wavves_proof_gate",
+          "mode": "name",
+          "cachedResultName": "wavves_proof_gate"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "outcome": "={{ $json.outcome }}",
+            "proof_check_id": "={{ $json.proof_check_id }}",
+            "proof_check_name": "={{ $json.proof_check_name }}",
+            "recorded_at": "={{ $json.recorded_at }}",
+            "wave_run_id": "={{ $json.wave_run_id }}",
+            "reason": "={{ $json.reason }}",
+            "merge_fingerprint": "={{ $json.merge_fingerprint }}",
+            "topic": "={{ $json.topic }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "outcome",
+              "displayName": "outcome",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "proof_check_id",
+              "displayName": "proof_check_id",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "proof_check_name",
+              "displayName": "proof_check_name",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "recorded_at",
+              "displayName": "recorded_at",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "date",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "wave_run_id",
+              "displayName": "wave_run_id",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "reason",
+              "displayName": "reason",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "merge_fingerprint",
+              "displayName": "merge_fingerprint",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            },
+            {
+              "id": "topic",
+              "displayName": "topic",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "p09-datatable-block-0009-0009-000000000009",
+      "name": "Append Block Gate Row",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        820,
+        400
+      ],
+      "notes": "Block path still writes a gate row (outcome=block) before Emit Block Rollup. Same table wavves_proof_gate.",
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "roll-outcome",
+              "name": "outcome",
+              "value": "pass",
+              "type": "string"
+            },
+            {
+              "id": "roll-accepted",
+              "name": "accept",
+              "value": "true",
+              "type": "boolean"
+            },
+            {
+              "id": "roll-summary",
+              "name": "rollup_summary",
+              "value": "={{ 'Wave accept: proof_merge_complete passed. ' + ($json.reason || '') }}",
+              "type": "string"
+            },
+            {
+              "id": "roll-wave-run",
+              "name": "wave_run_id",
+              "value": "={{ $json.wave_run_id }}",
+              "type": "string"
+            },
+            {
+              "id": "roll-topic",
+              "name": "topic",
+              "value": "={{ $json.topic }}",
+              "type": "string"
+            },
+            {
+              "id": "roll-proof-id",
+              "name": "proof_check_id",
+              "value": "={{ $json.proof_check_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "p10-pass-rollup-0010-0010-000000000010",
+      "name": "Emit Pass Rollup",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1080,
+        120
+      ],
+      "notes": "Success accept/rollup only on this path after a pass Data Table row."
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "block-outcome",
+              "name": "outcome",
+              "value": "block",
+              "type": "string"
+            },
+            {
+              "id": "block-accepted",
+              "name": "accept",
+              "value": "false",
+              "type": "boolean"
+            },
+            {
+              "id": "block-summary",
+              "name": "rollup_summary",
+              "value": "={{ 'Wave blocked: ' + ($json.reason || 'proof check failed') }}",
+              "type": "string"
+            },
+            {
+              "id": "block-wave-run",
+              "name": "wave_run_id",
+              "value": "={{ $json.wave_run_id }}",
+              "type": "string"
+            },
+            {
+              "id": "block-topic",
+              "name": "topic",
+              "value": "={{ $json.topic }}",
+              "type": "string"
+            },
+            {
+              "id": "block-proof-id",
+              "name": "proof_check_id",
+              "value": "={{ $json.proof_check_id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "p11-block-rollup-0011-0011-000000000011",
+      "name": "Emit Block Rollup",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1080,
+        400
+      ],
+      "notes": "Block path: gate row written; no success accept."
+    },
+    {
+      "parameters": {
+        "content": "## Coordinate parallel research agents to a proof-gated accept in n8n\n\n**Pricing:** Free\n\n**Governed wave accept** (not a CEO/orchestrator demo): alignment packet + role triad + independent gate evidence.\n\n1. **Set Fields** on the parent: `topic`, locks, and `proof_job`.\n2. Parent fans out **two embedded charge sub-workflows** in parallel (`Execute Workflow` parameter/JSON \u2192 A \u2016 B).\n3. Merge returns \u2192 **named proof check** \u2192 write **pass or block** row to an **n8n Data Table**.\n4. Accept / rollup emits success only after a pass row. Block stops the accept path.\n\n**Evidence store (v0):** Data Table only (not Sheets/Drive).\n**LLM:** Default chat-model nodes are OpenAI-compatible LangChain slots. Attach your chat credential; swap the model node if you use another provider.\n**Upload:** This file is a **single** Creator Portal / Import JSON. Charges are already embedded. Do not import separate charge files for the portal upload path.\n",
+        "height": 460,
+        "width": 420,
+        "color": 4
+      },
+      "id": "p12-sticky-overview-0012-0012-000000000012",
+      "name": "Sticky \u2014 Template overview",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -980,
+        -80
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Setup credentials\n\n1. After import, open **Execute Workflow \u2014 Charge A** (embedded graph) \u2192 node **Chat Model Credential Slot** \u2192 attach your chat-model credential.\n2. Open **Execute Workflow \u2014 Charge B** \u2192 node **Chat Model Credential Slot** \u2192 attach the same (or another) chat-model credential.\n3. Default node type is OpenAI-compatible (`lmChatOpenAi`). To use Anthropic/other, replace that model node with the matching LangChain chat-model node and attach its credential.\n4. Do **not** paste API keys into Set Fields, HTTP bodies, or sticky text.\n",
+        "height": 240,
+        "width": 300,
+        "color": 2
+      },
+      "id": "p13-sticky-creds-0013-0013-000000000013",
+      "name": "Sticky \u2014 Setup credentials",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -980,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Set Fields\n\nOn **Set Fields \u2014 Topic Locks Proof**, fill:\n\n- `topic` \u2014 research question for both charges\n- `locks` \u2014 bounded constraints both charges must respect\n- `proof_job` \u2014 alignment text for the named proof check (v0 gate logic is `Proof Merge Complete`)\n\nThese values are the alignment packet. Do not hardcode secrets here.\n",
+        "height": 280,
+        "width": 300,
+        "color": 2
+      },
+      "id": "p14-sticky-setfields-0014-0014-000000000014",
+      "name": "Sticky \u2014 Set Fields",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -520,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Import / upload (single JSON)\n\n1. Import **this one workflow JSON** (Creator Portal upload or n8n Import from File).\n2. Create Data Table **wavves_proof_gate** with the columns listed in **Sticky \u2014 Proof + Data Table**.\n3. Attach chat-model credentials on both embedded charge **Chat Model Credential Slot** nodes.\n4. Edit **Set Fields \u2014 Topic Locks Proof**.\n5. Run **Start Wave Run** once.\n\nRepo modular files `01`/`02`/`03` are source-only; not required for this upload path.\n",
+        "height": 220,
+        "width": 280,
+        "color": 2
+      },
+      "id": "p15-sticky-import-0015-0015-000000000015",
+      "name": "Sticky \u2014 Import order",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Embedded charges (no database wire)\n\nCharges A and B are **already embedded** (`Execute Workflow` \u2192 source **parameter** / workflow JSON).\n\n1. Do **not** point these nodes at separate imported workflows.\n2. Open each Execute Workflow node only to reach the embedded chat-model credential slots.\n3. Keep A and B on the **parallel** path into **Merge Charge Returns**.\n\nRole triad: parent orchestrates; charges research; neither charge owns the gate.\n",
+        "height": 260,
+        "width": 300,
+        "color": 2
+      },
+      "id": "p16-sticky-wire-0016-0016-000000000016",
+      "name": "Sticky \u2014 Wire Execute Workflow",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Proof check + Data Table\n\nAfter Merge:\n\n1. **Proof Merge Complete** (named check, id `proof_merge_complete`) sets `outcome` to `pass` or `block`.\n2. **IF Outcome Pass** \u2192 **Append Proof Gate Row** or **Append Block Gate Row**.\n3. Accept / rollup emits success **only** after a pass row.\n\n### Create table `wavves_proof_gate` before first run\n\n| Column | Type | Required |\n|---|---|---|\n| `outcome` | string | yes (`pass` or `block`) |\n| `proof_check_id` | string | yes |\n| `proof_check_name` | string | yes |\n| `recorded_at` | date | yes |\n| `wave_run_id` | string | yes |\n| `reason` | string | yes |\n| `merge_fingerprint` | string | no |\n| `topic` | string | no |\n\nNo `term_id` column (v0). Re-select the table on the Append nodes if name mode does not resolve after import.\n",
+        "height": 280,
+        "width": 300,
+        "color": 2
+      },
+      "id": "p17-sticky-proof-0017-0017-000000000017",
+      "name": "Sticky \u2014 Proof + Data Table",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        320,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Run once\n\n1. Confirm: Data Table `wavves_proof_gate` exists, credentials attached on both charge **Chat Model Credential Slot** nodes, Set Fields filled.\n2. Click **Start Wave Run** \u2192 Execute workflow.\n3. Inspect charge returns, proof `outcome`, and the Data Table row.\n4. On pass, read the rollup. On block, fix charge returns or proof inputs and re-run.\n",
+        "height": 240,
+        "width": 280,
+        "color": 2
+      },
+      "id": "p18-sticky-run-0018-0018-000000000018",
+      "name": "Sticky \u2014 Run once",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        820,
+        -120
+      ]
+    }
+  ],
+  "connections": {
+    "Start Wave Run": {
+      "main": [
+        [
+          {
+            "node": "Set Fields \u2014 Topic Locks Proof",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Fields \u2014 Topic Locks Proof": {
+      "main": [
+        [
+          {
+            "node": "Execute Workflow \u2014 Charge A",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Execute Workflow \u2014 Charge B",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow \u2014 Charge A": {
+      "main": [
+        [
+          {
+            "node": "Merge Charge Returns",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow \u2014 Charge B": {
+      "main": [
+        [
+          {
+            "node": "Merge Charge Returns",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge Charge Returns": {
+      "main": [
+        [
+          {
+            "node": "Proof Merge Complete",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Proof Merge Complete": {
+      "main": [
+        [
+          {
+            "node": "IF Outcome Pass",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Outcome Pass": {
+      "main": [
+        [
+          {
+            "node": "Append Proof Gate Row",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Append Block Gate Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append Proof Gate Row": {
+      "main": [
+        [
+          {
+            "node": "Emit Pass Rollup",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append Block Gate Row": {
+      "main": [
+        [
+          {
+            "node": "Emit Block Rollup",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "saveDataSuccessExecution": "all",
+    "saveDataErrorExecution": "all"
+  },
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "pinData": {},
+  "tags": []
+}
