@@ -10,6 +10,7 @@ on:
     paths:
       - "index.html"
       - "CNAME"
+      - "site.webmanifest"
       - "assets/**"
       - ".nojekyll"
       - ".github/workflows/pages.yml"
@@ -38,7 +39,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p _site/assets
-          cp index.html CNAME _site/
+          cp index.html CNAME site.webmanifest _site/
           # Prefer empty .nojekyll so Pages never runs Jekyll on the artifact
           : > _site/.nojekyll
           if [ -d assets ]; then
@@ -47,6 +48,7 @@ jobs:
           # Fail closed if logo path in plugin.json would 404 on site (optional)
           test -f _site/index.html
           test -f _site/CNAME
+          test -f _site/site.webmanifest
           ls -la _site _site/assets | head -40
 
       - name: Upload artifact
