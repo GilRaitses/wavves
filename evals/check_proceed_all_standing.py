@@ -87,7 +87,7 @@ def detect(trace: dict) -> list[str]:
 
     mode = (trace.get("mode") or "").strip()
     queue_present = bool(trace.get("standing_queue_path_present"))
-    remasured = bool(trace.get("standing_queue_remasured"))
+    remeasured = bool(trace.get("standing_queue_remeasured"))
     items = list(trace.get("items") or [])
     inventory_from_chat = bool(trace.get("inventory_from_chat"))
     dispatch_storm = bool(trace.get("dispatch_storm"))
@@ -98,7 +98,7 @@ def detect(trace: dict) -> list[str]:
     if all_standing and not queue_present:
         mech.append("PROC-PROCEED-NO-STANDING-QUEUE")
 
-    if all_standing and queue_present and not remasured:
+    if all_standing and queue_present and not remeasured:
         mech.append("PROC-PROCEED-STALE-QUEUE")
 
     if (_is_bare_shrug(trace) and not _trigger_has_all_standing_phrase(trace)

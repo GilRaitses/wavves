@@ -16,4 +16,4 @@ git: none
 | gap ids | `GAP-KVC-G1`, `GAP-KVC-G2`, `GAP-KVC-G3` |
 | nits | NIT-1 README WOF status lag; NIT-2 standing file stale tip illustration; NIT-3 RTH tip ≠ KVC tip |
 
-**One line:** Wired WOF/PAS/rotate paths remasure; WOF-BIND open call + Problem #1 WOF framing need revise before decide.
+**One line:** Wired WOF/PAS/rotate paths remeasure; WOF-BIND open call + Problem #1 WOF framing need revise before decide.

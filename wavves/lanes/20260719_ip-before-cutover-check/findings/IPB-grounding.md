@@ -15,9 +15,9 @@ git: none performed
 
 ## Verdict lean (this lens)
 
-**REVISE.** The fail mode is real and remasures against foreign pax VIB
+**REVISE.** The fail mode is real and remeasures against foreign pax VIB
 artifacts (illustration only): IP strip declared in `VIB-IP-DELTA`, W2/W3
-PASS without public-surface parity remasure, ACCEPT A6 FAIL then Midtown
+PASS without public-surface parity remeasure, ACCEPT A6 FAIL then Midtown
 rollback, R1 manifest redact without PNG re-bake. Citation hygiene and
 product-surface landing names need fixes before BUILD treats the evidence
 block or "pack-produce playbooks" claim as closed.
@@ -38,7 +38,7 @@ pre-wire IP ordering.
 | Charter / EXECUTION_WIRING emphasize ACCEPT / proof more than pre-wire IP | `skills/charter/SKILL.md` (proof_required + Wave 4 acceptance); `EXECUTION_WIRING.md` (cutover named only as measured-transition example) | yes (gap is real) |
 | Product surface includes "pack-produce playbooks" | `skills/wavves/playbooks/` (no pack-produce / cutover / IP playbook) | **no** (proposed surface absent; name invents a seam) |
 | VIB lane home + IP delta declared strip early | foreign pax `…/20260719_visitor-island-bake/contracts/VIB-IP-DELTA.md` (equations/coeffs/canopy defaults private) | yes (illustration) |
-| W2 PASS = bake hours/bbox/grid, not manifest≤baseline | foreign `findings/VIB-W2.md` (PASS on hours/grid/bbox; no IP remasure) | yes (illustration) |
+| W2 PASS = bake hours/bbox/grid, not manifest≤baseline | foreign `findings/VIB-W2.md` (PASS on hours/grid/bbox; no IP remeasure) | yes (illustration) |
 | W3 cutover pointed `/beta` at island packs | foreign `findings/VIB-W3.md` (PASS; pack bases `*_20260719`) | yes (illustration) |
 | VIB-ACCEPT A6 first FAIL → Midtown rollback | foreign `gate-captures/VIB-ROLLBACK.json` (`vib_a_fail_ids: [VIB-A6]`, restore `*_20260701`); `findings/VIB-ROLLBACK.md` | yes (illustration) |
 | A6 fail atoms = equations/coeffs/canopy numerics | foreign `findings/VIB-R1.md` before/after table; `VIB-ACCEPT-A6.json` `prior_fail_atoms_reversed` | yes (illustration) |
@@ -102,7 +102,7 @@ pre-wire IP ordering.
   VIB-ACCEPT PASS earlier same day)
 - **evidence_path:** FR lines 15–16; LCZ decision cites hash; VIB-ACCEPT.json
   pins different hashes (`dae87d59…` / klosr `0d96890d…`)
-- **note:** Honest as "same-day program tip," but not a remasure of VIB
+- **note:** Honest as "same-day program tip," but not a remeasure of VIB
   ACCEPT land. Prefer citing VIB-ACCEPT / ROLLBACK hashes for the fail chain.
 
 ## Hydration opened (must-cite list)

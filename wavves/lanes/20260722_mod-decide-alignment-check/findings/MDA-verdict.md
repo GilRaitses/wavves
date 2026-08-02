@@ -19,7 +19,7 @@ blockers:
     wave: w2
     evidence_path: findings/MDA-adversarial.md
     summary: Alignment theater possible without fail-closed detectors
-note: grounding leaned GO on seam remasure; overall REVISE from other three lenses
+note: grounding leaned GO on seam remeasure; overall REVISE from other three lenses
 repo_state_verified_against: 26ad2d2afbb9196f2b690000f6a50f1cabfe20e5
 reconciled_at: "2026-07-23T03:22:00-04:00"
 ```

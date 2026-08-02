@@ -36,7 +36,7 @@ relationship is **ANALOGY**, not isomorphism.
   facts only (per charge: do not invent paper quotes).
 - Sibling lenses (StatefulSet / Erlang / star-graph) out of scope; not judged
   here.
-- Live `wavves/rotations/` empty at tip; multi-term trail not remasured beyond
+- Live `wavves/rotations/` empty at tip; multi-term trail not remeasured beyond
   AGENTS bootstrap note.
 
 ## Commit file list (for O0 only; charge did not commit)

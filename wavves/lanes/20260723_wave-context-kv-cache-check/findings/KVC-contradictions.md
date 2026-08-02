@@ -16,10 +16,10 @@ git: none performed
 - artifact FR (KV-01..06, fail ids, open calls, non-goals, locked analogy sentence)
 - `waveset.md`, `dispatch-w1.md`
 - WOF FR leave-acts / resume contract (`feature-requests/20260723_wave-orchestrator-fanout.md`)
-- PAS FR stale/remasure (`feature-requests/20260723_proceed-all-standing.md`)
+- PAS FR stale/remeasure (`feature-requests/20260723_proceed-all-standing.md`)
 - `skills/mod-rotate/SKILL.md`; `skills/wavves-init/SKILL.md` §4–5
 - RTH synthesis (illustration): `lanes/20260723_mod-rotate-theory-research/findings/RTH-SYNTHESIS.md`
-- INDEX remasure: `current_rotation: none`, `current_identity: O0`
+- INDEX remeasure: `current_rotation: none`, `current_identity: O0`
 
 O0 owns the lane verdict. This file does not grade sibling lenses.
 
@@ -61,7 +61,7 @@ conflicts are decide/revise edits, not a product-scope collapse.
 | | |
 |---|---|
 | **Claim A** | Open call **WOF-BIND**: land as part of WOF BUILD vs separate CTX-KV BUILD after WOF. |
-| **Claim B** | Next: `/charter` BUILD after WOF/PAS land remasured; "No BUILD from this folder alone." Non-goals: does not auto-BUILD WOF/PAS. WOF FR **Status: SHIPPED**. |
+| **Claim B** | Next: `/charter` BUILD after WOF/PAS land remeasured; "No BUILD from this folder alone." Non-goals: does not auto-BUILD WOF/PAS. WOF FR **Status: SHIPPED**. |
 | **Evidence** | artifact §Open calls #2; §Next; §Non-goals; WOF FR status line |
 | **Conflict** | "Part of WOF BUILD" is a dead fork once WOF is SHIPPED unless WOF is reopened. Separate BUILD after WOF is the only live path, but the open call still presents a mutually exclusive pair. Phase leak: decide call ignores land status. |
 | **Severity** | high |
@@ -76,18 +76,18 @@ conflicts are decide/revise edits, not a product-scope collapse.
 | **Evidence** | artifact §KV-01, §Problem #1; WOF §Resume contract, §Leave-acts, Status SHIPPED |
 | **Conflict** | Alias to WOF fail id while expanding schema past WOF lock. Problem text understates WOF land; BUILD may patch charter twice or invent tip-hash without WOF reopen. |
 | **Severity** | medium |
-| **Lean** | REVISE — mark tip hash as additive WOF patch (reopen/bind) or drop it from KV-01; remasure Problem #1 against SHIPPED WOF. |
+| **Lean** | REVISE — mark tip hash as additive WOF patch (reopen/bind) or drop it from KV-01; remeasure Problem #1 against SHIPPED WOF. |
 
 ### CX-KVC-05 — KV-02 / PROC-KV-STANDING-STALE vs PAS not landed
 
 | | |
 |---|---|
-| **Claim A** | KV-02: standing file is program cache; remasure = invalidate+rewrite; stale → `PROC-PROCEED-STALE-QUEUE` / `PROC-KV-STANDING-STALE` bind. Fail ids closed for BUILD. |
-| **Claim B** | PAS FR Status: revised-after-PAS, awaiting `/charter` BUILD. Next on KV FR: BUILD only after PAS land remasured. |
+| **Claim A** | KV-02: standing file is program cache; remeasure = invalidate+rewrite; stale → `PROC-PROCEED-STALE-QUEUE` / `PROC-KV-STANDING-STALE` bind. Fail ids closed for BUILD. |
+| **Claim B** | PAS FR Status: revised-after-PAS, awaiting `/charter` BUILD. Next on KV FR: BUILD only after PAS land remeasured. |
 | **Evidence** | artifact §KV-02, §Fail ids, §Next; PAS FR status + `PROC-PROCEED-STALE-QUEUE` |
 | **Conflict** | Closing a bind id before the bound surface ships. Separate CTX-KV BUILD cannot honestly claim PAS-stale coverage until PAS lands, yet fail table reads as ready. |
 | **Severity** | medium |
-| **Lean** | REVISE — keep bind as decide note; do not call PAS-bound ids "closed for BUILD" until PAS land remasured. |
+| **Lean** | REVISE — keep bind as decide note; do not call PAS-bound ids "closed for BUILD" until PAS land remeasured. |
 
 ### CX-KVC-06 — KV-03 "from template" vs ROTATION-TEMPLATE open + mod-rotate newest-file
 
@@ -105,7 +105,7 @@ conflicts are decide/revise edits, not a product-scope collapse.
 | | |
 |---|---|
 | **Claim A** | KV-03: INDEX `current_rotation` + `current_identity` must match newest rotation **or explicit bootstrap**. `PROC-KV-ROTATION-EMPTY-CLAIM` fails hydrate/continuity claim while `current_rotation: none` and `rotations/` empty. |
-| **Claim B** | RTH-SYNTHESIS remasure (illustration) + live INDEX: `rotations/` empty, `current_rotation: none`, `current_identity: O0` (bare) vs AGENTS/step-log `O0.R1` bootstrap with no rotation file. wavves-init §4: bootstrap assigns `O0.R1` via setup act + step-log, not via rotation file. |
+| **Claim B** | RTH-SYNTHESIS remeasure (illustration) + live INDEX: `rotations/` empty, `current_rotation: none`, `current_identity: O0` (bare) vs AGENTS/step-log `O0.R1` bootstrap with no rotation file. wavves-init §4: bootstrap assigns `O0.R1` via setup act + step-log, not via rotation file. |
 | **Evidence** | artifact §KV-03, §Fail ids; RTH-SYNTHESIS facts table; `wavves/INDEX.md`; wavves-init §4–5 |
 | **Conflict** | "Explicit bootstrap" is unnamed relative to step-log-only `O0.R1` and INDEX bare `O0`. Same empty-dir state is both the motivating bug and a FAIL under the new id, without a legal bootstrap exception text. |
 | **Severity** | medium |
@@ -126,7 +126,7 @@ conflicts are decide/revise edits, not a product-scope collapse.
 
 | | |
 |---|---|
-| **Claim A** | Status `ready-for-mod-check`. Fail ids "closed for BUILD." Acceptance sketch treats checkpoint, remasure, bootstrap fence, analogy label as named. |
+| **Claim A** | Status `ready-for-mod-check`. Fail ids "closed for BUILD." Acceptance sketch treats checkpoint, remeasure, bootstrap fence, analogy label as named. |
 | **Claim B** | Open calls CACHE-NAME, WOF-BIND, ROTATION-TEMPLATE still undecided. Next: mod-check → mod-decide → charter BUILD; no BUILD from this folder alone. |
 | **Evidence** | artifact Status, §Fail ids, §Acceptance, §Open calls, §Next |
 | **Conflict** | Phase-boundary leak: "closed for BUILD" and Acceptance-ready wording run ahead of decide locks. Status for mod-check is fine; closed-fail-id language is not. |

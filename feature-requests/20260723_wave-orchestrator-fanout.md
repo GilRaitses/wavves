@@ -145,7 +145,7 @@ colliding file → `PROC-ORCH-DEP-OVERCLAIM`.
 is EARLY-EXIT / LAUNCH-AND-EXIT / NO-RESUME-CONTRACT.
 
 **O0 resume (etiquette §5 — amended 2026-07-24):** Mid-wave
-`yield_awaiting_children` resume is **normal pickup** (same-turn remasure +
+`yield_awaiting_children` resume is **normal pickup** (same-turn remeasure +
 Task-resume / treat rollup+gate as `return_to_O0`). **Fail remediation only**
 applies to true fail / illegal early exit / poisoned wave, not yield.
 Evidence: pax DPR-DOCS-GAP-O0-YIELD-RESUME. Live text:
@@ -172,7 +172,7 @@ OF-02…05).
    protocol, update registry/waveset. Do not re-do charge work in O0
    (violation → `PROC-MOD-FOREGROUND-HOLD` / role collapse).
 5. **Yield resume is normal pickup; fail remediation is separate.** On orch
-   `yield_awaiting_children` notify: same-turn remasure checkpoint + child
+   `yield_awaiting_children` notify: same-turn remeasure checkpoint + child
    outs; Task-resume when children COMPLETE; if rollup+gate already on disk,
    treat as `return_to_O0` and land `commit_file_list`. **Fail remediation
    only** = resume after true fail / illegal early exit / poisoned wave —

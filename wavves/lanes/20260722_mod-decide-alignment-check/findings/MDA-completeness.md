@@ -48,7 +48,7 @@ Operator decision. No Acceptance / Done-when checklist.
 | Fixtures emit named fail ids | absent AC (DA-07 sketch only) |
 
 **Why blocking:** BUILD waveset copied from DA rows can green on prose
-patches with no remasureable ACCEPT.
+patches with no remeasureable ACCEPT.
 
 **Needed edit:** Add Acceptance bullets mapped 1:1 to DA-01..DA-07 (and
 landing pick).
@@ -81,7 +81,7 @@ process-PASS.
 2. "Prior message" re-admits chat memory as intent authority.
 3. Conflict among waveset vs charter vs operator utterance: no precedence.
 
-**Why blocking:** Without a remasure rule, program_tag theater cites
+**Why blocking:** Without a remeasure rule, program_tag theater cites
 whatever the agent remembers (the originating failure mode, inverted).
 
 **Needed edit:** Lock precedence: waveset Locked → decisions/*.md →
@@ -165,7 +165,7 @@ grain labels. State under Non-goals or Acceptance.
 
 ## Silent assumptions (call out)
 
-1. "Hygiene exits already exist (freeze wire, check PASS)" is remasureable
+1. "Hygiene exits already exist (freeze wire, check PASS)" is remeasureable
    from Grounding paste / named artifact paths.
 2. Letter options A/B/C/D remain the presentation form (skill does not
    require letters today; convention only).
@@ -197,7 +197,7 @@ docs-only/registry-only called insufficient via landing table.
 |---|---|
 | Acceptance sufficient for BUILD charter? | **No** (B1) |
 | Eval fixture homes named? | **No** (B2) |
-| Standing-intent remasure rule? | **No** (B3) |
+| Standing-intent remeasure rule? | **No** (B3) |
 | Locked paste / AUTH schema specified? | **No** (B4) |
 | Open calls for mod-decide explicit? | **No** (B5) |
 | Rollback / non-goals gaps? | Thin (N2, N4) |

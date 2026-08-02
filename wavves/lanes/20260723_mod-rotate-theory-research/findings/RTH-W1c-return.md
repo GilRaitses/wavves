@@ -48,7 +48,7 @@ rules; analogy vs isomorphism is labeled throughout.
 1. External Kubernetes/Erlang rows are well-known-public only; no primary
    doc fetch this charge.
 2. Empty `wavves/rotations/` at tip: no landed multi-term artifact to
-   remasure beyond skill/AGENTS prose.
+   remeasure beyond skill/AGENTS prose.
 3. Raft overlap deferred to RTH-W1b.
 4. Variant B lane-handoff paste line lacks explicit `R<N>` stamp (minor seam).
 

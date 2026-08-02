@@ -36,7 +36,7 @@ Suggested next. No Acceptance / Done-when checklist.
 
 **Missing for charter:** testable bullets O0 can copy into a BUILD waveset
 (charter fields present; produce-exit FAIL on fat fixture; cutover refuse;
-ACCEPT still remasures; docs index).
+ACCEPT still remeasures; docs index).
 
 **Why blocking:** Sibling shipped FR (proof-before-accept) and PAS-class
 checks treat Acceptance as BUILD unlock. Without it, BUILD greens on prose.
@@ -75,7 +75,7 @@ JSON fields, or fail atoms.
 | element | specified | missing |
 |---|---|---|
 | inputs | baseline + checklist paths (charter fields) | manifest/asset glob under produce out |
-| remasure class | "vs baseline / checklist" | schema parity vs byte-diff vs deny-key scan |
+| remeasure class | "vs baseline / checklist" | schema parity vs byte-diff vs deny-key scan |
 | outputs | PASS/FAIL token | capture path shape; atom list |
 | runner | — | stdlib script path / lane-local harness |
 | when required | "when lane publishes public packs…" | classifier field name + default |
@@ -193,7 +193,7 @@ fail id but does not say whether BUILD appends it.
 
 ## Non-goals coverage
 
-**Present and useful:** no weakening ACCEPT IP remasure; no Midtown-as-island
+**Present and useful:** no weakening ACCEPT IP remeasure; no Midtown-as-island
 auto-approve; no replacing Proof-before-accept.
 
 **Still thin:**
@@ -225,7 +225,7 @@ auto-approve; no replacing Proof-before-accept.
 - Distinction from `PROC-PASS-NO-PROOF`
 - Proposed fail id with plain-language definition
 - Charter field sketch (three names)
-- Defense-in-depth ACCEPT remasure kept
+- Defense-in-depth ACCEPT remeasure kept
 - Evals behaviors sketched at narrative level
 - Three mod-decide forks named
 - Next path: mod-check → mod-decide → BUILD

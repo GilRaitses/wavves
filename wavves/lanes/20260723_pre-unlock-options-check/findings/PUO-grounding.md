@@ -17,8 +17,8 @@ git: none performed
 
 **REVISE.** In-repo product seams match the FR problem: AUTH-05 is
 mod-decide sync only, and `proceed` has no unlock-options → check route.
-Foreign pax RLW/RWC paths remasure as originating illustration and support
-the failure story. The FR tip pin `pax 07c00007f` does not remasure on disk
+Foreign pax RLW/RWC paths remeasure as originating illustration and support
+the failure story. The FR tip pin `pax 07c00007f` does not remeasure on disk
 text, and several evidence cites are lane-relative without home prefixes.
 Fix those pins before BUILD treats originating evidence as closed.
 
@@ -53,7 +53,7 @@ grounding BLOCK for in-repo BUILD targets.
 
 ## Named gaps
 
-### GAP-PUO-G1 — FR tip pin `07c00007f` does not remasure
+### GAP-PUO-G1 — FR tip pin `07c00007f` does not remeasure
 
 - **severity:** REVISE (evidence honesty)
 - **claim:** `evidence_verified_against: pax 07c00007f tip at FR authoring`
@@ -61,7 +61,7 @@ grounding BLOCK for in-repo BUILD targets.
   foreign RLW/RWC artifacts cite other hashes (`53d3ff6f…`, `fca01e31…`,
   `57f94a25…`) not `07c00007f`
 - **note:** Git not run (dispatch ban). O0 should replace or drop the pin so
-  originating evidence matches remasureable disk.
+  originating evidence matches remeasureable disk.
 
 ### GAP-PUO-G2 — "Bare unlock W2" is historical, not current RECONCILE text
 
@@ -104,7 +104,7 @@ grounding BLOCK for in-repo BUILD targets.
   `skills/mod-check/SKILL.md`, `skills/wavves/playbooks/proceed.md`,
   `skills/wavves/playbooks/check.md`, `skills/wavves/playbooks/charter-lane.md`,
   `examples/usage.md`, `wavves/registry.yml`.
-- Foreign RWC→options-unlock sequence remasures for illustration.
+- Foreign RWC→options-unlock sequence remeasures for illustration.
 
 ## Commit file list (orchestrator)
 

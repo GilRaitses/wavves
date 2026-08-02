@@ -3,7 +3,7 @@
 - **Built:** 2026-07-23 (America/New_York)
 - **Trigger:** `¯\_(ツ)_/¯` + all-standing scope (“all queued lanes to the end”)
 - **Scope formula:** INDEX `active_lanes` non-completed + `feature_requests.open` ready-for-mod-check / revised-after-PAS (this repo only)
-- **Remasure base:** `wavves/INDEX.md`, `wavves/registry.yml`, lane homes, `feature-requests/README.md`
+- **Remeasure base:** `wavves/INDEX.md`, `wavves/registry.yml`, lane homes, `feature-requests/README.md`
 - **repo_state_verified_against:** `26ad2d2afbb9196f2b690000f6a50f1cabfe20e5` (tip at inventory)
 
 | id | source_path | class | proposed_action | result | land_hash / gate_path | blocked_reason |

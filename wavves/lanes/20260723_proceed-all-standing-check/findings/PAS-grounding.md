@@ -17,7 +17,7 @@ git: none performed
 
 **REVISE.** Core product-surface claims match the live proceed / wavves seams.
 One FR evidence pin (`wavves fd12cb8` for set-key docs handoff) does not
-remasure against the sibling handoff’s own recorded hashes. Fix that pin
+remeasure against the sibling handoff’s own recorded hashes. Fix that pin
 (or drop it) before BUILD charter treats originating evidence as closed.
 
 Foreign pax/klosr/IWD paths are originating-session illustration only; BUILD
@@ -43,11 +43,11 @@ paths are not a grounding BLOCK.
 | Proposed persist path `wavves/standing/<…>.md` | directory `wavves/standing/` | n/a (proposed; absent today) |
 | Proposed fail ids `PROC-PROCEED-*` | `wavves/failure_log.yml` (empty list) | n/a (proposed) |
 | Eval/fixture acceptance pattern available in-repo | `evals/README.md` + `evals/fixtures/` | yes |
-| pax `4a7d6c91d`, pax `.cursor/rules/shrug-means-proceed.mdc`, `dispatch-w27.md`, `findings/IWD-V3-TRAIN-BUSY-OPERATOR-GATE.md`, klosr remasure | foreign / originating illustration (dispatch: do not require under wavves_build) | n/a (illustration) |
+| pax `4a7d6c91d`, pax `.cursor/rules/shrug-means-proceed.mdc`, `dispatch-w27.md`, `findings/IWD-V3-TRAIN-BUSY-OPERATOR-GATE.md`, klosr remeasure | foreign / originating illustration (dispatch: do not require under wavves_build) | n/a (illustration) |
 
 ## Named gaps
 
-### GAP-PAS-G1 — FR evidence pin `fd12cb8` does not remasure
+### GAP-PAS-G1 — FR evidence pin `fd12cb8` does not remeasure
 
 - **severity:** REVISE (evidence honesty)
 - **claim:** `evidence_verified_against: … wavves fd12cb8 (set-key docs handoff)`
@@ -55,7 +55,7 @@ paths are not a grounding BLOCK.
   `wavves/handoffs/20260723_set-key_docs_version_bump.md` (header
   `repo_state_verified_against: 17539cb9…`; paste “handoff land e437b9b;
   feature code 17539cb”)
-- **note:** No in-repo text cites `fd12cb8`. Sibling handoff’s remasureable
+- **note:** No in-repo text cites `fd12cb8`. Sibling handoff’s remeasureable
   pins are `17539cb` (feature) and `e437b9b` (handoff land). Git not run
   (dispatch ban); cannot resolve short hash via history. O0 should replace
   or drop `fd12cb8` so originating evidence matches disk.
@@ -63,7 +63,7 @@ paths are not a grounding BLOCK.
 ### GAP-PAS-G2 — PS-03 `registry.yml` path shorthand
 
 - **severity:** note (precision; non-blocking if BUILD scopes to wavves home)
-- **claim:** inventory remasures `registry.yml` status + `active_dispatch`
+- **claim:** inventory remeasures `registry.yml` status + `active_dispatch`
 - **evidence_path:** `feature-requests/20260723_proceed-all-standing.md` (PS-03);
   live file `wavves/registry.yml`
 - **note:** Repo-root relative path is `wavves/registry.yml`. Skill-relative
@@ -81,7 +81,7 @@ paths are not a grounding BLOCK.
   optional leaf, `wavves/standing/` or lane `standing.md`, and evals
   fixtures for class behavior. Acceptance does not require those foreign
   files to exist under wavves_build. Flag only: do not charter BUILD steps
-  that open pax/klosr paths as mandatory remasure.
+  that open pax/klosr paths as mandatory remeasure.
 
 ## Hydration opened (must-cite list)
 

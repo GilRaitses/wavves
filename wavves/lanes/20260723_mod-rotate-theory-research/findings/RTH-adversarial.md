@@ -73,7 +73,7 @@ has no rotation file, INDEX says `none`, and identity stamps disagree.
 
 **Evidence:**
 
-1. `wavves/rotations/` — directory exists, **zero files** (remasured this
+1. `wavves/rotations/` — directory exists, **zero files** (remeasured this
    charge).
 
 2. `wavves/INDEX.md` (lines 3–4):

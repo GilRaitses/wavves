@@ -165,7 +165,7 @@ Bootstrap gap (measured, not assumed empty forever): RTH waveset notes `wavves/r
 
 ---
 
-## 6. Citation map (paths remasured this charge)
+## 6. Citation map (paths remeasured this charge)
 
 | claim | path |
 |---|---|
@@ -184,7 +184,7 @@ Bootstrap gap (measured, not assumed empty forever): RTH waveset notes `wavves/r
 ## 7. Gaps (explicit)
 
 1. **Product rename vs live AGENTS wording.** WOF locks product names “wave orchestrator” / “charge worker”; live `wavves/AGENTS.md` §2 still says “Dispatched orchestrators/runners” / “Wave subagents.” Topology is the same; vocabulary not yet BUILD-synced (FR status: revised-after-WOF, awaiting re-check or `/mod-decide`).
-2. **Empty `rotations/`.** No live A-snapshot to remasure section shape against; skill text is the authority for required fields.
+2. **Empty `rotations/`.** No live A-snapshot to remeasure section shape against; skill text is the authority for required fields.
 3. **“Star graph” is house framing.** Waveset root constraint states the house names a star-shaped dispatch graph; README visitor prose does not use hub/spoke vocabulary. Treat “star” as research formalization of existing role+dispatch rules, not a shipped theorem.
 4. **No claim that leave-acts are already installed in `skills/charter/SKILL.md`.** They are locked in the WOF FR for BUILD; this memo cites the FR as the leave-act authority.
 

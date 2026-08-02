@@ -46,7 +46,7 @@ blocked reason, which are not in the schema tuple.
 | field set | four names | types, required vs optional, max lengths |
 | `action` | listed | proposed vs taken; closed vocab vs free text |
 | post-move fields | return card only | whether queue file gains `result`, `land_hash`, `gate_path`, `blocked_reason` |
-| ordering | "Ordered list" | remasure sort key (registry order? operator paste? severity?) |
+| ordering | "Ordered list" | remeasure sort key (registry order? operator paste? severity?) |
 | persistence home | two alternatives with "or" | single locked path; create-dir rule; overwrite vs append; one file per pass vs per day |
 | empty inventory | — | write empty queue + stop, or refuse mode |
 
@@ -159,7 +159,7 @@ is not named as a seam for standing inventory.
 2. **Multi-repo workspace:** whether standing inventory may cross sibling
    repos from a `.code-workspace`, or stays single-repo (invoking
    `wavves/` home only). Silent assumption today: single-repo.
-3. **How "current conversation's program" is remasured** when operator did
+3. **How "current conversation's program" is remeasured** when operator did
    not name a lane this turn.
 
 **Why blocking:** BUILD agents will invent scope. Multi-repo invent risks
@@ -229,9 +229,9 @@ dispatch; state once under Acceptance or Non-goals.
 
 ## Silent assumptions (call out)
 
-1. "Current conversation's program / named lanes" is remasureable from disk
+1. "Current conversation's program / named lanes" is remeasureable from disk
    (INDEX/registry) without chat memory — unstated algorithm.
-2. Operator paste list is optional enrichment; disk remasure always wins
+2. Operator paste list is optional enrichment; disk remeasure always wins
    (stated directionally in PS-03; not AC).
 3. `commit_land` under all-standing inherits the same operator-ask bar as
    proceed.md step 2 (partially stated; file list ownership unset).

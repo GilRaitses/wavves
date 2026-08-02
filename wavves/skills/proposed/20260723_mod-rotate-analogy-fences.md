@@ -73,7 +73,7 @@ pointing visitors at `wavves/AGENTS.md` + INDEX for current measured state.
 ## Related seam (pointer; not this install)
 
 `feature-requests/20260723_wave-context-kv-cache.md` — durable checkpoint /
-standing remasure / rotation hydration as a **context cache** analogy
+standing remeasure / rotation hydration as a **context cache** analogy
 (new notify/proceed/hydrate step = Q against cached K/V). **Not**
 transformer KV isomorphism. **Not** RotatE. Bind first-rotation fence
 (KV-03) when that FR is decided/BUILT.

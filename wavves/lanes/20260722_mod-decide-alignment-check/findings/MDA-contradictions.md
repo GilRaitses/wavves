@@ -67,7 +67,7 @@
 |---|---|
 | **Claim A** | Risks: keep grain labels generic (fixtures-rail / coverage-build / claim-surface / park). |
 | **Claim B path** | DA-03 / DA-07 prose: "supersede Midtown N", "coverage BUILD", IWD admit vocabulary in fail fixtures. |
-| **Conflict** | Eval acceptance tied to Midtown/IWD nouns fights the anti-overfit risk. Consumer repos without Midtown will not remasure those fixtures as written. |
+| **Conflict** | Eval acceptance tied to Midtown/IWD nouns fights the anti-overfit risk. Consumer repos without Midtown will not remeasure those fixtures as written. |
 | **Severity** | medium |
 | **Lean** | REVISE — fixtures use generic standing-intent strings; IWD names stay in FR Originating evidence only. |
 

@@ -13,7 +13,7 @@ skill_edits: none
 model: cursor-grok-4.5-high-fast
 ```
 
-## Remasure (live disk at write)
+## Remeasure (live disk at write)
 
 | fact | measured |
 |---|---|
@@ -58,7 +58,7 @@ WOF/PAS/mod-rotate evidence; bans and non-goals are stated.
   stale only.
 - **Mode:** Operator says all-standing; agent invents rows from transcript,
   writes a standing file after the fact, and cites KV-02 "standing file is
-  the program cache" as if invent-then-persist were remasure.
+  the program cache" as if invent-then-persist were remeasure.
 - **Gap:** Artifact binds KV standing FAIL to PAS **stale**, not to
   **chat-inventory**. A pass that invents then immediately writes a fresh
   file can dodge `PROC-KV-STANDING-STALE` while still violating PAS chat
@@ -66,7 +66,7 @@ WOF/PAS/mod-rotate evidence; bans and non-goals are stated.
 
 ### FM-KVC-03 — hydrate / continuity claim with empty rotations
 - **Severity:** high (live today)
-- **Evidence:** Remasure above; RTH-SYNTHESIS fact row; artifact
+- **Evidence:** Remeasure above; RTH-SYNTHESIS fact row; artifact
   `PROC-KV-ROTATION-EMPTY-CLAIM`; mod-rotate: "Follow the section shape of
   the newest existing file in `rotations/`" with no empty-dir branch in the
   installed skill.
@@ -102,7 +102,7 @@ WOF/PAS/mod-rotate evidence; bans and non-goals are stated.
   2. Eval emits only `PROC-KV-*` → WOF mechanical suite does not see the
      yield-without-checkpoint case (split-brain).
   3. Alias treated as "either id satisfies" without requiring the checkpoint
-     path remasure → string swap without behavior.
+     path remeasure → string swap without behavior.
 - **Need before BUILD:** one sentence lock: dual-bind (both ids) vs rename
   (single canonical) vs CTX-KV eval asserts WOF id only.
 
@@ -110,7 +110,7 @@ WOF/PAS/mod-rotate evidence; bans and non-goals are stated.
 - **Severity:** high for BUILD sequencing; medium for check→decide
 - **Evidence:** Artifact open calls CACHE-NAME, WOF-BIND, ROTATION-TEMPLATE;
   INDEX: WOF / WOFB **completed/shipped**; PAS revised-after-PAS, PASB
-  chartered; artifact Next: BUILD after WOF/PAS land status remasured.
+  chartered; artifact Next: BUILD after WOF/PAS land status remeasured.
 - **Modes:**
   - **WOF-BIND** defaulted to "land inside WOF BUILD" after WOF already
     shipped → silent reopen or no-op land that claims seam closed.
@@ -131,11 +131,11 @@ WOF/PAS/mod-rotate evidence; bans and non-goals are stated.
 |---|---|---|
 | yield-without-checkpoint FAIL | pattern exists in WOF | CTX-KV suite must exist or explicitly reuse WOF fixture + bind rule (FM-KVC-05) |
 | resume-with-checkpoint PASS | blocked until schema lock | KV-01 lists fields; no fixture schema file / required keys table |
-| standing stale FAIL | pattern named in PAS | must remasure live registry/dispatch; chat-inventory case not listed in KV-05 |
+| standing stale FAIL | pattern named in PAS | must remeasure live registry/dispatch; chat-inventory case not listed in KV-05 |
 | empty rotations + hydrate-claim FAIL | mechanical | path: INDEX `current_rotation: none` + empty dir + claim string |
 | RotatE / isomorphism phrasing FAIL | string/review | easy to soft-pass if only one banned phrase listed; need closed phrase list + analogy-required positive case |
 
-- **Happy-path-only risk:** Suite ships only PASS resume + PASS remasure;
+- **Happy-path-only risk:** Suite ships only PASS resume + PASS remeasure;
   omits chat-inventory, alias dual-bind, and empty-rotation claim.
 
 ### FM-KVC-08 — tip / checkpoint stale at resume (secondary)
@@ -143,14 +143,14 @@ WOF/PAS/mod-rotate evidence; bans and non-goals are stated.
 - **Evidence:** KV-01 wants tip hash in checkpoint; WOF resume is
   notify-driven; AGENTS/cross-actor: live repo state governs.
 - **Mode:** Resume loads checkpoint tip from yield time; HEAD moved; charge
-  returns applied against wrong tip without remasure → false "cache hit."
-- **Gap:** Artifact does not say tip mismatch → remasure or FAIL before
+  returns applied against wrong tip without remeasure → false "cache hit."
+- **Gap:** Artifact does not say tip mismatch → remeasure or FAIL before
   integrate.
 
 ### FM-KVC-09 — BUILD expands into PUO/IPB/MDA or auto-BUILD WOF/PAS
 - **Severity:** medium (scope poison)
 - **Evidence:** Artifact non-goals; waveset bans; Next line mentions WOF/PAS
-  land remasure (dependency check, not this folder BUILD).
+  land remeasure (dependency check, not this folder BUILD).
 - **Mode:** Charter author treats CTX-KV as umbrella and edits PUO/IPB/MDA
   or reopens shipped WOF skill text beyond checkpoint bind. Out of scope for
   this lens to grade those FRs; flag only as BUILD footgun if GO wrongly
@@ -159,14 +159,14 @@ WOF/PAS/mod-rotate evidence; bans and non-goals are stated.
 ## Unsafe defaults / happy-path gaps (rollup)
 
 1. Standing file treated as always-valid cache without invalidate+rewrite
-   remasure (PAS stale).
+   remeasure (PAS stale).
 2. Chat transcript treated as K/V when checkpoint / standing / rotation
    artifacts missing.
 3. "Newest rotation file" hydration with empty `rotations/` (installed
    mod-rotate).
 4. HF blog patterns copied into product acceptance.
 5. Alias "bind" satisfied by renaming fail strings without checkpoint or
-   remasure behavior.
+   remeasure behavior.
 6. WOF-BIND assumed closed because WOF shipped, without a separate CTX-KV
    land or explicit bind patch list.
 

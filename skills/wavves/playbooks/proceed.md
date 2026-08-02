@@ -65,13 +65,13 @@ transcript search (`PROC-PROCEED-CHAT-INVENTORY`).
 
 | id | fail condition |
 |:---|:---|
-| `PROC-PROCEED-NO-STANDING-QUEUE` | all-standing runs without a remasured, persisted standing inventory + class per item |
+| `PROC-PROCEED-NO-STANDING-QUEUE` | all-standing runs without a remeasured, persisted standing inventory + class per item |
 | `PROC-PROCEED-FORCE-BLOCKED-LOCK` | pass reopens/invents past a hard lock instead of an operator_gate artifact |
 | `PROC-PROCEED-SHRUG-WIDEN` | bare shrug / bare `/shrug` (or fuzzy widen) executed as all-standing |
 | `PROC-PROCEED-COMMIT-WITHOUT-AUTH` | `commit` land without this-turn authorize + `files:` list (AUTH-10) |
 | `PROC-PROCEED-DISPATCH-STORM` | multiple background dispatches ignoring `active_dispatch` / `conflicts_with` / AUTH-05 |
-| `PROC-PROCEED-CHAT-INVENTORY` | queue rows from chat/transcript without disk remasure of `source_path` |
-| `PROC-PROCEED-STALE-QUEUE` | moves from a persisted standing file without remasure against live registry/dispatch/gates |
+| `PROC-PROCEED-CHAT-INVENTORY` | queue rows from chat/transcript without disk remeasure of `source_path` |
+| `PROC-PROCEED-STALE-QUEUE` | moves from a persisted standing file without remeasure against live registry/dispatch/gates |
 | `PROC-PROCEED-SILENT-SKIP-LOCK` | hard lock classified `skip_done` / `out_of_scope` with no gate artifact path |
 
 ### Step 0 — Standing queue (persist before any move)
@@ -83,11 +83,11 @@ transcript search (`PROC-PROCEED-CHAT-INVENTORY`).
           (b) active lanes in wavves/INDEX.md for this repo only.
           Forbidden: registry-wide crawl of every lane without named scope;
           transcript search as inventory source.
-- [ ] 0b. Remasure inside scope only against live disk:
+- [ ] 0b. Remeasure inside scope only against live disk:
           wavves/registry.yml status + active_dispatch; lane dispatch*.md /
           waveset open rows; named *_OPERATOR_GATE.md / lock ABSENT honesty;
           open FRs/handoffs named in the trigger (candidates only until
-          source_path remasures on disk). Operator paste list = candidates;
+          source_path remeasures on disk). Operator paste list = candidates;
           unverified names → class operator_gate
           ("unverified standing claim"), never dispatch or commit.
 - [ ] 0c. Persist the queue ONLY at
@@ -96,7 +96,7 @@ transcript search (`PROC-PROCEED-CHAT-INVENTORY`).
           Overwrite, do not append. Every source_path must exist on disk at
           inventory time.
 - [ ] 0d. Empty inventory (no named lanes and zero INDEX active lanes, or
-          remasure yields zero rows) → write empty standing file and STOP.
+          remeasure yields zero rows) → write empty standing file and STOP.
           No moves. (SCOPE-FALLBACK = A)
 ```
 
@@ -110,7 +110,7 @@ transcript search (`PROC-PROCEED-CHAT-INVENTORY`).
 order inside scope.
 
 Running without this persisted file → `PROC-PROCEED-NO-STANDING-QUEUE`.
-Moving from a prior standing file without remasure → `PROC-PROCEED-STALE-QUEUE`.
+Moving from a prior standing file without remeasure → `PROC-PROCEED-STALE-QUEUE`.
 
 ### Step 1 — Classify full queue first (PS-04)
 

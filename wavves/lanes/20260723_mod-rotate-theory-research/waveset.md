@@ -44,7 +44,7 @@ dispatch graph, but has no research memo separating **isomorphism** from
 3. Do not claim RotatE / complex-space KG embedding applies to mod-rotate.
 4. Analogies must be labeled **analogy** unless a rule is shown to match a
    cited formal property (term monotonicity, stale-generation fencing, etc.).
-5. Foreign repos (pax, etc.) are illustration only; remasureable pins required.
+5. Foreign repos (pax, etc.) are illustration only; remeasureable pins required.
 6. Model for judgment lenses: `cursor-grok-4.5-high-fast`. No Claude/Composer
    fallback for RTH waves.
 7. Git ban for orch and runners. O0 lands commits only on operator ask.
@@ -80,7 +80,7 @@ honesty/overclaim that would poison synthesis.
 ### RTH-ACCEPT — research accept (GATED)
 
 Independent of synthesis author. Runnable bar (no product Proof):
-- All five W1 files exist and cite remasureable paths
+- All five W1 files exist and cite remeasureable paths
 - Synthesis does not assert RotatE or silent skill edits
 - Capture `gate-captures/RTH-ACCEPT.md` with checklist PASS/FAIL
 

@@ -53,7 +53,7 @@ invent. Do not collapse them.
 **Fail ids:** `PROC-DECIDE-HOLD-NO-EXIT`, `PROC-DECIDE-EXIT-CIRCULAR` (missing)
 
 DA-01 requires an exit line. It does not require the exit to be a concrete
-artifact, wave id, or remasureable PASS. An implementer can lean Hold with
+artifact, wave id, or remeasureable PASS. An implementer can lean Hold with
 `exit_criteria: more hygiene / re-check later` and claim DA-01 satisfied.
 That is the indefinite-hold loop with a filled template.
 
@@ -73,7 +73,7 @@ at another decide turn or unspecified hygiene. Fixture: Hold +
 **Fail ids:** `PROC-DECIDE-ALIGN-THEATER` (missing)
 
 DA-02 asks for 2–4 bullets "from waveset/charter/prior locks (verbatim
-cites)" then per-option tags. No rule that cites remasure on disk this
+cites)" then per-option tags. No rule that cites remeasure on disk this
 turn. Agent can invent "standing intent: ship coverage" from chat and tag
 Hold as `defers`.
 
@@ -212,7 +212,7 @@ without exit cannot appear.
 **Severity:** non-blocking (dispatch: illustration)  
 
 If BUILD hard-codes pax IWD paths into fixtures or skill examples as
-required remasure, consumer clones break.
+required remeasure, consumer clones break.
 
 **Revise ask:** Fixtures synthetic; Originating evidence stays FR-only.
 

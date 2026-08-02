@@ -23,7 +23,7 @@ MISSION:
     - already PASS → skip_done with cite
     - bare shrug with leftover chat → AUTH-10 only (PROC-PROCEED-SHRUG-WIDEN if widened)
     - commit without files: → FAIL (PROC-PROCEED-COMMIT-WITHOUT-AUTH)
-    - stale standing file without remasure → FAIL (PROC-PROCEED-STALE-QUEUE)
+    - stale standing file without remeasure → FAIL (PROC-PROCEED-STALE-QUEUE)
   Stdlib only. Mirror style of evals/check_wave_orchestrator_fanout.py where useful.
   Fixtures under evals/fixtures/proceed-all-standing-<case>/ with expected.md
   (+ input/trace as needed). Checker must be runnable:

@@ -26,7 +26,7 @@ O0 owns the lane verdict. This file does not grade sibling lenses.
 
 | id | Covers | Operable in FR as written? |
 |---|---|---|
-| `PROC-IP-AFTER-CUTOVER` | consume cutover / "pack shipped" PASS before hard public-surface remasure | Partial. Named; no detector; soft PASS / warn-only defeat it |
+| `PROC-IP-AFTER-CUTOVER` | consume cutover / "pack shipped" PASS before hard public-surface remeasure | Partial. Named; no detector; soft PASS / warn-only defeat it |
 
 ### Missing fail ids (needed before BUILD ACCEPT)
 
@@ -58,7 +58,7 @@ keeps a single `PASS` token will wire from that PASS.
 stamps PASS, notes "ip later." Cutover dispatch reads produce PASS, amends
 `/beta` roots. ACCEPT A6 FAIL → rollback. Same thrash.
 
-**Required revise:** Closed verdict enum. Cutover precondition remasures a
+**Required revise:** Closed verdict enum. Cutover precondition remeasures a
 durable `ip_probe` capture (`PASS`) or refuses. Fixture: produce_bytes_only
 artifact presented to cutover → FAIL (`PROC-IP-SOFTPASS-WIRE`).
 
@@ -86,7 +86,7 @@ Warn-only is non-goal (or limited to lanes that explicitly set
 
 VIB fail atoms were concrete keys (`class_defaults` numerics, AT equation
 string, combination transmittance prose). A hand-maintained checklist that
-lists "no equations" without schema/allowlist remasure can PASS while new
+lists "no equations" without schema/allowlist remeasure can PASS while new
 coeff fields ship.
 
 **Concrete BUILD footgun:** Checklist checks three banned substrings. Builder
@@ -106,7 +106,7 @@ absent from checklist text but outside allowlist → FAIL.
 
 `public_baseline_pack` pointing at a fat or wrong exemplar makes parity
 PASS meaningless. Midtown `*_20260701` worked as baseline only because it
-was already public_contract-shaped (illustration remasure on klosr tip).
+was already public_contract-shaped (illustration remeasure on klosr tip).
 
 **Concrete BUILD footgun:** Charter sets baseline = previous island fat
 manifest. Probe "parity" PASS. Strip doctrine bypassed.
@@ -165,12 +165,12 @@ manifests, then cutover on stale PASS.
 rewriting manifest with coeffs. Cutover uses T0 capture. ACCEPT FAIL.
 
 **Required revise:** Probe capture must hash the exact manifest/asset set
-cutover will wire; cutover remasures hash match or re-runs probe. Stale
+cutover will wire; cutover remeasures hash match or re-runs probe. Stale
 capture → FAIL.
 
 ## Non-blocking failure modes
 
-### FM-8 — ACCEPT remasure removed "to avoid duplication"
+### FM-8 — ACCEPT remeasure removed "to avoid duplication"
 
 **Severity:** non-blocking (Non-goals already forbid)  
 
@@ -178,7 +178,7 @@ Pressure to delete ACCEPT A6-class checks once pre-wire exists. Defense in
 depth is the point.
 
 **Revise ask:** Keep Non-goals bullet; Acceptance requires both pre-wire
-probe fixture and an ACCEPT-still-remasures docs/fixture note.
+probe fixture and an ACCEPT-still-remeasures docs/fixture note.
 
 ### FM-9 — Scope creep to all public assets without cost model
 

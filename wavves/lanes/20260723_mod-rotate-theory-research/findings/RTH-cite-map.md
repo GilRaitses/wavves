@@ -1,6 +1,6 @@
 # RTH-cite-map — house claims on mod-rotate / term identity / handoff / star
 
-Tip remasured against charter pin: `7aecdfb50d8d6fc53fa00a08b021e4cd9926aa67` (local tip at charter; this charge did not run git).
+Tip remeasured against charter pin: `7aecdfb50d8d6fc53fa00a08b021e4cd9926aa67` (local tip at charter; this charge did not run git).
 Charge: RTH-W1a. Read-only inventory. No synthesis judgment beyond quote + assertion.
 
 Format per claim: **path** | short quote | asserts.

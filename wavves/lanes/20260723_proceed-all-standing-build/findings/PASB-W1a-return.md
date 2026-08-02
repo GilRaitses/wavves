@@ -26,7 +26,7 @@ Mode fork at top of `proceed.md`:
    `/wavves proceed`, `proceed as recommended`, `ship it`, bare shrug, bare
    `/shrug`.
 2. **proceed-all-standing** — Step 0 disk inventory + persist under
-   `wavves/standing/` only; scope-then-remasure (PS-03); classify-full-queue
+   `wavves/standing/` only; scope-then-remeasure (PS-03); classify-full-queue
    then move (PS-04); gate-continue (PS-05); closed triggers (PS-06); return
    card from standing file (PS-09); fail-id table from FR.
 
@@ -38,7 +38,7 @@ Mode fork at top of `proceed.md`:
 | SCOPE-FALLBACK = A | Empty inventory → write empty `wavves/standing/<date>_<label>.md` and stop (no moves). |
 | Bare shrug / bare `/shrug` never widen | Mode fork + PS-06 closed triggers; `PROC-PROCEED-SHRUG-WIDEN` named. "the rest" dropped as widen. |
 | Standing persist only under `wavves/standing/` | Step 0c path lock; create dir if needed; one file per pass; overwrite. |
-| Scope-then-remasure / gate-continue / closed triggers | Steps 0a–0b, 3a–3c, trigger table. |
+| Scope-then-remeasure / gate-continue / closed triggers | Steps 0a–0b, 3a–3c, trigger table. |
 
 ## Residual risks
 

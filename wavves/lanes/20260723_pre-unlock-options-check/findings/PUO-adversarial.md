@@ -16,7 +16,7 @@ git_actions: none
 The FR names a real false-green (`PROC-UNLOCK-NO-CHECK`): reconcile says
 `unlock W2` while charter is stale, and AUTH-05 / proceed do not force a
 check. As written, BUILD can ship flag prose + a proceed sentence and still
-leave the burn open: statuses are not remasureable, waive/heuristic
+leave the burn open: statuses are not remeasureable, waive/heuristic
 precedence is soft, sync-by-mtime is forgeable, and there is no mechanical
 detector. Happy-path GO→unlock works; the originating RLW path still slips
 through.
@@ -66,7 +66,7 @@ never runs. Fixture that only greps proceed.md for "mod-check" greens.
 `pre_unlock_mod_check: required` and clear signal absent. Proceed is not
 the only door.
 
-### FM-2 — Status strings never remasure → always "no sibling clear"
+### FM-2 — Status strings never remeasure → always "no sibling clear"
 
 **Class:** unrunnable gate / or silent skip  
 **Severity:** blocking  
@@ -78,7 +78,7 @@ route-to-check loop, or (b) match on verdict prose ("Verdict: **GO**")
 without registry sync → false clear.
 
 **Required revise:** Closed status enum + O0 transition rules; proceed
-remasures registry fields, not chat.
+remeasures registry fields, not chat.
 
 ### FM-3 — Mtime sync false clear after REVISE theater
 

@@ -11,7 +11,7 @@ model: cursor-grok-4.5-high-fast
 
 Read-only completeness pass on the context/KV-cache FR before decide/BUILD.
 Compared sketch rows KV-01…06, fail ids, acceptance, open calls, and non-goals
-against WOF resume/checkpoint, PAS standing/remasure, and mod-rotate +
+against WOF resume/checkpoint, PAS standing/remeasure, and mod-rotate +
 wavves-init §4–5 bootstrap fences. Did not grade other lenses.
 
 ## Inventory
@@ -26,7 +26,7 @@ wavves-init §4–5 bootstrap fences. Did not grade other lenses.
 | CMP-KVC-04 | Open calls parked | CACHE-NAME, WOF-BIND, ROTATION-TEMPLATE for `/mod-decide` |
 | CMP-KVC-05 | KV-05 harness path named | `evals/check_wave_context_kv_cache.py` |
 | CMP-KVC-06 | KV-05 case themes named | yield-no-checkpoint FAIL; resume-with-checkpoint PASS; standing stale FAIL; empty-rotations hydrate-claim FAIL; isomorphism phrasing FAIL |
-| CMP-KVC-07 | Next sequence | mod-check → mod-decide → charter BUILD after WOF/PAS remasure |
+| CMP-KVC-07 | Next sequence | mod-check → mod-decide → charter BUILD after WOF/PAS remeasure |
 
 ### Missing or under-specified (BUILD readiness gaps)
 
@@ -47,7 +47,7 @@ wavves-init §4–5 bootstrap fences. Did not grade other lenses.
 | AC sketch # | stated | gap | CMP id |
 |---|---|---|---|
 | 1 | Checkpoint schema named + eval fixture | Names four ideas (charge table, pending worker ids, next integrate step, tip hash). WOF resume lock has first three only; **tip hash not in WOF v0**. No required YAML/markdown field names, charge-table row shape, or “rollup substitutes for checkpoint” rule for `PROC-KV-RESUME-NO-CACHE`. | CMP-KVC-10, CMP-KVC-15 |
-| 2 | Standing remasure = invalidation; stale FAIL fixture | Does not cite PAS path `wavves/standing/<YYYYMMDD>_<label>.md` or PS-02 row fields. No remasure checklist (registry/`active_dispatch`, dispatch/waveset, gate honesty, tip or clock stamp). No AC for rewrite-before-move as a distinct PASS fixture. | CMP-KVC-11 |
+| 2 | Standing remeasure = invalidation; stale FAIL fixture | Does not cite PAS path `wavves/standing/<YYYYMMDD>_<label>.md` or PS-02 row fields. No remeasure checklist (registry/`active_dispatch`, dispatch/waveset, gate honesty, tip or clock stamp). No AC for rewrite-before-move as a distinct PASS fixture. | CMP-KVC-11 |
 | 3 | Bootstrap/first-rotation fence; empty-rotations FAIL | KV-03 says skill “writes r01 from template” while open call ROTATION-TEMPLATE is unresolved (file vs skill prose only). mod-rotate today says follow newest rotations/ file; empty dir has no shape. wavves-init §4–5 bootstrap assigns O0.R1 in step-log but does not require a first rotation file; live INDEX has `current_rotation: none`. INDEX match rule in KV-03 has no AC row. | CMP-KVC-12, CMP-KVC-18 |
 | 4 | Analogy label required in visitor “KV cache” sentences | No fixture named for missing-analogy FAIL (distinct from isomorphism FAIL). CACHE-NAME still open. | CMP-KVC-13, CMP-KVC-15 |
 | 5 | PUO/IPB/MDA untouched | Covered as non-goal; no mechanical check stated (acceptable if BUILD file allowlist later). | CMP-KVC-03 |
@@ -74,11 +74,11 @@ WOF pattern to match: `evals/fixtures/wave-orch-fanout-*/` with `trace.json` + `
 |---|---|---|---|
 | yield without checkpoint → FAIL | yes | no | no — CMP-KVC-13 |
 | resume with checkpoint → PASS | yes | no | no |
-| standing stale without remasure → FAIL | yes | no | no |
+| standing stale without remeasure → FAIL | yes | no | no |
 | empty rotations + hydrate claim → FAIL | yes | no | no |
 | RotatE / isomorphism phrasing → FAIL | yes | no | no |
 | resume without checkpoint/rollup → `PROC-KV-RESUME-NO-CACHE` | fail table only | no | no — CMP-KVC-13 |
-| standing remasure-then-move → PASS | no | no | no — CMP-KVC-11 |
+| standing remeasure-then-move → PASS | no | no | no — CMP-KVC-11 |
 | chat-invented standing inventory → FAIL | problem cites PAS chat-inventory; KV-05 omits | no | no |
 | INDEX `current_rotation` mismatch vs newest file → FAIL | KV-03 implies | no | no — CMP-KVC-18 |
 | visitor “KV cache” without analogy label → FAIL | AC #4 | no | no |
@@ -88,7 +88,7 @@ WOF pattern to match: `evals/fixtures/wave-orch-fanout-*/` with `trace.json` + `
 ## Unowned edges / silent assumptions
 
 1. **Tip hash** added in KV-01 without WOF schema amend or decide call (CMP-KVC-10, CMP-KVC-18).
-2. **Skill patch owners** for charter leave-acts, proceed remasure wording, mod-rotate empty-dir fence, wavves-init INDEX match: no KV row ownership matrix (CMP-KVC-17).
+2. **Skill patch owners** for charter leave-acts, proceed remeasure wording, mod-rotate empty-dir fence, wavves-init INDEX match: no KV row ownership matrix (CMP-KVC-17).
 3. **Optional thin playbook** in product surface header; no sketch id (CMP-KVC-17).
 4. **KV-06** “README tracking or charter EXECUTION_WIRING”: two homes, no choose-one; no AC checkbox (CMP-KVC-14).
 5. **Alias/bind** of `PROC-KV-*` to WOF/PAS fail ids: dual emission vs rename-only not specified for harness (CMP-KVC-13).

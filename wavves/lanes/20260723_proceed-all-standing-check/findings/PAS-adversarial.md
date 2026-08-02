@@ -26,7 +26,7 @@ O0 owns the lane verdict. This file does not grade sibling lenses.
 
 | id | Covers | Operable in FR as written? |
 |---|---|---|
-| `PROC-PROCEED-NO-STANDING-QUEUE` | all-standing runs without remasured, persisted standing inventory + class per item | Partial. Named; no detector; PS-03 chat clauses defeat it |
+| `PROC-PROCEED-NO-STANDING-QUEUE` | all-standing runs without remeasured, persisted standing inventory + class per item | Partial. Named; no detector; PS-03 chat clauses defeat it |
 | `PROC-PROCEED-FORCE-BLOCKED-LOCK` | reopen/invent past hard lock instead of operator_gate artifact | Partial. Named + one fixture sketch; silent skip / out_of_scope not covered |
 
 ### Missing fail ids (needed before BUILD ACCEPT)
@@ -36,8 +36,8 @@ O0 owns the lane verdict. This file does not grade sibling lenses.
 | `PROC-PROCEED-SHRUG-WIDEN` | Bare shrug (or shrug + fuzzy "the rest" without explicit all-standing scope) executed as proceed-all-standing |
 | `PROC-PROCEED-COMMIT-WITHOUT-AUTH` | `commit_land` runs without this-turn operator authorize for that land (or explicit AUTH-10 commit row) |
 | `PROC-PROCEED-DISPATCH-STORM` | Multiple background dispatches in one pass ignoring `active_dispatch`, `conflicts_with`, or AUTH-05 |
-| `PROC-PROCEED-CHAT-INVENTORY` | Standing items taken from chat/transcript without disk remasure of `source_path` |
-| `PROC-PROCEED-STALE-QUEUE` | Moves executed from a persisted standing file without remasure against live registry/dispatch/gates |
+| `PROC-PROCEED-CHAT-INVENTORY` | Standing items taken from chat/transcript without disk remeasure of `source_path` |
+| `PROC-PROCEED-STALE-QUEUE` | Moves executed from a persisted standing file without remeasure against live registry/dispatch/gates |
 | `PROC-PROCEED-SILENT-SKIP-LOCK` | Hard lock classified `skip_done` / `out_of_scope` with no gate artifact path |
 
 `PROC-PROCEED-FORCE-BLOCKED-LOCK` should stay for active force/unlock.
@@ -68,11 +68,11 @@ paths on disk.
 **Concrete BUILD footgun:** Agent sees "queue all standing and move" after
 a long IWD chat, invents four items from memory, writes
 `wavves/standing/20260723_iwd.md`, dispatches W27, commits set-key docs.
-No remasure of `registry.yml` / gate files. Fixture for
+No remeasure of `registry.yml` / gate files. Fixture for
 `PROC-PROCEED-NO-STANDING-QUEUE` greens if it only checks "standing file
 exists."
 
-**Required revise:** Every queue row must cite a remasured `source_path`
+**Required revise:** Every queue row must cite a remeasured `source_path`
 that exists on disk at inventory time. Operator-named items are candidates
 only; unverified names become `operator_gate` ("unverified standing claim"),
 never `dispatch` / `commit_land`. Lock scope to named lane codes /
@@ -156,7 +156,7 @@ PS-04: every `dispatch` → background only; do not poll. No rule for:
 Agent fires five background orchestrators. Two share a findings tree or
 repo branch. Returns poison each other; O0 reconciles fiction.
 
-**Required revise:** Before each dispatch: remasure `active_dispatch`,
+**Required revise:** Before each dispatch: remeasure `active_dispatch`,
 conflicts, AUTH-05 if mod-decide lane. Cap or serialize when >1 movable
 dispatch; extras stay queued with reason. Fixture: lane with
 `active_dispatch: dispatch.md` already set → must not re-dispatch
@@ -205,7 +205,7 @@ eval/fixture behaviors + README row + mod-check GO. No named harness:
   `check_paragraph_tunnel.py` / `check_proof_before_accept.py`
 - if fixtures land under `evals/run_fixtures.py`, PASS only means lens
   keywords survive (evals/README known limitation)
-- no schema check that standing queue rows have remasured `source_path`
+- no schema check that standing queue rows have remeasured `source_path`
 - no check that bare-shrug path still binds to AUTH-10 only
 
 **Concrete BUILD footgun:** Three markdown fixtures under
@@ -230,7 +230,7 @@ ACCEPT requires checker PASS, not docs-only.
 PS-02: persist under `wavves/standing/<date>_<label>.md` or lane
 `standing.md`. No rule for:
 
-- freshness (written when? remasured when?)
+- freshness (written when? remeasured when?)
 - which file wins if both paths exist
 - moves using yesterday's standing file after registry changed
 - agent editing the standing file to reclassify a lock as `skip_done`
@@ -245,7 +245,7 @@ wave is re-dispatched; a new gate is missing from the file; lock row was
 hand-edited to `out_of_scope`.
 
 **Required revise:** Standing file is a snapshot with
-`remasured_at` + `repo_state_verified_against`. Move phase must remasure
+`remeasured_at` + `repo_state_verified_against`. Move phase must remeasure
 each row against live sources or refuse with
 `PROC-PROCEED-STALE-QUEUE`. Single canonical path (pick one in mod-decide;
 drop the or-clause). Standing file is append/audit evidence, not a writable
@@ -269,7 +269,7 @@ but the pass status is `partial` when any gate remains.
 
 **Severity:** non-blocking  
 
-PS-04: `skip_done` → one-line cite of PASS artifact. No remasure that the
+PS-04: `skip_done` → one-line cite of PASS artifact. No remeasure that the
 cited file exists and contains PASS. Agent can cite a planned filename.
 
 **Revise ask:** `skip_done` requires existing path + verbatim PASS/status
@@ -313,7 +313,7 @@ paragraph-tunnel / proof-before-accept). Slash leaf deferred.
 
 ## What would change REVISE → GO (this lens)
 
-1. Close PS-03 chat loopholes; every row remasured `source_path` or gate.
+1. Close PS-03 chat loopholes; every row remeasured `source_path` or gate.
 2. Closed triggers; fixture for `PROC-PROCEED-SHRUG-WIDEN`.
 3. `commit_land` auth equal or stricter than proceed step 2; missing id
    `PROC-PROCEED-COMMIT-WITHOUT-AUTH`.
@@ -323,7 +323,7 @@ paragraph-tunnel / proof-before-accept). Slash leaf deferred.
    gate, not movable.
 6. Mechanical eval harness with operable fail ids (not lens-keyword
    tripwire alone).
-7. Single standing persistence path + stale remasure rule
+7. Single standing persistence path + stale remeasure rule
    (`PROC-PROCEED-STALE-QUEUE`).
 
 ## Out of scope for this lens

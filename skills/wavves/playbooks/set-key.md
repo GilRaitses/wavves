@@ -8,5 +8,5 @@ Route: **wavves** (`/wavves set-key`) → leaf **set-key** (`/set-key`)
 - [ ] 3. Launch external Terminal.app with the helper (repo setkey.sh or
         skills/set-key/scripts/setkey_env.sh).
 - [ ] 4. Instruct: paste + return in that window. Do not accept paste in chat.
-- [ ] 5. Remasure set/nchars only. Never print the secret.
+- [ ] 5. Remeasure set/nchars only. Never print the secret.
 ```

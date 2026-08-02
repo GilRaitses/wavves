@@ -16,7 +16,7 @@ git: none performed
 ## Verdict lean (this lens)
 
 **REVISE.** Problem claims about O0 background / no-poll and thin wave-subagent
-wording remasure against live charter, wavves-init Roles, README, and set-key
+wording remeasure against live charter, wavves-init Roles, README, and set-key
 densify note. Sketch row OF-01 names the wrong primary seams for the existing
 three-roles definition (`skills/wavves/SKILL.md` + "README Roles"); those
 tables live in `skills/charter/SKILL.md` and the wavves-init `AGENTS.md`
@@ -31,7 +31,7 @@ Foreign pax IWD paths are illustration only; not a grounding BLOCK.
 | Artifact path exists; status `ready-for-mod-check` | `feature-requests/20260723_wave-orchestrator-fanout.md` | yes |
 | FR indexed at same status | `feature-requests/README.md` (FR-20260723-wave-orchestrator-fanout) | yes |
 | INDEX lists FR + WOF check lane | `wavves/INDEX.md` (`feature_requests.open`, `active_lanes` WOF) | yes |
-| Check pin `26ad2d2…` consistent across lane docs + registry | `waveset.md`, `README.md`, `dispatch.md`; `wavves/registry.yml` (WOF) | yes (stated; git not remasured) |
+| Check pin `26ad2d2…` consistent across lane docs + registry | `waveset.md`, `README.md`, `dispatch.md`; `wavves/registry.yml` (WOF) | yes (stated; git not remeasured) |
 | O0 dispatches background; never blocks polling | `skills/charter/SKILL.md` (roles + Dispatch mechanics); `skills/wavves-init/SKILL.md` Roles; `wavves/AGENTS.md`; playbooks `charter-lane.md` / `proceed.md` / `check.md` | yes |
 | Dispatches label paste target as orchestrator | `skills/charter/SKILL.md` (dispatch declares "this lane's orchestrator") | yes |
 | `AGENTS.md` mentions wave subagents one bounded disjoint task | `wavves/AGENTS.md`; `skills/wavves-init/SKILL.md` §2 (near-exact wording) | yes |
@@ -45,7 +45,7 @@ Foreign pax IWD paths are illustration only; not a grounding BLOCK.
 | Eval/fixture pattern available for OF-07 | `evals/README.md` + `evals/fixtures/` | yes |
 | OF-05 default `role: wave_orchestrator` paste in plugin | in-repo dispatch templates under `skills/` | n/a (proposed; pax illustration only) |
 | Lane bind / W29 role / early exit | pax `OPERATOR_ORCHESTRATION.md`, `dispatch-w29.md` (`role: wave_orchestrator`; critical path a→(b‖c)→d) | n/a (illustration; files exist under pax, not required here) |
-| `evidence_verified_against` pax `20782d2d7` | foreign pin; not remasured under wavves_build | n/a (illustration) |
+| `evidence_verified_against` pax `20782d2d7` | foreign pin; not remeasured under wavves_build | n/a (illustration) |
 
 ## Named gaps
 
@@ -87,9 +87,9 @@ Foreign pax IWD paths are illustration only; not a grounding BLOCK.
   `role: wave_orchestrator` on pax disk. BUILD acceptance must target in-repo
   skills/playbooks/AGENTS/evals, not mandatory opens of pax paths. Acceptance
   line "pax home synced when shipped" stays a ship-time operator action, not a
-  wavves_build remasure gate.
+  wavves_build remeasure gate.
 
-### GAP-WOF-G4 — Landing pin not remasured under GIT BAN
+### GAP-WOF-G4 — Landing pin not remeasured under GIT BAN
 
 - **severity:** note
 - **claim:** `landing_commit_hash` / `repo_state_verified_against`
@@ -97,7 +97,7 @@ Foreign pax IWD paths are illustration only; not a grounding BLOCK.
 - **evidence_path:** lane `waveset.md` / `README.md` / `dispatch.md`;
   `wavves/registry.yml` WOF row
 - **note:** Pins are internally consistent. This lens did not run git; O0 may
-  remasure HEAD if needed before verdict land.
+  remeasure HEAD if needed before verdict land.
 
 ## Hydration opened (must-cite list)
 

@@ -10,7 +10,7 @@ blockers:
   - id: CX-03
     wave: w2
     evidence_path: findings/PAS-contradictions.md
-    summary: Scope (conversation/named lanes) vs disk remasure / registry crawl not split
+    summary: Scope (conversation/named lanes) vs disk remeasure / registry crawl not split
   - id: CX-04
     wave: w2
     evidence_path: findings/PAS-contradictions.md
@@ -30,7 +30,7 @@ blockers:
   - id: GAP-PAS-G1
     wave: w2
     evidence_path: findings/PAS-grounding.md
-    summary: FR evidence pin fd12cb8 does not remasure against set-key handoff
+    summary: FR evidence pin fd12cb8 does not remeasure against set-key handoff
 repo_state_verified_against: 73b09bad223ed004a2e8f10443f48196cbbbf396
 reconciled_at: "2026-07-23T02:38:00-04:00"
 lenses: [PAS-grounding.md, PAS-contradictions.md, PAS-completeness.md, PAS-adversarial.md]
@@ -40,7 +40,7 @@ operator_delta_mid_wave: PS-07 /shrug leaf (operator lean ship); treat as mod-de
 ## Lane verdict
 
 **REVISE.** All four lenses agree. Intent is real and salvageable; BUILD is
-unsafe until scope/remasure, commit auth, gate-continue semantics, schema
+unsafe until scope/remeasure, commit auth, gate-continue semantics, schema
 persistence, router wiring, and runnable fail detectors are locked.
 
 Not **BLOCK**: bare-shrug non-widen and disk-queue intent are already
@@ -58,8 +58,8 @@ originating chat-inventory failure.
 
 ## Recommended FR edits (before BUILD)
 
-1. Fix or drop `fd12cb8`; pin remasureable set-key hashes (`17539cb` / `e437b9b`).
-2. Lock **scope formula** then remasure members inside scope only (CX-03 / FM-1).
+1. Fix or drop `fd12cb8`; pin remeasureable set-key hashes (`17539cb` / `e437b9b`).
+2. Lock **scope formula** then remeasure members inside scope only (CX-03 / FM-1).
 3. Map `commit_land` → AUTH-10 `commit` + `files:` or per-land operator_gate (CX-04 / FM-3).
 4. Lock gate semantics: classify-all → move non-gates → surface gates (CX-07).
 5. Freeze one standing persistence home; expand schema; `out_of_scope` move rule.

@@ -4,7 +4,7 @@ description: >-
   Open an external Terminal.app window with a paste-and-return helper that
   writes a server-only env secret (default klosr GOOGLE_MAPS_API_KEY). Use for
   /set-key, "set key", "setkey", or named secrets (SID, client secret). Never
-  prints the secret; remasures set/nchars only.
+  prints the secret; remeasures set/nchars only.
 disable-model-invocation: true
 ---
 
@@ -13,7 +13,7 @@ disable-model-invocation: true
 Operator paste helper for **server-only** env secrets. Cursor's integrated
 shell is not a TTY for hidden `read -s`, so this skill always launches
 **Terminal.app** with a small bash helper. The operator pastes the secret and
-presses return. The agent remasures presence only.
+presses return. The agent remeasures presence only.
 
 ## When to use
 
@@ -24,7 +24,7 @@ client secret".
 
 1. **External Terminal only.** Use `osascript` → Terminal.app `do script` (or
    `open -a Terminal`). Do not ask the operator to paste into the Cursor shell.
-2. **Never print, log, commit, or chat the secret value.** Remasure with
+2. **Never print, log, commit, or chat the secret value.** Remeasure with
    `set=True/False` and `nchars=N` (and path + key name) only.
 3. **Never put the secret on an agent shell argv/env/heredoc.** If the
    operator pastes a key into chat, tell them to rotate it and use Terminal
@@ -37,11 +37,11 @@ client secret".
    helper. Same paste UX.
 6. **chmod 600** on the env file after write. Do not stage `.env.local`.
 7. **Reject ≠ write.** On validation failure the helper must leave the env
-   file **UNCHANGED** and print that explicitly (otherwise remasure looks like
+   file **UNCHANGED** and print that explicitly (otherwise remeasure looks like
    "paste failed" while an old bad value remains).
 8. **Sanitize paste.** Strip bracketed-paste markers, all whitespace, and
    control chars before validate (Terminal `read -s` paste often injects these).
-9. **After paste:** remasure; report path + key name + set/nchars; hint next
+9. **After paste:** remeasure; report path + key name + set/nchars; hint next
    step only if a standing wave needs it.
 10. **Heavy follow-ups (densify, API campaigns) go to background wave
     orchestrators / charge workers** — never block the O0 thread. Canonical
@@ -57,7 +57,7 @@ client secret".
 - [ ] 2. Ensure helper exists and is executable.
 - [ ] 3. Launch Terminal.app running the helper (title the tab set-key).
 - [ ] 4. Tell the operator: paste + return in the external window.
-- [ ] 5. When they say done (or on next turn), remasure without reading the
+- [ ] 5. When they say done (or on next turn), remeasure without reading the
         value into chat. Report set/nchars only.
 ```
 
@@ -82,7 +82,7 @@ bash skills/set-key/scripts/setkey_env.sh \
   --key-name GOOGLE_MAPS_API_KEY
 ```
 
-## Remasure (never prints value)
+## Remeasure (never prints value)
 
 ```python
 from pathlib import Path

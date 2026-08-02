@@ -23,8 +23,8 @@ Synthesis obeys W1e bans. Proposed draft lives only under
 
 | # | Criterion | Result | Evidence |
 |---|---|---|---|
-| 1 | All five W1 files exist | **PASS** | Paths remasured present (below) |
-| 2 | Each W1 file cites remasureable paths | **PASS** | Cite-map + sibling citation tables bind to on-disk skills/FR/AGENTS/README/INDEX |
+| 1 | All five W1 files exist | **PASS** | Paths remeasured present (below) |
+| 2 | Each W1 file cites remeasureable paths | **PASS** | Cite-map + sibling citation tables bind to on-disk skills/FR/AGENTS/README/INDEX |
 | 3 | Synthesis exists | **PASS** | `findings/RTH-SYNTHESIS.md` |
 | 4 | Synthesis does not assert RotatE applicability | **PASS** | RotatE only as disambiguation: "not RotatE KG embedding" |
 | 5 | Synthesis does not assert silent skill edits | **PASS** | Explicit "no installed skill edits"; proposed path only |
@@ -41,11 +41,11 @@ Synthesis obeys W1e bans. Proposed draft lives only under
 
 ---
 
-## Per-file remasure
+## Per-file remeasure
 
 ### W1 deliverables (exist)
 
-| File | Exists | Remasureable path cites (spot-check) |
+| File | Exists | Remeasureable path cites (spot-check) |
 |---|---|---|
 | `findings/RTH-cite-map.md` | yes | `skills/mod-rotate/SKILL.md`, `skills/wavves-init/SKILL.md` §4–5, `wavves/AGENTS.md` §4–5, `README.md`, `skills/wavves/playbooks/pickup.md`, `skills/wavves/playbooks/rotate.md`, WOF FR; measured empty `wavves/rotations/`, INDEX `current_rotation: none` |
 | `findings/RTH-raft-terms.md` | yes | init §4 Raft bullet, README, AGENTS, mod-rotate, pickup; ANALOGY not ISOMORPHISM |
@@ -53,7 +53,7 @@ Synthesis obeys W1e bans. Proposed draft lives only under
 | `findings/RTH-star-graph.md` | yes | AGENTS §2, mod-rotate A/B, WOF leave-acts, SFR ROLE-COLLAPSE; locked sentence: state snapshot ≠ vector/KG/RotatE embedding |
 | `findings/RTH-adversarial.md` | yes | ≥3 evidenced risks (R1–R7); verdict **FAIL**; synthesis-must-NOT-say bans 1–10 |
 
-Evaluator remasured (this gate):
+Evaluator remeasured (this gate):
 
 - Cited product paths exist: mod-rotate, wavves-init, AGENTS, README, pickup, WOF FR.
 - `wavves/rotations/` empty (zero files).

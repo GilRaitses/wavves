@@ -11,7 +11,7 @@
   `evals/check_wave_orchestrator_fanout.py` (11 fixtures). FR
   `feature-requests/20260723_wave-orchestrator-fanout.md` shipped (WOFB).
 - **O0 yield-resume pickup:** mid-wave `yield_awaiting_children` is normal
-  pickup (same-turn remasure checkpoint + child outs; Task-resume or treat
+  pickup (same-turn remeasure checkpoint + child outs; Task-resume or treat
   rollup+gate as `return_to_O0`). Fail-remediation-only is for true fails /
   illegal early exit only. Locked in `wavves-init`, `charter`, `AGENTS.md`,
   and `skills/wavves/playbooks/pickup.md` (mandatory reconcile branch).
@@ -26,7 +26,7 @@
 - **`/set-key`:** leaf skill + playbook + `skills/set-key/scripts/setkey_env.sh`.
   Opens Terminal.app for paste-and-return server-only env secrets (default
   klosr `GOOGLE_MAPS_API_KEY`). Sanitize bracketed-paste/whitespace; reject
-  leaves env file unchanged; never agent-shell the secret; remasure
+  leaves env file unchanged; never agent-shell the secret; remeasure
   set/nchars only. FR: `feature-requests/20260723_set-key.md` (shipped).
 - Public docs / usage grid / `index.html` synced; plugin version `0.4.0`.
 

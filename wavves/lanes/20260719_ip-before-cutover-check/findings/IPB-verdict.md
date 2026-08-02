@@ -22,7 +22,7 @@ reconciled_at: "2026-07-23T03:22:00-04:00"
 ## Lane verdict
 
 **REVISE.** All four lenses agree. VIB-class failure is real; BUILD unsafe
-until hard remasure-before-cutover and mechanical detectors are locked.
+until hard remeasure-before-cutover and mechanical detectors are locked.
 
 ## Next
 

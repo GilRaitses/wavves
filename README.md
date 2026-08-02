@@ -83,7 +83,7 @@ picks a playbook and runs the leaf skill. Like `/poteto-mode` in pstack.
 | paragraph-tunnel | mid-render structural gate for a named outbound paragraph |
 | proof-before-accept | named proof job + host/blank-canvas checks before ACCEPT |
 | rotate | hand off to a fresh moderator thread |
-| pickup | resume from rotation paste, "where are we"; mandatory yield vs `return_to_O0` remasure |
+| pickup | resume from rotation paste, "where are we"; mandatory yield vs `return_to_O0` remeasure |
 | proceed | execute `recommended_actions` from a verdict (`proceed as recommended`); all-standing mode on closed phrases only |
 | shrug | `/shrug` alias for emoji shrug; bare → AUTH-10 proceed; with closed all-standing phrase → proceed-all-standing |
 
@@ -92,7 +92,7 @@ picks a playbook and runs the leaf skill. Like `/poteto-mode` in pstack.
 | Piece | Where it lives | What it is |
 |:------|:---------------|:-----------|
 | **O0** | the operator-facing thread | charters lanes, background-dispatches wave orchestrators, reconciles on notify, lands git; then `O0_release_window` |
-| **wave orchestrator** | background Task under O0 | fans out charge workers; integrates; writes rollup+gate (or hard FAIL / operator_gate). No early `return_to_O0`. Yield requires `findings/<wave>-orch-checkpoint.md`; O0 same-turn remasures and resumes yield (not fail-remediation-only) |
+| **wave orchestrator** | background Task under O0 | fans out charge workers; integrates; writes rollup+gate (or hard FAIL / operator_gate). No early `return_to_O0`. Yield requires `findings/<wave>-orch-checkpoint.md`; O0 same-turn remeasures and resumes yield (not fail-remediation-only) |
 | **charge worker** | one background Task per charge id | one bounded disjoint task; never git; never solicit the operator |
 | **Home** | `<repo>/wavves/` | standing hydration contract that outlives any one chat |
 | **Lane** | `wavves/lanes/<date>_<label>/` | one bounded workstream with its own charter and findings |
@@ -193,7 +193,7 @@ worked examples: [examples/usage.md](examples/usage.md).
    Does not start cloud agents or autoconfigure wavves elsewhere.
 7. **`/set-key`** opens Terminal.app with a paste-and-return helper that
    writes a server-only env secret (default klosr `GOOGLE_MAPS_API_KEY`).
-   Never echoes the secret; remasures set/nchars only; reject leaves the
+   Never echoes the secret; remeasures set/nchars only; reject leaves the
    env file unchanged.
 8. **`/shrug`** is a thin alias for emoji shrug. Bare `/shrug` → AUTH-10
    proceed; with a closed all-standing phrase → proceed-all-standing.
@@ -205,7 +205,7 @@ worked examples: [examples/usage.md](examples/usage.md).
 (`all still standing`, `queue all standing and move`, `proceed all standing`,
 `/wavves proceed all standing`) route to proceed-all-standing. Bare shrug or
 bare `/shrug` stays AUTH-10 proceed only. On orch
-`yield_awaiting_children`, pickup / O0 same-turn remasures disk and resumes
+`yield_awaiting_children`, pickup / O0 same-turn remeasures disk and resumes
 (or treats rollup+gate as `return_to_O0`); fail-remediation-only is for true
 fails.
 

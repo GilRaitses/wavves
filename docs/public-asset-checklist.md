@@ -39,5 +39,5 @@ Companion to `docs/public-asset-brief.yaml` (nano-banana packet).
 
 ## After delivery
 
-Wire tags in `index.html`, replace bloated SVG, push, remasure Pages
+Wire tags in `index.html`, replace bloated SVG, push, remeasure Pages
 (single `github-pages` artifact), rsync local plugin mirror.

@@ -7,7 +7,7 @@ Locked decisions (do NOT reopen):
 - SCOPE-FALLBACK = A — no named lanes and zero INDEX active lanes → write
   empty standing file and stop (no moves).
 - Bare shrug / bare /shrug never widen to all-standing (already locked).
-- Standing persist only under wavves/standing/; scope-then-remasure;
+- Standing persist only under wavves/standing/; scope-then-remeasure;
   gate-continue; closed triggers; fail-id set in FR (already locked).
 
 Grounding (already verified — do not rediscover):

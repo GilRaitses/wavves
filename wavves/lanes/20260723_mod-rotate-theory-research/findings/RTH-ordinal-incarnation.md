@@ -18,7 +18,7 @@ No paper quotes are invented; no primary-source fetch was done this charge.
 
 ---
 
-## 1. House claims (remasureable)
+## 1. House claims (remeasureable)
 
 ### 1.1 Identity scheme and three borrows
 
@@ -278,7 +278,7 @@ story; neither is a protocol isomorphism inside wavves, and concurrent
 2. Raft term mapping is out of scope here (RTH-W1b). Overlap noted only
    where stale-generation recognition is shared language.
 3. `wavves/rotations/` is empty at tip (waveset grounding); live multi-term
-   history is not remasureable yet. Ordinal/incarnation claims are from
+   history is not remeasureable yet. Ordinal/incarnation claims are from
    skill + AGENTS text, not from a landed R2 handoff artifact.
 4. Variant B lane handoff paste uses `O0 (<LANE> lane)` without an `R<N>`
    stamp in the playbook line; interaction with term ordinals for lane-only

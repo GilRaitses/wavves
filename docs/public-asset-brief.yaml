@@ -151,7 +151,7 @@ acceptance:
   - no purple neon AI tropes
   - logo_svg_clean file size < 200KB
   - og_social 1200x630 exact
-  - after delivery: wire favicon + og tags into index.html; remasure Pages
+  - after delivery: wire favicon + og tags into index.html; remeasure Pages
 
 wiring_checklist_for_operator:
   - "index.html: <link rel=icon>, apple-touch-icon, og:image, twitter:card"

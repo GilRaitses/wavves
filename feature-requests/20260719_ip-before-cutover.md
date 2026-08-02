@@ -1,4 +1,4 @@
-# FR-20260719 — IP-before-cutover (authority timing vs terminal remasure)
+# FR-20260719 — IP-before-cutover (authority timing vs terminal remeasure)
 
 - **Status:** draft → ready-for-mod-check
 - **Date:** 2026-07-19 (America/New_York)
@@ -21,7 +21,7 @@
 wavves lanes can sequence:
 
 ```text
-design → produce public packs → cutover consume → ACCEPT remasure
+design → produce public packs → cutover consume → ACCEPT remeasure
 ```
 
 When **IP / public-surface strip** is only enforced at **terminal ACCEPT**,
@@ -43,7 +43,7 @@ a defect that was cheap to catch before wire.
 So IP was **declared early, enforced late**. Cutover sat in the hole.
 
 **Fail id (proposed):** `PROC-IP-AFTER-CUTOVER` — lane allows consume cutover
-(or “pack shipped” PASS) before a hard remasure that public artifacts match
+(or “pack shipped” PASS) before a hard remeasure that public artifacts match
 the approved public-surface baseline / IP strip checklist.
 
 Related (do not collapse): `PROC-PASS-NO-PROOF` (FR-20260718) is about
@@ -66,7 +66,7 @@ pattern to wavves:
    explicit `cutover_blocked: ip_probe_pending`.
 3. **Cutover precondition:** W-cutover / seam-wire dispatch must refuse to
    start (or auto-FAIL) if `ip_probe` missing or FAIL.
-4. **ACCEPT still remasures IP** (defense in depth) but must not be the
+4. **ACCEPT still remeasures IP** (defense in depth) but must not be the
    **first** hard gate after wire.
 5. **Builder emit rule:** pack builders default to baseline public_contract
    shape; science blocks stay private / omitted.
@@ -82,7 +82,7 @@ pattern to wavves:
 
 ## Non-goals
 
-- Weakening ACCEPT IP remasure
+- Weakening ACCEPT IP remeasure
 - Auto-approving Midtown-as-island or other coverage lies
 - Replacing Proof-before-accept
 

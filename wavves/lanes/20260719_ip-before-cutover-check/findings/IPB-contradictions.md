@@ -47,7 +47,7 @@
 
 | | |
 |---|---|
-| **Claim A** | Non-goals: do not weaken ACCEPT IP remasure. Sketch §4: ACCEPT still remasures. |
+| **Claim A** | Non-goals: do not weaken ACCEPT IP remeasure. Sketch §4: ACCEPT still remeasures. |
 | **Claim B path** | Sketch §4: ACCEPT must not be the **first** hard gate after wire. |
 | **Conflict** | Not mutually exclusive if pre-wire gate is mandatory. Becomes a conflict if IP-CUT-1 warn-only or missing checklist makes ACCEPT the first real FAIL again. |
 | **Severity** | medium (depends on CX-01) |
@@ -59,9 +59,9 @@
 |---|---|
 | **Claim A** | Observed fix class: Midtown `public_contract` parity (shape/keys), not full pack byte identity (PNGs untouched in R1). |
 | **Claim B path** | IP-CUT-2: "Require byte-diff vs baseline vs checklist-only"; evals sketch "baseline-parity manifest → PASS." |
-| **Conflict** | Full byte-diff of packs would FAIL honest island expands (bbox/hours/ids differ). Checklist-only can miss novel leak keys. FR never picks the remasure class that VIB actually used (schema/allowlist parity). |
+| **Conflict** | Full byte-diff of packs would FAIL honest island expands (bbox/hours/ids differ). Checklist-only can miss novel leak keys. FR never picks the remeasure class that VIB actually used (schema/allowlist parity). |
 | **Severity** | high |
-| **Lean** | REVISE — lock probe class: public_contract / strip-checklist schema remasure (allow differing coverage ids); forbid naive whole-pack byte-diff as default. |
+| **Lean** | REVISE — lock probe class: public_contract / strip-checklist schema remeasure (allow differing coverage ids); forbid naive whole-pack byte-diff as default. |
 
 ### CX-06 — VIB-IP-DELTA "expose after ACCEPT" vs lane W3-before-ACCEPT sequence
 
@@ -71,7 +71,7 @@
 | **Claim B path** | Foreign W3 PASS cutover before ACCEPT; FR Problem narrates that hole; waveset default Wave 3 integrate / Wave 4 accept (`skills/charter/SKILL.md`) invites the same order. |
 | **Conflict** | Originating contract already said after-ACCEPT; execution ignored it. FR treats missing wavves enforcement as the bug (correct) but does not say whether BUILD hardens charter wave order, cutover precondition, or both. Phase leak: "cutover_requires" without forbidding W-cutover before ACCEPT. |
 | **Severity** | medium |
-| **Lean** | REVISE — name both: produce-exit `ip_probe` **and** cutover wave may not start without it; ACCEPT remains later remasure. |
+| **Lean** | REVISE — name both: produce-exit `ip_probe` **and** cutover wave may not start without it; ACCEPT remains later remeasure. |
 
 ### CX-07 — Builder emit rule vs produce-exit ownership
 
@@ -79,7 +79,7 @@
 |---|---|
 | **Claim A** | Sketch §5: builders default to baseline public_contract; science blocks private. |
 | **Claim B path** | Sketch §2: produce-exit IP probe is the hard gate. |
-| **Conflict** | Two enforcement loci (emit-time vs probe-time) with no primacy. VIB needed both builder patch (R1) and ACCEPT remasure. Unclear whether emit rule is advisory docs or a BUILD acceptance surface. |
+| **Conflict** | Two enforcement loci (emit-time vs probe-time) with no primacy. VIB needed both builder patch (R1) and ACCEPT remeasure. Unclear whether emit rule is advisory docs or a BUILD acceptance surface. |
 | **Severity** | low–medium |
 | **Lean** | REVISE — probe is hard gate; builder emit is recommended default / anti-re-emit note, not a substitute PASS. |
 

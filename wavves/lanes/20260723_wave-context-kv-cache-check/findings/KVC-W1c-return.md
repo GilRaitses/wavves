@@ -19,7 +19,7 @@ CMP-KVC-01 … CMP-KVC-07
 
 ## One line
 
-FR names the three cache homes and fail ids, but checkpoint tip-hash, standing remasure steps, ROTATION-TEMPLATE vs KV-03, KV-05 fixture dirs, and KV-06 docs target are not BUILD-ready.
+FR names the three cache homes and fail ids, but checkpoint tip-hash, standing remeasure steps, ROTATION-TEMPLATE vs KV-03, KV-05 fixture dirs, and KV-06 docs target are not BUILD-ready.
 
 ## Bans held
 

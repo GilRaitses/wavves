@@ -11,7 +11,7 @@
 ## Intent
 
 Adversarial sanity-check of the context/KV-cache FR before decide/BUILD.
-Wire scope is WOF checkpoint + PAS remasure + mod-rotate hydration only.
+Wire scope is WOF checkpoint + PAS remeasure + mod-rotate hydration only.
 
 ## Locked
 

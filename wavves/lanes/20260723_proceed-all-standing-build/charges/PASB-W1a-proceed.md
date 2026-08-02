@@ -22,7 +22,7 @@ MISSION:
   2. All-standing Step 0: build Standing queue from disk only; never transcript.
      Persist only at wavves/standing/<YYYYMMDD>_<label>.md (create dir if needed).
      Schema rows per FR PS-02. Empty inventory → write empty queue + stop (SCOPE-FALLBACK A).
-  3. Scope-then-remasure (PS-03), move rules (PS-04), gate-continue (PS-05).
+  3. Scope-then-remeasure (PS-03), move rules (PS-04), gate-continue (PS-05).
   4. Triggers closed (PS-06): widen only on explicit all-standing phrases;
      bare shrug and bare /shrug stay AUTH-10 only (PROC-PROCEED-SHRUG-WIDEN).
   5. COMMIT-AUTH-GRAIN C in commit-class rules; AUTH-10 files: still required.

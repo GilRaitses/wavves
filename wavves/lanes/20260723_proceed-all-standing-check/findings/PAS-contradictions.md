@@ -31,15 +31,15 @@
 | **Severity** | medium (must decide before BUILD) |
 | **Lean** | REVISE — one persistence authority; other path deleted or demoted to alias. |
 
-### CX-03 — Conversation-scoped default vs mandatory disk remasure / registry breadth
+### CX-03 — Conversation-scoped default vs mandatory disk remeasure / registry breadth
 
 | | |
 |---|---|
 | **Claim A** | Non-goals: default scope = **current conversation's program / named lanes**; forbid cross-lane "do everything in the registry" without operator-named scope. PS-01: queue from live surfaces, **not chat memory**. |
-| **Claim B path** | Fail id `PROC-PROCEED-NO-STANDING-QUEUE` + PS-03: remasure `registry.yml` + `active_dispatch` + gates + open FRs/handoffs; optional pasted list only after disk verify. |
+| **Claim B path** | Fail id `PROC-PROCEED-NO-STANDING-QUEUE` + PS-03: remeasure `registry.yml` + `active_dispatch` + gates + open FRs/handoffs; optional pasted list only after disk verify. |
 | **Conflict** | Scope selection is chat/program-named, inventory is disk-wide. FR never states the split ("scope from operator utterance; members only from disk inside that scope"). A literal PS-03/fail-id read can inventory all registry actives and violate the non-goal. "Current conversation's program" is itself chat memory for scope. |
 | **Severity** | high |
-| **Lean** | REVISE — lock scope formula (named lanes / INDEX active / explicit paste) before remasure; ban registry-wide crawl unless operator names it. |
+| **Lean** | REVISE — lock scope formula (named lanes / INDEX active / explicit paste) before remeasure; ban registry-wide crawl unless operator names it. |
 
 ### CX-04 — `commit_land` invent vs proceed AUTH-10 `commit` file lists
 

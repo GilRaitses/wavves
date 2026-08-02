@@ -21,11 +21,11 @@ Five background charges deployed in parallel (model `cursor-grok-4.5-high-fast`)
 | RTH-W1d | [star](832a281a-9175-4fe3-b5dd-d239d251f1a9) | `RTH-star-graph.md` + `RTH-W1d-return.md` | PASS (on disk) |
 | RTH-W1e | [adversarial](eadb198e-1569-44f4-8661-403581605753) | `RTH-adversarial.md` + `RTH-W1e-return.md` | FAIL honesty gate (on disk) |
 
-Remasured: 5/5 complete. Rollup: `findings/RTH-W1-rollup.md`. Wave **GATED** (W1e FAIL). Orch **return_to_O0** with rollup path only; RTH-INT paused.
+Remeasured: 5/5 complete. Rollup: `findings/RTH-W1-rollup.md`. Wave **GATED** (W1e FAIL). Orch **return_to_O0** with rollup path only; RTH-INT paused.
 
 ## Resume contract
 
-On completion notifications: remasure owned findings on disk; write
+On completion notifications: remeasure owned findings on disk; write
 `findings/RTH-W1-rollup.md` with per-charge PASS/FAIL from returns only;
 PAUSE before RTH-INT; then `return_to_O0` with rollup path only.
 

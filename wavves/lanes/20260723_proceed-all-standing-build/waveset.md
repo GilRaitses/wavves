@@ -19,7 +19,7 @@ Ship proceed-all-standing mode + `/shrug` leaf + evals per
 - COMMIT-AUTH-GRAIN = C — same-repo one authorize; cross-repo per-land gate
 - SCOPE-FALLBACK = A — empty standing file + stop
 - Bare shrug / bare /shrug never widen to all-standing
-- Standing persist only under wavves/standing/; scope-then-remasure;
+- Standing persist only under wavves/standing/; scope-then-remeasure;
   gate-continue; closed triggers; fail-id set in FR
 ```
 

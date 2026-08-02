@@ -154,7 +154,7 @@ Do not copy long findings, logs or transcripts into `INDEX.md`. Point to them.
    (or hard FAIL / legal operator_gate) is already on disk at that
    remeasure, treat as `return_to_O0` and land the orch `commit_file_list`
    per repo protocol — do not wait for a second notify. Nested charge-worker
-   Task completions may not surface as O0 notices; disk remasure is the
+   Task completions may not surface as O0 notices; disk remeasure is the
    authority. **Fail remediation only** applies when resuming after a true
    fail / illegal early exit / poisoned wave — not to mid-wave yield.
 6. Brief note of what was backgrounded; progress theater is a fail

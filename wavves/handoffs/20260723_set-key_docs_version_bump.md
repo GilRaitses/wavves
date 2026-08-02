@@ -40,14 +40,14 @@ local_plugin_mirror: ~/.cursor/plugins/local/wavves/  (rsync after land)
 
 Read `feature-requests/20260723_set-key.md`.
 
-- Confirm acceptance matches what shipped (skill + playbook + helper; never echo secret; remasure set/nchars).
+- Confirm acceptance matches what shipped (skill + playbook + helper; never echo secret; remeasure set/nchars).
 - Set lifecycle status to **`shipped`** (official).
 - Add row to `feature-requests/README.md` Index table.
 - If anything in the FR contradicts the skill, fix the FR (or a one-line skill honesty fix) — do not expand scope into new secret backends.
 
 ### 2. Sync all docs with `/set-key`
 
-Checklist (every row must pass a remasure grep for `set-key` / `/set-key` where applicable):
+Checklist (every row must pass a remeasure grep for `set-key` / `/set-key` where applicable):
 
 | surface | required edit |
 |---|---|
@@ -94,7 +94,7 @@ cp /Users/gilraitses/wavves_build/examples/usage.md \
   /Users/gilraitses/.cursor/plugins/local/wavves/examples/usage.md
 ```
 
-4. Remasure: `plugin.json` version `0.4.0`; `rg -n '/set-key' README.md examples/usage.md index.html skills/wavves/SKILL.md`.
+4. Remeasure: `plugin.json` version `0.4.0`; `rg -n '/set-key' README.md examples/usage.md index.html skills/wavves/SKILL.md`.
 
 ## Out of scope
 

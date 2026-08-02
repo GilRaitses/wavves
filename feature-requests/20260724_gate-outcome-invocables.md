@@ -52,7 +52,7 @@ cross-mod days (BCA ‖ DDX).
 | `PROC-REMEDIA-CAP-IGNORE` | remedia exceeds waveset remediation-loop cap without `operator_gate` |
 | `PROC-PARK-ACTIVE-ORCH` | park leaves `active_dispatch` set / orphans orch without checkpoint note |
 | `PROC-ACCEPT-AUTO` | ACCEPT chartered without explicit `/wavves accept` (or AUTH-10 action that names ACCEPT) |
-| `PROC-ACCEPT-CLEAR-RESIDUAL` | ACCEPT clears a named PASS_WITH_GAPS residual without remasure proof |
+| `PROC-ACCEPT-CLEAR-RESIDUAL` | ACCEPT clears a named PASS_WITH_GAPS residual without remeasure proof |
 | `PROC-SHRUG-AS-NEXT` | bare shrug widens to `next`/`remedia` (shrug = AUTH-10 recommended_actions only) |
 
 ## Feature sketch (GATE-OUTCOME)
@@ -60,11 +60,11 @@ cross-mod days (BCA ‖ DDX).
 | id | target | change |
 |---|---|---|
 | GO-01 | `skills/wavves/SKILL.md` | Router rows: `next`, `remedia` (aliases `remediate`, `remedial`), `park`, `accept`. Description: gate-outcome moves after PASS / PASS_WITH_GAPS / FAIL. |
-| GO-02 | `playbooks/next.md` | Step 0: remasure latest `*-GATE.md` + `gate-captures/*.json` + `registry.yml` for the **named** lane (utterance or sole `active`/`recommended` lane). If FAIL → stop, suggest remedia. If PASS or PASS_WITH_GAPS: read `recommended_next` / waveset next gated wave; charter or dispatch **only** that. No invent. Emit return card. |
-| GO-03 | `playbooks/remedia.md` | Require named gap (`gap:` / residual id from GATE). Charter thin `LANE-Rn` or waveset remedia slot; scope = gap only; remasure parent gate after; honor remedia cap → else `operator_gate`. Forbidden: new program lane, phase-map invent, clearing unrelated residuals. |
+| GO-02 | `playbooks/next.md` | Step 0: remeasure latest `*-GATE.md` + `gate-captures/*.json` + `registry.yml` for the **named** lane (utterance or sole `active`/`recommended` lane). If FAIL → stop, suggest remedia. If PASS or PASS_WITH_GAPS: read `recommended_next` / waveset next gated wave; charter or dispatch **only** that. No invent. Emit return card. |
+| GO-03 | `playbooks/remedia.md` | Require named gap (`gap:` / residual id from GATE). Charter thin `LANE-Rn` or waveset remedia slot; scope = gap only; remeasure parent gate after; honor remedia cap → else `operator_gate`. Forbidden: new program lane, phase-map invent, clearing unrelated residuals. |
 | GO-04 | `playbooks/park.md` | Set `active_dispatch: null` (registry + handoff stamp); refuse invent; optional `/mod-rotate` pointer; do not kill foreign-lane orch. |
 | GO-05 | ACCEPT unlock | `/wavves accept` (or AUTH-10 row `accept`) charters ACCEPT with explicit residual/non-claim list copied from INT/prior ACCEPT gaps. Never implies residual cleared. |
-| GO-06 | Yield interaction | Playbooks cite yield-pickup A–D (docs gap): `next`/`remedia`/`park` still remasure disk same turn on orch notify; they do not replace yield resume. |
+| GO-06 | Yield interaction | Playbooks cite yield-pickup A–D (docs gap): `next`/`remedia`/`park` still remeasure disk same turn on orch notify; they do not replace yield resume. |
 | GO-07 | Evals | Fixtures: PASS→next dispatches W3 not invent; PASS_WITH_GAPS+named gap→remedia; FAIL+next→FAIL; bare shrug≠next; remedia without gap name→FAIL; accept without INT PASS→FAIL. |
 
 ## Triggers

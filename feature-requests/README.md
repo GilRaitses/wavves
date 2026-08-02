@@ -24,7 +24,7 @@ or `wontfix`
 | FR-20260718-proof-before-accept feedback | Originating-mod feedback | landed | `20260718_proof-before-accept_ORIGINATING-MOD-FEEDBACK.md` |
 | FR-20260718-voice-library-lora | Voice library + optional LoRA (MoM pipeline) | parked-pending-apollo-proof | AVP lane in pax |
 | FR-20260718-paragraph-tunnel MoM note | Tunnel × MoM introspection | landed | `20260718_paragraph-tunnel_MOM-introspection.md` |
-| FR-20260719-ip-before-cutover | IP-before-cutover (authority timing vs terminal remasure) | revised-after-IPB | IPB REVISE applied; hard-block + Acceptance + harness homes; `20260719_ip-before-cutover.md` |
+| FR-20260719-ip-before-cutover | IP-before-cutover (authority timing vs terminal remeasure) | revised-after-IPB | IPB REVISE applied; hard-block + Acceptance + harness homes; `20260719_ip-before-cutover.md` |
 | FR-20260720-pre-unlock-options-mod-check | Pre-unlock options mod-check (AUTH-11) | revised-after-PUO | PUO REVISE applied; AUTH-11 locks + Acceptance; `20260720_pre-unlock-options-mod-check.md` |
 | FR-20260722-mod-decide-decision-alignment | mod-decide decision-alignment interpretability (DECIDE-ALIGN) | revised-after-MDA | MDA REVISE applied; AC + eval homes + AUTH merge + open calls; `20260722_mod-decide-decision-alignment.md` |
 | FR-20260723-set-key | `/set-key` Terminal paste helper | shipped | `20260723_set-key.md`; v0.4.0 |

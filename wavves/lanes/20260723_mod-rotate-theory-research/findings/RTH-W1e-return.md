@@ -41,7 +41,7 @@ present in findings. FAIL is the orch honesty gate, not a missing-file fail.
 - Did not author sibling W1a–d findings; no cross-lens reconcile.
 - Did not fetch external Raft/RotatE papers (house paths only; RotatE ban is
   lane-locked, not a literature review).
-- Did not remasure foreign pax pins (out of scope; illustration only).
+- Did not remeasure foreign pax pins (out of scope; illustration only).
 - Leave-act vocabulary audited via WOF FR + SFR waveset only; not applied to
   live AGENTS (expected: FR not BUILD-landed).
 

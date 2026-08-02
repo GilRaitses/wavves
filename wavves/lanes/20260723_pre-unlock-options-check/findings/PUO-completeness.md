@@ -66,7 +66,7 @@ omits them.
 `mod-decide-complete*`; whether `pre_unlock_mod_check` lives in registry,
 waveset Meta, or both (AUTH-11a says both).
 
-**Why blocking:** Proceed cannot remasure a status that has no schema.
+**Why blocking:** Proceed cannot remeasure a status that has no schema.
 
 **Needed edit:** Freeze field table + status enum + single writer.
 
@@ -83,7 +83,7 @@ moves without content change; multi-repo lane clocks.
 both available.
 
 **Needed edit:** Prefer recorded sync hash/`waveset_synced_at` over raw
-mtime; define remasure algorithm in proceed step.
+mtime; define remeasure algorithm in proceed step.
 
 ### B4 — Sibling check lane discovery unowned
 

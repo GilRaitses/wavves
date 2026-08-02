@@ -34,7 +34,7 @@ blockers:
   - id: CMP-KVC-11
     wave: w2
     evidence_path: findings/KVC-completeness.md
-    summary: Standing remasure/invalidation steps not imported from PAS
+    summary: Standing remeasure/invalidation steps not imported from PAS
   - id: CMP-KVC-13
     wave: w2
     evidence_path: findings/KVC-completeness.md
@@ -60,7 +60,7 @@ lens_leans: [REVISE, REVISE, REVISE, REVISE]
 ## Lane verdict
 
 **REVISE.** All four lenses lean REVISE. Not BLOCK: wired WOF/PAS/rotate
-seams remasure; non-goals and analogy bans are stated; Next already forbids
+seams remeasure; non-goals and analogy bans are stated; Next already forbids
 BUILD from this folder alone. Not GO: open calls and alias/schema gaps make
 a faithful CTX-KV BUILD unsafe if chartered now.
 
@@ -89,14 +89,14 @@ a faithful CTX-KV BUILD unsafe if chartered now.
    define empty-`rotations/` first-write + bootstrap exception vs INDEX.
 5. **Checkpoint schema** — Tip hash: additive WOF patch (reopen/bind) or drop
    from KV-01; align Problem #1 with SHIPPED WOF resume contract.
-6. **PAS bind honesty** — Standing remasure steps + chat-inventory coverage;
-   do not call PAS-bound ids "closed for BUILD" until PAS land remasured.
+6. **PAS bind honesty** — Standing remeasure steps + chat-inventory coverage;
+   do not call PAS-bound ids "closed for BUILD" until PAS land remeasured.
 7. **KV-05 / KV-06** — Enumerate fixture dirs; pick docs home; bind chat-inventory
    and analogy-missing FAIL cases.
 
 ## Non-blocking
 
-- GAP-KVC-G3 INDEX open-FR omit (O0 inventory remasure).
+- GAP-KVC-G3 INDEX open-FR omit (O0 inventory remeasure).
 - README WOF status lag vs SHIPPED body (NIT-1).
 - RTH tip ≠ KVC tip (illustration only).
 
@@ -104,7 +104,7 @@ a faithful CTX-KV BUILD unsafe if chartered now.
 
 1. FR revise applying themes 1–7 (or `/mod-decide` locks that close CACHE-NAME,
    WOF-BIND, ROTATION-TEMPLATE + emit precedence + tip-hash).
-2. Remasure WOF (SHIPPED) and PAS (awaiting BUILD) land status before any
+2. Remeasure WOF (SHIPPED) and PAS (awaiting BUILD) land status before any
    CTX-KV BUILD charter.
 3. Re-`/mod-check` only if revise is large; else `/mod-decide` → `/charter` BUILD.
 4. No git from this orch. No skill edits. No BUILD from this lane alone.

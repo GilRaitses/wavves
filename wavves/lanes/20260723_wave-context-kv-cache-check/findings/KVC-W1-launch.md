@@ -39,7 +39,7 @@ verdict_path: findings/KVC-verdict.md
 - `skills/mod-rotate/SKILL.md`; `skills/wavves-init/SKILL.md` §4–5
 - RTH synthesis pointer (illustration): `lanes/20260723_mod-rotate-theory-research/findings/RTH-SYNTHESIS.md`
 
-## Disk remasure (pre-launch)
+## Disk remeasure (pre-launch)
 
 | fact | measured |
 |---|---|
@@ -54,7 +54,7 @@ verdict_path: findings/KVC-verdict.md
 - No git. No BUILD. No skill edits.
 - Ban treating FR as transformer KV isomorphism or RotatE.
 - Ban expanding scope to PUO / IPB / MDA.
-- Wire scope only: WOF checkpoint + PAS remasure + mod-rotate hydration.
+- Wire scope only: WOF checkpoint + PAS remeasure + mod-rotate hydration.
 - Escalate to O0 only (via orch). Model: `cursor-grok-4.5-high-fast`.
 
 ## Leave-acts

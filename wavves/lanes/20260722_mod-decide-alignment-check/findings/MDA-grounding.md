@@ -18,8 +18,8 @@ git: none performed
 **GO.** Product-surface claims match live `mod-decide` seams in this repo:
 optional lean, no exit criteria, no program-alignment stanza, no grain
 check, Locked paste without `program_intent` / `unlocks_next`. FR index,
-lane pin, and hydrate targets remasure. Foreign pax IWD paths are
-illustration only; they remasure under pax at the cited hash and are not
+lane pin, and hydrate targets remeasure. Foreign pax IWD paths are
+illustration only; they remeasure under pax at the cited hash and are not
 BUILD hard-deps for wavves_build.
 
 ## Claims vs evidence
@@ -53,7 +53,7 @@ BUILD hard-deps for wavves_build.
   and `decisions/IWD-D5-…` / `IWD-D6-…` without a pax root prefix
 - **evidence_path:** FR lines 7–15; absent under wavves_build; present under
   pax lane home; `evidence_verified_against` pax `2c04e8b273f6e949a0774d514a97de81f40b3105`
-  remasures as TRAIN-WIRE land commit
+  remeasures as TRAIN-WIRE land commit
 - **note:** Dispatch: foreign pax illustration only. BUILD acceptance must
   not require those paths under wavves_build. Optional FR tidy: prefix
   `pax:` (or absolute root) on each citation.

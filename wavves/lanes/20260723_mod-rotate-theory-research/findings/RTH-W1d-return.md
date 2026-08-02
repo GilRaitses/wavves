@@ -30,7 +30,7 @@ TIP: 7aecdfb50d8d6fc53fa00a08b021e4cd9926aa67
 ## Gaps (non-blocking)
 
 1. Live AGENTS §2 still uses pre-rename role labels; WOF product names not yet BUILD-synced.
-2. `wavves/rotations/` empty at charter; no live A-file to remasure section shape.
+2. `wavves/rotations/` empty at charter; no live A-file to remeasure section shape.
 3. “Star” is research formalization; README visitor blurb has no hub/spoke vocabulary.
 4. Leave-acts authority is the revised WOF FR, not yet shipped into charter skill text.
 

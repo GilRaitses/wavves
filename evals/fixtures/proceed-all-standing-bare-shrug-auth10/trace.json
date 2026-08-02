@@ -4,7 +4,7 @@
   "trigger_has_all_standing_phrase": false,
   "bare_shrug": true,
   "standing_queue_path_present": false,
-  "standing_queue_remasured": false,
+  "standing_queue_remeasured": false,
   "items": [],
   "widened_from_bare_shrug": false,
   "inventory_from_chat": false,
