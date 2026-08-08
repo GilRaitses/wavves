@@ -1,21 +1,32 @@
 active:
+  MKB:
+    label: mod-kick-build
+    home: lanes/20260808_mod-kick-build/
+    waves: [MKB-W1, MKB-W2, MKB-ACCEPT]
+    status: chartered
+    type: execution
+    depends_on: [MKK]
+    active_dispatch: ORCHESTRATOR_DISPATCH_PROMPT.md
+    dispatch_files: [ORCHESTRATOR_DISPATCH_PROMPT.md]
+    artifact: feature-requests/20260808_mod-kick.md
+    repo_state_verified_against: 3d91e48a6e525b20ce9c079f5c14d219ec0cc6b0
+    note: >-
+      BUILD /mod-kick on production wavves. Locks D1–D5 (leash). Public
+      surfaces include index.html (wavves.aimez.ai). Version target 0.5.0.
   MKK:
     label: mod-kick-check
     home: lanes/20260808_mod-kick-check/
     waves: [MKK-W1, MKK-VERDICT]
-    status: mod-decide-complete-awaiting-build
+    status: mod-decide-complete-build-chartered
     type: check
     active_dispatch: null
     dispatch_files: [dispatch.md]
     artifact: feature-requests/20260808_mod-kick.md
-    repo_state_verified_against: d327b66
+    repo_state_verified_against: 3d91e48a6e525b20ce9c079f5c14d219ec0cc6b0
     mod_decide_complete_at: "2026-08-08T17:34:00-04:00"
     waveset_synced_at: "2026-08-08T17:34:00-04:00"
     note: >-
-      Decide D1–D5 locked (leash term; handoffs receipt; kick=publish auth;
-      thin 8/256KiB; LOCAL_ONLY same-machine; shrug=default only).
-      See decisions/LOCKED-DECISIONS.md. Next: commit decide pack, patch FR
-      vendor→leash, re-check or charter BUILD.
+      D1–D5 locked. BUILD lane MKB chartered 2026-08-08.
   NSC:
     label: n8n-submit-check
     home: lanes/20260723_n8n-submit-check/
