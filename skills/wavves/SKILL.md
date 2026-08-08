@@ -3,9 +3,10 @@ name: wavves
 description: >-
   Main entry for durable multi-agent routing. Reads your request, checks the
   wavves home, picks a playbook and runs the leaf skill (/wavves-init, /charter,
-  /mod-check, /mod-decide, /layover, /set-key, /shrug or /mod-rotate). Use for
-  /wavves or any bounded lane work, setup, spec check, decision lock, workspace
-  preflight, set-key, shrug, rotation, pickup, proceed, or proceed-all-standing.
+  /mod-check, /mod-decide, /layover, /set-key, /shrug, /mod-rotate or
+  /mod-kick). Use for /wavves or any bounded lane work, setup, spec check,
+  decision lock, workspace preflight, set-key, shrug, rotation, kick, pickup,
+  proceed, or proceed-all-standing.
 disable-model-invocation: true
 ---
 
@@ -20,9 +21,9 @@ skill in full** before acting.
 1. **Start with a todo list.** First item: match a playbook and name the leaf
    skill you will read.
 2. **Read the leaf skill in full** (`wavves-init`, `charter`, `mod-check`,
-   `mod-decide`, `layover`, `set-key` or `mod-rotate`) before any substantive
-   write. Do not improvise charter, check, decide, layover, set-key or rotation
-   steps from memory.
+   `mod-decide`, `layover`, `set-key`, `mod-rotate` or `mod-kick`) before any
+   substantive write. Do not improvise charter, check, decide, layover,
+   set-key, rotation or kick steps from memory.
 3. **The moderator (O0) stays operator-facing.** Dispatched runners answer to
    O0, not the operator directly. Gates are runnable with captured evidence.
 4. **No commit, push, deploy or external mutation** unless the operator
@@ -42,7 +43,8 @@ skill in full** before acting.
 | paragraph-tunnel | dispatch STEPS | mid-render outbound paragraph gate (adversarial + capped rewrite; no slash skill in v0) |
 | proof-before-accept | dispatch STEPS | pre-ACCEPT proof fields + mechanical/DOM harness (no `/proof-gate` slash skill in v0) |
 | rotate | `mod-rotate` (`/mod-rotate`) | rotate, handoff, fresh thread, self-fork, replay, token velocity too high |
-| pickup | hydrate + moderate | resume from rotation paste, "where are we", reconcile active lanes |
+| kick | `mod-kick` (`/mod-kick`) | hand to another environment / other machine / readback elsewhere; cross-env exit (not rotate) |
+| pickup | hydrate + moderate | resume from rotation paste, "where are we", reconcile active lanes (rotate-hydrate only; not kick) |
 | proceed | hydrate + execute | `proceed as recommended`, `/wavves proceed`, execute verdict actions; all-standing mode on closed phrases (`all still standing`, `queue all standing and move`, `proceed all standing`, `/wavves proceed all standing`); bare shrug or bare `/shrug` stays AUTH-10 only |
 
 When the request is ambiguous, default to **check** if the operator points at
@@ -66,6 +68,7 @@ before adding task-specific items.
 - **Paragraph tunnel.** `playbooks/paragraph-tunnel.md`
 - **Proof-before-accept.** `playbooks/proof-before-accept.md`
 - **Rotate.** `playbooks/rotate.md`
+- **Kick.** `playbooks/kick.md`
 - **Pickup.** `playbooks/pickup.md`
 - **Proceed.** `playbooks/proceed.md`
 
@@ -83,6 +86,7 @@ A step you skip stays in the list with `skip: <reason>`.
 | `set-key` | `/set-key` | external Terminal paste helper for a server-only env secret |
 | `shrug` | `/shrug` | discoverable alias for emoji shrug; bare `/shrug` → AUTH-10 proceed; `/shrug` + closed all-standing phrase → proceed-all-standing |
 | `mod-rotate` | `/mod-rotate` | you know you only need rotation |
+| `mod-kick` | `/mod-kick` | you know you only need a cross-environment kick exit |
 
 Most operators can type `/wavves` plus the task and let routing handle the rest.
 

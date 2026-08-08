@@ -1,0 +1,20 @@
+{
+  "mode": "mod-kick",
+  "trigger": "¯\\_(ツ)_/¯",
+  "bare_shrug": true,
+  "default_matches_lane_primary": true,
+  "published": true,
+  "origin_synced": true,
+  "paste_claims_remote_pull": true,
+  "multi_repo": true,
+  "multi_repo_auth": false,
+  "leash": false,
+  "local_only": false,
+  "cross_env_claim": false,
+  "desktop_authority": false,
+  "rotate_collapse": false,
+  "shrug_widened_multi_or_leash": true,
+  "allowlist": ["ok.md"],
+  "published_paths": ["ok.md"],
+  "auth_lines": []
+}

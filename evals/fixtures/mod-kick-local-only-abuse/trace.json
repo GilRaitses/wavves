@@ -1,0 +1,16 @@
+{
+  "mode": "mod-kick",
+  "trigger": "/mod-kick LOCAL_ONLY",
+  "default_matches_lane_primary": true,
+  "published": false,
+  "origin_synced": false,
+  "paste_claims_remote_pull": true,
+  "local_only": true,
+  "local_only_auth": true,
+  "cross_env_claim": true,
+  "multi_repo": false,
+  "leash": false,
+  "desktop_authority": false,
+  "rotate_collapse": false,
+  "shrug_widened_multi_or_leash": false
+}

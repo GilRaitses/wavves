@@ -1,0 +1,17 @@
+{
+  "mode": "mod-kick",
+  "trigger": "/mod-kick",
+  "default_matches_lane_primary": false,
+  "published": true,
+  "origin_synced": true,
+  "paste_claims_remote_pull": true,
+  "multi_repo": false,
+  "leash": false,
+  "local_only": false,
+  "cross_env_claim": false,
+  "desktop_authority": false,
+  "rotate_collapse": false,
+  "shrug_widened_multi_or_leash": false,
+  "allowlist": ["ok.md"],
+  "published_paths": ["ok.md"]
+}

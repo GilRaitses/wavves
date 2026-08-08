@@ -83,6 +83,7 @@ picks a playbook and runs the leaf skill. Like `/poteto-mode` in pstack.
 | paragraph-tunnel | mid-render structural gate for a named outbound paragraph |
 | proof-before-accept | named proof job + host/blank-canvas checks before ACCEPT |
 | rotate | hand off to a fresh moderator thread |
+| kick | cross-environment exit: publish allowlist + paste for another machine |
 | pickup | resume from rotation paste, "where are we"; mandatory yield vs `return_to_O0` remeasure |
 | proceed | execute `recommended_actions` from a verdict (`proceed as recommended`); all-standing mode on closed phrases only |
 | shrug | `/shrug` alias for emoji shrug; bare → AUTH-10 proceed; with closed all-standing phrase → proceed-all-standing |
@@ -117,7 +118,7 @@ Fresh instances hydrate from the home files, never from chat transcripts.
 
 | skill | use it when |
 |:------|:------------|
-| `/wavves` | default entry. routes to bootstrap, charter, check, decide, layover, set-key, rotate, pickup, proceed or shrug |
+| `/wavves` | default entry. routes to bootstrap, charter, check, decide, layover, set-key, rotate, kick, pickup, proceed or shrug |
 | `/wavves-init` | you only need home setup |
 | `/charter` | you only need a new lane chartered |
 | `/mod-check` | you only need an adversarial spec/plan sanity-check wave |
@@ -126,6 +127,7 @@ Fresh instances hydrate from the home files, never from chat transcripts.
 | `/set-key` | open Terminal.app paste helper for a server-only env secret |
 | `/shrug` | alias for emoji shrug; bare → AUTH-10 proceed; with closed all-standing phrase → proceed-all-standing |
 | `/mod-rotate` | you only need rotation |
+| `/mod-kick` | you only need a cross-environment kick exit |
 
 Most operators type `/wavves` plus the task. Reach for the leaf skills when you
 know exactly which step you need.
@@ -150,6 +152,7 @@ decide:            /mod-decide navigate open calls from the check return.
 layover:           /wavves preflight ~/my.code-workspace. read-only audit;
                    I will open one cloud agent myself afterward.
 rotate:            /wavves rotate this thread. write a handoff for active lanes.
+kick:              /wavves kick this stream to another environment. ask kick target.
 pickup:            /wavves hydrate from the rotation paste and tell me what's active.
 proceed:           /wavves proceed as recommended after mod-check or mod-decide return.
 all-standing:      /wavves proceed all standing
@@ -165,6 +168,7 @@ layover only:      /layover audit ~/my.code-workspace. report untracked,
 set-key only:      /set-key open Terminal.app paste helper for klosr
                    GOOGLE_MAPS_API_KEY (never put the secret in chat).
 rotate only:       /mod-rotate token velocity is too high. give me the one-line paste.
+kick only:         /mod-kick publish allowlist and give me the paste for another environment.
 ```
 
 Spec → BUILD lifecycle (`/mod-check` → `/mod-decide` → `/charter`) plus four
@@ -199,6 +203,9 @@ worked examples: [examples/usage.md](examples/usage.md).
    proceed; with a closed all-standing phrase → proceed-all-standing.
 9. **`/mod-rotate`** writes a rotation file with term identity and emits a
    one-line paste for a fresh thread.
+10. **`/mod-kick`** publishes a lane allowlist to a kick-target remote, writes
+    a `wavves/handoffs/KICK_*.md` receipt, and emits a paste for another
+    environment. Not a substitute for `/mod-rotate` or the pickup playbook.
 
 `/wavves proceed` executes ordered `recommended_actions` from a verdict
 (commit, dispatch, operator gates). Closed all-standing phrases
@@ -344,7 +351,7 @@ agent on the chosen repo and hydrate wavves there by hand.
 
 | Skill | Description |
 |:------|:------------|
-| `wavves` (`/wavves`) | Main entry. Routes to bootstrap, charter, check, decide, layover, rotate, pickup or proceed. |
+| `wavves` (`/wavves`) | Main entry. Routes to bootstrap, charter, check, decide, layover, rotate, kick, pickup or proceed. |
 | `wavves-init` (`/wavves-init`) | Bootstrap the standing home a fresh moderator hydrates from. |
 | `charter` (`/charter`) | Charter a lane and dispatch waves behind runnable gates. Multi-repo profile, `dispatch-w{N}.md`, authority precedence. |
 | `mod-check` (`/mod-check`) | Adversarial parallel sanity-check of a landed spec or plan. Scoped verdict + `recommended_actions`. |
@@ -353,6 +360,7 @@ agent on the chosen repo and hydrate wavves there by hand.
 | `set-key` (`/set-key`) | Terminal.app paste helper for a server-only env secret. Never agent-shells the secret. |
 | `shrug` (`/shrug`) | Thin alias for emoji shrug. Bare → AUTH-10 proceed; with closed all-standing phrase → proceed-all-standing. |
 | `mod-rotate` (`/mod-rotate`) | Hand the moderator or one lane to a fresh thread. |
+| `mod-kick` (`/mod-kick`) | Cross-environment exit: publish allowlist + paste. Not rotate / pickup. |
 
 ## Examples on disk
 

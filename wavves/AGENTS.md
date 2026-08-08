@@ -148,4 +148,6 @@ operator explicitly asks (see gated surfaces above).
 - `mod-decide` (`/mod-decide`) — locking open calls after a check return,
   before a BUILD charter.
 - `mod-rotate` (`/mod-rotate`) — producing the next rotation handoff.
+- `mod-kick` (`/mod-kick`) — cross-environment exit (publish allowlist + paste);
+  not a substitute for rotate / pickup hydrate.
 - `wavves-init` (`/wavves-init`) — this file's own bootstrap skill.

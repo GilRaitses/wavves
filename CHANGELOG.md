@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+## 0.5.0 (2026-08-08)
+
+- **`/mod-kick`:** cross-environment exit skill + `playbooks/kick.md`. Publish
+  lane allowlist to a kick-target remote, write `wavves/handoffs/KICK_*.md`,
+  emit a paste one-liner. Locks: **leash** / `LEASH_AUTH` (D3a), ≤8 files /
+  ≤256 KiB thin threshold, `LOCAL_ONLY` same-machine fence, shrug accepts
+  default single-repo only. Kick ≠ rotate; pickup playbook stays
+  rotate-hydrate. Eval: `evals/check_mod_kick.py` (12 fixtures). FR
+  `feature-requests/20260808_mod-kick.md` shipped (MKB).
+- Public docs / usage grid / `index.html` synced; plugin version `0.5.0`.
+
 ## 0.4.1 (2026-07-24)
 
 - **Wave orchestrator fan-out (OF-01…OF-10):** charter Roles rename

@@ -1,0 +1,8 @@
+# LOCAL_ONLY smoke surface (MKB ACCEPT)
+
+Throwaway allowlisted lane surface for same-machine kick smoke.
+Not authority for cross-env. Publish of the full MKB commit list is O0-gated
+(orch must not git commit/push).
+
+- created: 2026-08-08T17:45:00-04:00 (America/New_York)
+- purpose: prove receipt + paste contract fields without claiming remote sync

@@ -3,16 +3,16 @@ active:
     label: mod-kick-build
     home: lanes/20260808_mod-kick-build/
     waves: [MKB-W1, MKB-W2, MKB-ACCEPT]
-    status: chartered
+    status: completed
     type: execution
     depends_on: [MKK]
-    active_dispatch: ORCHESTRATOR_DISPATCH_PROMPT.md
+    active_dispatch: null
     dispatch_files: [ORCHESTRATOR_DISPATCH_PROMPT.md]
     artifact: feature-requests/20260808_mod-kick.md
-    repo_state_verified_against: 3d91e48a6e525b20ce9c079f5c14d219ec0cc6b0
+    repo_state_verified_against: d8467343d2e6a0ca6ef4b799d41958886225481f
     note: >-
-      BUILD /mod-kick on production wavves. Locks D1–D5 (leash). Public
-      surfaces include index.html (wavves.aimez.ai). Version target 0.5.0.
+      ACCEPT PASS 2026-08-08. /mod-kick shipped; plugin 0.5.0; 12/12 evals.
+      Public surfaces incl. index.html (wavves.aimez.ai). See MKB_ORCH_RETURN.
   MKK:
     label: mod-kick-check
     home: lanes/20260808_mod-kick-check/

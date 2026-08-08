@@ -1,0 +1,25 @@
+{
+  "lane": "20260808_mod-kick-build",
+  "wave": "ACCEPT",
+  "verdict": "PASS",
+  "when": "2026-08-08T17:43:00-04:00",
+  "proof_job": "evals/check_mod_kick.py PASS; LOCAL_ONLY same-machine smoke labeled",
+  "evals": {
+    "command": "python3 evals/check_mod_kick.py",
+    "fixtures": 12,
+    "result": "PASS"
+  },
+  "smoke": {
+    "mode": "LOCAL_ONLY",
+    "auth": "LOCAL_ONLY_AUTH",
+    "receipt": "wavves/handoffs/KICK_20260808_1743.md",
+    "cross_env_claim": false,
+    "origin_synced": false
+  },
+  "repo_state_verified_against": "d8467343d2e6a0ca6ef4b799d41958886225481f",
+  "plugin_version": "0.5.0",
+  "gaps": [
+    "cross-env origin sync deferred to O0 land + follow-up kick",
+    "local plugin re-copy after O0 land (document only)"
+  ]
+}

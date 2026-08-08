@@ -1,0 +1,22 @@
+{
+  "mode": "mod-kick",
+  "trigger": "/mod-kick leash",
+  "default_matches_lane_primary": true,
+  "published": true,
+  "origin_synced": true,
+  "paste_claims_remote_pull": true,
+  "multi_repo": false,
+  "leash": true,
+  "leash_auth": true,
+  "leash_file_count": 1,
+  "leash_bytes": 100,
+  "leash_files": [".env.local"],
+  "local_only": false,
+  "cross_env_claim": false,
+  "desktop_authority": false,
+  "rotate_collapse": false,
+  "shrug_widened_multi_or_leash": false,
+  "allowlist": ["ok.md"],
+  "published_paths": ["ok.md"],
+  "auth_lines": ["LEASH_AUTH"]
+}

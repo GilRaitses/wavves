@@ -295,6 +295,7 @@
           <tr><td><code>/set-key</code></td><td>Terminal.app paste helper for a server-only env secret (default klosr <code>GOOGLE_MAPS_API_KEY</code>). Never echoes the secret.</td></tr>
           <tr><td><code>/shrug</code></td><td>Thin alias for emoji shrug. Bare <code>/shrug</code> → AUTH-10 proceed. <code>/shrug</code> plus a closed all-standing phrase → proceed-all-standing. Never widens bare shrug.</td></tr>
           <tr><td><code>/mod-rotate</code></td><td>Rotate the moderator to a fresh thread with a handoff file.</td></tr>
+          <tr><td><code>/mod-kick</code></td><td>Cross-environment exit: publish lane allowlist to a kick-target remote and emit a paste for another machine or modality.</td></tr>
         </tbody>
       </table>
 
@@ -310,8 +311,9 @@
           <tr><td>set-key</td><td><code>/set-key</code></td><td>External Terminal paste helper for server-only env secrets</td></tr>
           <tr><td>paragraph-tunnel</td><td>dispatch STEPS</td><td>Mid-render structural gate for a named outbound paragraph</td></tr>
           <tr><td>proof-before-accept</td><td>dispatch STEPS</td><td>Named proof job + host/blank-canvas checks before ACCEPT</td></tr>
-          <tr><td>rotate</td><td><code>/mod-rotate</code></td><td>Hand off when context is heavy</td></tr>
-          <tr><td>pickup</td><td>hydrate</td><td>Resume from rotation paste; mandatory same-turn remeasure on <code>yield_awaiting_children</code> vs <code>return_to_O0</code> / hard FAIL</td></tr>
+          <tr><td>rotate</td><td><code>/mod-rotate</code></td><td>Hand off when context is heavy (same O0 family)</td></tr>
+          <tr><td>kick</td><td><code>/mod-kick</code></td><td>Hand to another environment / machine / readback elsewhere</td></tr>
+          <tr><td>pickup</td><td>hydrate</td><td>Resume from rotation paste; mandatory same-turn remeasure on <code>yield_awaiting_children</code> vs <code>return_to_O0</code> / hard FAIL (rotate-hydrate only)</td></tr>
           <tr><td>proceed</td><td>hydrate + execute</td><td><code>proceed as recommended</code>, <code>/wavves proceed</code>; all-standing on closed phrases (<code>all still standing</code>, <code>queue all standing and move</code>, <code>proceed all standing</code>); bare shrug / bare <code>/shrug</code> stay AUTH-10 only</td></tr>
         </tbody>
       </table>
@@ -319,7 +321,7 @@
 
     <section>
       <h2>The right way to invoke each command</h2>
-      <p class="lead">One rule governs all commands: read the matched skill in full before acting, never improvise charter, check, decide, layover or rotation steps from memory, even inside a repeat session.</p>
+      <p class="lead">One rule governs all commands: read the matched skill in full before acting, never improvise charter, check, decide, layover, rotation or kick steps from memory, even inside a repeat session.</p>
       <p class="lead" style="margin-top: 0.6rem;">Spec → BUILD order: <code>/mod-check</code> → <code>/mod-decide</code> → <code>/charter</code>. Do not charter BUILD while product forks are still open. Authority sync, scoped verdicts and <code>/wavves proceed</code> are documented below.</p>
 
       <div class="usage-grid">
@@ -329,7 +331,7 @@
           <pre>/wavves the checkout webhook creates duplicate
 invoices under retries. reproduce, fix and verify
 with gate captures. do not deploy.</pre>
-          <p class="not-this"><strong>Not this:</strong> calling it with no task ("just set things up"). It needs either bounded work to charter or an explicit instruction like "set up" / "check the spec" / "lock decisions" / "proceed as recommended" / "rotate" / "where are we" to match a playbook.</p>
+          <p class="not-this"><strong>Not this:</strong> calling it with no task ("just set things up"). It needs either bounded work to charter or an explicit instruction like "set up" / "check the spec" / "lock decisions" / "proceed as recommended" / "rotate" / "kick" / "where are we" to match a playbook.</p>
         </article>
 
         <article class="usage-card">
@@ -408,7 +410,15 @@ GOOGLE_MAPS_API_KEY. remeasure set/nchars only.</pre>
           <p class="when">Only when the thread is genuinely heavy or you're stepping away, not preemptively.</p>
           <pre>/mod-rotate token velocity is too high. give me
 the one-line paste for a fresh thread.</pre>
-          <p class="not-this"><strong>Not this:</strong> rotating on every small task, or assigning the successor identity yourself. The rotation file assigns <code>O0.R&lt;N+1&gt;</code>. The new thread verifies claimed commits are reachable from HEAD before trusting them.</p>
+          <p class="not-this"><strong>Not this:</strong> rotating on every small task, or assigning the successor identity yourself. The rotation file assigns <code>O0.R&lt;N+1&gt;</code>. The new thread verifies claimed commits are reachable from HEAD before trusting them. For another environment that only shares git remotes, use <code>/mod-kick</code> instead.</p>
+        </article>
+
+        <article class="usage-card">
+          <h3>/mod-kick</h3>
+          <p class="when">Hand a stream to another environment, machine, or readback modality that shares git remotes. Publish allowlist first, then paste.</p>
+          <pre>/mod-kick publish the lane allowlist and give me
+the paste for another environment.</pre>
+          <p class="not-this"><strong>Not this:</strong> collapsing kick into rotate / pickup, silent multi-repo or leash without auth, or claiming <code>LOCAL_ONLY</code> across machines. Pickup stays rotate-hydrate only.</p>
         </article>
 
         <article class="usage-card">
@@ -459,6 +469,10 @@ sibling repos; I will open one cloud agent myself afterward.</pre>
           <pre>/wavves rotate this thread. write a handoff for active lanes.</pre>
         </article>
         <article class="demo-row">
+          <p class="demo-label">kick</p>
+          <pre>/wavves kick this stream to another environment. ask kick target.</pre>
+        </article>
+        <article class="demo-row">
           <p class="demo-label">pickup</p>
           <pre>/wavves hydrate from the rotation paste and tell me what's active.</pre>
         </article>
@@ -490,6 +504,10 @@ one decision at a time. write decisions/*.md. no BUILD yet.</pre>
           <p class="demo-label">leaf: rotate only</p>
           <pre>/mod-rotate token velocity is too high. give me the one-line paste.</pre>
         </article>
+        <article class="demo-row">
+          <p class="demo-label">leaf: kick only</p>
+          <pre>/mod-kick publish allowlist and give me the paste for another environment.</pre>
+        </article>
       </div>
     </section>
 
@@ -500,7 +518,7 @@ one decision at a time. write decisions/*.md. no BUILD yet.</pre>
         <li>For spec work: <code>/mod-check</code> → <code>/mod-decide</code> → <code>/charter</code>. Do not BUILD while forks are open.</li>
         <li>Type <code>/wavves</code> plus a plain task description. If the home is missing, bootstrap runs first.</li>
         <li>After a verdict, <code>/wavves proceed as recommended</code> runs commit, dispatch and operator gates in order.</li>
-        <li>When the thread gets heavy, <code>/wavves rotate</code> or <code>/mod-rotate</code> and paste the one-liner into a fresh chat.</li>
+        <li>When the thread gets heavy, <code>/wavves rotate</code> or <code>/mod-rotate</code> and paste the one-liner into a fresh chat. To leave for another environment that only shares git remotes, use <code>/mod-kick</code>.</li>
         <li>Pair with Cursor <code>/loop</code> for long lanes that need runnable gates on disk beside the lane home.</li>
       </ol>
     </section>

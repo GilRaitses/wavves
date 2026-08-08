@@ -29,6 +29,7 @@ like `/poteto-mode` in pstack.
 | `/set-key` | Terminal.app paste helper for a server-only env secret |
 | `/shrug` | alias for emoji shrug; bare → AUTH-10 proceed; with closed all-standing phrase → proceed-all-standing |
 | `/mod-rotate` | rotation only |
+| `/mod-kick` | cross-environment kick exit (publish + paste); not rotate |
 
 ## Playbooks (`/wavves` routes here)
 
@@ -42,8 +43,9 @@ like `/poteto-mode` in pstack.
 | set-key | `/set-key` | Terminal.app paste helper for a server-only env secret |
 | paragraph-tunnel | dispatch STEPS | mid-render structural gate for outbound paragraph |
 | proof-before-accept | dispatch STEPS | named proof job before ACCEPT |
-| rotate | `/mod-rotate` | hand off to fresh thread |
-| pickup | hydrate | resume, "where are we"; same-turn yield vs return_to_O0 remeasure |
+| rotate | `/mod-rotate` | hand off to fresh thread (same O0 family) |
+| kick | `/mod-kick` | hand to another environment / machine / readback elsewhere |
+| pickup | hydrate | resume from rotation paste; same-turn yield vs return_to_O0 remeasure (rotate-hydrate only) |
 | proceed | hydrate + execute | `proceed as recommended`, `/wavves proceed`; all-standing on closed phrases only; bare `/shrug` stays AUTH-10 |
 
 ## Quick reference
@@ -58,6 +60,7 @@ decide:            /mod-decide navigate open calls from the check return.
                    one decision at a time. write decisions/*.md. no BUILD yet.
 layover:           /layover audit ~/my.code-workspace. read-only.
 rotate:            /wavves rotate this thread. write a handoff for active lanes.
+kick:              /wavves kick this stream to another environment. ask kick target.
 pickup:            /wavves hydrate from the rotation paste and tell me what's active.
 proceed:           /wavves proceed as recommended after mod-check or mod-decide return.
 all-standing:      /wavves proceed all standing
@@ -71,6 +74,7 @@ decide only:       /mod-decide lock the open calls. emit Locked decisions paste.
 set-key only:      /set-key open Terminal.app paste helper for a server-only
                    env secret. never put the secret in chat.
 rotate only:       /mod-rotate token velocity is too high. give me the one-line paste.
+kick only:         /mod-kick publish allowlist and give me the paste for another environment.
 ```
 
 ## From check to BUILD
