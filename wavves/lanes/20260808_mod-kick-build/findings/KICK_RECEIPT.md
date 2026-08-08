@@ -1,7 +1,5 @@
-# KICK_RECEIPT (lane mirror)
+# KICK_RECEIPT (mirror)
 
-Mirror of `wavves/handoffs/KICK_20260808_1743.md`.
+Canonical: `wavves/handoffs/KICK_20260808_1759.md`
 
-- **LOCAL_ONLY_AUTH** — same-machine only; no cross-env pull claim
-- Evals: 12/12 PASS (`evals/check_mod_kick.py`)
-- Publish deferred to O0 (`commit_file_list` in `MKB_ORCH_RETURN.md`)
+Kick target: production wavves (`wavves_build`). New thread owns FR-20260808 `/mod-kick` going forward. Publish base `7c8544b` + this receipt commit.
