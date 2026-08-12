@@ -269,9 +269,12 @@
       width: 100%;
     }
     .walkthrough-note {
-      font-size: 0.92rem;
+      font-size: 1.05rem;
       margin-top: 0.75rem;
       max-width: 44rem;
+    }
+    .walkthrough + h2 {
+      margin-top: 1.15rem;
     }
   </style>
 </head>
@@ -296,11 +299,11 @@
     </section>
 
     <section>
-      <h2>Control surface walkthrough</h2>
-      <p class="lead">The player in the header is a recorded walk of a live <code>wavves/</code> home so you can see INDEX and lane folders, then one campaign (DMP) down through waveset, dispatch, findings, gate-captures, locked decisions and a rotation handoff. The same cut is on YouTube. Install, then type <code>/wavves</code> plus a bounded task. Spec work goes <code>/mod-check</code> then <code>/mod-decide</code> then <code>/charter</code>. After a verdict, <code>/wavves proceed as recommended</code>. When the thread is heavy, <code>/mod-rotate</code> and paste the one-liner into a fresh chat.</p>
       <div class="walkthrough">
         <iframe src="https://www.youtube.com/embed/wzH96QwYDwk" title="wavves control surface walkthrough" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
       </div>
+      <h2>Control surface walkthrough</h2>
+      <p class="walkthrough-note">The player in the header is a recorded walk of a live <code>wavves/</code> home so you can see INDEX and lane folders, then one campaign (DMP) down through waveset, dispatch, findings, gate-captures, locked decisions and a rotation handoff. The same cut is on <a href="https://youtu.be/wzH96QwYDwk">YouTube</a>.</p>
     </section>
 
     <section>
