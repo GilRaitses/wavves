@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>wavves — recorded control surface</title>
+<style>
+  :root {
+    --bg: #ececec;
+    --sidebar: #e6e6e6;
+    --window: #f6f6f6;
+    --line: #d0d0d0;
+    --text: #1d1d1f;
+    --mute: #6e6e73;
+    --sel: #0a84ff;
+    --sel-text: #fff;
+    --caption-bg: rgba(20, 22, 28, 0.88);
+    --caption-fg: #f4f6f8;
+    --accent: #34c759;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+    background: #3a3a3c;
+    color: var(--text);
+    overflow: hidden;
+  }
+  .desktop {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px;
+    background:
+      radial-gradient(900px 500px at 20% 10%, #4a5568 0%, transparent 55%),
+      radial-gradient(700px 400px at 90% 80%, #2c3340 0%, transparent 50%),
+      #2b2d31;
+  }
+  .finder {
+    width: min(1180px, 96vw);
+    height: min(720px, 88vh);
+    background: var(--window);
+    border-radius: 12px;
+    box-shadow: 0 30px 80px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,.08);
+    display: grid;
+    grid-template-rows: 52px 1fr;
+    overflow: hidden;
+  }
+  .titlebar {
+    background: linear-gradient(#f2f2f2, #e8e8e8);
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 14px;
+  }
+  .traffic { display: flex; gap: 8px; }
+  .traffic i {
+    width: 12px; height: 12px; border-radius: 50%;
+    display: block;
+  }
+  .traffic .r { background: #ff5f57; }
+  .traffic .y { background: #febc2e; }
+  .traffic .g { background: #28c840; }
+  .path-crumbs {
+    flex: 1;
+    font-size: 13px;
+    color: var(--mute);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .path-crumbs strong { color: var(--text); font-weight: 600; }
+  .body {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    min-height: 0;
+  }
+  .sidebar {
+    background: var(--sidebar);
+    border-right: 1px solid var(--line);
+    padding: 12px 10px;
+    font-size: 12px;
+  }
+  .side-label {
+    color: var(--mute);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    margin: 8px 8px 6px;
+  }
+  .side-item {
+    padding: 6px 10px;
+    border-radius: 6px;
+    color: var(--text);
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .side-item.active { background: #d8d8d8; font-weight: 600; }
+  .main {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    min-height: 0;
+    background: #fff;
+  }
+  .toolbar {
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--mute);
+  }
+  .list {
+    overflow: auto;
+    padding: 4px 0 80px;
+  }
+  .row {
+    display: grid;
+    grid-template-columns: 28px 1fr 120px 100px;
+    gap: 8px;
+    align-items: center;
+    padding: 7px 18px;
+    font-size: 13px;
+    border-left: 3px solid transparent;
+  }
+  .row.folder .name { font-weight: 500; }
+  .row.highlight {
+    background: color-mix(in srgb, var(--sel) 18%, white);
+    border-left-color: var(--sel);
+  }
+  .row.open-target {
+    background: var(--sel);
+    color: var(--sel-text);
+  }
+  .row.open-target .meta { color: rgba(255,255,255,.8); }
+  .icon {
+    width: 22px; height: 22px;
+    display: grid; place-items: center;
+    font-size: 16px;
+  }
+  .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .meta { color: var(--mute); font-size: 12px; text-align: right; }
+  .caption {
+    position: fixed;
+    left: 50%;
+    bottom: 36px;
+    transform: translateX(-50%);
+    width: min(920px, 90vw);
+    background: var(--caption-bg);
+    color: var(--caption-fg);
+    border-radius: 14px;
+    padding: 16px 20px 14px;
+    box-shadow: 0 16px 40px rgba(0,0,0,.35);
+    backdrop-filter: blur(10px);
+    z-index: 20;
+  }
+  .caption .beat {
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #8be9a0;
+    margin-bottom: 6px;
+  }
+  .caption h1 {
+    margin: 0 0 6px;
+    font-size: 22px;
+    font-weight: 650;
+    letter-spacing: -0.02em;
+  }
+  .caption p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.45;
+    color: #d7dde6;
+  }
+  .progress {
+    margin-top: 12px;
+    height: 3px;
+    background: rgba(255,255,255,.15);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress > i {
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    transition: width .2s linear;
+  }
+</style>
+</head>
+<body>
+<div class="desktop">
+  <div class="finder" id="finder">
+    <div class="titlebar">
+      <div class="traffic"><i class="r"></i><i class="y"></i><i class="g"></i></div>
+      <div class="path-crumbs" id="crumbs">pax ▸ wavves</div>
+    </div>
+    <div class="body">
+      <aside class="sidebar">
+        <div class="side-label">Favorites</div>
+        <div class="side-item active"><span>📁</span> wavves</div>
+        <div class="side-item"><span>🗂</span> lanes</div>
+        <div class="side-item"><span>🔁</span> rotations</div>
+        <div class="side-label">Authority</div>
+        <div class="side-item"><span>📋</span> INDEX.md</div>
+        <div class="side-item"><span>🧾</span> registry.yml</div>
+      </aside>
+      <section class="main">
+        <div class="toolbar" id="toolbar">List view · pax/wavves recorded state</div>
+        <div class="list" id="list"></div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<div class="caption" id="caption">
+  <div class="beat" id="beat-label">Beat 1 / 10</div>
+  <h1 id="cap-title">wavves</h1>
+  <p id="cap-body">Loading…</p>
+  <div class="progress"><i id="bar"></i></div>
+</div>
+
+<script>
+/**
+ * Finder-style walk of pax/wavves recorded state.
+ */
+const TREE = {
+  home: {
+    path: ["pax", "wavves"],
+    items: [
+      { name: "AGENTS.md", kind: "file", meta: "hydration contract" },
+      { name: "INDEX.md", kind: "file", meta: "pickup map · O0.R6" },
+      { name: "registry.yml", kind: "file", meta: "chartered lanes" },
+      { name: "step-log.md", kind: "file", meta: "moderator trace" },
+      { name: "lanes", kind: "folder", meta: "88 campaign homes" },
+      { name: "rotations", kind: "folder", meta: "thread handoffs" },
+      { name: "skills", kind: "folder", meta: "proposed / accepted" },
+      { name: "layovers", kind: "folder", meta: "workspace preflight" },
+    ],
+  },
+  lanes: {
+    path: ["pax", "wavves", "lanes"],
+    items: [
+      { name: "20260708_manhattan-routing-phase-boundary-build", kind: "folder", meta: "RPB" },
+      { name: "20260712_field-study-shadow-evidence-layer", kind: "folder", meta: "FSS" },
+      { name: "20260714_apollo-supply-pilot-plan", kind: "folder", meta: "ASP" },
+      { name: "20260722_island-wide-discovery", kind: "folder", meta: "IWD" },
+      { name: "20260723_decisiondb-policy-routing", kind: "folder", meta: "DPR · ACCEPT" },
+      { name: "20260724_decisiondb-diagnostic-experiments", kind: "folder", meta: "DDX" },
+      { name: "20260726_ddx-methods-paper", kind: "folder", meta: "DMP · open this" },
+      { name: "20260726_ddx-live-graduation", kind: "folder", meta: "DLG · parked" },
+      { name: "20260730_klosr-3d-canopy-viewport-build", kind: "folder", meta: "KCV" },
+      { name: "… 79 more dated lane homes", kind: "folder", meta: "88 total" },
+    ],
+  },
+  dmp: {
+    path: ["pax", "wavves", "lanes", "20260726_ddx-methods-paper"],
+    items: [
+      { name: "waveset.md", kind: "file", meta: "lane authority" },
+      { name: "dispatch-w1.md", kind: "file", meta: "wave packet" },
+      { name: "dispatch-w2.md", kind: "file", meta: "wave packet" },
+      { name: "dispatch-w3.md", kind: "file", meta: "active dispatch" },
+      { name: "dispatch-accept.md", kind: "file", meta: "accept packet" },
+      { name: "findings", kind: "folder", meta: "charge returns" },
+      { name: "gate-captures", kind: "folder", meta: "PASS / BLOCK" },
+      { name: "decisions", kind: "folder", meta: "locked calls" },
+    ],
+  },
+  waveset: {
+    path: ["pax", "wavves", "lanes", "20260726_ddx-methods-paper"],
+    items: [
+      { name: "waveset.md", kind: "file", meta: "lane: DMP · owner O0.R6" },
+      { name: "  w1_gate: PASS", kind: "file", meta: "DMP-W1.json" },
+      { name: "  decide: D", kind: "file", meta: "DMP-DECIDE.json" },
+      { name: "  accept_gate: PASS", kind: "file", meta: "DMP-ACCEPT.json" },
+      { name: "  active_dispatch: dispatch-w3.md", kind: "file", meta: "unlocked" },
+    ],
+  },
+  dispatch: {
+    path: ["pax", "wavves", "lanes", "20260726_ddx-methods-paper"],
+    items: [
+      { name: "dispatch-w3.md", kind: "file", meta: "wave_orchestrator" },
+      { name: "  answers_to: O0.R6", kind: "file", meta: "moderator" },
+      { name: "  git_actions_by_runner: none", kind: "file", meta: "fence" },
+      { name: "  proof_required: yes", kind: "file", meta: "named proof job" },
+      { name: "  predecessor: DMP-ACCEPT.json", kind: "file", meta: "PASS" },
+    ],
+  },
+  findings: {
+    path: ["pax", "wavves", "lanes", "20260726_ddx-methods-paper", "findings"],
+    items: [
+      { name: "DMP-ACCEPT-a-SPINE.md", kind: "file", meta: "charge a" },
+      { name: "DMP-ACCEPT-b-HONESTY-BOUNDS.md", kind: "file", meta: "charge b" },
+      { name: "DMP-ACCEPT-c-ADV.md", kind: "file", meta: "adversarial" },
+      { name: "DMP-ACCEPT-ROLLUP.md", kind: "file", meta: "orchestrator rollup" },
+      { name: "DMP-ACCEPT-GATE.md", kind: "file", meta: "gate writeup" },
+      { name: "DMP-W3-ROLLUP.md", kind: "file", meta: "later wave" },
+    ],
+  },
+  gates: {
+    path: ["pax", "wavves", "lanes", "20260726_ddx-methods-paper", "gate-captures"],
+    items: [
+      { name: "DMP-W1.json", kind: "file", meta: "PASS" },
+      { name: "DMP-DECIDE.json", kind: "file", meta: "locks recorded" },
+      { name: "DMP-W2.json", kind: "file", meta: "PASS" },
+      { name: "DMP-ACCEPT.json", kind: "file", meta: "PASS · methods cleared" },
+      { name: "DMP-W3.json", kind: "file", meta: "current wave" },
+    ],
+  },
+  decisions: {
+    path: ["pax", "wavves", "lanes", "20260726_ddx-methods-paper", "decisions"],
+    items: [
+      { name: "LOCKED-DECISIONS.md", kind: "file", meta: "do not reopen" },
+      { name: "DMP-DECIDE.md", kind: "file", meta: "mod-decide record" },
+    ],
+  },
+  rotations: {
+    path: ["pax", "wavves", "rotations"],
+    items: [
+      { name: "rotation-r02-20260709-2205.md", kind: "file", meta: "O0.R2" },
+      { name: "rotation-r03-20260714-1848.md", kind: "file", meta: "O0.R3" },
+      { name: "rotation-r04-20260723-0326.md", kind: "file", meta: "O0.R4" },
+      { name: "rotation-r05-20260723-1902.md", kind: "file", meta: "O0.R5" },
+      { name: "rotation-r06-20260724-1222.md", kind: "file", meta: "current · O0.R6" },
+    ],
+  },
+};
+
+const BEATS = [
+  {
+    id: "home",
+    title: "wavves home · the control surface on disk",
+    body: "Markdown and YAML are the durable substrate. INDEX, registry, lanes, and rotations are what a fresh chat reads instead of the old scrollback.",
+    highlight: "INDEX.md",
+    dwellMs: 13000,
+  },
+  {
+    id: "home",
+    title: "INDEX.md · pickup map",
+    body: "Current identity is O0.R6. Active lanes, blocked decisions, and the next file to read live here. Subagents hydrate from this map, not from chat memory.",
+    highlight: "lanes",
+    dwellMs: 12000,
+  },
+  {
+    id: "lanes",
+    title: "lanes/ · 88 campaign homes",
+    body: "Each /charter call creates one dated folder and one registry entry. Routing, shade evidence, DecisionDB methods, and klosr viewport work sit as sibling campaigns under the same record.",
+    highlight: "20260726_ddx-methods-paper",
+    dwellMs: 13000,
+  },
+  {
+    id: "dmp",
+    title: "One lane home · DMP",
+    body: "waveset.md is the authority document. Dispatch files provision a temporary wave orchestrator. Findings, gate-captures, and decisions are the return path back to the moderator.",
+    highlight: "waveset.md",
+    dwellMs: 12000,
+  },
+  {
+    id: "waveset",
+    title: "waveset.md · what may advance",
+    body: "PASS on W1, a recorded decide, and ACCEPT PASS are already on disk. The moderator reconciles evidence against this file. A BLOCK would stop the lane at a named condition.",
+    highlight: "  accept_gate: PASS",
+    dwellMs: 12000,
+  },
+  {
+    id: "dispatch",
+    title: "dispatch-w3.md · bounded fan-out",
+    body: "The packet names the orchestrator, the moderator it answers to, and the fences: no git from runners, a named proof job, and the predecessor gate it must not relitigate.",
+    highlight: "dispatch-w3.md",
+    dwellMs: 12000,
+  },
+  {
+    id: "findings",
+    title: "findings/ · charge returns",
+    body: "Parallel workers write disjoint files. The orchestrator rolls them up. An adversarial charge grades work it did not author.",
+    highlight: "DMP-ACCEPT-c-ADV.md",
+    dwellMs: 11000,
+  },
+  {
+    id: "gates",
+    title: "gate-captures/ · the advance rule",
+    body: "A lane moves only after a JSON capture records PASS or BLOCK. DMP-ACCEPT.json is the disk proof that methods work cleared before W3 opened.",
+    highlight: "DMP-ACCEPT.json",
+    dwellMs: 13000,
+  },
+  {
+    id: "decisions",
+    title: "decisions/ · forks that returned to you",
+    body: "/mod-decide records product calls the workers are not allowed to invent. Locked decisions propagate into waveset and later dispatches so a new wave does not reopen them.",
+    highlight: "LOCKED-DECISIONS.md",
+    dwellMs: 12000,
+  },
+  {
+    id: "rotations",
+    title: "/mod-rotate · authority survives the thread",
+    body: "When context is heavy, a rotation file assigns O0.R6 and lists active lanes. The new moderator reconstructs campaign state from these records, then keeps going.",
+    highlight: "rotation-r06-20260724-1222.md",
+    dwellMs: 14000,
+  },
+];
+
+function iconFor(item) {
+  if (item.kind === "folder") return "📁";
+  if (item.name.endsWith(".json")) return "🟢";
+  if (item.name.endsWith(".yml") || item.name.endsWith(".yaml")) return "🧾";
+  if (item.name.endsWith(".md")) return "📄";
+  return "📄";
+}
+
+function renderFolder(nodeId, highlightName, openPulse) {
+  const node = TREE[nodeId];
+  const list = document.getElementById("list");
+  const crumbs = document.getElementById("crumbs");
+  crumbs.innerHTML = node.path
+    .map((p, i) => (i === node.path.length - 1 ? `<strong>${p}</strong>` : p))
+    .join(" ▸ ");
+  list.innerHTML = "";
+  for (const item of node.items) {
+    const row = document.createElement("div");
+    row.className = "row " + item.kind;
+    if (item.name === highlightName) {
+      row.classList.add(openPulse ? "open-target" : "highlight");
+    }
+    row.innerHTML = `
+      <div class="icon">${iconFor(item)}</div>
+      <div class="name">${item.name}</div>
+      <div class="meta">${item.kind}</div>
+      <div class="meta">${item.meta || ""}</div>`;
+    list.appendChild(row);
+  }
+}
+
+function setCaption(i, beat, frac) {
+  document.getElementById("beat-label").textContent = `Beat ${i + 1} / ${BEATS.length}`;
+  document.getElementById("cap-title").textContent = beat.title;
+  document.getElementById("cap-body").textContent = beat.body;
+  document.getElementById("bar").style.width = `${Math.min(100, frac * 100)}%`;
+}
+
+// Expose for Playwright manual capture
+window.TREE = TREE;
+window.BEATS = BEATS;
+window.renderFolder = renderFolder;
+window.setCaption = setCaption;
+
+async function sleep(ms) {
+  return new Promise((r) => setTimeout(r, ms));
+}
+
+async function run() {
+  // Expose total duration for the recorder
+  const total = BEATS.reduce((s, b) => s + b.dwellMs, 0) + 1500;
+  document.body.dataset.totalMs = String(total);
+  document.body.dataset.ready = "1";
+
+  // ?manual=1 → recorder drives beats via page.evaluate
+  const params = new URLSearchParams(location.search);
+  if (params.get("manual") === "1") {
+    renderFolder(BEATS[0].id, BEATS[0].highlight, false);
+    setCaption(0, BEATS[0], 0);
+    return;
+  }
+
+  for (let i = 0; i < BEATS.length; i++) {
+    const beat = BEATS[i];
+    renderFolder(beat.id, beat.highlight, false);
+    const start = performance.now();
+    const mid = Math.floor(beat.dwellMs * 0.55);
+    // first half: highlight next target
+    while (performance.now() - start < mid) {
+      const frac = (performance.now() - start) / beat.dwellMs;
+      setCaption(i, beat, (i + frac) / BEATS.length);
+      await sleep(100);
+    }
+    // pulse open
+    renderFolder(beat.id, beat.highlight, true);
+    await sleep(450);
+    renderFolder(beat.id, beat.highlight, false);
+    while (performance.now() - start < beat.dwellMs) {
+      const frac = (performance.now() - start) / beat.dwellMs;
+      setCaption(i, beat, (i + frac) / BEATS.length);
+      await sleep(100);
+    }
+  }
+  setCaption(BEATS.length - 1, BEATS[BEATS.length - 1], 1);
+  document.body.dataset.done = "1";
+}
+
+run();
+</script>
+</body>
+</html>
