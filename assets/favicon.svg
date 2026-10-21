@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="wavves">
+  <rect width="64" height="64" rx="12" fill="#fbf5e7"/>
+  <path d="M8 22c6 0 6 8 12 8s6-8 12-8 6 8 12 8 6-8 12-8" fill="none" stroke="#bd6d36" stroke-width="4" stroke-linecap="round"/>
+  <path d="M8 34c6 0 6 8 12 8s6-8 12-8 6 8 12 8 6-8 12-8" fill="none" stroke="#24313b" stroke-width="3.2" stroke-linecap="round"/>
+  <path d="M8 46c6 0 6 8 12 8s6-8 12-8 6 8 12 8 6-8 12-8" fill="none" stroke="#8f9171" stroke-width="2.8" stroke-linecap="round"/>
+</svg>

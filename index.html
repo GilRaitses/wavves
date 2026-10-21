@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>wavves | kits for Cursor agents</title>
+  <meta name="description" content="Paid kits for Cursor agents. Check claims of done and check handoffs between threads. Sold on Agensi.">
+  <link rel="canonical" href="https://wavves.aimez.ai/">
+  <meta name="theme-color" content="#1a2f3d">
+  <link rel="icon" href="/assets/favicon.ico" sizes="any">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="wavves">
+  <meta property="og:title" content="wavves | kits for Cursor agents">
+  <meta property="og:description" content="Paid kits for Cursor agents. Check claims of done and check handoffs between threads. Sold on Agensi.">
+  <meta property="og:image" content="https://wavves.aimez.ai/assets/og-wavves.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://wavves.aimez.ai/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="wavves | kits for Cursor agents">
+  <meta name="twitter:description" content="Paid kits for Cursor agents. Check claims of done and check handoffs between threads. Sold on Agensi.">
+  <meta name="twitter:image" content="https://wavves.aimez.ai/assets/og-wavves.png">
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #1a2f3d; --foam: #f4f0e6; --copper: #bd6d36; --olive: #8f9171;
+      --dusk: #304f78; --cream: #fbf5e7; --charcoal: #24313b;
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "IBM Plex Sans", system-ui, sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+      --shadow: 0 14px 44px rgba(36,49,59,.1);
+    }
+    body {
+      background-color: var(--cream);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .14 0 0 0 0 .19 0 0 0 0 .23 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      color: var(--charcoal); font-family: var(--sans); line-height: 1.6; min-height: 100vh;
+    }
+    main { margin: 0 auto; max-width: 1040px; padding: clamp(1.5rem,5vw,4rem) clamp(1rem,4vw,2.4rem); }
+    .hero {
+      background: var(--foam); border: 1px solid rgba(189,109,54,.18); border-radius: 1.4rem;
+      box-shadow: var(--shadow); margin-bottom: clamp(2.5rem,6vw,4rem); padding: clamp(1.6rem,4vw,3rem); position: relative;
+    }
+    .hero-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 2.2rem; }
+    .mark { width: 56px; height: 56px; border-radius: 50%; opacity: .9; }
+    h1 { color: var(--ink); font-family: var(--serif); font-size: clamp(3.6rem,10vw,6.5rem); font-weight: 600; letter-spacing: -.04em; line-height: .9; }
+    h2 { color: var(--ink); font-family: var(--serif); font-size: clamp(2rem,4.5vw,2.7rem); font-weight: 600; letter-spacing: -.02em; margin-bottom: .4rem; }
+    h3 { color: var(--ink); font-family: var(--mono); font-size: 1.15rem; font-weight: 600; }
+    .kicker { color: var(--copper); font-family: var(--mono); font-size: .78rem; font-weight: 600; letter-spacing: .14em; margin-bottom: .8rem; text-transform: uppercase; }
+    .hero-copy { font-size: clamp(1.08rem,2vw,1.3rem); max-width: 38rem; color: var(--charcoal); }
+    section { margin-bottom: 3rem; }
+    .lead { color: var(--charcoal); opacity: .85; margin-bottom: 1.2rem; max-width: 40rem; }
+    .rule { border: 0; height: 1px; background: linear-gradient(90deg, rgba(189,109,54,.45), rgba(189,109,54,0)); margin: 0 0 1.6rem; }
+    .links { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.4rem; }
+    a { color: var(--dusk); }
+    .links a { border: 1px solid rgba(48,79,120,.3); border-radius: 999px; padding: .5rem 1rem; text-decoration: none; font-family: var(--mono); font-size: .85rem; font-weight: 500; background: var(--cream); }
+    .links a:first-child { background: var(--ink); color: var(--foam); border-color: var(--ink); }
+    .usage-grid { display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); }
+    .card { background: var(--foam); border: 1px solid rgba(36,49,59,.1); border-radius: 1.1rem; box-shadow: var(--shadow); padding: 1.2rem; }
+    .skill-card { display: flex; flex-direction: column; gap: .7rem; border-top: 2px solid rgba(189,109,54,.55); }
+    .card-head { display: flex; align-items: center; justify-content: space-between; gap: .6rem; }
+    .card-icon { width: 36px; height: 36px; border-radius: 50%; opacity: .85; }
+    .slot { aspect-ratio: 16/9; border-radius: .8rem; overflow: hidden; background: rgba(143,145,113,.12); border: 1px dashed rgba(143,145,113,.5); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: .75rem; color: var(--olive); }
+    .slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .skill-card video { width: 100%; border-radius: .8rem; background: var(--ink); display: block; }
+    .tag { font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--olive); }
+    .price { font-family: var(--mono); font-size: 1rem; font-weight: 600; color: var(--ink); border: 1px dashed rgba(189,109,54,.5); border-radius: 999px; padding: .2rem .8rem; align-self: flex-start; }
+    .btn { align-self: flex-start; background: var(--copper); color: var(--cream); border-radius: 999px; padding: .5rem 1.1rem; text-decoration: none; font-family: var(--mono); font-size: .85rem; font-weight: 500; }
+    .btn:hover, .links a:hover { filter: brightness(1.08); }
+    #more .card { opacity: .8; }
+    footer { margin-top: 2rem; color: var(--charcoal); opacity: .7; font-family: var(--mono); font-size: .8rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="hero-top"><h1>wavves</h1><img class="mark" src="/assets/brand/kick-out.png" alt="" width="56" height="56"></div>
+      <p class="kicker">paid kits for Cursor agents · on Agensi</p>
+      <p class="hero-copy">wavves kits help you trust what a Cursor agent says it did. gate-and-proof checks a claim of done against a test you can run. handoff-check checks a handoff before a new thread starts work. Both kits come from research on how agents learn and use skills, and both are sold on Agensi.</p>
+      <div class="links">
+        <a href="https://www.agensi.io/users/aimez">wavves kits on Agensi</a>
+        <a href="#kits">Kits</a>
+        
+      </div>
+    </section>
+
+    <section id="kits">
+      <h2>Kits</h2>
+      <p class="lead">Each kit comes with scripts, a short guide and a demo.</p>
+      <hr class="rule">
+      <div class="usage-grid">
+        <article class="card skill-card" id="gate-and-proof">
+          <div class="slot"><img src="/assets/listing/gate-and-proof.png" alt="gate-and-proof listing image" onerror="this.replaceWith(document.createTextNode('listing image: gate-and-proof'))"></div>
+          <div class="card-head"><p class="tag">Kit</p><img class="card-icon" src="/assets/brand/publish-set.png" alt="" width="36" height="36"></div>
+          <p class="price" data-price="todo">Price: $TBD</p>
+          <h3>/gate-and-proof</h3>
+          <p>Asks for proof before a task counts as done. Each claim becomes a gate with a check you can run. The result is saved as a JSON file, and someone other than the author grades it.</p>
+          <video controls playsinline preload="metadata" src="/assets/demos/gate-and-proof.mp4"></video>
+          <!-- TODO: replace with the Agensi listing URL for gate-and-proof once live -->
+          <a class="btn" href="https://www.agensi.io/users/aimez" data-listing="todo-gate-and-proof">Get on Agensi</a>
+        </article>
+        <article class="card skill-card" id="handoff-check">
+          <div class="slot"><img src="/assets/listing/handoff-check.png" alt="handoff-check listing image" onerror="this.replaceWith(document.createTextNode('listing image: handoff-check'))"></div>
+          <div class="card-head"><p class="tag">Kit</p><img class="card-icon" src="/assets/brand/leash.png" alt="" width="36" height="36"></div>
+          <p class="price" data-price="todo">Price: $TBD</p>
+          <h3>/handoff-check</h3>
+          <p>Checks a handoff when a new agent thread takes over. Commits and file paths in the handoff are compared against git and the disk. A JSON task list is checked for duplicate ids, bad statuses and loops.</p>
+          <video controls playsinline preload="metadata" src="/assets/demos/handoff-check.mp4"></video>
+          <!-- TODO: replace with the Agensi listing URL for handoff-check once live -->
+          <a class="btn" href="https://www.agensi.io/users/aimez" data-listing="todo-handoff-check">Get on Agensi</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="more">
+      <h2>More kits</h2>
+      <p class="lead">More kits from the same skill induction research are in progress. New kits will be added here and on Agensi.</p>
+      <hr class="rule">
+      <div class="usage-grid">
+        <!-- TODO: add a card here for each new induction-research kit -->
+        <article class="card skill-card">
+          <div class="slot">next kit</div>
+          <p class="tag">Coming</p>
+          <p class="price" data-price="todo">Price: $TBD</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>About the demos</h2>
+      <p class="lead">Each video runs one kit on a small sample to-do app repo. The repo and its data are made up for the demo.</p>
+      <hr class="rule">
+    </section>
+
+    <footer>
+      <p>wavves · by <a href="https://aimez.ai/">aimez</a> · not affiliated with Cursor or Agensi</p>
+    </footer>
+  </main>
+</body>
+</html>
