@@ -5,7 +5,7 @@ Version: `0.5.0`.
 Route durable multi-agent work through a moderator layer, with alignment
 packets, disk gate captures and handoff files saved beside the work.
 
-wavves is a free Cursor plugin for managed distributed sessions. Skills help
+wavves is a Cursor plugin for managed distributed sessions. Skills help
 a single operator prepare bounded work, dispatch parallel runners and rotate
 overloaded threads while the shared record lives in files on disk.
 
@@ -380,4 +380,4 @@ exist.
 
 ## License
 
-MIT
+Copyright 2026 Gil Raitses. All rights reserved. wavves kits are sold under a buyer license.
