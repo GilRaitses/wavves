@@ -72,7 +72,6 @@
     .price { font-family: var(--mono); font-size: 1rem; font-weight: 600; color: var(--ink); border: 1px dashed rgba(189,109,54,.5); border-radius: 999px; padding: .2rem .8rem; align-self: flex-start; }
     .btn { align-self: flex-start; background: var(--copper); color: var(--cream); border-radius: 999px; padding: .5rem 1.1rem; text-decoration: none; font-family: var(--mono); font-size: .85rem; font-weight: 500; }
     .btn:hover, .links a:hover { filter: brightness(1.08); }
-    #more .card { opacity: .8; }
     footer { margin-top: 2rem; color: var(--charcoal); opacity: .7; font-family: var(--mono); font-size: .8rem; }
   </style>
 </head>
@@ -135,13 +134,13 @@
 
     <section id="demos">
       <h2>Demos</h2>
-      <p class="lead">Each kit video shows a real run of the kit on a throwaway repo. A script wrote every file in the demo charter videos with no live agent at the keyboard. The sample project in each video is invented for the demo.</p>
+      <p class="lead">Each kit video shows a real run of the kit on a throwaway repo. A script wrote every file in the sample run videos with no live agent at the keyboard. Every sample project is invented for the demo.</p>
       <hr class="rule">
       <div class="usage-grid">
-        <article class="card skill-card"><h3>Control surface</h3><video controls playsinline preload="metadata" src="/assets/demos/site/control-surface.mp4"></video></article>
-        <article class="card skill-card"><h3>Demo charter 01 with a single wave</h3><video controls playsinline preload="metadata" src="/assets/demos/site/demo-01.mp4"></video></article>
-        <article class="card skill-card"><h3>Demo charter 02 with a check followed by a kick</h3><video controls playsinline preload="metadata" src="/assets/demos/site/demo-02.mp4"></video></article>
-        <article class="card skill-card"><h3>Demo charter 03 with a long run and two rotations</h3><video controls playsinline preload="metadata" src="/assets/demos/site/demo-03.mp4"></video></article>
+        <article class="card skill-card"><h3>Folder layout for an audited repo</h3><p>A sample project keeps its handoff history as plain files on disk. The video opens the registry file first. Next come the task folders and then the folder of rotation files. A rotation-audit run reads files laid out the same way. No kit builds the layout for you, so the video serves as a model for your own repo.</p><video controls playsinline preload="metadata" src="/assets/demos/site/control-surface.mp4"></video></article>
+        <article class="card skill-card"><h3>Sample run 1 with both checking kits</h3><p>A script replays a sample project one commit at a time. After each step the run checks the proof file with gate-and-proof and compares the handoff claims against git and disk with handoff-check.</p><video controls playsinline preload="metadata" src="/assets/demos/site/demo-01.mp4"></video></article>
+        <article class="card skill-card"><h3>Sample run 2 with a second project</h3><p>A second sample project goes through the same replay. Each commit message names the step that made it, so you can match every check to its commit.</p><video controls playsinline preload="metadata" src="/assets/demos/site/demo-02.mp4"></video></article>
+        <article class="card skill-card"><h3>Sample run 3 across two rotations</h3><p>A longer sample run passes work between threads twice. At the end the run calls all three kits, rotation-audit included.</p><video controls playsinline preload="metadata" src="/assets/demos/site/demo-03.mp4"></video></article>
       </div>
     </section>
 
