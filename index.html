@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>wavves | kits for Cursor agents</title>
-  <meta name="description" content="Paid kits for Cursor agents. Check claims of done and check handoffs between threads. Sold on Agensi.">
+  <meta name="description" content="Paid kits for Cursor agents. The kits check claims of done along with handoffs between threads. Every kit is for sale on Agensi.">
   <link rel="canonical" href="https://wavves.aimez.ai/">
   <meta name="theme-color" content="#1a2f3d">
   <link rel="icon" href="/assets/favicon.ico" sizes="any">
@@ -16,14 +16,14 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="wavves">
   <meta property="og:title" content="wavves | kits for Cursor agents">
-  <meta property="og:description" content="Paid kits for Cursor agents. Check claims of done and check handoffs between threads. Sold on Agensi.">
+  <meta property="og:description" content="Paid kits for Cursor agents. The kits check claims of done along with handoffs between threads. Every kit is for sale on Agensi.">
   <meta property="og:image" content="https://wavves.aimez.ai/assets/og-wavves.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:url" content="https://wavves.aimez.ai/">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="wavves | kits for Cursor agents">
-  <meta name="twitter:description" content="Paid kits for Cursor agents. Check claims of done and check handoffs between threads. Sold on Agensi.">
+  <meta name="twitter:description" content="Paid kits for Cursor agents. The kits check claims of done along with handoffs between threads. Every kit is for sale on Agensi.">
   <meta name="twitter:image" content="https://wavves.aimez.ai/assets/og-wavves.png">
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
@@ -81,60 +81,68 @@
     <section class="hero">
       <div class="hero-top"><h1>wavves</h1><img class="mark" src="/assets/brand/kick-out.png" alt="" width="56" height="56"></div>
       <p class="kicker">paid kits for Cursor agents · on Agensi</p>
-      <p class="hero-copy">wavves kits help you trust what a Cursor agent says it did. gate-and-proof checks a claim of done against a test you can run. handoff-check checks a handoff before a new thread starts work. Both kits come from research on how agents learn and use skills, and both are sold on Agensi.</p>
+      <p class="hero-copy">wavves kits help you trust what a Cursor agent says it did. gate-and-proof checks a claim of done against a test you can run. handoff-check checks a handoff before a new thread starts work. A bundle adds rotation-audit for work that runs across many threads. All kits come from research on how agents learn to use skills. Every kit is for sale on the Agensi marketplace.</p>
       <div class="links">
-        <a href="https://www.agensi.io/users/aimez">wavves kits on Agensi</a>
+        <a href="https://www.agensi.io/users/gil-raitses">wavves kits on Agensi</a>
         <a href="#kits">Kits</a>
-        
+        <a href="#bundle">Bundle</a>
+        <a href="#demos">Demos</a>
       </div>
     </section>
 
     <section id="kits">
       <h2>Kits</h2>
-      <p class="lead">Each kit comes with scripts, a short guide and a demo.</p>
+      <p class="lead">Each kit comes with scripts and a short guide. A demo video sits under each kit.</p>
       <hr class="rule">
       <div class="usage-grid">
         <article class="card skill-card" id="gate-and-proof">
           <div class="slot"><img src="/assets/listing/gate-and-proof.png" alt="gate-and-proof listing image" onerror="this.replaceWith(document.createTextNode('listing image: gate-and-proof'))"></div>
           <div class="card-head"><p class="tag">Kit</p><img class="card-icon" src="/assets/brand/publish-set.png" alt="" width="36" height="36"></div>
-          <p class="price" data-price="todo">Price: $TBD</p>
+          <p class="price">$14</p>
           <h3>/gate-and-proof</h3>
-          <p>Asks for proof before a task counts as done. Each claim becomes a gate with a check you can run. The result is saved as a JSON file, and someone other than the author grades it.</p>
+          <p>Asks for proof before a task counts as done. Each claim becomes a gate with a check you can run. The result is saved as a JSON file. Someone other than the author grades it.</p>
           <video controls playsinline preload="metadata" src="/assets/demos/gate-and-proof.mp4"></video>
-          <!-- TODO: replace with the Agensi listing URL for gate-and-proof once live -->
-          <a class="btn" href="https://www.agensi.io/users/aimez" data-listing="todo-gate-and-proof">Get on Agensi</a>
+          <a class="btn" href="https://agensi.io/skills/gate-and-proof">Get on Agensi</a>
         </article>
         <article class="card skill-card" id="handoff-check">
           <div class="slot"><img src="/assets/listing/handoff-check.png" alt="handoff-check listing image" onerror="this.replaceWith(document.createTextNode('listing image: handoff-check'))"></div>
           <div class="card-head"><p class="tag">Kit</p><img class="card-icon" src="/assets/brand/leash.png" alt="" width="36" height="36"></div>
-          <p class="price" data-price="todo">Price: $TBD</p>
+          <p class="price">$12</p>
           <h3>/handoff-check</h3>
-          <p>Checks a handoff when a new agent thread takes over. Commits and file paths in the handoff are compared against git and the disk. A JSON task list is checked for duplicate ids, bad statuses and loops.</p>
+          <p>Checks a handoff when a new agent thread takes over. Commits and file paths in the handoff are compared against git and the disk. A JSON task list is checked for duplicate ids and bad statuses. The same check also catches loops in the task list.</p>
           <video controls playsinline preload="metadata" src="/assets/demos/handoff-check.mp4"></video>
-          <!-- TODO: replace with the Agensi listing URL for handoff-check once live -->
-          <a class="btn" href="https://www.agensi.io/users/aimez" data-listing="todo-handoff-check">Get on Agensi</a>
+          <a class="btn" href="https://agensi.io/skills/handoff-check">Get on Agensi</a>
         </article>
       </div>
     </section>
 
-    <section id="more">
-      <h2>More kits</h2>
-      <p class="lead">More kits from the same skill induction research are in progress. New kits will be added here and on Agensi.</p>
+    <section id="bundle">
+      <h2>Bundle</h2>
+      <p class="lead">Three kits for agent work that runs across many threads. Buying the bundle is the only way to get rotation-audit.</p>
       <hr class="rule">
       <div class="usage-grid">
-        <!-- TODO: add a card here for each new induction-research kit -->
-        <article class="card skill-card">
-          <div class="slot">next kit</div>
-          <p class="tag">Coming</p>
-          <p class="price" data-price="todo">Price: $TBD</p>
+        <article class="card skill-card" id="long-horizon-bundle">
+          <div class="slot"><img src="/assets/listing/long-horizon-bundle.png" alt="wavves long-horizon bundle listing image"></div>
+          <div class="card-head"><p class="tag">Bundle</p></div>
+          <p class="price">$50</p>
+          <h3>wavves long-horizon bundle</h3>
+          <p>Includes both kits above with rotation-audit added. A rotation-audit run reads every rotation file in a repo in order. Gaps in the numbering get flagged. Claims missing from git or disk get flagged too.</p>
+          <video controls playsinline preload="metadata" src="/assets/demos/rotation-audit.mp4"></video>
+          <a class="btn" href="https://agensi.io/skills/wavves-long-horizon-bundle">Get on Agensi</a>
         </article>
       </div>
     </section>
 
-    <section>
-      <h2>About the demos</h2>
-      <p class="lead">Each video runs one kit on a small sample to-do app repo. The repo and its data are made up for the demo.</p>
+    <section id="demos">
+      <h2>Demos</h2>
+      <p class="lead">Each kit video shows a real run of the kit on a throwaway repo. A script wrote every file in the demo charter videos with no live agent at the keyboard. The sample project in each video is invented for the demo.</p>
       <hr class="rule">
+      <div class="usage-grid">
+        <article class="card skill-card"><h3>Control surface</h3><video controls playsinline preload="metadata" src="/assets/demos/site/control-surface.mp4"></video></article>
+        <article class="card skill-card"><h3>Demo charter 01 with a single wave</h3><video controls playsinline preload="metadata" src="/assets/demos/site/demo-01.mp4"></video></article>
+        <article class="card skill-card"><h3>Demo charter 02 with a check followed by a kick</h3><video controls playsinline preload="metadata" src="/assets/demos/site/demo-02.mp4"></video></article>
+        <article class="card skill-card"><h3>Demo charter 03 with a long run and two rotations</h3><video controls playsinline preload="metadata" src="/assets/demos/site/demo-03.mp4"></video></article>
+      </div>
     </section>
 
     <footer>
