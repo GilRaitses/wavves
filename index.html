@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>wavves | kits for Cursor agents</title>
-  <meta name="description" content="Paid kits for Cursor agents. The kits check claims of done along with handoffs between threads. Every kit is for sale on Agensi.">
+  <title>wavves | one package for Cursor agents</title>
+  <meta name="description" content="A fresh agent checks what the last one claimed, from files on disk. In the wavves package you get the wavves skills for agent work that runs across many threads.">
   <link rel="canonical" href="https://wavves.aimez.ai/">
   <meta name="theme-color" content="#1a2f3d">
   <link rel="icon" href="/assets/favicon.ico" sizes="any">
@@ -15,15 +15,15 @@
   <link rel="manifest" href="/site.webmanifest">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="wavves">
-  <meta property="og:title" content="wavves | kits for Cursor agents">
-  <meta property="og:description" content="Paid kits for Cursor agents. The kits check claims of done along with handoffs between threads. Every kit is for sale on Agensi.">
+  <meta property="og:title" content="wavves | one package for Cursor agents">
+  <meta property="og:description" content="A fresh agent checks what the last one claimed, from files on disk. In the wavves package you get the wavves skills for agent work that runs across many threads.">
   <meta property="og:image" content="https://wavves.aimez.ai/assets/og-wavves.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:url" content="https://wavves.aimez.ai/">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="wavves | kits for Cursor agents">
-  <meta name="twitter:description" content="Paid kits for Cursor agents. The kits check claims of done along with handoffs between threads. Every kit is for sale on Agensi.">
+  <meta name="twitter:title" content="wavves | one package for Cursor agents">
+  <meta name="twitter:description" content="A fresh agent checks what the last one claimed, from files on disk. In the wavves package you get the wavves skills for agent work that runs across many threads.">
   <meta name="twitter:image" content="https://wavves.aimez.ai/assets/og-wavves.png">
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
@@ -79,68 +79,43 @@
   <main>
     <section class="hero">
       <div class="hero-top"><h1>wavves</h1><img class="mark" src="/assets/brand/kick-out.png" alt="" width="56" height="56"></div>
-      <p class="kicker">paid kits for Cursor agents · on Agensi</p>
-      <p class="hero-copy">wavves kits help you trust what a Cursor agent says it did. gate-and-proof checks a claim of done against a test you can run. handoff-check checks a handoff before a new thread starts work. A bundle adds rotation-audit for work that runs across many threads. All kits come from research on how agents learn to use skills. Every kit is for sale on the Agensi marketplace.</p>
+      <p class="kicker">one package for Cursor agents · on Agensi</p>
+      <p class="hero-copy">A fresh agent checks what the last one claimed, from files on disk. In the wavves package you get the wavves skills for agent work that runs across many threads. With the workflow skills you run waves of agents in lanes under one moderator thread.</p>
       <div class="links">
-        <a href="https://www.agensi.io/users/aimez">wavves kits on Agensi</a>
-        <a href="#kits">Kits</a>
-        <a href="#bundle">Bundle</a>
+        <!-- TODO: swap in the new wavves listing URL after Agensi review passes -->
+        <a href="https://www.agensi.io/users/aimez">wavves on Agensi</a>
+        <a href="#package">Package</a>
         <a href="#demos">Demos</a>
       </div>
     </section>
 
-    <section id="kits">
-      <h2>Kits</h2>
-      <p class="lead">Each kit comes with scripts and a short guide. A demo video sits under each kit.</p>
+    <section id="package">
+      <h2>Package</h2>
+      <p class="lead">You get a recorded check for each finished task so each new thread can verify the handoff it receives. With a rotation history audit run you can read the whole rotation history of a repo at once.</p>
       <hr class="rule">
       <div class="usage-grid">
-        <article class="card skill-card" id="gate-and-proof">
-          <div class="slot"><img src="/assets/listing/gate-and-proof.png" alt="gate-and-proof listing image" onerror="this.replaceWith(document.createTextNode('listing image: gate-and-proof'))"></div>
-          <div class="card-head"><p class="tag">Kit</p><img class="card-icon" src="/assets/brand/publish-set.png" alt="" width="36" height="36"></div>
-          <p class="price">$14</p>
-          <h3>/gate-and-proof</h3>
-          <p>Asks for proof before a task counts as done. Each claim becomes a gate with a check you can run. The result is saved as a JSON file. Someone other than the author grades it.</p>
-          <video controls playsinline preload="metadata" src="/assets/demos/gate-and-proof.mp4"></video>
-          <a class="btn" href="https://agensi.io/skills/gate-and-proof">Get on Agensi</a>
-        </article>
-        <article class="card skill-card" id="handoff-check">
-          <div class="slot"><img src="/assets/listing/handoff-check.png" alt="handoff-check listing image" onerror="this.replaceWith(document.createTextNode('listing image: handoff-check'))"></div>
-          <div class="card-head"><p class="tag">Kit</p><img class="card-icon" src="/assets/brand/leash.png" alt="" width="36" height="36"></div>
-          <p class="price">$12</p>
-          <h3>/handoff-check</h3>
-          <p>Checks a handoff when a new agent thread takes over. Commits and file paths in the handoff are compared against git and the disk. A JSON task list is checked for duplicate ids and bad statuses. The same check also catches loops in the task list.</p>
-          <video controls playsinline preload="metadata" src="/assets/demos/handoff-check.mp4"></video>
-          <a class="btn" href="https://agensi.io/skills/handoff-check">Get on Agensi</a>
-        </article>
-      </div>
-    </section>
-
-    <section id="bundle">
-      <h2>Bundle</h2>
-      <p class="lead">Three kits for agent work that runs across many threads. Buying the bundle is the only way to get rotation-audit.</p>
-      <hr class="rule">
-      <div class="usage-grid">
-        <article class="card skill-card" id="long-horizon-bundle">
-          <div class="slot"><img src="/assets/listing/long-horizon-bundle.png" alt="wavves long-horizon bundle listing image"></div>
-          <div class="card-head"><p class="tag">Bundle</p></div>
-          <p class="price">$50</p>
-          <h3>wavves long-horizon bundle</h3>
-          <p>Includes both kits above with rotation-audit added. A rotation-audit run reads every rotation file in a repo in order. Gaps in the numbering get flagged. Claims missing from git or disk get flagged too.</p>
-          <video controls playsinline preload="metadata" src="/assets/demos/rotation-audit.mp4"></video>
-          <a class="btn" href="https://agensi.io/skills/wavves-long-horizon-bundle">Get on Agensi</a>
+        <article class="card skill-card" id="wavves">
+          <div class="card-head"><p class="tag">Package</p></div>
+          <p class="price">$50 one-time</p>
+          <h3>wavves</h3>
+          <p>In the wavves package, you get the wavves skills with a blank template for every workspace file. Every wavves word keeps its name so you can read the plain meaning of each one in the README.</p>
+          <p>With /remeasure, an agent's "done" becomes a gate with a claim and a check someone else can rerun. Each gate records the raw output along with a grade from someone other than the author.</p>
+          <p>A fresh thread runs the pickup check in /mod-rotate on receiving a handoff. Five recovery playbooks give a fix row for every message in the output of either script.</p>
+          <p>A rotation history audit run in /mod-rotate reads every rotation file in a repo in order. Gaps in the numbering and breaks in the chain of terms each get an ERROR line.</p>
+          <p>Running any script in the wavves package takes Python 3 and no other packages. The pickup commit checks and every rotation history audit run also need a local git binary.</p>
+          <!-- TODO: swap in the new wavves listing URL after Agensi review passes -->
+          <a class="btn" href="https://www.agensi.io/users/aimez">Get on Agensi</a>
         </article>
       </div>
     </section>
 
     <section id="demos">
       <h2>Demos</h2>
-      <p class="lead">Each kit video shows a real run of the kit on a throwaway repo. In the four videos below you can watch the wavves workflow the kits came out of, with every file written by a script and no live agent at the keyboard. Every sample project in the four videos is invented for the demo.</p>
+      <p class="lead">In the two videos below you can watch the wavves workflow, with every file written by a script and no live agent at the keyboard. Every sample project in the two videos is invented for the demo.</p>
       <hr class="rule">
       <div class="usage-grid">
-        <article class="card skill-card"><h3>The wavves control surface</h3><p>In the wavves workflow the moderator keeps the plans and results for every lane of work as plain files under one wavves folder. On screen INDEX.md comes first, followed by the lane folders of the sample repo. Inside one lane the moderator keeps a waveset, the plan file with the waves and gates of the lane. A wave is one batch of parallel agents that the moderator checks before the next wave opens. At the end you reach the rotations folder, where the moderator writes one rotation file for each handoff to the next moderator term in a new thread. You build the same folders in your own repo by hand, since the layout sits outside every kit sold here.</p><video controls playsinline preload="metadata" src="/assets/demos/site/control-surface.mp4"></video></article>
-        <article class="card skill-card"><h3>Demo charter 01 with a single wave</h3><p>A charter is the plan the moderator writes for one lane, covering its scope with the locked decisions. In each charter you find the waves of the lane with a gate after each wave. In demo charter 01 four charge workers run one wave of docs page fixes before a single acceptance gate. After each step of the run the gate file gets checked with gate-and-proof. Next the run holds each claimed commit or file path up against the repo with handoff-check.</p><video controls playsinline preload="metadata" src="/assets/demos/site/demo-01.mp4"></video></article>
+        <article class="card skill-card"><h3>The wavves control surface</h3><p>In the wavves workflow the moderator keeps the plans and results for every lane of work as plain files under one wavves folder. On screen INDEX.md comes first, followed by the lane folders of the sample repo. Inside one lane the moderator keeps a waveset, the plan file with the waves and gates of the lane. A wave is one batch of parallel agents that the moderator checks before the next wave opens. At the end you reach the rotations folder, where the moderator writes one rotation file for each handoff to the next moderator term in a new thread. You start the same folders in your own repo from the blank templates in the wavves package.</p><video controls playsinline preload="metadata" src="/assets/demos/site/control-surface.mp4"></video></article>
         <article class="card skill-card"><h3>Demo charter 02 with a check followed by a kick</h3><p>In demo charter 02 the workers check a written spec and the moderator locks two decisions before the feature gets built in waves. The workers fail one gate on the first try and pass the same gate after one repeat. At the end the moderator does a kick, a move of the work to another machine with a published allowlist and a short paste.</p><video controls playsinline preload="metadata" src="/assets/demos/site/demo-02.mp4"></video></article>
-        <article class="card skill-card"><h3>Demo charter 03 with a long run and two rotations</h3><p>In demo charter 03 three moderator terms work on one long lane with two rotations between them. At the end the run calls all three kits and catches a planted gap in the rotation chain with rotation-audit.</p><video controls playsinline preload="metadata" src="/assets/demos/site/demo-03.mp4"></video></article>
       </div>
     </section>
 

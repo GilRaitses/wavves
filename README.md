@@ -26,7 +26,7 @@ The core ideas:
   (adversarial + capped rewrite + mechanical fixtures), not a voice-clone.
 - **Rotation with term identity.** When a thread gets heavy, the orchestrator
   hands off to a fresh one via a rotation file that assigns the successor a
-  monotonic term identity (`O0.R<N>`). The naming uses **analogies** to Raft
+  monotonic term identity (`r<NN>`). The naming uses **analogies** to Raft
   terms, Kubernetes StatefulSet ordinals and Erlang incarnation numbers (not
   protocol isomorphisms): house fences are handoff files, stamps and etiquette.
 - **A standing home.** Any fresh instance hydrates from files (an index, a home
@@ -100,7 +100,7 @@ picks a playbook and runs the leaf skill. Like `/poteto-mode` in pstack.
 | **Charter** | `lanes/.../waveset.md` | alignment packet: scope, locked decisions, waves, gates |
 | **Dispatch** | `lanes/.../dispatch-w{N}.md` | per-wave paste block; `active_dispatch` in registry |
 | **Registry** | `wavves/registry.yml` | map of every chartered lane and its status |
-| **Rotation** | `wavves/rotations/` | handoff files with term identity (`O0.R1`, `O0.R2`, ...) |
+| **Rotation** | `wavves/rotations/` | handoff files with term identity (`r01`, `r02`, ...) |
 | **Gates** | `lanes/.../gate-captures/` | runnable checks with JSON + log evidence on disk |
 
 Orchestration fail ids (skill text; append to `wavves/failure_log.yml` only
@@ -380,4 +380,4 @@ exist.
 
 ## License
 
-Copyright 2026 Gil Raitses. All rights reserved. wavves kits are sold under a buyer license.
+Copyright 2026 Gil Raitses. All rights reserved. The wavves package is sold under a buyer license, with one LICENSE file for the whole package.
