@@ -1,7 +1,7 @@
 {
   "name": "wavves",
   "short_name": "wavves",
-  "description": "A fresh agent checks what the last one claimed, from files on disk.",
+  "description": "Parallel agent loops with saved state and shared constraints.",
   "start_url": "/",
   "display": "browser",
   "background_color": "#f8efe2",
