@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>wavves | one package for Cursor agents</title>
-  <meta name="description" content="Parallel agent loops with saved state and shared constraints. In the wavves package you get the wavves skills for agent work that runs across many threads.">
+  <meta name="description" content="Parallel agent loops with saved state and shared constraints. Through interaction with the moderator a user can set up a library of tasks that builds up through waves. An orchestration agent runs in the background.">
   <link rel="canonical" href="https://wavves.aimez.ai/">
   <meta name="theme-color" content="#1a2f3d">
   <link rel="icon" href="/assets/favicon.ico" sizes="any">
@@ -16,14 +16,14 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="wavves">
   <meta property="og:title" content="wavves | one package for Cursor agents">
-  <meta property="og:description" content="Parallel agent loops with saved state and shared constraints. In the wavves package you get the wavves skills for agent work that runs across many threads.">
+  <meta property="og:description" content="Parallel agent loops with saved state and shared constraints. Through interaction with the moderator a user can set up a library of tasks that builds up through waves. An orchestration agent runs in the background.">
   <meta property="og:image" content="https://wavves.aimez.ai/assets/og-wavves.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:url" content="https://wavves.aimez.ai/">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="wavves | one package for Cursor agents">
-  <meta name="twitter:description" content="Parallel agent loops with saved state and shared constraints. In the wavves package you get the wavves skills for agent work that runs across many threads.">
+  <meta name="twitter:description" content="Parallel agent loops with saved state and shared constraints. Through interaction with the moderator a user can set up a library of tasks that builds up through waves. An orchestration agent runs in the background.">
   <meta name="twitter:image" content="https://wavves.aimez.ai/assets/og-wavves.png">
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
@@ -80,7 +80,7 @@
     <section class="hero">
       <div class="hero-top"><h1>wavves</h1><img class="mark" src="/assets/brand/wavves-logo.svg" alt="wavves logo" width="56" height="56"></div>
       <p class="kicker">one package for Cursor agents · on Agensi</p>
-      <p class="hero-copy">Parallel agent loops with saved state and shared constraints. In the wavves package you get the wavves skills for agent work that runs across many threads. With the workflow skills you run waves of agents in lanes under one moderator thread.</p>
+      <p class="hero-copy">Parallel agent loops with saved state and shared constraints. Through interaction with the moderator a user can set up a library of tasks that builds up through waves. An orchestration agent runs in the background. Runners run the scoped execution-layer work that the orchestration agent assigned to them. On pickup the moderator remeasures the JSON and log evidence saved in gate-captures for what the orchestration agent completed.</p>
       <div class="links">
         <a href="https://www.agensi.io/skills/wavves">wavves on Agensi</a>
         <a href="#package">Package</a>
@@ -90,18 +90,18 @@
 
     <section id="package">
       <h2>Package</h2>
-      <p class="lead">You get a recorded check for each finished task so each new thread can verify the handoff it receives. With a rotation history audit run you can read the whole rotation history of a repo at once.</p>
+      <p class="lead">On pickup the moderator remeasures the JSON and log evidence saved in gate-captures for what the orchestration agent completed. In /mod-rotate the next moderator term can also run a rotation history audit across the rotation files in a repo.</p>
       <hr class="rule">
       <div class="usage-grid">
         <article class="card skill-card" id="wavves">
           <div class="card-head"><p class="tag">Package</p></div>
           <p class="price">$50 one-time</p>
           <h3>wavves</h3>
-          <p>In the wavves package, you get the wavves skills with a blank template for every workspace file. Every wavves word keeps its name so you can read the plain meaning of each one in the README.</p>
-          <p>With /remeasure, an agent's "done" becomes a gate with a claim and a check someone else can rerun. Each gate records the raw output along with a grade from someone other than the author.</p>
-          <p>A fresh thread runs the pickup check in /mod-rotate on receiving a handoff. Five recovery playbooks give a fix row for every message in the output of either script.</p>
-          <p>A rotation history audit run in /mod-rotate reads every rotation file in a repo in order. Gaps in the numbering and breaks in the chain of terms each get an ERROR line.</p>
-          <p>Running any script in the wavves package takes Python 3 and no other packages. The pickup commit checks and every rotation history audit run also need a local git binary.</p>
+          <p>wavves skills and blank templates sit in the package. The README keeps product keep-terms with their plain meaning.</p>
+          <p>Through /remeasure the moderator turns an agent's "done" into a gate with a claim and a check someone else can rerun. JSON and log evidence lands on disk in gate-captures.</p>
+          <p>On pickup the next moderator term runs the pickup check in /mod-rotate. A fix row for messages in the output of either script sits in five recovery playbooks.</p>
+          <p>In /mod-rotate the next moderator term runs a rotation history audit across the rotation files in a repo in order. Gaps in the numbering and breaks in the chain of terms get an ERROR line.</p>
+          <p>Scripts in the wavves package need Python 3 and no other packages. Pickup commit checks and rotation history audit runs also need a local git binary.</p>
           <a class="btn" href="https://www.agensi.io/skills/wavves">Get on Agensi</a>
         </article>
       </div>
@@ -109,10 +109,10 @@
 
     <section id="demos">
       <h2>Demos</h2>
-      <p class="lead">In the video below you can watch the wavves workflow, with every file written by a script and no live agent at the keyboard. Every file in the sample project of the video is invented for the demo.</p>
+      <p class="lead">The video below shows the wavves workflow written by a script with no live agent at the keyboard. Files in the sample project of the video are invented for the demo.</p>
       <hr class="rule">
       <div class="usage-grid">
-        <article class="card skill-card"><h3>The wavves control surface</h3><p>In the wavves workflow the moderator keeps the plans and results for every lane of work as plain files under one wavves folder. On screen INDEX.md comes first, followed by the lane folders of the sample repo. Inside one lane the moderator keeps a waveset, the plan file with the waves and gates of the lane. A wave is one batch of parallel agents that the moderator checks before the next wave opens. At the end you reach the rotations folder, where the moderator writes one rotation file for each handoff to the next moderator term in a new thread. You start the same folders in your own repo from the blank templates in the wavves package.</p><video controls playsinline preload="metadata" src="/assets/demos/site/control-surface-r06.mp4"></video></article>
+        <article class="card skill-card"><h3>The wavves control surface</h3><p>In the wavves workflow the moderator keeps plans and results for lanes of work as plain files under one wavves folder. On screen INDEX.md comes first, followed by the lane folders of the sample repo. Inside one lane the moderator keeps a waveset, the plan file with the waves and gates of the lane. An orchestration agent runs runners across the execution layer for a wave. The orchestration agent writes JSON and log evidence into gate-captures. On pickup the moderator remeasures that evidence before the next wave opens. At the end the rotations folder holds one rotation file for the handoff to the next moderator term. The same folders come from blank templates in the wavves package.</p><video controls playsinline preload="metadata" src="/assets/demos/site/control-surface-r06.mp4"></video></article>
       </div>
     </section>
 
